@@ -1,0 +1,302 @@
+\documentclass[
+		pdftex,
+		a4paper,	% page format A4
+		12pt,		% font size 12pt 
+		DIV=calc,
+		oneside,	% enable one side
+		BCOR5mm,	% add additional padding
+		english,	% set language to english
+		toc=bibliography,	% include bibliography in TOC
+		halfparskip,
+		chapterprefix,
+		numbers=noenddot,
+		titlepage
+	]
+	{scrbook}   
+% ----- weitere Optionen 
+%draft,			% Entwurfsmodus zum Anzeigen zu leerer/voller Boxen 
+%DIV=calc
+%DIV12,			% Seitengröße (siehe Koma Skript Dokumentation !) 
+%BCOR5mm,		% Zusätzlicher Rand auf der Innenseite 
+%twoside,		% Seitenränder werden an doppelseitig angepasst 
+%fleqn,			% Formeln werden linksbündig (und nicht zentriert) angezeigt 
+%titlepage,		% Titel wird in einer 'titlepage' Umgebung gesetzt 
+%bigheadings,	% Große Überschriften (normal, small-headings) 
+%halfparskip-	% Absatz wird nicht eingerückt, dafür aber um eine halbe Zeile nach unten gerückt
+%
+%---------------------------------------------------
+%----- Packages
+%---------------------------------------------------
+%
+\usepackage[
+		style=numeric,
+		citestyle=numeric,
+		maxalphanames=1,
+		maxcitenames=2,
+		backend=bibtex,
+		doi=false,
+		isbn=false,
+		url=false
+	]
+	{biblatex}
+\usepackage[
+		font=small,
+		format=plain,
+		labelfont=bf,
+		up,
+		textfont=normal,
+		justification=justified,
+		singlelinecheck=false
+	]
+	{caption}
+\usepackage{subcaption}
+\usepackage{standalone}
+\usepackage{lscape}
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} 
+\usepackage{ae} 
+\usepackage{epigraph}
+\usepackage{acronym}
+\usepackage[toc,page]{appendix}
+\usepackage{fancyhdr} % Define simple headings 
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{vmargin} % Adjust margins in a simple way
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{csquotes}
+\usepackage{wrapfig} % Paket zur Positionierung einbinden
+\usepackage[pdftex]{graphicx}
+\usepackage{pgfplots}  
+\usepackage{smartdiagram}
+\usepackage{metalogo}
+\usetikzlibrary{mindmap,trees}
+%\usepackage{dtklogos}
+\usepackage{hyperref} % turn all your internal references into hyperlinks
+%\usepackage[pdfstartview=FitH,pdftitle={<<Titel der Arbeit>>}, pdfauthor={<<Autor>>}, pdfkeywords={<<Schlüsselwörter>>}, pdfsubject={<<Titel der Arbeit>>}, colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black, hypertexnames=false, bookmarksnumbered=true, bookmarksopen=true, pdfborder = {0 0 0}]{hyperref}
+%
+% table settings 
+\usepackage{booktabs}  
+\usepackage{tabularx}
+\usepackage{array}   
+\usepackage{float}
+\usepackage{rotating}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{multirow} %multi row
+\usepackage{rotating} %for rotating table
+\usepackage{color}
+\usepackage{adjustbox}
+
+%---------------------------------------------------
+%----- Bibliography setup
+%---------------------------------------------------
+%
+%\bibliographystyle{alpha}  % citation style
+\bibliography{references} % bib file
+
+% the following is needed for syntax highlighting
+  
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{git_keyword}{HTML}{000000} 
+\definecolor{git_key}{HTML}{108888}
+\definecolor{git_string}{HTML}{DD1144}
+\definecolor{git_tag}{HTML}{121289}
+\definecolor{git_attribute}{HTML}{0A8585}
+ 
+\lstdefinelanguage{JSON}{
+	keywords={false,true},
+	alsoletter=0123456789.,
+  	sensitive=false,
+  	morecomment=[l]{//},
+  	morecomment=[s]{/*}{*/},
+  	morestring=[b]',
+  	morestring=[b]",
+  	keywordstyle=\color{git_key}\bfseries,
+    commentstyle=\color{git_string},
+	stringstyle=\color{git_string},
+}
+
+\lstdefinelanguage{HTML}{
+    sensitive=true,
+    keywords=[1]{svg, g, path, image},
+    otherkeywords={<, \/>, >},   
+    keywords=[2]{class, xmlns, xmlns:xlink, xlink:href, width, height, d, x, y},   
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morecomment=[s]{<!}{>},
+    morestring=[b]',
+    morestring=[b]",    
+    alsoletter={-},
+    alsodigit={:},
+    keywordstyle=[1]\color{git_tag}\bfseries,
+   	keywordstyle=[2]\color{git_attribute},
+    commentstyle=\color{git_string},
+	stringstyle=\color{git_string},
+}
+
+\lstset{
+   	backgroundcolor=\color{white},
+   	frame=tb,
+   	rulecolor=\color{darkgray},    
+   	basicstyle=\footnotesize,
+   	extendedchars=true,
+   	showstringspaces=false,
+   	showspaces=false,
+   	showtabs=false,
+   	numbers=none,
+   	tabsize=2,
+   	breaklines=true,
+   	captionpos=b
+}
+
+%
+%---------------------------------------------------
+%----- PDF and document setup
+%---------------------------------------------------
+%
+\setlength{\parskip}{6pt}
+\hypersetup{
+	pdftitle={Link the World},  % please, add the title of your thesis
+    pdfauthor={Andre Breitenfeld},   % please, add your name
+    pdfsubject={Master thesis, Institute of Computer Science, Freie Universität Berlin}, % please, select the type of this document
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdfnewwindow=true, 		% links in new window
+    colorlinks=false,  		% false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+%
+%---------------------------------------------------
+%----- Customize header and footer\pagestyle{fancy} 
+%---------------------------------------------------
+
+\fancypagestyle{plain}{ % 'plain' page style (used for first page of chapter)
+  \fancyhf{} % clear all header and footer fields
+  \fancyfoot[R]{\thepage}
+}
+
+\pagestyle{fancy}
+
+\fancyhf{}  % delete all existing header formating
+\fancyhead[R]{\leftmark}  % represent the current chapter heading in uppercase
+\renewcommand{\chaptermark}[1]{ % adapt the shown chapter name: show it in lower case and with chapter number 
+\markboth{\thechapter.\ #1}{}}   
+
+%\fancyhead[RO]{\rightmark}   % % represent the current section heading in uppercase 
+\renewcommand{\sectionmark}[1]{% adapt the shown section name: show it in lower case and with section number 
+\markboth{\thesection.\ #1}{}}
+
+\renewcommand{\headrulewidth}{0pt} % remove lines from header
+\renewcommand{\footrulewidth}{0pt} % remove lines from header
+
+\newcommand{\tab}{\hspace*{2em}}
+
+% Source http://tex.stackexchange.com/a/32690
+\newcolumntype{R}[2]{%
+    >{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+    l%
+    <{\egroup}%
+}
+\newcommand*\rot{\multicolumn{1}{R{45}{1em}}}% no optional argument here, please!
+
+\fancyfoot{} % delete all existing footer formating
+\fancyfoot[R]{\thepage} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ---- Namen der Links im Dokument
+%\addto\captionsngerman{\renewcommand{\figurename}{\small{\textbf{Abb.}}}}
+%\addto\captionsngerman{\renewcommand{\tablename}{Tab.}}
+%\addto\captionsngerman{\captionsetup{figurewithin = section}}
+%\addto\captionsngerman{\captionsetup{font=small, labelfont=bf}}
+
+%
+%---------------------------------------------------      
+%----- Settings for word separation  
+%---------------------------------------------------      
+% Help for separation (from package babel, section 22)):
+% In german package the following hints are additionally available:
+% "- = an explicit hyphen sign, allowing hyphenation in the rest of the word
+% "| = disable ligature at this position. (e.g., Schaf"|fell)
+% "~ = for a compound word mark without a breakpoint (e.g., bergauf und "~ab)
+% "= = for a compound word mark with a breakpoint, allowing hyphenation in the composing words
+% "" = like "-, but producing no hyphen sign (e.g., und/""oder)
+%
+% Describe separation hints here:
+\hyphenation{
+% Pro-to-koll-in-stan-zen
+% Ma-na-ge-ment  Netz-werk-ele-men-ten
+% Netz-werk Netz-werk-re-ser-vie-rung
+% Netz-werk-adap-ter Fein-ju-stier-ung
+% Da-ten-strom-spe-zi-fi-ka-tion Pa-ket-rumpf
+% Kon-troll-in-stanz
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The content part of the document starts here! %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\frontmatter 
+
+%\pagenumbering{alph} % even though, these page numbers are not visible there are necessary to have unique page numbers 
+\include{title}
+\include{declaration}
+\include{dedication}
+
+%---------------------------------------------------
+%----- Abstracts in English and German   
+%---------------------------------------------------
+
+\include{abstract_en}
+\include{abstract_de}  
+                                          
+%---------------------------------------------------
+%----- Table of content   
+%---------------------------------------------------
+\tableofcontents
+%\setcounter{tocdepth}{3}   % reduce the included sections in the table of content
+
+%---------------------------------------------------
+%----- Main part
+%---------------------------------------------------
+\mainmatter
+
+\pagestyle{fancy} 
+
+\include{Chapters/Introduction}
+
+%---------------------------------------------------
+%----- Bibliography
+%---------------------------------------------------
+\printbibliography
+
+%---------------------------------------------------
+%----- Directories   
+%---------------------------------------------------
+
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\clearpage %\cleardoublepage %for openright
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\clearpage %\cleardoublepage %for openright
+%\lstlistoflistings
+
+%---------------------------------------------------
+%----- Appendix   
+%---------------------------------------------------
+\appendix
+\include{appendix}
+\backmatter
+
+\end{document}
