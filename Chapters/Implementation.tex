@@ -64,26 +64,41 @@ The complete data scheme can be found on github\footnote{\url{https://github.com
 
 
 \subsection{Data Quality and ID Confidence}
+\label{subsec:confidence}
 
 Each bit of the decoded 12-bit ID represents a probability between $0$ and $255$. That means when using a high ID confidence\footnote{The confidence of an ID is calculated as follows. TODO. Each bit should be over the confidance value.} results in less data, but with a higher accuracy.
 A low confidence results more data, but rather uncertaity and a higher error. A good tradeoff between data quality and amount of data should be chosen. Figure~\ref{fig:tradeoff} shows the proportion of wrong detections (as a fraction of all data) depending on the confidence level for all four cameras.
 
 A confidence level of $0.95$ results in about $59\%$ of remaining data, of those about $6\%$ are wrong detections. This level of confidence is chosen.
 
-Here should be some text about the tracking quality as well. For this confidence level I analysed the quality of the timeseries (tracking path) of a bee. The distribution of gap sizes of different length was used to measure the quality of the data. [TODO]
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/structure}
-	\caption{Structure of the data scheme}
-	\label{fig:scheme}
-\end{figure}
-
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/tradeoff}
 	\caption[Tradeoff: Confidence level, data quality and amount of data]{On 21.07.2016, about half of the bee tags were used up. This day was chosen to determine the effects of the ID confidence level on data quality and amount of remaining data. For each camera a five minute test dataset was chosen (15:00-15:5). For a sample ($n= 100.000$) of remaining detection, the age was determined, negative ages were counted as wrong detections (times two).}
 	\label{fig:tradeoff}
+\end{figure}
+
+\subsection{Influence of ID Confidence on Tracking Fragmentation}
+\label{subsec:tracking}
+
+Not only has the ID confidence an effect on the amount of remaining data and its quality (number of wrong detections), as a consequence also on the fragmentation of bee tracks. Bee tracks are sequences of zero and ones indicating the absence and presence of bees over a specified time period.
+
+The average total amount of absence time (zeros) per bee, is slightly decreasing with an increasing confidence level, because errors are filtered out (low number of 1 and the rest zeroes). The average number of fragments is increasing with an higher confidence level. That means also that the number of gaps of zeroes of different sizes (e.g. 1,2,3) is increasing with a higher confidence level as well.
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Figures/fragments}
+	\caption[Average Number of Fragments]{Fragments: The higher the confidence level the higher the number of fragments per track.}
+	\label{fig:fragments}
+\end{figure}
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Figures/gaps}
+	\caption[Average Number of Gaps]{Gaps: The higher the confidence level the higher the number of gaps of size 1, 2, and 3.}
+	\label{fig:gaps}
 \end{figure}
 
 
@@ -101,22 +116,88 @@ will see later\\
 only some days can be used for creating the networks , due to technical problems\\
 confidence $95\%$\\
 the absence of bees can have a lot of reasons, beeing inside a cell, outside the hive, ID quality to bad (confidence), not detected by camera because inside the exit, backwards on the window pane, difficult angle of tag, coverd by another bee, and so on an ond.\\
-Therefore the detection of bees, who are close to each other (who are likely to interact), should be not that strict, or at least variable.\\
+Therefore the detection of bees, who are close to each other (who are likely to interact), should be not that strict, or at least variable. This has to be taken into acoount, when looking at spatialy close bees.\\
 
 
 \section{Inferring Networks}
 
-The following part describes the pipeline for generating spatial proximity networks out of honey bee tracking data. A node in the network is a bee. They are distinguished by IDs. Two bees are associated if they have a maximum distance, $d$ (distance) for at least $f$ frames (1 frame = 0.33 second). This is stupid, as there are gaps which result from detection errors or confidence.
+The following part describes the pipeline for generating spatial proximity networks out of honey bee tracking data. A node in the network is a bee. They are distinguished by IDs. Only bees are in the network who interact with other bees, that means they have at least one edge (degree of one).
 
-contact rate and contact duration\\
+
+Two bees are associated (spatially close to each other), if they have a \emph{maximum distance} of $d$ (how $d$ is chosen is explained later on). This criteria is very week, meaning having a resolution of three frames per seconds results in interactions which could only last for $0.33$ seconds. So an additional parameter \emph{minimum contact duration} $t$ is introduced, the minimum time they have to spend nearby (at least) to be called associated.
+
+
+Taking the fragmentation of tracks into account, it is obvious that two bees could be nearby but not at the very same time, but slightly shifted. So the minimum contact duration would be too errow prone. To overcome this issue one could correct the bee tracks, by filling 0-gaps of varius sizes and interpolating the position of that bee accordingly. This is rather time consuming for this amount of tracking data. And also considering, that at the moment the tracking data is going to be improved anyway, then manipulating the raw data seems senseless. I rather perform a gap filling (correction) on the time series of pairs, but not on the bee tracks, because this can be done anyways/independantely.
+
+
+To evaluate this method I compared the hemming distance of binary strings for resulting pairs for (1) Correcting Bee Tracks (fill gaps size one), then extract pairs, (2) Bee tracks without correction, then extract pairs and (3) Bee Tracks without correction, but corrected extracted pairs (fill gaps size one).\\
+MUSS DAZU NEN PLOT HER ODER SONSTWAS ANDERES?\\
+
+The parameter is called \emph{gap size} $g$.
 
 \subsection{Network Pipeline}
-\subsection{Thresholding Edges}
 
-\section{Static and Temporal Analysis}	
+The network pipeline takes as input a path to an bb\_binary repository and outputs a graph in graphML file format. All cameras are included in the pipeline. The pipeline uses the following parameters:
+
+\begin{itemize}
+\item $d$ in px - maximum distance of bees (spatial proximity)
+\item $t$ in frames - minimum contact duration (how many frames they need to spend nearby to count as association)
+\item $gap$ in frames - size of gap, which is used to corret bee pair time series
+\item $window$ in minutes - size of time window for aggregating the network
+\end{itemize}
+
+Other parameters are:
+
+\begin{itemize}
+\item path to data
+\item id confidence
+\item 2016 or 2015 - method for calculating beeIDs
+\item start timestamp - start of network slice
+\item number of used CPUs for parallelization
+\item file name prefix - for gaphML file
+\end{itemize}
+
+The pipeline is parallelized on frame level, that means, each process gets a portion of the data, extracts interactions, the main process, adds everything up and creates the network. The steps are the following:
+
+\begin{enumerate}
+\item For each camera: filter detections by ID confidence (according to 2016/2015)
+\item Simple stitching of the two sides of the hive.
+\item Extract close pairs with param $d$.
+\item Correct pair time series with gap size parameter $gap$.
+\item Extract interactions from time series with parameter $t$.
+\end{enumerate}
+
+
+\subsection{Thresholding Edges}
+Edges with weight=one are removed, maybe just an error and not that important.
+
+\subsection{Pipeline Parameters}
+confidence 0.95, becasue of~\ref{subsec:confidence}\\
+
+distance is XXX px, because average length of bee is XXX, analog zu paper von Barachi(?) when they were at a distance minor of the length of a bee body~\cite{baracchi2014socio} (measurement: 4 Images one for each cameras, measured length with imageJ manually)\\
+
+minimum contact duration X, because Y, damit man nicht so viele Vorbeiäufe dabei hat\\
+filling gap of size X, because of Y ()\\
+
+\section{Static and Temporal Analysis}
+what dataset is used here?\\
+TODO\\
+
+\subsection{Static Network Analysis}
+The following network properties were analysed for a static day network.
+TODO: list of properties. (similar to what others have done)
+
+\subsection{Temporal Analysis}
+consecutive day networks\\
+one day split up in hours\\
 
 \section{Attributed Data and Hypothesis Testing}
+Hypothesis\\
+(1) Communities reflect groups of bees working in different areas of the hive and\\ (2) Communities relect different age groups\\
 
+The data which was used to test the hypothesis (1) is saved in a sqlite database for faster access, because using bb\_binary (parsing the data over and over again) was to slow. For testing if lists of positions are different the test XY was used.
+
+For hypothesis (2) the data is stored as csv of birth dates of a bee. For testing if age goups are different the Kolmogorov Smirnov Test was used.
 
 \section{Implementation, Runtime and Complexity}
 For implementing the network pipeline python, with pandas and numpy, are used, because the bb\_binary library, for accessing the tracking, data is only available in python. The networks, in graphML format, are created using the python library \emph{NetworkX}\footnote{\url{https://networkx.github.io/} ; Last accessed: 2017-02-17, 08:07PM} in version 1.11.
