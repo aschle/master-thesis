@@ -172,12 +172,21 @@ The pipeline is parallelized on frame level, that means, each process gets a por
 Edges with weight=one are removed, maybe just an error and not that important.
 
 \subsection{Pipeline Parameters}
-confidence 0.95, becasue of~\ref{subsec:confidence}\\
+For performing the network analysis, I chose the parameters as follows:
 
-distance is XXX px, because average length of bee is XXX, analog zu paper von Barachi(?) when they were at a distance minor of the length of a bee body~\cite{baracchi2014socio} (measurement: 4 Images one for each cameras, measured length with imageJ manually)\\
+\begin{description}
+\item[Confidence] As explained in section\ref{subsec:confidence}, the confidence is set to $95\%$.
+\item[Maximal Distance] I chose the length of a bee body $212$px ($\pm 16$px), according to \textcite{baracchi2014socio}, as the maximal distance between two bees (see figure~\ref{fig:radius}). The average bee length was determinded by manually measuring the length of all bees ($n=337$) in four images (one for each camera, 21.07.2016, 03:00PM) using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed: 22.02.2016}.
+\item[Minimal Contact Duration] This is set to 3 frames (one second), to exclude errors. TODO: I do not know why actually and how to justify this. \textcite{mersch2013tracking} excluded interactions below one second as well. I would rather look at the average speed of moving bees, to exclude passing bees, but then shorter interactions are excluded. Looking at the length of 1-chains of pair time series (after filling the gaps), the mode=1, median=2 and mean=4. Three frames corresponds to 57\% of all 1-chains, seem to be reasonable. (4 = 66\%)
+\item[Gap Size] As the gap size 2 frames is chosen. This value corresponds to the median of gap length of bee tracks (mode=1, mean=14) and median of gap length in pair time series (mode=1, mean=27). This is tested for a 10 minute dataset for camera 1 (most detections).
+\end{description}
 
-minimum contact duration X, because Y, damit man nicht so viele Vorbeiäufe dabei hat\\
-filling gap of size X, because of Y ()\\
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Figures/radius}
+	\caption[Distance Between Bees]{The average bee length is 212px, according to this the maximal distance between bees is chosen.}
+	\label{fig:radius}
+\end{figure}
 
 \section{Static and Temporal Analysis}
 what dataset is used here?\\
