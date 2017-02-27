@@ -1,8 +1,8 @@
 \chapter{Approach and Implementation}
 \label{ch:approach}
-In this chapter the basic work flow is described in detail. The process is mainly drive by an exploratory approach, but follows primarily Farines and Whiteheads~\cite{farine2015constructing} primary steps and key considerations for social network analysis to non-human animal data. The adapted and resulting process is visualized in figure~\ref{fig:process}.
+In this chapter the basic work flow is described in detail. The process is mainly driven by an exploratory approach, but follows primarily Farines and Whiteheads~\cite{farine2015constructing} primary steps and key considerations for social network analysis to non-human animal data. The adapted and resulting process is visualized in figure~\ref{fig:process}.
 
-The dataset was first analysed regarding data quality and to form an understanding of the dataset and behaviour of bees in general. Those findings were used to define nodes and infer associations to build the network, respectively derive parameters for the network pipeline. The static and temporal networks are analysed using network scienc tools and methods. For testing hypothesis the networks are combined with spatial and age information. Each step is explained within the following sections.
+The dataset was first analysed regarding data quality and to form an understanding of the dataset and behaviour of bees in general. Those findings were used to define nodes and infer associations to build the network, respectively derive parameters for the network pipeline. The static and temporal networks are analysed using network science tools and methods. For testing hypothesis the networks are combined with spatial and age information. Each step is explained within the following sections.
 
 \begin{figure}[htb]
 	\centering
@@ -18,19 +18,19 @@ The dataset was first analysed regarding data quality and to form an understandi
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/setupCams}
-	\caption{Camera Setup in 2016: (1) Top View:  vertical hive with two cameras for each side, overlapping in the middle. (2) Front View: left and right camera setup, the red dot indicated the origin $(0,0)$ of the camera.}
+	\caption{Camera Setup in 2016: (1) Top View:  vertical hive with two cameras for each side, overlapping in the middle. (2) Front View: left and right camera setup, the red dot indicates the origin $(0,0)$ of the camera image.}
 	\label{fig:cams}
 \end{figure}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=0.6\textwidth]{Figures/recording}
-	\caption[Recording Season]{Recording Season with maintainance and failures: \emph{Yellow} indicates recording went without any big interruption; \emph{Green} indicates maintainance work or technical failures of one or all cameras. This is calculated using the expected number of files produced by each camera per hour.}
+	\caption[Recording Season]{Recording Season with maintainance and failures: \emph{Green} indicates recording went without any big interruption; \emph{Yellow} indicates maintainance work or technical failures of one or all cameras. This is calculated using the expected number of files produced by each camera per hour.}
 	\label{fig:period}
 \end{figure}
 
-The basis of the dataset are video files, that capture tagged honey bees of one colony in a two sided observation hive.
-Each individual of the colony, including about 3200 bees, were tagged with circular 12-bit markers. Four cameras were used to film the hive, the setup of the cameras is illustrated in figure~\ref{fig:cams} and an example of tagged bees is shown in section~\ref{ch:intro}, figure~\ref{fig:markers}.
+The dataset derives from video files, that capture tagged honey bees of one colony in an observation hive.
+Each individual of the colony, including about 3000 bees, were tagged with circular 12-bit markers. Four cameras were used to film the hive, the setup of the cameras is illustrated in figure~\ref{fig:cams} and an example of tagged bees is shown in section~\ref{ch:intro}, figure~\ref{fig:markers}.
 
 \begin{figure}[htb]
 	\centering
@@ -39,77 +39,89 @@ Each individual of the colony, including about 3200 bees, were tagged with circu
 	\label{fig:tagging}
 \end{figure}
 
-The recording season lastet nine weeks (63 days), around the clock, from 19.07.2016 until 19.09.2016, with some interruptions due to maintainance and technical failures (figure~\ref{fig:period}). The recording resolution of each camera is three frames per second, aiming for $1024$ frames (about $5.7$ minutes) for a video files. For each frame, bee detections were extracted by using an image analysis pipeline, which is explained in detail in~\cite{wario2015automatic}. The resulting detection data is stored in a binary file format.
+The recording season lastet nine weeks (63 days), around the clock, from 19.07.2016 until 19.09.2016, with some interruptions due to maintainance and technical failures (figure~\ref{fig:period}). The recording resolution of each camera is three frames per second, with 1024 frames per video file. For each frame, bees were detected by using an image analysis pipeline, which is explained in detail in~\cite{wario2015automatic}. The resulting detection data is stored in a binary file format.
 A python library called \emph{bb-binary}\footnote{\url{https://github.com/BioroboticsLab/bb_binary}; Last accesed: 2106-02-16, 04:28PM} provides easy access to the binary files. Each file in bb\_binary file format corresponds to a video file of a single camera.
 The size of the complete dataset for 2016 is $470$~GB, about $7.5$~GB of binary data per day.
 
-Exactly $3.191$ bees were tagged. The tagging period is 67 days long. The tagging started on 28.06.2016 (22 days before the recording started) and lasted until 02.09.2016 (17 days before the recording ended). The young bees were tagged and then added to the hive, about noon each day. The overall tagging frequency is shown in figure~\ref{fig:tagging}. The hatching day for each bee is known, therefore the age of each bee.
-
-
+Exactly $3.191$ bees were tagged. The tagging period was 67 days long. The tagging started on 28.06.2016 (22 days before the recording started) and lasted until 02.09.2016 (17 days before the recording ended). The young bees were tagged and then added to the hive, about noon each day. The overall tagging frequency is shown in figure~\ref{fig:tagging}. The hatching day for each bee was documented. Therefore the age of each bee at a certain point in time can be calculated.
 
 \subsection{Structure of the Dataset}
 The data is organised in \emph{frame container}, wich corresponds to a video file of a single camera. A frame container holds all \emph{frames} for that specific video.
-Each frame has a list of all bees detected by the image analysis pipeline.
+Each frame has a list of all detected bees.
 A \emph{detection} has the following attributes, which are relevant to this project:
 
 \begin{itemize}
 \item \textbf{xpos}: $x$ coordinate of bee with respect to the image in pixel
 \item \textbf{ypos}: $y$ coordinate of bee with respect to the image in pixel
 \item \textbf{radius}: of the circular 12-bit tag
-\item \textbf{decodedId}: decoded 12-bit id, the bit probabilities are discretised to 0-255
+\item \textbf{decodedId}: decoded 12-bit id
 \end{itemize}
 
-Besides further information, the frame container specifies the camera, which took the video. A frame is also attributed with a timestamp. The data can be accessed iterating on frame container or on frame level, in both cases using two timestamp parameters for specifying the time interval. The complete data scheme can be found on github\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: 2106-02-16, 04:46PM}. 
+Besides further information, the frame container specifies the camera, which took the video. A frame is also attributed with a timestamp. The data can be accessed iterating on the frame level, using two timestamps (start and end) for specifying the time interval. The complete data scheme can be found on github\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: 2106-02-16, 04:46PM}. 
 
 
-\subsection{Data Quality and ID Confidence}
+\subsection{ID Probabilities and Confidence Level}
 \label{subsec:confidence}
+With a 12-bit ID, 4096 bees can be tagged.
+Each bit of the decodedId is not a $1$ or $0$, but represents a probability between $0$ and $255$. It indicates the reliablility of the image analysis pipeline for that specific bit.  A number closer to $255$ represents a $1$, a number closer to $0$ a $0$.
+A \emph{confidence value} can be calculated for each ID. The confidence value of a single bit is its distance to $128$, discretized to a value between $0$ and $1$. The confidence value of an ID is therefore the minimum of all bit confidences.
 
-Each bit of the decoded 12-bit ID represents a probability between $0$ and $255$. That means when using a high ID confidence\footnote{The confidence of an specific ID is the minimum of all bits-confidences.} results in less data, but with a higher accuracy.
-A low confidence results in more data, but rather uncertaity and a higher error. A good tradeoff between data quality and amount of data should be chosen. Figure~\ref{fig:tradeoff} shows the proportion of wrong detections (as a fraction of all data) depending on the confidence level for all four cameras.
-A confidence level of $0.95$ results in about $59\%$ of remaining data, of those about $6\%$ are wrong detections. This level of confidence is chosen.
-
-TODO: testing weather nodes in the created network are bees, who are alive\\
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/tradeoff}
-	\caption[Tradeoff: Confidence level, data quality and amount of data]{On 21.07.2016, about half of the bee tags were used up. This day was chosen to determine the effects of the ID confidence level on data quality and amount of remaining data. For each camera a five minute test dataset was chosen (15:00-15:05). For a sample ($n= 100.000$) of remaining detection, the age was determined, negative ages were counted as wrong detections.}
-	\label{fig:tradeoff}
-\end{figure}
-
-\subsection{Influence of ID Confidence on Tracking Fragmentation}
-\label{subsec:tracking}
-
-Bee tracks are sequences of zero and ones indicating the absence and presence of bees over a specified time period. The ID confidence has also an effect on the fragmentation of bee tracks. A higher confidence level leads to more gaps in the tracks. 
-The average total amount of absence time (zeros) per bee, is slightly decreasing with an increasing confidence level, because errors are filtered out (low number of 1 and the rest zeroes). The average number of fragments is increasing with an higher confidence level. That means also that the number of gaps of different sizes (e.g. 1,2,3) is increasing with a higher confidence level as well (figure~\ref{fig:fragments} and~\ref{fig:gaps}).
-The absence of bees can have a lot of reasons, not only the confidence level. A bee can beinside a cell, outside the hive, not detected by camera because inside the exit, backwards on the window pane, difficult angle of tag, coverd by another bee, and so.
+The amount of data that remains for further processing and its quality  depends heavily on the chosen \emph{confidence level}. Figure~\ref{fig:confidence} shows the relationship between confidence level, the amount of remainig data and the number of unique IDs. 
 
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/fragments}
-        \caption[Average Number of Fragments]{Fragments}
-        \label{fig:fragments}
+        \includegraphics[width=\textwidth]{Figures/confVSamount}
+        \caption[Remaining Detections]{Remaining Detections depending on the level of confidence.}
+        \label{fig:confVSamount}
     \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-      %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/gaps}
-        \caption[Average Number of Gaps]{Gaps}
-        \label{fig:gaps}
+        \includegraphics[width=\textwidth]{Figures/confVSids}
+        \caption[Unique IDs]{Number of unique IDs depending on the level of confidence.}
+        \label{fig:confVSids}
     \end{subfigure}
-    \caption{The higher the confidence level the higher the number of fragments and gaps of size 1, 2, and 3.}
-    \label{fig:animals}
+    \caption[Amount of Remaining Data]{The amount of remaining data decreases with an increasing confidence level. The number of unique IDs behave similar. (Dataset: 26.07.2016, 16:00-16:05)}
+    \label{fig:confidence}
+\end{figure}
+
+\subsection{Time Series of Bees}
+\label{subsec:tracking}
+
+The original dataset (a number of frames containing bee detections), is transformed to binary \emph{time series of bees}, depicted in figure~\ref{fig:structure} (left and middle). A time series of a bee is a sequence of zeros and ones indicating the absence and presence of a bee over a specified time interval. 
+As expected the confidence level has an effect on the resulting time series of a bee. A high confidence leads to more gaps in the series and also to longer gaps.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/structure}
+	\caption[Structure of Dataset]{\textbf{Left:} original dataset - bb\_binary data containing frames and detections; \textbf{Middle:} transformation to time series - zero indicating absence of the bee, one indicating presence of the bee; \textbf{Right:} transformation to bee pairs - zero indicating eighter one or both bees are not present at the same time or not close to each other, one indicating bees are present at the same time and nearby.}
+	\label{fig:structure}
 \end{figure}
 
 
-\subsection{Statistical Description of the Dataset}
-Maybe i will fill this part, when I need it, later.\\
-speed of bees\\
-presence and absence of bees (counted and as duration)\\
-presence and absence of bee-pairs (counted and as duration)\\
-number of detected bees per day (and hour)\\ 
+\subsection{Data Quality}
+\label{subsec:quality}
+
+The quality of the data could be indirectly checked using the age information of bees. On 26.07.2016, about half of the bee tags ($2014$ of $4096$) were assigned to a bee. This day was chosen to determine the effects of the confidence level on data quality.
+At first, for each detection the age of that bee was calculated, a negative age was counted as a wrong detection. I assumed that the number of wrong detections indicated by negative age also occured in the positive half, but remained unseen, therefore I doubled the error. Secondly, the number of wrong unique IDs is also determinde using the age test. Figure~\ref{fig:quality} shows that even though the number of wrong detections
+decreases steadily with an increasing confidence level, but the number of wrong IDs only starts to decrease with a very high level.
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Figures/confVSdetquality}
+        \caption[Wrong Detections]{Wrong detections in relation to the level of confidence.}
+        \label{fig:confVSdetquality}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{Figures/confVSidsquality}
+        \caption[Unique IDs]{Number of wrong IDs depending on the level of confidence.}
+        \label{fig:confVSidsquality}
+    \end{subfigure}
+    \caption[Data Quality]{The number of wrong detections decreases with an increasing level of confidence. In contrast, the number of false IDS becomes noticeably less only with a very high confidence level. (Dataset: 26.07.2016, 16:00-16:05)}
+    \label{fig:quality}
+\end{figure}
+
+Even with an confidence level of $100\%$, $30.2\%$ of the unique IDs are wrong (have a negative age), corresponding to only $2.5\%$ of detections. Therefore wrong IDs need to be filtered out anyway (independent of the confidence value), to obtain a more reliable dataset. A good indicator is the detection frequency of IDs. IDs with a negative age are on average less detected than IDs with a positive age.
 
 
 \subsection{Implications}
