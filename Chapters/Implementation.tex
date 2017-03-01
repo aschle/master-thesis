@@ -6,7 +6,7 @@ The dataset was first analysed regarding data quality and to form an understandi
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/process}
+	\includegraphics[width=0.8\textwidth]{Figures/process}
 	\caption{Steps of the Research Approach}
 	\label{fig:process}
 \end{figure}
@@ -14,23 +14,30 @@ The dataset was first analysed regarding data quality and to form an understandi
 
 \section{The Dataset}
 \label{sec:dataset}
+The dataset derives from video files, that capture tagged honey bees of one colony in an observation hive.
+Each individual of the colony, including about 3000 bees, were tagged with circular 12-bit markers. Four cameras were used to film the hive, the setup of the cameras is illustrated in figure~\ref{fig:cams} and an example of tagged bees is shown in section~\ref{ch:intro}, figure~\ref{fig:markers}.
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/setupCams}
-	\caption{Camera Setup in 2016: (1) Top View:  vertical hive with two cameras for each side, overlapping in the middle. (2) Front View: left and right camera setup, the red dot indicates the origin $(0,0)$ of the camera image.}
-	\label{fig:cams}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=0.6\textwidth]{Figures/recording}
+	\includegraphics[width=0.4\textwidth]{Figures/recording}
 	\caption[Recording Season]{Recording Season with maintainance and failures: \emph{Green} indicates recording went without any big interruption; \emph{Yellow} indicates maintainance work or technical failures of one or all cameras. This is calculated using the expected number of files produced by each camera per hour.}
 	\label{fig:period}
 \end{figure}
 
-The dataset derives from video files, that capture tagged honey bees of one colony in an observation hive.
-Each individual of the colony, including about 3000 bees, were tagged with circular 12-bit markers. Four cameras were used to film the hive, the setup of the cameras is illustrated in figure~\ref{fig:cams} and an example of tagged bees is shown in section~\ref{ch:intro}, figure~\ref{fig:markers}.
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figures/beesClose}
+	\caption[xxx]{xxx}
+	\label{fig:veryclose}
+\end{figure}
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Figures/setupCams}
+	\caption[Camera Setup in 2016]{Camera Setup in 2016}
+	\label{fig:cams}
+\end{figure}
 
 \begin{figure}[htb]
 	\centering
@@ -84,11 +91,28 @@ The amount of data that remains for further processing and its quality  depends 
     \label{fig:confidence}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{Figures/confVSdetquality}
+		\caption[Wrong Detections]{Wrong detections in relation to the level of confidence.}
+		\label{fig:confVSdetquality}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{Figures/confVSidsquality}
+		\caption[Unique IDs]{Number of wrong IDs depending on the level of confidence.}
+		\label{fig:confVSidsquality}
+	\end{subfigure}
+	\caption[Data Quality]{The number of wrong detections decreases with an increasing level of confidence. In contrast, the number of false IDS becomes noticeably less only with a very high confidence level. (Dataset: 26.07.2016, 16:00-16:05)}
+	\label{fig:quality}
+\end{figure}
+
+
 \subsection{Time Series of Bees}
 \label{subsec:tracking}
 
 The original dataset (a number of frames containing bee detections), is transformed to binary \emph{time series of bees}, depicted in figure~\ref{fig:structure} (left and middle). A time series of a bee is a sequence of zeros and ones indicating the absence and presence of a bee over a specified time interval. 
-As expected the confidence level has an effect on the resulting time series of a bee. A high confidence leads to more gaps in the series and also to longer gaps.
+As expected the confidence level has an effect on the resulting time series of a bee. A high confidence leads to more gaps in the series and also to more shorter gaps (see figure~\ref{fig:gaps}).
 
 \begin{figure}[htb]
 	\centering
@@ -97,6 +121,21 @@ As expected the confidence level has an effect on the resulting time series of a
 	\label{fig:structure}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{Figures/gaplen}
+		\caption[Length of Gaps]{Length of Gaps depending on the level of confidence.}
+		\label{fig:gaplen}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{Figures/numgaps}
+		\caption[Number of Gaps]{Number of Gaps depending on the level of confidence.}
+		\label{fig:numgaps}
+	\end{subfigure}
+	\caption[Influence of Confidence Level on Gaps]{Influence of the confidence level of the length of gaps and number of gaps: With an increasing level of confidence the average gap length decreases and the number of gaps per bee series increases. (Dataset: 26.07.2016, 16:00-16:05)}
+	\label{fig:gaps}
+\end{figure}
 
 \subsection{Data Quality}
 \label{subsec:quality}
@@ -105,23 +144,9 @@ The quality of the data could be indirectly checked using the age information of
 At first, for each detection the age of that bee was calculated, a negative age was counted as a wrong detection. I assumed that the number of wrong detections indicated by negative age also occured in the positive half, but remained unseen, therefore I doubled the error. Secondly, the number of wrong unique IDs is also determinde using the age test. Figure~\ref{fig:quality} shows that even though the number of wrong detections
 decreases steadily with an increasing confidence level, but the number of wrong IDs only starts to decrease with a very high level.
 
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/confVSdetquality}
-        \caption[Wrong Detections]{Wrong detections in relation to the level of confidence.}
-        \label{fig:confVSdetquality}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/confVSidsquality}
-        \caption[Unique IDs]{Number of wrong IDs depending on the level of confidence.}
-        \label{fig:confVSidsquality}
-    \end{subfigure}
-    \caption[Data Quality]{The number of wrong detections decreases with an increasing level of confidence. In contrast, the number of false IDS becomes noticeably less only with a very high confidence level. (Dataset: 26.07.2016, 16:00-16:05)}
-    \label{fig:quality}
-\end{figure}
-
 Even with an confidence level of $100\%$, $30.2\%$ of the unique IDs are wrong (have a negative age), corresponding to only $2.5\%$ of detections. Therefore wrong IDs need to be filtered out anyway (independent of the confidence value), to obtain a more reliable dataset. A good indicator is the detection frequency of IDs. IDs with a negative age are on average less detected than IDs with a positive age.
+
+[TODO: x\% von den Mean der Detection Frequency ]
 
 
 \subsection{Implications}
@@ -137,72 +162,97 @@ Two bees are associated (spatially close to each other), if their distance is mi
 
 Taking the fragmentation of tracks into account, it is obvious that two bees could be nearby but not at the very same time, but slightly shifted. So the minimum contact duration would be too errow prone. To overcome this issue one could correct the bee tracks, by filling gaps of varius sizes and interpolating the position of that bee accordingly. This is rather time consuming for this amount of tracking data (TODO: naja so doll auch nicht, scipy.ndimage.morphology.binary\_dilation) and also considering, that the tracking data is going to be improved in the future, then manipulating the raw data seems senseless. I rather perform a gap filling (maybe similar to binary dilation) on the time series of pairs, but not on the bee tracks, because this is independent of the input data.
 
-To evaluate this method I compared the hemming distance of resulting bee pairs for (1) Correcting Bee Tracks (fill gaps size one), then extract pairs, (2) Bee tracks without correction, then extract pairs and (3) Bee Tracks without correction, but corrected extracted pairs (fill gaps size one). [TODO: Wie soll das Ergenis hier hin?]
+Edges are attributed with three parameters. The first one is the frequency of contacts, so how often they share a close position. The second parameter is the total duration of contact, how many time frames in total they spend close by.
 
 \subsection{Network Pipeline}
 
-The network pipeline takes as input a path to an bb-binary repository and outputs a graph in graphML file format. All cameras are included in the pipeline. The pipeline takes the following parameters:
+The network pipeline takes as input a path to the bb-binary data and outputs a graph in graphML file format. The pipeline takes the following parameters:
 
 \begin{itemize}
 \item path to data
-\item id confidence in the range 0 to 1
-\item gap size in frames - size of gap, which is used to corret bee pair time series
-\item maximum distance in px - maximum distance of bees (spatial proximity)
-\item minimum contact duration in frames - how many frames they need to spend nearby
+\item confidence in percent
+\item gap size in frames - this is used to corret the time series of bee pairs
+\item maximum distance in px - define what close means (spatial proximity)
+\item minimum contact duration in frames - how many frames bees need to spend nearby
+\item cutoff in percent - IDs with a number of total detections below X percent of the mean frequency are discarded 
 \item start timestamp - start of network slice
 \item window size in minutes - size of time window for aggregating the network
 \item number of used CPUs for parallelization
+\item year - calculate IDs and set camera setup for 2015 or 2016
 \end{itemize}
 
-The pipeline is parallelized on frame level, that means, each process gets a portion of the data and extracts interactions, the main process, adds everything up and creates the network. The steps are the following:
+The pipeline is parallelized on frame level, that means, each process gets a portion (frames for a timeinterval of five minutes) of the data and extracts interactions/edges. The main process adds everything up and creates a network.
+The steps are the following:
 
 \begin{enumerate}
-\item For each camera: filter detections by ID confidence
-\item Simple stitching of the two sides of the hive.
-\item Extract close pairs.
-\item Generate time series for each pair.
-\item Correct pair time series.
-\item Extract interactions/contacts from time series.
+\item \textbf{Filter detections by confidence}\\
+For each of the four camera the detections are filtered by the confidence level.
+
+\item \textbf{Simple stitching}\\
+Each side of the hive consists of two cameras. 	The $x$-coordinates of each detection (of the right	cameras) is moved further to the right, also adding an offset of $2\times \texttt{maximum distance}$. So the left and the right detection of each side of the hive are move into one reference system.
+
+\item \textbf{Discard IDs below a cutoff}\\
+For each ID its detection frequency is measured. All detections, whos ID frequency is below a certain cutoff are discarded. The cutoff is measured in percent of the average detection frequency.
+
+\item \textbf{Extract close pairs}\\
+For each side of the hive, all close pairs according to the maximum distance parameter are calculated and then joined together.
+
+\item \textbf{Generate time series of bee pairs}\\
+The data structure (frames and detection) is transformed to time series of bee pairs.
+
+\item \textbf{Correct pair time series.}\\
+The time series of bees are corrected by filling in the gaps of length \texttt{gap size}.
+
+\item \textbf{Extract edges}\\
+The edges and its attributes (frequency and duration) are extracted from the time series of bees using the minimum contact duration parameter. A sequence of at least X ones counts as one interaction. The frequency of those series adn the total duration (number of ones) are the attributes.
+
+
 \end{enumerate}
 
-
-\subsection{Edge weight and Thresholding}
-Edges are attributed with three parameters. The first one is the frequency of contacts, so how often they share a close position. The second parameter is the total duration of contact, how many time frames in total they spend close by.
- 
-TODO. document what threshold for edges was used.
-
 \subsection{Pipeline Parameters}
-For performing the following network analysis, I chose the parameters as follows:
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{Figures/radius}
-		\caption[Contact Radius]{Contact Radius}
-		\label{fig:radius}
-    \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-      %(or a blank line to force the subfigure onto a new line)
-    \begin{subfigure}[b]{0.45\textwidth}
-	    \includegraphics[width=\textwidth]{Figures/sizeTagBee}
-        \caption[Bee and Tag Size]{Bee and Tag Size}
-        \label{fig:size}
-    \end{subfigure}
-    \caption{Distance Between Bees: The average bee length is 212px, according to this, the maximal distance between bees is chosen.}
-    \label{fig:contactRadius}
-\end{figure}
+For performing the network analysis, I chose the pipeline parameters as follows:
 
 \begin{description}
 \item[Confidence] As explained in section\ref{subsec:confidence}, the confidence is set to $95\%$.
 
-\item[Maximal Distance] I chose the length of a bee body $212$px ($\pm 16$px), according to \textcite{baracchi2014socio}, as the maximal distance between two bees (see figure~\ref{fig:radius}). The average bee length was determinded by manually measuring the length of all bees ($n=337$) in four images (one for each camera, 21.07.2016, 03:00PM) using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed: 22.02.2016}.
+\item[CutOff] This value is set to XXX, as explained in section~\ref{subsec:quality}.
 
-\item[Minimal Contact Duration] This is set to 3 frames (one second), to exclude errors. TODO: I do not know why actually and how to justify this. \textcite{mersch2013tracking} excluded interactions below one second as well. I would rather look at the average speed of moving bees, to exclude passing bees, but then shorter interactions are excluded. Looking at the length of 1-chains of the pair time series (after filling the gaps), the mode=1, median=2 and mean=4. Three frames corresponds to 57\% of all 1-chains, seem to be reasonable. (4 = 66\%) (same dataset as in gap size)
+\item[Maximum Distance] I chose the length of a bee body, according to \textcite{baracchi2014socio}, as the maximum distance between two bees (figure~\ref{fig:radius}). The average bee length of $212$px ($\pm 16$px)  was determinded by manually measuring the length of all bees ($n=337$) in four images (one for each camera, 21.07.2016, 03:00PM) using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed: 22.02.2016}.
 
-\item[Gap Size] The gap size is set to two frames. This value corresponds to the median of gap length of bee tracks (mode=1, mean=14) and median of gap length in pair time series (mode=1, mean=27). This is tested for a 10 minute dataset for camera 1 (because it  had the most detections).
+\item[Gap Size] The gap size is set to two frames. This value corresponds to the median gap length in the time series of pairs ($\texttt{mode}=1$, $\texttt{mean}=27$). [TODO: what dataset was used (95\% confidence, XXX\% cutOff, XXXpx maximal distance, date, camera)]
+
+\item[Minimum Contact Duration] This is set to three frames (one second). This corresponds to~\textcite{mersch2013tracking}, they as well exclude interactions below one second. Looking at the frequency distribution of chains of ones ($1$, $11$, $111$, and so on) of the pair time series (after filling the gaps), then: $\texttt{mode}=1$, $\texttt{median}=2$ and $\texttt{mean}=4$. Three frames corresponds to $57\%$ of all chains, this seem to be reasonable. [TODO: what dataset was used (95\% confidence, XXX\% cutOff, XXXpx maximal distance, date, camera)]
+
 \end{description}
 
+\begin{figure}[b]
+	\centering
+	\begin{subfigure}[b]{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/radius}
+		\caption[Contact Radius]{Contact Radius}
+		\label{fig:radius}
+	\end{subfigure}
+	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+	%(or a blank line to force the subfigure onto a new line)
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{Figures/sizeTagBee}
+		\caption[Bee and Tag Size]{Bee Length}
+		\label{fig:size}
+	\end{subfigure}
+	\caption{Distance Between Bees: A length of a bee is chosen as the maximal  distance between bees.}
+	\label{fig:contactRadius}
+\end{figure}
+
+
+\subsection{Remove faulty nodes}
+nodes with a low closeness are removed\\
+kmeans, gaussian mixture model\\
+nodes with low closeness have a negative age\\
+TODO: add PLOT with closeness and age and kmean groups/goussian groups\\
+
+\subsection{Thresholding based on edge weights}
+TODO. document what threshold for edges was used.
 
 \section{Static and Temporal Analysis}
 dataset used here 1 day and one hour of that day\\
