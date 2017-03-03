@@ -46,7 +46,9 @@ Each individual of the colony, including about 3000 bees, were tagged with circu
 	\label{fig:tagging}
 \end{figure}
 
-The recording season lastet nine weeks (63 days), around the clock, from 19.07.2016 until 19.09.2016, with some interruptions due to maintainance and technical failures (figure~\ref{fig:period}). The recording resolution of each camera is three frames per second, with 1024 frames per video file. For each frame, bees were detected by using an image analysis pipeline, which is explained in detail in~\cite{wario2015automatic}. The resulting detection data is stored in a binary file format.
+The recording season lastet nine weeks (63 days), around the clock, from 19.07.2016 until 19.09.2016, with some interruptions due to maintainance and technical failures. I chose four consecutive days (30.07, 31.07, 1.8,2.8), marked in figure~\ref{fig:period} for further analysis and the 26.07. for testing purpose.
+
+The recording resolution of each camera is three frames per second, with 1024 frames per video file. For each frame, bees were detected by using an image analysis pipeline, which is explained in detail in~\cite{wario2015automatic}. The resulting detection data is stored in a binary file format.
 A python library called \emph{bb-binary}\footnote{\url{https://github.com/BioroboticsLab/bb_binary}; Last accesed: 2106-02-16, 04:28PM} provides easy access to the binary files. Each file in bb\_binary file format corresponds to a video file of a single camera.
 The size of the complete dataset for 2016 is $470$~GB, about $7.5$~GB of binary data per day.
 
@@ -146,13 +148,31 @@ decreases steadily with an increasing confidence level, but the number of wrong 
 
 Even with an confidence level of $100\%$, $30.2\%$ of the unique IDs are wrong (have a negative age), corresponding to only $2.5\%$ of detections. Therefore wrong IDs need to be filtered out anyway (independent of the confidence value), to obtain a more reliable dataset. A good indicator is the detection frequency of IDs. IDs with a negative age are on average less detected than IDs with a positive age.
 
-[TODO: x\% von den Mean der Detection Frequency ]
+\subsubsection{Frequency Filter}
+IDs who definately exists, but their age can to be determinded are excluded from the analysis completely. These are bees, who were tagged later~($n=10$)\footnote{id= [2,
+	74,
+	2045,
+	3172,
+	3764,
+	3796,
+	3827,
+	3836,
+	3844,
+	3940]} and IDs whos detection frequency is absurd high but there age is unknown~($n=7$)\footnote{id=[
+	17,
+	168,
+	801,
+	888,
+	2045,
+	2357,
+	2607]}
 
+For each analysis day the number of detections per ID is obtained, excluding the mentioned IDs above. The frequency distribution tells that, IDs with a negative age are detected less often ($704$ frames $\pm 65$)  than bees with a positive age ($36.603$ frames $\pm 2.345$). The cutoff is 99\% of the negative IDs distribution. All IDs with a detection frequency below $4737 \pm 644$ frames are discarded. A list with possible (valid) IDs is kept for each day. Using this list, faulty detections can be filtered out beforehand.
 
 \subsection{Implications}
-For further analysis I use the days 30.07.2016, 31.07.2016, 01.08.2016 and 02.08.2016 with a confidence level $95\%$ [TODO: evaluate confidence level]. This period is chosen, because it is a contiguous time span close to the recording start.
-Because of the high fragmentation level, the inferring of edges (bees who are close to each other at the same time), should be not that strict, or at least variable. This has to be taken into acoount, when looking at spatialy close bees.
+For further analysis I use the following days: 26.07.2016, 30.07.2016, 31.07.2016, 01.08.2016, and 02.08.2016 with a confidence level of $95\%$. This period is chosen, because it is a contiguous time span close to the recording start.
 
+Because bee time series contain a lot of chort gaps (mean = 3, 95\% confidence), the inferring of edges (bees who are close to each other at the same time), should be not that strict, or at least variable. This has to be taken into acoount, when looking at spatialy close bees.
 
 \section{Inferring Networks}
 
@@ -191,8 +211,11 @@ For each of the four camera the detections are filtered by the confidence level.
 \item \textbf{Simple stitching}\\
 Each side of the hive consists of two cameras. 	The $x$-coordinates of each detection (of the right	cameras) is moved further to the right, also adding an offset of $2\times \texttt{maximum distance}$. So the left and the right detection of each side of the hive are move into one reference system.
 
-\item \textbf{Discard IDs below a cutoff}\\
-For each ID its detection frequency is measured. All detections, whos ID frequency is below a certain cutoff are discarded. The cutoff is measured in percent of the average detection frequency.
+\item \textbf{Syncronize Cameras}\\
+For each side of the hive the cameras need to be syncronized. In the normal case the difference between consecutive frames should be about $0.332$~seconds, due to technical problem this value can be lower ($0.003$ ) and higher ($2.932$) at certain times. Cameras 3 and 2 and cameras 1 and 0 are matched, frames without a match are dropped (shorter number of frames, matchen, threshold $0.33/2$, minimum).
+
+\item \textbf{Discard Detections with certain}\\
+All detections whos ID is in a list are keept, other detections are discarded.
 
 \item \textbf{Extract close pairs}\\
 For each side of the hive, all close pairs according to the maximum distance parameter are calculated and then joined together.
@@ -214,8 +237,6 @@ For performing the network analysis, I chose the pipeline parameters as follows:
 
 \begin{description}
 \item[Confidence] As explained in section\ref{subsec:confidence}, the confidence is set to $95\%$.
-
-\item[CutOff] This value is set to XXX, as explained in section~\ref{subsec:quality}.
 
 \item[Maximum Distance] I chose the length of a bee body, according to \textcite{baracchi2014socio}, as the maximum distance between two bees (figure~\ref{fig:radius}). The average bee length of $212$px ($\pm 16$px)  was determinded by manually measuring the length of all bees ($n=337$) in four images (one for each camera, 21.07.2016, 03:00PM) using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed: 22.02.2016}.
 
@@ -244,12 +265,6 @@ For performing the network analysis, I chose the pipeline parameters as follows:
 	\label{fig:contactRadius}
 \end{figure}
 
-
-\subsection{Remove faulty nodes}
-nodes with a low closeness are removed\\
-kmeans, gaussian mixture model\\
-nodes with low closeness have a negative age\\
-TODO: add PLOT with closeness and age and kmean groups/goussian groups\\
 
 \subsection{Thresholding based on edge weights}
 TODO. document what threshold for edges was used.
