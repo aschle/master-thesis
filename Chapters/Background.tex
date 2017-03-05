@@ -2,9 +2,12 @@
 Network Science, Graph theory\\
 number of nodes/vertices $N$ (size of the network)\\
 number of links/edges $L$\\
-$k$ degree of a node $n$\\
+$k$ degree of a node $n$, $k_i$ of $n_i$\\
 $ \langle k  \rangle$ average degree\\
 definitions taken from~\textcite{barabasi2016network}\\
+
+
+
 
 \section{Animal Interaction Networks}
 
@@ -21,11 +24,105 @@ Those interactions used as an edge can be of different types~\cite{charbonneau20
 directed and undirected\\
 weighted and unweighted\\
 
+define proximity/association\\
+
+\subsection{Terminology}
+Basic terms\\
+
+Graph: a set of nodes and a set of relationships between the
+nodes, given by a matrix or visualized as a picture showing
+dots connected by lines\\
+
+Node: a component of a network with known relationships
+to others in the graph model representing the network; in
+a social network, this can be an individual (person or animal)
+or group; also called a vertex or point\\
+
+Path length: the shortest number of ties between two nodes\\
+
+Sociomatrix: for a group with n members, an nn matrix
+with each group member along the vertical and horizontal
+axes and each entry in the grid as the weight of the social relationship,
+if any, between the two intersecting individuals\\
+
+Tie: a relationship between two components of a network,
+where the two related components are nodes in the graph
+model representing the network; in a social network, these
+can be any sort of social relationship, such as social interactions
+or information transfer; also called an edge or link\\
+
+Individual (local) measures\\
+
+Betweenness centrality: centrality based on the number of
+shortest paths between every pair of other group members
+on which the focal individual lies\\
+
+Centrality: a measure of an individual’s structural importance
+in a group based on its network position\\
+
+Closeness centrality: centrality based on the shortest path
+length between a focal individual and all other members of
+the social group\\
+
+Degree centrality: centrality based on the number of direct
+ties an individual has\\
+
+Indegree (reception): the number of ties directed towards
+an animal, e.g. the number of social interactions it receives\\
+
+Node degree: the number of ties a focal animal has; the
+number of other animals with which the focal individual
+interacts\\
+
+Outdegree (emission): the number of ties originating from
+an animal, e.g. the number of social interactions it initiates\\
+
+Intermediate measures\\
+
+Clustering coefficient: the density of the subnetwork of a focal
+individual’s neighbours; the number of ties between
+neighbours is divided by the maximal possible number of
+ties between them\\
+
+Cliquishness: how much the network is divided into cohesive
+subgroups; a clique is a set of nodes where each node
+is directly tied to each other\\
+
+Group measures\\
+
+Average path length: the average of all path lengths between
+all pairs of nodes in the network\\
+
+Density: the number of realized ties divided by the number
+of possible ties in the network\\
+
+Diameter: the longest path length in the network\\
+\textcite{wey2008social}
+
 \section{Network Metrics and Algorithms}
 Degree Distribution\\
 Degree Centrality, Closeness Centrality, Betweenness Centrality\\
 Clustering Coefficient\\
 Modularity\\
+
+Proximity (distance), strength, disparity, closeness, and betweennes are taken from \textcite{jeanson2012long}.\\
+
+\paragraph*{Measures for weighted networks}
+strength $S_i$ measures the total weight of edges connected to a node $i$ and is definded as $S_i = \sum_{j=1}^{n}w_ij$ according to~\textcite{barrat2004architecture}\\
+closeness, computed using Dijkstra’s algorithm with that edge attribute as the edge weight~\cite{newman2001scientific}\\
+betweenness using dijkstra~\cite{brandes2001faster}\\
+
+weighted clustering coefficient and weighted average clustering coefficient~\cite{saramaki2007generalizations}\\
+
+\paragraph*{Disparity}
+\url{https://github.com/aekpalakorn/python-backbone-network}
+Low values of disparity indicated that the weights of associations were of the same order and, consequently, that ants interacted homogeneously with all nestmates. In contrast, privileged associations between ants were evidenced by relatively large values of disparity showing the dominance of a few weights over the others.~\cite{barthelemy2005characterization}
+
+$$Y_2(i)=\sum_{j\in \Theta(i)} (\frac{w_ij}{S_i})^2$$
+
+\paragraph*{Centrality measures}
+betweenness and closeness
+
 
 \section{Temporal Networks}
 
