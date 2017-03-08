@@ -2,7 +2,7 @@
 \label{ch:approach}
 In this chapter the basic work flow is described in detail. The process is mainly driven by an exploratory approach, but follows primarily Farines and Whiteheads~\cite{farine2015constructing} primary steps and key considerations for social network analysis to non-human animal data. The adapted and resulting process is visualized in figure~\ref{fig:process}.
 
-The dataset was first analysed regarding data quality and to form an understanding of the dataset and behaviour of bees in general. Those findings were used to define nodes and infer associations to build the network, respectively derive parameters for the network pipeline. The static and temporal networks are analysed using network science tools and methods. For testing hypothesis the networks are combined with spatial and age information. Each step is explained within the following sections.
+The dataset was first analysed regarding data quality and to form an understanding of the dataset and the behaviour of bees in general. Those findings were used to define nodes and infer associations to build the network, respectively derive the parameters for the network pipeline. The static and temporal networks are analysed using network science tools and methods. For testing hypothesis the networks are combined with spatial and age information. Each step is explained within the following sections.
 
 \begin{figure}[htb]
 	\centering
@@ -11,11 +11,18 @@ The dataset was first analysed regarding data quality and to form an understandi
 	\label{fig:process}
 \end{figure}
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=0.5\textwidth]{Figures/setupCams}
+	\caption[Camera Setup in 2016]{Camera Setup in 2016}
+	\label{fig:cams}
+\end{figure}
+
 
 \section{The Dataset}
 \label{sec:dataset}
 The dataset derives from video files, that capture tagged honey bees of one colony in an observation hive.
-Each individual of the colony, including about 3000 bees, were tagged with circular 12-bit markers. Four cameras were used to film the hive, the setup of the cameras is illustrated in figure~\ref{fig:cams} and an example of tagged bees is shown in section~\ref{ch:intro}, figure~\ref{fig:markers}.
+Each individual of the colony, including about 3000 bees, were tagged with circular 12-bit markers (figure~\ref{fig:markers}, section~\ref{ch:intro}). Four cameras were used to film the hive. The setup of the cameras is illustrated in figure~\ref{fig:cams}.
 
 \begin{figure}[htb]
 	\centering
@@ -31,13 +38,6 @@ Each individual of the colony, including about 3000 bees, were tagged with circu
 	\label{fig:veryclose}
 \end{figure}
 
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=0.5\textwidth]{Figures/setupCams}
-	\caption[Camera Setup in 2016]{Camera Setup in 2016}
-	\label{fig:cams}
-\end{figure}
 
 \begin{figure}[htb]
 	\centering
@@ -73,7 +73,7 @@ Besides further information, the frame container specifies the camera, which too
 \label{subsec:confidence}
 With a 12-bit ID, 4096 bees can be tagged.
 Each bit of the decodedId is not a $1$ or $0$, but represents a probability between $0$ and $255$. It indicates the reliablility of the image analysis pipeline for that specific bit.  A number closer to $255$ represents a $1$, a number closer to $0$ a $0$.
-A \emph{confidence value} can be calculated for each ID. The confidence value of a single bit is its distance to $128$, discretized to a value between $0$ and $1$. The confidence value of an ID is therefore the minimum of all bit confidences.
+A \emph{confidence value} can be calculated for each ID. The confidence value of a single bit is its distance to $128$, discretized to a value between $0$ and $1$. The confidence value of an ID is therefore the minimum of all bit confidences. [TODO: in leons Arbeit ist das gut erklärt]
 
 The amount of data that remains for further processing and its quality  depends heavily on the chosen \emph{confidence level}. Figure~\ref{fig:confidence} shows the relationship between confidence level, the amount of remainig data and the number of unique IDs. 
 
@@ -89,11 +89,7 @@ The amount of data that remains for further processing and its quality  depends 
         \caption[Unique IDs]{Number of unique IDs depending on the level of confidence.}
         \label{fig:confVSids}
     \end{subfigure}
-    \caption[Amount of Remaining Data]{The amount of remaining data decreases with an increasing confidence level. The number of unique IDs behave similar. (Dataset: 26.07.2016, 16:00-16:05)}
-    \label{fig:confidence}
-\end{figure}
 
-\begin{figure}
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{Figures/confVSdetquality}
@@ -105,7 +101,7 @@ The amount of data that remains for further processing and its quality  depends 
 		\caption[Unique IDs]{Number of wrong IDs depending on the level of confidence.}
 		\label{fig:confVSidsquality}
 	\end{subfigure}
-	\caption[Data Quality]{The number of wrong detections decreases with an increasing level of confidence. In contrast, the number of false IDS becomes noticeably less only with a very high confidence level. (Dataset: 26.07.2016, 16:00-16:05)}
+	\caption[Data Quality]{The number of wrong detections decreases with an increasing level of confidence. In contrast, the number of false IDS becomes noticeably less only with a very high confidence level. The amount of remaining data decreases with an increasing confidence level. The number of unique IDs behave similar. (Dataset: 26.07.2016, 16:00-16:05) (Dataset: 26.07.2016, 16:00-16:05)}
 	\label{fig:quality}
 \end{figure}
 
@@ -158,7 +154,7 @@ IDs who definately exists, but their age can to be determinded are excluded from
 	3827,
 	3836,
 	3844,
-	3940]} and IDs whos detection frequency is absurd high but there age is unknown~($n=7$)\footnote{id=[
+	3940]} and IDs whos detection frequency is absurd high but there age is unknown~($n=7$)\footnote{id=[has changed! 
 	17,
 	168,
 	801,
@@ -170,19 +166,21 @@ IDs who definately exists, but their age can to be determinded are excluded from
 For each analysis day the number of detections per ID is obtained, excluding the mentioned IDs above. The frequency distribution tells that, IDs with a negative age are detected less often ($704$ frames $\pm 65$)  than bees with a positive age ($36.603$ frames $\pm 2.345$). The cutoff is 99\% of the negative IDs distribution. All IDs with a detection frequency below $4737 \pm 644$ frames are discarded. A list with possible (valid) IDs is kept for each day. Using this list, faulty detections can be filtered out beforehand.
 
 \subsection{Implications}
-For further analysis I use the following days: 26.07.2016, 30.07.2016, 31.07.2016, 01.08.2016, and 02.08.2016 with a confidence level of $95\%$. This period is chosen, because it is a contiguous time span close to the recording start.
+For further analysis I use the following days: 14.08.2016, 17.08.2016, 20.08.2016, 02.09.2016 with a confidence level of $95\%$. This period is chose because of XY.
 
-Because bee time series contain a lot of chort gaps (mean = 3, 95\% confidence), the inferring of edges (bees who are close to each other at the same time), should be not that strict, or at least variable. This has to be taken into acoount, when looking at spatialy close bees.
+Because bee time series contain a lot of short gaps (mean = 3, 95\% confidence), the inferring of edges (bees who are close to each other at the same time), should be not that strict, or at least variable. This has to be taken into acoount, when looking at spatialy close bees.
 
 \section{Inferring Networks}
 
-The following part describes the pipeline for generating spatial proximity networks out of honey bee tracking data. A node in the network is a bee. They are distinguished by IDs. Only bees are in the network who interact with other bees, that means they have at least one edge and a degree of one.
+The following part describes the pipeline for generating spatial proximity networks out of honey bee tracking data. A node in the network is a bee. They are distinguished by IDs. Only bees are in the network who interact at least once with another bee.
+
+undirected and weighted, aggregated networks\\
 
 Two bees are associated (spatially close to each other), if their distance is minor to a \emph{maximum distance}. As everything is very close in a bee hive this value is hard to choose. Only this criteria is very week, meaning having a resolution of three frames per seconds results in interactions which could only last for $0.33$ seconds. So an additional parameter the \emph{minimum contact duration} is introduced, it is the minimum time they have to spend at least nearby to be called associated.
 
 Taking the fragmentation of tracks into account, it is obvious that two bees could be nearby but not at the very same time, but slightly shifted. So the minimum contact duration would be too errow prone. To overcome this issue one could correct the bee tracks, by filling gaps of varius sizes and interpolating the position of that bee accordingly. This is rather time consuming for this amount of tracking data (TODO: naja so doll auch nicht, scipy.ndimage.morphology.binary\_dilation) and also considering, that the tracking data is going to be improved in the future, then manipulating the raw data seems senseless. I rather perform a gap filling (maybe similar to binary dilation) on the time series of pairs, but not on the bee tracks, because this is independent of the input data.
 
-Edges are attributed with three parameters. The first one is the frequency of contacts, so how often they share a close position. The second parameter is the total duration of contact, how many time frames in total they spend close by.
+Edges are attributed with two parameters. The first one is the frequency of contacts, so how often they share a close position. The second parameter is the total duration of contact, how many time frames in total they spend close by.
 
 \subsection{Network Pipeline}
 
@@ -214,8 +212,8 @@ Each side of the hive consists of two cameras. 	The $x$-coordinates of each dete
 \item \textbf{Syncronize Cameras}\\
 For each side of the hive the cameras need to be syncronized. In the normal case the difference between consecutive frames should be about $0.332$~seconds, due to technical problem this value can be lower ($0.003$ ) and higher ($2.932$) at certain times. Cameras 3 and 2 and cameras 1 and 0 are matched, frames without a match are dropped (shorter number of frames, matchen, threshold $0.33/2$, minimum).
 
-\item \textbf{Discard Detections with certain}\\
-All detections whos ID is in a list are keept, other detections are discarded.
+\item \textbf{Discard Detections with certain IDs}\\
+All detections whos ID is in a list are keept, other detections are discarded. (see frequency filter)
 
 \item \textbf{Extract close pairs}\\
 For each side of the hive, all close pairs according to the maximum distance parameter are calculated and then joined together.
@@ -265,20 +263,22 @@ For performing the network analysis, I chose the pipeline parameters as follows:
 	\label{fig:contactRadius}
 \end{figure}
 
-
-\subsection{Thresholding based on edge weights}
-TODO. document what threshold for edges was used.
+The networks are not thresholded (according to~\cite{farine2015constructing}).
 
 \section{Static and Temporal Analysis}
-dataset used here 1 day and one hour of that day\\
+
+Despite the possibility of generating networks of different granularity (resolution is minutes), here for further analysis daily networks (10h, two hours after sunrise until zwo hours before sunset) are aggregated.
 
 \subsection{Static Network Analysis}
 The following network properties were analysed for a static day and hour network.\\
 TODO: list of properties. (similar to what others have done)
+nodes, edges, density, diameter\\
+
 
 \subsection{Temporal Analysis}
-consecutive day networks\\
-one day split up in hours\\
+three day networks (2 days gap)\\
+one network 2 weeks later\\
+
 
 \section{Attributed Data and Hypothesis Testing}
 Hypothesis\\
