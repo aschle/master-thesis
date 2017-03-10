@@ -279,6 +279,16 @@ nodes, edges, density, diameter\\
 three day networks (2 days gap)\\
 one network 2 weeks later\\
 
+\subsection{Community Detection}
+selection of an algorithm: leading eigenvector~\cite{newman2006finding}\\
+all algos implemented in networkx, igraph, graph-tool were tested\\
+find algo that works for very large ($>1000$ nodes) and dense ($50\%$) weighted networks in a reasonable time\\
+On the basis of the following criteria: suitable for large networks, implemented in python, weighted edges, runtime, number of clusters, deterministic\\
+four algos chosen for further comparison (fastgreedy, leding eigenvector modularity, multilevel, walktrap)\\
+all very similar results in terms of number of communities and size of communities (age and position of groups)\\
+
+TODO table\\
+
 
 \section{Attributed Data and Hypothesis Testing}
 Hypothesis\\
