@@ -1,10 +1,30 @@
 \chapter{Theretical Background}
+The following chapter gives a short introduction into networks science in general and introduces animal interaction networks as a special field. It defines the terms and concepts used throughout this work and explains networks metrics and algorithms of which we will make use of.
+
+ 
 Network Science, Graph theory\\
 number of nodes/vertices $N$ (size of the network)\\
 number of links/edges $L$\\
+$D$ is density $D=\frac{2L}{N(N-1)}$
 $k$ degree of a node $n$, $k_i$ of $n_i$\\
 $ \langle k  \rangle$ average degree\\
 definitions taken from~\textcite{barabasi2016network}\\
+
+$\langle C \rangle$ average clustering coefficient\\
+
+* number of nodes $N$\\
+* number of links $L$\\
+* density $D$\\
+* average degree $ \langle k  \rangle$\\
+* average weighted degree, average strength $\langle s \rangle$\\ 
+* max and min (weighted) degree\\
+* global clustering coefficient $C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$ (transiticvity undirected)~\cite{wasserman1994social}\\
+
+* Number of components (Connesctedness): components = subnetworks, A component is a subnet of nodes in a network, so that there is a path between any two nodesthat belong to teh component, but one cannot addany more nodes to it that would have the same property.\\
+
+* Average shortest path (average path length) $\langle d \rangle$: The average of the shortest path between all pairs of nodes.\\
+
+* Diameter $d_{\texttt{max}}$:The longest shortest path , or the distance between the two furthest nodes.\\
 
 
 
