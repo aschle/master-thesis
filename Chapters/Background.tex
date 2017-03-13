@@ -138,7 +138,9 @@ weighted clustering coefficient and weighted average clustering coefficient~\cit
 \url{https://github.com/aekpalakorn/python-backbone-network}
 Low values of disparity indicated that the weights of associations were of the same order and, consequently, that ants interacted homogeneously with all nestmates. In contrast, privileged associations between ants were evidenced by relatively large values of disparity showing the dominance of a few weights over the others.~\cite{barthelemy2005characterization}
 
-$$Y_2(i)=\sum_{j\in \Theta(i)} (\frac{w_ij}{S_i})^2$$
+Disparity: For a given node i   with connectivity  ki  and strength  si  different situations can arise. All weights  wij  can be of the same order  si/ki . In contrast, the most heterogeneous situation is obtained when one weight dominates over all the others. A simple way to measure this “disparity” is given by the quantity  Y2  introduced in other context [12] ;  [13];
+
+$$Y_2(i)=\sum_{j\in \Theta(i)} (\frac{w_ij}{s_i})^2$$
 
 \paragraph*{Centrality measures}
 betweenness and closeness
