@@ -1,49 +1,124 @@
 \chapter{Results}
 
-[TODO: if time: show that communities are robust in terms of ilen and radius and community detection algorithms]
+I analysed three daily networks, these are refererred to below as \#1, \#2, and \#3. Each network is aggregated for ten hours starting at 8~a.m. and lasting until 6~p.m. I chose the 20.08.2016, 22.08.2016, and 24.08.2016, because at this point in time the hive also contained tagged foragers (older bees). At the same time young bees were added to the colony (see table~\ref{tab:networks} for details). The age distribution for each network is shown in figure~\ref{fig:ages}.
 
-I analysed three consecutive networks, each aggregated for ten hours starting at 8am. The age distribution for each network is shown in figure~\ref{fig:ages}.
+[TODO: PLOT How many nodes in the network stay the same over 3 timesteps? (will be going next step, same, new ones)]
 
-[TODO: Irgendwo muss ein Bild hin, wo man erkennt, wann getagged wurde und wo man sich in dem ganzen Zeitraum befindet]
-[TODO: Welche Tage.]
-
+\begin{table}
+\centering
+\begin{tabular}{ccccccc}
+\toprule
+{} & 20.08.16 & 21.08.16 & 22.08.16 & 23.08.16 & 24.08.16 \\
+\midrule
+Network ID & \#1 & - & \#2 & - & \#3 & \\
+Number of added bees & 0 & 0 & 110 & 60 & 0 \\
+Time added & - & - & 2~p.m. & 6~p.m. & - \\
+\bottomrule
+\end{tabular}
+\caption[TODO]{Overview about networks and number of added bees.}
+\label{tab:networks}
+\end{table}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/ages}
-	\caption[Distribution of gge per Network]{Distribution of age per network.}
+	\caption[Age distribution per network]{Age distribution per network: The width of a bar corresponds to two days.}
 	\label{fig:ages}
 \end{figure}
 
+\section{Network type and properties}
+ 
+\subsection{Global Structure - Network Level}
+Each network consists of one giant component. Table~\ref{tab:stats} summarizes basic network properties number of nodes, number of links, density, diameter, average shortest path length, global clustering coefficient, average degree, and average strength.\\
 
-\section{Static Network Analysis}
+TODO: high density, small diameter, very short average path length, high clustering coefficient, high strength and degree, compared to what? random graph\\
 
-The three networks consist of 1000 nodes with a density of about 60\%. The diameter is three for all the networks. The average shortes path length is inbetween 1 and 2. 
+TODO: calc network centralisation and add to table\\
+TODO: PLOT degree and strength distribution\\
+TODO: PLOT edge weight distribution\\
 
 \begin{table}
 \centering
-\begin{tabular}{lrrr}
+\begin{tabular}{lcccccccc}
 \toprule
-{} &        \#4 &        \#5 &        \#6 \\
+{} &  $N$ &   $L$ &  $D$ &  $\langle d_{\texttt{max}} \rangle$ &  $\langle d \rangle$ &   $C_\Delta$ &  $\langle k \rangle$ &  $\langle s \rangle$ \\
 \midrule
-Date             &     2016-08-20 &     2016-08-22 &     2016-08-24 \\
-$N$            &      922 &      978 &      922 \\
-$L$            &   291179 &   256066 &   259421 \\
-$D$          &     0.69 &     0.54 &     0.61 \\
-$\langle d_{\texttt{max}} \rangle$         &        3 &        3 &        3 \\
-$\langle d \rangle$ &     1.32 &     1.46 &     1.39 \\
-$C_\Delta$              &     0.79 &     0.72 &     0.75 \\
-$ \langle k \rangle$       &   631.62 &   523.65 &   562.74 \\
-$ \langle s \rangle$       &  5680.17 &  3977.94 &  4205.99 \\
-$k_{\texttt{max}}$           &      850 &      822 &      842 \\
-$s_{\texttt{max}}$          &    13555 &    10468 &    10864 \\
- $k_{\texttt{min}}$           &        1 &        3 &       51 \\
-$s_{\texttt{min}}$          &        1 &        8 &       64 \\
+\#1 &    922 &  291179 &     0.69 &         3 &              1.32 &  0.79 &      631.62 &      5680.17 \\
+\#2 &    978 &  256066 &     0.54 &         3 &              1.46 &  0.72 &      523.65 &      3977.94 \\
+\#3 &    922 &  259421 &     0.61 &         3 &              1.39 &  0.75 &      562.74 &      4205.99 \\
 \bottomrule
 \end{tabular}
-\caption{Some table caption: Soem text here}
+\caption[Global network properties]{Global network properties}
 \label{tab:stats}
 \end{table}
+
+\subsection{Local Structure - Node Level}
+
+[TODO: PLOT closeness, betweenness, local clustering coefficient, eigenvector centrality, weighted and unweighted]
+
+\subsection{Network type}
+
+[TODO: compare to random graph]\\
+degree distribution random poisson or binominal, not random power law\\
+giant component, connectedness\\
+average path length and diameter very small, small world phenomenon\\
+higher clustering coefficient than in random\\
+
+\section{Network Metrics in Relation to Age of Bees}
+
+[TODO: all plot in relation to age]
+
+\section{Community Detection}
+
+TODO: if time: show that communities are robust in terms of ilen and radius\\
+TODO: age: müsste man eigentlich nochmal gegen ein randomisiertes Modell testen. Alter randomisieren\\
+TODO: new plot 3 mal with age!\\
+TODO: plots der Communities 2community x 3Netzwerke je 4 Kameras\\
+
+Using the leading eigenvector community detection algorithm revealed in all three networks two communities with about the same number of nodes. The first community contains the queen and on average younger bees than the second community.
+
+The Kolmogorov–Smirnov test ($p=7.2e^{-10} \pm2.6e^{-9}$) shows that for each network, the age distributions are significantly different.
+
+The young community containig the queen spends most time in the center of the comb, the other older group is situated on the outer parts, this is the same for all 3 networks. This suggest stable communities in termns of age and spatial distribution.
+
+
+\begin{table}
+\centering
+\begin{tabular}{ccrrr}
+	\toprule
+	{}  & \#Members & Proportion & Age & SD\\
+	\midrule 
+	\#1  & 488     & 52.93\% & $25.15$ & $\pm19.49$ \\
+	             & $434^*$ & 47.07\% & $16.81$ & $\pm17.91$ \\
+	\midrule   							
+	\#2  & $503^*$ & 51.43\% & $15.44$ & $\pm19.54$ \\
+	             & 475     & 48.57\% & $26.37$ & $\pm18.01$ \\
+	\midrule  
+	\#3  & 537     & 58.24\% & $27.26$ & $\pm17.84$ \\
+	             & $385^*$ & 41.76\% & $12.85$ & $\pm20.24$ \\
+	\bottomrule
+\end{tabular}
+\caption{Some table caption: Community indicated with * contains the queen.}
+\label{tab:communities}
+\end{table}
+
+
+\section{Community members over time}
+For the three snapshots the communities where matched according to~\ref{eq:match}. The match value between the two communities in succesive time steps are calculated and presented in figure~\ref{fig:members}. The number of bees changing from community A to community B is higher than the other way around. Which makes sense because bees change their duties while they age. This is needs to be quantified and investigated further.
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.8\textwidth]{Figures/members}
+	\caption[Community Matching]{Community Matching: The numers correspond to the match values, the community indicated by * contains the queen and is the younger community.}
+	\label{fig:members}
+\end{figure}
+
+
+\section{Summary}
+TODO
+
+
+
 
 \begin{figure}[htb]
 	\centering
@@ -75,7 +150,6 @@ $s_{\texttt{min}}$          &        1 &        8 &       64 \\
 	\label{fig:lccDist}
 \end{figure}
 
-\subsection{In relation to the age}
 
 \begin{figure}[htb]
 	\centering
@@ -98,60 +172,7 @@ $s_{\texttt{min}}$          &        1 &        8 &       64 \\
 	\includegraphics[width=1.0\textwidth]{Figures/stat-ccAge}
 	\caption[Local clustering coefficient]{Local clustering coefficient}
 	\label{fig:ccAge}
-\end{figure}	
-
-
-\subsection{Centrality Measures}
-Weglassen.
-
-\section{Network Type}
-(2) Welche Eigenschaften haben diese Netzwerke? Was sind das für Netzwerke? (Netzwerkklasse: ziemlich dichtes (auf keinen fall sparse) Netzwerk, ungerichtetes, gewichtetes Netzwerk (höhres Gewicht, engere Benziehung). no power law degree distribution, daher keine Hubs, sehr geringer Diameter, daher small-world property, small clustering coefficient and giant component.\\
-
-\section{Community Detection}
-
-Using the leading eigenvector community detection algorithm revealed in seven networks two communities with about the same number of nodes and in two networks three communities. The first community contains the queen and on average younger bees than the second (and third) community.
-
-The Kolmogorov–Smirnov  test ($p=7.2e^{-10} \pm2.6e^{-9}$) shows that for each network, the are distributions are significantly different. [TODO: wie schreibt man das?]
-
-\begin{table}
-\centering
-\begin{tabularx}{0.8\textwidth}{lccrrr}
-	\toprule
-	{} & Date & \#Members & Proportion & Age & SD\\
-	\midrule
-	\#0 & 2016-08-13 & 673     & 54.14\% & $22.08$ & $\pm17.10$ \\
-	  &            & $570^*$ & 45.86\% & $9.95$ & $\pm14.26$ \\
-	\midrule 
-	\#1 & 2016-08-14 & 502     & 42.08\% & $24.21$ & $\pm15.05$ \\
-	  &			   & $354^*$ & 29.67\% &  $8.26$ & $\pm14.73$ \\
-	  &			   & 337     & 28.25\% & $17.57$ & $\pm18.64$ \\
-	\midrule     
-	\#2 & 2016-08-16 & $481^*$ & 41.22\% & $10.44$ & $\pm15.18$ \\
-	  &		       & 471     & 40.36\% & $24.82$ & $\pm16.26$ \\
-	  &		       & 215     & 18.42\% & $20.11$ & $\pm17.93$ \\
-	\midrule  
-	\#3 & 2016-08-17 & 639     & 58.36\% & $23.62$ & $\pm18.25$ \\
-	  &            & $456^*$ & 41.64\% & $11.75$ & $\pm14.18$ \\
-	\midrule   
-	\#4 & 2016-08-20 & 488     & 52.93\% & $25.15$ & $\pm19.49$ \\
-	  &            & $434^*$ & 47.07\% & $16.81$ & $\pm17.91$ \\
-	\midrule   							
-	\#5 & 2016-08-22 & $503^*$ & 51.43\% & $15.44$ & $\pm19.54$ \\
-	  &            & 475     & 48.57\% & $26.37$ & $\pm18.01$ \\
-	\midrule  
-	\#6 & 2016-08-24 & 537     & 58.24\% & $27.26$ & $\pm17.84$ \\
-	  &            & $385^*$ & 41.76\% & $12.85$ & $\pm20.24$ \\
-	\midrule  
-	\#7 & 2016-08-25 & 455     & 58.11\% & $27.35$ & $\pm19.70$ \\
-	  &            & $328^*$ & 41.89\% & $11.81$ & $\pm19.28$ \\
-	\midrule 
-	\#8 & 2016-09-02 & $198^*$ & 52.24\% & $19.32$ & $\pm26.44$ \\
-	  &            & 181     & 47.76\% & $30.59$ & $\pm27.25$ \\
-	\bottomrule
-\end{tabularx}
-\caption{Some table caption: Community indicated with * contains the queen.}
-\label{tab:communities}
-\end{table}
+\end{figure}
 
 \begin{figure}[htb]
 	\centering
@@ -159,19 +180,3 @@ The Kolmogorov–Smirnov  test ($p=7.2e^{-10} \pm2.6e^{-9}$) shows that for each
 	\caption{Distribution of age per community for each network}
 	\label{fig:ageDist}
 \end{figure}
-
-
-\subsubsection{Age Distribution and spatial distribution}
-One group jung bees and queen, in the inner part of the comb, and older bees in the peripherie (outer circle).
-
-[TODO: müsste man eigentlich nochmal gegen ein randomisiertes modell testen. Alter randomisieren]
-
-[TODO: nur die drei Netzwerke machen!]
-
-\subsection{Communities over time}
-(5) Wie entwicklen sich die Communities über die Zeit?\\
-über einen Zeitraum von X tagen (y tage) bleiben die zwei Gruppen erhalten und auch altersverteilung bleibt signifikant verschieden.\\
--> stabilität nachgewiesen?\\
-für XY einfach plotten\\
-
-(6) Wie ändern sich die Mitglieder der Communities über die Zeit?\\
