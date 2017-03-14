@@ -1,6 +1,12 @@
 \chapter{Results}
 
+[TODO: if time: show that communities are robust in terms of ilen and radius and community detection algorithms]
+
 I analysed three consecutive networks, each aggregated for ten hours starting at 8am. The age distribution for each network is shown in figure~\ref{fig:ages}.
+
+[TODO: Irgendwo muss ein Bild hin, wo man erkennt, wann getagged wurde und wo man sich in dem ganzen Zeitraum befindet]
+[TODO: Welche Tage.]
+
 
 \begin{figure}[htb]
 	\centering
@@ -69,6 +75,31 @@ $s_{\texttt{min}}$          &        1 &        8 &       64 \\
 	\label{fig:lccDist}
 \end{figure}
 
+\subsection{In relation to the age}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/stat-degreeAge}
+	\caption[Degree VS Age]{Degree versus Age}
+	\label{fig:degreeAge}
+\end{figure}
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/stat-strengthAge}
+	\caption[Strength Age]{Strength Age}
+	\label{fig:strengthAge}
+\end{figure}	
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/stat-ccAge}
+	\caption[Local clustering coefficient]{Local clustering coefficient}
+	\label{fig:ccAge}
+\end{figure}	
+
 
 \subsection{Centrality Measures}
 Weglassen.
@@ -129,6 +160,9 @@ The Kolmogorov–Smirnov  test ($p=7.2e^{-10} \pm2.6e^{-9}$) shows that for each
 \end{figure}
 
 
-\subsubsection{Age Distribution}
+\subsubsection{Age Distribution and spatial distribution}
+One group jung bees and queen, in the inner part of the comb, and older bees in the peripherie (outer circle).
 
-\subsubsection{Spatial Distribution}
+[TODO: müsste man eigentlich nochmal gegen ein randomisiertes modell testen. Alter randomisieren]
+
+[TODO: nur die drei Netzwerke machen!]
