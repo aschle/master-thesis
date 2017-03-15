@@ -1,10 +1,13 @@
 \chapter{Introduction}
 \label{ch:intro}
 
-Complex insect societies are formed by thousands of individuals, which continously move and interact inside a dark nest. Honey bee colonies are thus organized complex social systems, which form a collective intelligence. Observing individual honey bees is therefore vital for understanding collective behavior, decision making and organisation of task within the colony.
+Social insect societies are formed by thousands of individuals, which continuously move and interact with each other inside a dark nest. Honey bee colonies are thus organized complex and dynamical systems, which form a collective intelligence. Observing individual honey bees is, therefore, vital for understanding collective behavior, decision making, and organization of tasks within the colony.
 
-The Biorobotics Lab of Freie Universität Berlin developed technologies to track all individuals of a complete honey bee (apis mellifera) colony. Conventional approaches usually focus on a small subset of the hive life, whether this regards time, space, or animal identity~\cite{wario2015automatic}[TODO: change sentence]. All individuals of a colony have been marked on their thorax using circular tags (figure~\ref{fig:markers}). Spatial information for each bee is then recorded for a peroid of nine weeks.
+Within the BeesBook project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony. Shortly after birth, each bee has been marked on their thorax using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the colony. The comb is observed by four cameras over a period of nine weeks and each picture is evaluated automatically. The resulting data set contains the position of each bee and its decoded id.
 
+In this thesis, temporal interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee and a link between two individuals is created if they share a position close to each other. Social network analysis methods are applied to determine the usefulness and the characteristics of the resulting networks and its communities.
+
+Until now, social network analysis has been applied to only a subset of a honey bee colonies live, simply because the data were not available to this extent and quality so far.
 
 \begin{figure}[htb]
 	\centering
@@ -14,8 +17,11 @@ The Biorobotics Lab of Freie Universität Berlin developed technologies to track
 \end{figure}
 
 \section{Motivation}
-
+[TODO weitermachen]
 Most of the studies analysing behaviour of insects colonies only use a small amount of individually labeled animals, a short observation period, and usually manually detect interaction between animals looking at the videos. data~\cite{quevillon2015social}[TODO: more references]. Here it is done in a more inclusive way, all animals, long term observation, automatic detection of individuals.
+
+Conventional approaches usually focus on a small subset of the hive life, whether this regards time, space, or animal identity[TODO: change sentence]. A subset in terms of recording time (short observation period), space (only parts of the hive are observed), number of individuals (only some individuals are observed). 
+
 
 \section{Research Goal}
 
