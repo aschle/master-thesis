@@ -72,21 +72,17 @@ higher clustering coefficient than in random\\
 
 TODO: if time: show that communities are robust in terms of ilen and radius\\
 TODO: age: müsste man eigentlich nochmal gegen ein randomisiertes Modell testen. Alter randomisieren\\
-TODO: new plot 3 mal with age!\\
 TODO: plots der Communities 2community x 3Netzwerke je 4 Kameras\\
 
-Using the leading eigenvector community detection algorithm revealed in all three networks two communities with about the same number of nodes. The first community contains the queen and on average younger bees than the second community.
+Using the leading eigenvector community detection algorithm revealed in all three networks two communities with about the same number of nodes. The exact number of community members is shown in table~\ref{tab:networks}. The first community contains the queen and bees who are on average younger than the second community. The age difference for \#1 is $8.4$ days, for \#2 $10.9$ days, and for \#3 $14.4$ days on average. The age distribution for each community and network is depicted in figure~\ref{fig:ageDistribution}.
 
-The Kolmogorov–Smirnov test ($p=7.2e^{-10} \pm2.6e^{-9}$) shows that for each network, the age distributions are significantly different.
-
-The young community containig the queen spends most time in the center of the comb, the other older group is situated on the outer parts, this is the same for all 3 networks. This suggest stable communities in termns of age and spatial distribution.
-
+A two sample Kolmogorov–Smirnov test showed, that for each network, the age distributions are significantly different ($p=1.7e^{-32} \pm2.9e^{-32}$).
 
 \begin{table}
 \centering
 \begin{tabular}{ccrrr}
 	\toprule
-	{}  & \#Members & Proportion & Age & SD\\
+	{}  & Number of members & Proportion & Age & SD\\
 	\midrule 
 	\#1  & 488     & 52.93\% & $25.15$ & $\pm19.49$ \\
 	             & $434^*$ & 47.07\% & $16.81$ & $\pm17.91$ \\
@@ -98,18 +94,28 @@ The young community containig the queen spends most time in the center of the co
 	             & $385^*$ & 41.76\% & $12.85$ & $\pm20.24$ \\
 	\bottomrule
 \end{tabular}
-\caption{Some table caption: Community indicated with * contains the queen.}
+\caption[Overview about communities]{Overview about communities per network: Communities marked with * contain the queen.}
 \label{tab:communities}
 \end{table}
 
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/ageDistribution}
+	\caption[Age distribution for each community and network] {Age distribution for each community and network: The \emph{blue} bar is the community containing the queen. The queens age is not included in the statistic. The \emph{green} bars coresspond to the second community, containing older bees.}
+	\label{fig:ageDistribution}
+\end{figure}
+
+
+The younger community containig spends most time in the center of the comb. The older group is situated on the outer parts, this is the same for all 3 networks. This suggest stable communities in termns of age and spatial distribution.
+
 
 \section{Community members over time}
-For the three snapshots the communities where matched according to~\ref{eq:match}. The match value between the two communities in succesive time steps are calculated and presented in figure~\ref{fig:members}. The number of bees changing from community A to community B is higher than the other way around. Which makes sense because bees change their duties while they age. This is needs to be quantified and investigated further.
+ The match value between the two communities in succesive time steps are calculated with formular~\ref{eq:match} and presented in figure~\ref{fig:members}. The number of bees changing from community A to community B is higher than the other way around. Which makes sense because bees change their duties while they age. this is a good indicator, but needs further investigation to be quantified.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=.8\textwidth]{Figures/members}
-	\caption[Community Matching]{Community Matching: The numers correspond to the match values, the community indicated by * contains the queen and is the younger community.}
+	\caption[Community Matching]{Community Matching: The numbers indicate the match values. The community marked with * contains the queen and is the younger community.}
 	\label{fig:members}
 \end{figure}
 
@@ -172,11 +178,4 @@ TODO
 	\includegraphics[width=1.0\textwidth]{Figures/stat-ccAge}
 	\caption[Local clustering coefficient]{Local clustering coefficient}
 	\label{fig:ccAge}
-\end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/ageDistribution}
-	\caption{Distribution of age per community for each network}
-	\label{fig:ageDist}
 \end{figure}
