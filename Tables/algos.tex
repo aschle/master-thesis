@@ -1,0 +1,48 @@
+
+
+\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
+\definecolor{Gray}{gray}{0.92}
+\newcolumntype{a}{>{\columncolor{Gray}}c}
+\newcolumntype{b}{>{\columncolor{white}}c}
+
+\begin{table}[htbp]
+\caption[Compairing community detection algorithms]{\textbf{Comparing community detection algorithms} Comparison of algorithms implemented in python. Criterias are the support of weighted edges, runtime and number of communities. A runtime indicated by $-$ mean no termination after 15~minutes.\\
+}
+\label{tab:algos}
+
+\begin{tabular}{laacaaccccccc}
+\toprule
+	 {} &
+	 \rotatebox{90}{fastgreedy$^1$} &
+	 \rotatebox{90}{leading eigenvector$^1$} &
+	 \rotatebox{90}{louvain$^2$} &
+	 \rotatebox{90}{multilevel$^1$} &
+	 \rotatebox{90}{walktrap$^1$} &
+	 
+	 \rotatebox{90}{infomap$^1$} &
+	 \rotatebox{90}{label propagation$^1$} &
+	 
+	 \rotatebox{90}{edge betweenness$^1$} &
+	 \rotatebox{90}{k-clique communities$^2$\thinspace} &
+	 \rotatebox{90}{optimal modularity$^1$} &
+	 \rotatebox{90}{spinglass$^1$} &
+	 \rotatebox{90}{statistical inference$^3$} \\ \midrule
+	 
+	 
+	 
+	 Edge weights & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & $\times$ & & $\times$ & $\times$ & $\times$ \\ \midrule
+	 Runtime in sec & $11.7$ & $18.6$ & $26.1$ & ~$2.5$ & $49.6$ & $25.6$ & $40.2$ & $-$ & $-$ & $-$ & $-$ & $-$ \\ \midrule
+	 Communities & $3$ & $3$ & $3$ & $3$ & $3$ & $1$ & $1$ & $-$ & $-$ & $-$ & $-$ & $-$ \\ \bottomrule
+	 
+\end{tabular}
+\begin{flushright}
+\footnotesize{
+$^1$ igraph, $^2$ NetworkX, $^3$ graph-tool\\
+}
+\end{flushright}
+
+\end{table}
+
+% \hdashline
+% \midrule
+% \bottomrule
