@@ -9,176 +9,94 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The following chapter gives a short introduction into social network analysis (SNA). It introduces animal interaction networks as a special type of network. It defines terms and concepts used throughout this work and explains networks metrics and algorithms of which we will make use of.
 
-Social network analysis is a way of mapping and measuring specific relationships and flows between entities
-
-mapping and measuring of relationships and flows between people, groups, organizations, computers, URLs, and other connected information/knowledge entities. 
-\\
-Social network analysis (SNA) is the process of investigating social structures through the use of network and graph theories.[1] It characterizes networked structures in terms of nodes (individual actors, people, or things within the network) and the ties, edges, or links (relationships or interactions) that connect them. 
- 
-number of nodes/vertices $N$ (size of the network)\\
-number of links/edges $L$\\
-$D$ is density $D=\frac{2L}{N(N-1)}$
-$k$ degree of a node $n$, $k_i$ of $n_i$\\
-$ \langle k  \rangle$ average degree\\
-definitions taken from~\textcite{barabasi2016network}\\
-
-$\langle C \rangle$ average clustering coefficient\\
-
-* number of nodes $N$\\
-* number of links $L$\\
-* density $D$\\
-* average degree $ \langle k  \rangle$\\
-* average weighted degree, average strength $\langle s \rangle$\\ 
-* max and min (weighted) degree\\
-* global clustering coefficient $C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$ (transiticvity undirected)~\cite{wasserman1994social}\\
-
-* Number of components (Connesctedness): components = subnetworks, A component is a subnet of nodes in a network, so that there is a path between any two nodesthat belong to teh component, but one cannot addany more nodes to it that would have the same property.\\
-
-* Average shortest path (average path length) $\langle d \rangle$: The average of the shortest path between all pairs of nodes.\\
-
-* Diameter $d_{\texttt{max}}$:The longest shortest path , or the distance between the two furthest nodes.\\
-
-
+A \emph{social network} is a representation of a social structure comprising actors such as individuals, affiliations, as well as their social interactions.
+The network model conceptualizes social, economic, or political structures as lasting patterns of interactions between actors~\cite{wasserman1994social}.
+In mathematical terms, networks are graphs, and thus consist of \emph{nodes} (vertex, representing individuals), and \emph{links} (edges, relationships or interactions).
+Social network analysis provides a set an methods, measures and theories, borrowed from network and graph theorie, to investigate social structures and its dynamics.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Animal Interaction Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+This work is focusing on the special case of animal social networks.
 Networks where individuals are nodes and edges are defined as interaction events between individuals are called \emph{interaction networks}, sometimes also contact networks. 
-Those interactions used as an edge can be of different types~\cite{charbonneau2013social}:
+According to~\textcite{charbonneau2013social} those interactions used as an edge can be of four different types when looking at animal networks: spatial proximity, physical contact (usually with antennae, “antennation”), a food exchange event (trophallaxis), or specific communication signals.
 
-\begin{itemize}
-\item spatial proximity~\cite{jeanson2012long, otterstatter2007contact},
-\item physical contact (usually with antennae, “antennation”)~\cite{mersch2013tracking} [TODO anschauen: 10, 67, 80]
-\item a food exchange event (trophallaxis) [TODO anschauen: 15, 68, 69, 93]
-\item or specific communication signals [TODO anschauen: 38, 56]
-\end{itemize}
+I decided to use spatial proximity as the interaction type for edges.
+Those edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. As edge weights the frequency and duration of interactions are commonly used.
 
-directed and undirected\\
-weighted and unweighted\\
-
-define proximity/association\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Network Metrics and Algorithms}
+\section{Network Measure, Metrics and Algorithms}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Basic terms\\
-
-Graph: a set of nodes and a set of relationships between the
-nodes, given by a matrix or visualized as a picture showing
-dots connected by lines\\
-
-Node: a component of a network with known relationships
-to others in the graph model representing the network; in
-a social network, this can be an individual (person or animal)
-or group; also called a vertex or point\\
-
-Path length: the shortest number of ties between two nodes\\
-
-Sociomatrix: for a group with n members, an nn matrix
-with each group member along the vertical and horizontal
-axes and each entry in the grid as the weight of the social relationship,
-if any, between the two intersecting individuals\\
-
-Tie: a relationship between two components of a network,
-where the two related components are nodes in the graph
-model representing the network; in a social network, these
-can be any sort of social relationship, such as social interactions
-or information transfer; also called an edge or link\\
-
-Individual (local) measures\\
-
-Betweenness centrality: centrality based on the number of
-shortest paths between every pair of other group members
-on which the focal individual lies\\
-
-Centrality: a measure of an individual’s structural importance
-in a group based on its network position\\
-
-Closeness centrality: centrality based on the shortest path
-length between a focal individual and all other members of
-the social group\\
-
-Degree centrality: centrality based on the number of direct
-ties an individual has\\
-
-Indegree (reception): the number of ties directed towards
-an animal, e.g. the number of social interactions it receives\\
-
-Node degree: the number of ties a focal animal has; the
-number of other animals with which the focal individual
-interacts\\
-
-Outdegree (emission): the number of ties originating from
-an animal, e.g. the number of social interactions it initiates\\
-
-Intermediate measures\\
-
-Clustering coefficient: the density of the subnetwork of a focal
-individual’s neighbours; the number of ties between
-neighbours is divided by the maximal possible number of
-ties between them\\
-
-Cliquishness: how much the network is divided into cohesive
-subgroups; a clique is a set of nodes where each node
-is directly tied to each other\\
-
-Group measures\\
-
-Average path length: the average of all path lengths between
-all pairs of nodes in the network\\
-
-Density: the number of realized ties divided by the number
-of possible ties in the network\\
-
-Diameter: the longest path length in the network\\
-\textcite{wey2008social}
+The definitions are mainly taken from~\textcite{barabasi2016network} for general definitions and from~\textcite{wey2008social} for more animal specific definitions, if not stated otherwise. The measures are for undirected and weighted graphs.
 
 
-Degree Distribution\\
-Degree Centrality, Closeness Centrality, Betweenness Centrality\\
-Clustering Coefficient\\
-Modularity\\
+\begin{description}
+\item[Network size] $N$ is the total number of nodes (animals).
 
-Proximity (distance), strength, disparity, closeness, and betweennes are taken from \textcite{jeanson2012long}.\\
+\item[Number of links] $L$ is the total number of links (social interaction).
 
-\paragraph*{Measures for weighted networks}
-strength $S_i$ measures the total weight of edges connected to a node $i$ and is definded as $S_i = \sum_{j=1}^{n}w_ij$ according to~\textcite{barrat2004architecture}\\
-closeness, computed using Dijkstra’s algorithm with that edge attribute as the edge weight~\cite{newman2001scientific}\\
-betweenness using dijkstra~\cite{brandes2001faster}\\
+\item[Edge weight] $w_i$ of an edge $l_i$ is an indicator of how important that edge is.
 
-weighted clustering coefficient and weighted average clustering coefficient~\cite{saramaki2007generalizations}\\
+\item[Density] $D$ is the number of realized links divided by the number
+of theoretically possible links is defined as $D=\frac{2L}{N(N-1)}$.
 
-\paragraph*{Disparity}
-\url{https://github.com/aekpalakorn/python-backbone-network}
-Low values of disparity indicated that the weights of associations were of the same order and, consequently, that ants interacted homogeneously with all nestmates. In contrast, privileged associations between ants were evidenced by relatively large values of disparity showing the dominance of a few weights over the others.~\cite{barthelemy2005characterization}
+\item[Component] is a subnet of nodes in a network, so that there is a path between any two nodes that belong to the component.
 
-Disparity: For a given node i   with connectivity  ki  and strength  si  different situations can arise. All weights  wij  can be of the same order  si/ki . In contrast, the most heterogeneous situation is obtained when one weight dominates over all the others. A simple way to measure this “disparity” is given by the quantity  Y2  introduced in other context [12] ;  [13];
+\item[Degree] $k_i$ of a node $n_i$ represents the number of edges a node has; so the number of other animals this animal interacts with.
 
-$$Y_2(i)=\sum_{j\in \Theta(i)} (\frac{w_ij}{s_i})^2$$
+\item[Average Degree] $\langle k \rangle$
 
-\paragraph*{Centrality measures}
-betweenness and closeness
-eigenvector centrality (eigencentrality)
+\item[Strength] $s_i$ of a node is also called the weighted degree. It measures the total weight of edges connected to a node $n_i$ and is definded as $s_i = \sum_{j=1}^{n}w_{ij}$ according to~\textcite{barrat2004architecture}
 
-\paragraph{Network Reduction algorithms (backboning)}
-k-core decomposition\\
-minimum spanning tree\\
-Global weight treshold\\
-Disparity Filter\\
+\item[Average Strength] $\langle s \rangle$
+
+\item[Path length] $d$ the shortest number of links between two nodes.
+
+\item[Average path length] $\langle d \rangle$ is the average of all shortest path between all pairs of nodes.
+
+\item[Diameter] $d_{\texttt{max}}$ is the longest of all path length. The distance between the two furthest nodes, the longest possible path length in the network.
+
+\item[Global clustering coefficient] $C_\Delta$ also called transitivity. According to~\cite{wasserman1994social} is is defined as $C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$.
+
+\item[Local clustering coefficient] $c_i$ of a node $n_i$ quantifies how close its neighbours are to being a clique (complete graph).
+
+\end{description}
+
+\subsection{Network Centrality and Centralization}
+When looking at the networks local structure (node level), it is possible to identify nodes, which are important or central to the network, regarding different aspects. This concept is called \emph{centrality} and measures the influence of a node in a network.~\cite{newman2010networks}
+
+In the course of analysing networks and their local node level structures, you will find and encounter the most important (central) nodes and vertices by indicators of centrality. These indicators give values to the nodes and therefore they can be listed in a way of importance.
+
+\paragraph{Degree Centrality}
+Degree centrality $C^i_D$ of a node $n_i$ is the normalized degree $k_i$ in relation to the whole network, it is calculated as follows:
+
+$$C^i_D=\frac{k_i}{N-1}$$
+
+\paragraph{Eigenvector Centrality}
+The eigenvector centrality $x_i$ of a node $n_i$ is the sum of its connections to other nodes, weighted by their centrality.
+$$x_i= \frac{1}{\lambda}\sum_{j}A_{ij}x_j$$
+It is like a recursive version of degree centrality. So a nodes importance (centrality) is inceased by having neighbours that are themselves important. Eigenvector centrality gives each vertex a score proportional to the sum of the scores of its neghbours.~\cite{newman2010networks}
+
+\paragraph{Closeness Centrality}
+Is is the average length of the shortes path between node $n_i$ to all other nodes in the network. The more central a node is the closer it is to all other nodes. Mean distance from a node to other nodes.~\cite{newman2010networks}
+
+$$C_C^i=\frac{N}{\sum_{j}d_{ij}}$$
+
+\paragraph{Betweenness Centrality}
+It measures the extend to which a node lies on paths between other nodes. Nodes that occur on many shortest pathts between other nodes have higher betweenness that those that do not.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Temporal Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-TODO
-
-
+[TODO]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -195,11 +113,17 @@ Communities in animal social networks, refer to groups of individuals that are a
 There are a lot of different approaches and algorithms who adress the detection of communities. \textcite{fortunato2010community} gives an extended overview of the various types of community detection algorithms.
 Explaining any of those would be beyond the scope of this work. For example, traditional methods include algorithms based on graph partitioning, hierarchical clustering, and spectral clustering. There are also divisive and agglomerative algorithms.
 
-The algorithms used in this work are described in the following sections and include the leading eigenvector~\cite{newman2006finding} and walktrap~\cite{pons2005computing} algorithm. 
+The algorithms used in this work are described in the following sections and include the leading eigenvector~\cite{newman2006finding} and walktrap~\cite{pons2005computing} algorithm.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modularity}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Leading Eigenvector}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO: make own text]
 This algorithm was proposed by \textcite{newman2006finding}. It uses the eigenvectors of matrices for finding community structures in networks. It is a top-down hierarchical approach that optomizes modularity.
 
 ``In each step, the graph is split into two parts in a way that the separation itself yields a significant increase in the modularity. The split is determined by evaluating the leading eigenvector of the so-called modularity matrix, and there is also a stopping condition which prevents tightly connected groups to be split further.~(stackoverflow)
@@ -209,9 +133,10 @@ This algorithm was proposed by \textcite{newman2006finding}. It uses the eigenve
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Walktrap}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO: make own text]
 This algorithm is based on random walks. The general idea is that if you perform random walks on the graph, then the walks are more likely to stay within the same community because there are only a few edges that lead outside a given community. Walktrap runs short random walks (depending on one of its parameters, default is 4) and uses the results of these random walks to merge separate communities in a bottom-up manner. Again, you can use the modularity score to select where to cut the dendrogram.~(stackoverflow)
 
-``It is a hierarchical clustering algorithm. The basic idea of this method is that short distance random walks tend to stay in the same community. Starting from a totally non-clustered partition, the distances between all adjacent nodes are computed. Then, two adjacent communities are chosen, they are merged into a new one and the distances between communities are updated. This step is repeated $(N − 1)$ times.''~\cite{yang2016comparative}
+``It is a hierarchical clustering algorithm. The basic idea of this method is that short distance random walks tend to stay in the same community. Starting from a totally non-clustered partition, the distances between all adjacent nodes are computed. Then, two adjacent communities are chosen, they are merged into a new one and the distances between communities are updated. This step is repeated $(N - 1)$ times.''~\cite{yang2016comparative}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Communities in Evolving Networks}
