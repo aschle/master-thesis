@@ -291,11 +291,14 @@ The algorithm needs to fulfill the following criteria:
 \item Detection of more than one community
 \end{itemize}
 
-Table~\ref{tab:algos} gives an overview about the twelve algorithms reviewed. Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations. The Louvain algorithm is the same as multilevel, but performs worse by a similar result (number and members of communities) and was also excluded. Walktrap was tested for different step size parameters as suggested in~\cite{pons2005computing}, the communities remained stable.
+Table~\ref{tab:algos} gives an overview about the twelve algorithms reviewed. Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations. The Louvain algorithm is the same as multilevel, but takes longer producing almost the same communities and therefore was also excluded. Walktrap was tested for different step size parameters as suggested in~\cite{pons2005computing}, the communities remained almost the same (only a few nodes switched communities).
 
-Finally, I chose the leading eigenvector community detection algorithm because~\cite{farine2015constructing} explain that this algorithm is often used with animal social networks and works well.
+I had a closer look at fastgreedy, leading eigenvector, multilevel, and walktrap regarding number of detected communities and community size for all three networks. Table~\ref{tab:algos4} shows the results.
+
+Finally, I chose the leading eigenvector community detection algorithm because~\cite{farine2015constructing} explain that this algorithm is often used with animal social networks and works well. There are comparative analysis of community detection algorithms, e.g.~\cite{yang2016comparative, harenberg2014community}.  
 
 \input{Tables/algos.tex}
+\input{Tables/algos4.tex}
 
 
 \section{Attributed Data and Hypothesis Testing}
