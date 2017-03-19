@@ -185,28 +185,33 @@ TODO
 \section{Community Detection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To understand the large-scale structure of networks, one can look at the networks so called community structure. Communities are naturally occuring groups in a network. Seperate graph into groups of nodes that have few links between them. The number and size of communities is not fixes (as compared to graph partitioning!).~\cite[p.~371]{newman2010networks}
+To understand the large-scale structure of networks, one can look at the network's community structure. Communities are naturally occuring groups within a network, usually also called clusters, cohesive groups or modules and have no widely accepted, unique definition~\cite{palla2005uncovering}.
+A graph can be seperated into groups of nodes that have few links between them and opposed to the graph partitioning problem the number and size of communities is not predetermined~\cite[p.~371]{newman2010networks}.
 
-In network science we call a community a group of nodes that have a higher likelihood of connecting t each other than t nodes from other communities~\cite[p.~X]{barabasi2016network}.
-A networks's community structure is uniquely encoded in its wiring diagram~\cite[p.~X]{barabasi2016network}.
-A community is a locally dense connected subgraph in a network~\cite[p.~X]{barabasi2016network}.
+``In network science we call a community a group of nodes that have a higher likelihood of connecting to each other than to nodes from other communities.''~\cite[p.~X]{barabasi2016network}. It is a locally densely connected subgraph with a higher-than-average density~\cite[p.~X]{barabasi2016network}.
 
-In other words, all members of a community must be reached through other members of the same community (connectedness). At the same time we expect that nodes that belong to a community have a higher probability to link to the other members of that community than to nodes that do not belong to the same community (density). While this hypothesis considerably narrows what would be considered a community, it does not uniquely define it. Indeed, as we discuss below, several community definitions are consistent with H2.\\
-groups of vertices with a higher-than-average density of edges connecting them\\
-meaning of communities in animal social networks\\
+Communities in animal social networks, refer to groups of individuals that are associated more with each other than they are with the rest of the population. The social organization of the group can be encoded in its communities.~\cite{croft2008exploring}
 
-There are a lot of different approaches and algorithms who adress the detection of communities. \textcite{fortunato2010community} gives an extensive overview about well known  types of algorithms for further reading. The algorithms used in this work, for static and dynamic detection, are described in the following sections.
+There are a lot of different approaches and algorithms who adress the detection of communities. \textcite{fortunato2010community} gives an extended overview of the various types of community detection algorithms.
+Explaining any of those would be beyond the scope of this work. For example, traditional methods include algorithms based on graph partitioning, hierarchical clustering, and spectral clustering. There are also divisive and agglomerative algorithms.
+
+The algorithms used in this work are described in the following sections and include the leading eigenvector~\cite{newman2006finding} and walktrap~\cite{pons2005computing} algorithm. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Leading Eigenvector}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textcite{newman2006finding} propose an algorihtms which uses the eigenvectors of matrices for finding community structures in networks.
+This algorithm was proposed by \textcite{newman2006finding}. It uses the eigenvectors of matrices for finding community structures in networks. It is a top-down hierarchical approach that optomizes modularity.
 
-stackoverflow\\
-leading.eigenvector.community is a top-down hierarchical approach that optimizes the modularity function again. In each step, the graph is split into two parts in a way that the separation itself yields a significant increase in the modularity. The split is determined by evaluating the leading eigenvector of the so-called modularity matrix, and there is also a stopping condition which prevents tightly connected groups to be split further. Due to the eigenvector calculations involved, it might not work on degenerate graphs where the ARPACK eigenvector solver is unstable. On non-degenerate graphs, it is likely to yield a higher modularity score than the fast greedy method, although it is a bit slower.\\
+``In each step, the graph is split into two parts in a way that the separation itself yields a significant increase in the modularity. The split is determined by evaluating the leading eigenvector of the so-called modularity matrix, and there is also a stopping condition which prevents tightly connected groups to be split further.~(stackoverflow)
 
-Leading eigenvector.  This algorithm was proposed by Newman39. The heart of this algorithm is the spectral optimisation of modularity by using the eigenvalues and eigenvectors of the modularity matrix. First, the leading eigenvector of the modularity matrix is calculated, and then the graph is split into two parts in a way that modu-larity improvement is maximised based on the leading eigenvector. After that, the modularity contribution is calculated at each step in the subdivision of a network. It stops once the value of the modularity contribution is not positive. Its computational complexity of each graph bipartition.~\cite{yang2016comparative}
+``The heart of this algorithm is the spectral optimisation of modularity by using the eigenvalues and eigenvectors of the modularity matrix. First, the leading eigenvector of the modularity matrix is calculated, and then the graph is split into two parts in a way that modularity improvement is maximised based on the leading eigenvector. After that, the modularity contribution is calculated at each step in the subdivision of a network. It stops once the value of the modularity contribution is not positive.''~\cite{yang2016comparative}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Walktrap}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+This algorithm is based on random walks. The general idea is that if you perform random walks on the graph, then the walks are more likely to stay within the same community because there are only a few edges that lead outside a given community. Walktrap runs short random walks (depending on one of its parameters, default is 4) and uses the results of these random walks to merge separate communities in a bottom-up manner. Again, you can use the modularity score to select where to cut the dendrogram.~(stackoverflow)
+
+``It is a hierarchical clustering algorithm. The basic idea of this method is that short distance random walks tend to stay in the same community. Starting from a totally non-clustered partition, the distances between all adjacent nodes are computed. Then, two adjacent communities are chosen, they are merged into a new one and the distances between communities are updated. This step is repeated $(N − 1)$ times.''~\cite{yang2016comparative}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Communities in Evolving Networks}
