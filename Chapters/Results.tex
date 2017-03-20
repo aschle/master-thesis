@@ -1,56 +1,81 @@
 \chapter{Results}
 
-I analysed three daily networks, these are refererred to below as \#1, \#2, and \#3. Each network is aggregated for ten hours starting at 8~a.m. and lasting until 6~p.m. I chose the 20.08.2016, 22.08.2016, and 24.08.2016, because at this point in time the hive also contained tagged foragers (older bees). At the same time young bees were added to the colony (see table~\ref{tab:networks} for details). The age distribution for each network is shown in figure~\ref{fig:ages}.
+I analyzed three daily networks, these are referred to below as network~1~($N=922$), network~2~($N=978$) and network~3~($N=922$), or $g_1$, $g_2$, and $g_3$. Each network is aggregated for ten hours (108~000 frames) starting at 8~a.m. and lasting until 6~p.m. I chose the 20.08.2016, 22.08.2016, and 24.08.2016, because at this point in time the hive also contained tagged foragers, thus older bees. At the same time young bees were added to the colony, see table~\ref{tab:networks} for details. The age distribution for each network is shown in figure~\ref{fig:ages}. The match value, according to(\ref{eq:match}) between network 1 and 2 is 85\%~(833 bees), between network 2 and 3, it is 84\%~(823 bees) and between network 1 and 3, it is 78\%~(716 bees).
 
-[TODO: PLOT How many nodes in the network stay the same over 3 timesteps? (will be going next step, same, new ones)]
-
-\begin{table}
+\begin{table}[htb]
 \centering
-\begin{tabular}{ccccccc}
+\caption[Sampling period]{\textbf{Sampling period} Overview of the chosen day networks including the number of added bees and the time they were added to the hive.}
+\vspace*{5mm}
+\begin{tabularx}{\textwidth}{ccccccc}
 \toprule
 {} & 20.08.16 & 21.08.16 & 22.08.16 & 23.08.16 & 24.08.16 \\
 \midrule
-Network ID & \#1 & - & \#2 & - & \#3 & \\
+Network ID & 1 & - & 2 & - & 3 & \\
 Number of added bees & 0 & 0 & 110 & 60 & 0 \\
 Time added & - & - & 2~p.m. & 6~p.m. & - \\
 \bottomrule
-\end{tabular}
-\caption[TODO]{Overview about networks and number of added bees.}
+\end{tabularx}
 \label{tab:networks}
+\end{table}
+
+
+\begin{table}[htb]
+\centering
+\caption[Global network properties]{\textbf{Global network properties} $N$ is the number of nodes, $L$ the number of edges, $D$ is the diameter, $\langle d_{\texttt{max}} \rangle$ is the average path length, $C_\Delta$ the global clustering coefficient, $\langle k \rangle$ the average degree and $\langle s \rangle$ represents the average strength, as introduced in section~\ref{sec:definitions}.}
+\label{tab:stats}
+\vspace*{5mm}
+\begin{tabularx}{\textwidth}{lcccccccc}
+\toprule
+{} &  $N$ &   $L$ &  $D$ &  $\langle d_{\texttt{max}} \rangle$ &  $\langle d \rangle$ &   $C_\Delta$ &  $\langle k \rangle$ &  $\langle s \rangle$ \\
+\midrule
+Network 1 &    922 &  291179 &     0.69 &         3 &              1.32 &  0.79 &      631.62 &      5680.17 \\
+Network 2 &    978 &  256066 &     0.54 &         3 &              1.46 &  0.72 &      523.65 &      3977.94 \\
+Network 3 &    922 &  259421 &     0.61 &         3 &              1.39 &  0.75 &      562.74 &      4205.99 \\
+\bottomrule
+\end{tabularx}
 \end{table}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/ages}
-	\caption[Age distribution per network]{Age distribution per network: The width of a bar corresponds to two days.}
+	\caption[Age distribution per network]{\textbf{Age distribution per network} The width of a bar corresponds to two days. For each network bees with a negative age and the queen were removed (11, 10, and 9 bees).}
 	\label{fig:ages}
 \end{figure}
 
-\section{Network type and properties}
- 
+\section{Network Topology and Type }
+TODO
 \subsection{Global Structure - Network Level}
-Each network consists of one giant component. Table~\ref{tab:stats} summarizes basic network properties number of nodes, number of links, density, diameter, average shortest path length, global clustering coefficient, average degree, and average strength.\\
+Each network consists of one giant component. Table~\ref{tab:stats} summarizes basic network properties. The network densities are over 50\%. The diameter is for all three networks 3 and the average path length is below two. Compared to an Erdös-Renyi random graph the global clustering coefficient is higher: $0.68$ for $g_1$, $0.54$ for $g_2$, and $0.61$ for $g_3$, with an SD $<0.00005$ averaged over 100 runs. The average strength is ther average number of times two bees are spatially close to each other. On average a bee is connected to 68\% for $g_1$, 54\% for $g_2$ and 61\% for $g_3$ percent of all bees in the network. The degree distribution is bimodal (see figure~\ref{fig:statDegreeDist}. The distribution of strength is shown in figure~\ref{fig:statStrengthDist} and the distribution of edge weights in figure~\ref{fig:statEdgeWeightDist}.
 
-TODO: high density, small diameter, very short average path length, high clustering coefficient, high strength and degree, compared to what? random graph\\
 
-TODO: calc network centralisation and add to table\\
-TODO: PLOT degree and strength distribution\\
-TODO: PLOT edge weight distribution\\
 
-\begin{table}
-\centering
-\begin{tabular}{lcccccccc}
-\toprule
-{} &  $N$ &   $L$ &  $D$ &  $\langle d_{\texttt{max}} \rangle$ &  $\langle d \rangle$ &   $C_\Delta$ &  $\langle k \rangle$ &  $\langle s \rangle$ \\
-\midrule
-\#1 &    922 &  291179 &     0.69 &         3 &              1.32 &  0.79 &      631.62 &      5680.17 \\
-\#2 &    978 &  256066 &     0.54 &         3 &              1.46 &  0.72 &      523.65 &      3977.94 \\
-\#3 &    922 &  259421 &     0.61 &         3 &              1.39 &  0.75 &      562.74 &      4205.99 \\
-\bottomrule
-\end{tabular}
-\caption[Global network properties]{Global network properties}
-\label{tab:stats}
-\end{table}
+\begin{figure}[!t]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{Figures/stat-degreeDist}
+	\caption[Degree distribution]{Degree distribution}
+	\label{fig:statDegreeDist}
+	\vspace*{5mm}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{Figures/stat-strengthDist}
+	\caption[Strength distribution]{Strength distribution}
+	\label{fig:statStrengthDist}
+	\vspace*{5mm}
+	\end{subfigure}
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=\textwidth]{Figures/stat-edgeWeightDist}
+	\caption[Edge weight distribution]{Edge weight distribution}
+	\label{fig:statEdgeWeightDist}
+	\vspace*{5mm}
+	\end{subfigure}
+	\caption[Degree, strength and edge weight distribution]{\textbf{Degree, strength and edge weight distribution} for all three networks.}
+	\label{fig:distributions}
+\end{figure}
+
 
 \subsection{Local Structure - Node Level}
 
@@ -69,10 +94,6 @@ higher clustering coefficient than in random\\
 [TODO: all plot in relation to age]
 
 \section{Community Detection}
-
-TODO: if time: show that communities are robust in terms of ilen.\\
-TODO: age: müsste man eigentlich nochmal gegen ein randomisiertes Modell testen. Alter randomisieren\\
-TODO: Communities centrality testen\\
 
 Using the leading eigenvector (LE) algorithm in all three networks two communities with about the same number of nodes are detected. With walktrap in network 1 two communities and in network 2 and 3, three communities. The exact number of community members for algorithm is shown in table~\ref{tab:networks}.
 
