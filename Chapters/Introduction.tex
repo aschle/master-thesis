@@ -3,7 +3,7 @@
 
 Social insect societies are formed by thousands of individuals, which continuously move and interact with each other inside a dark nest. Honey bee colonies are thus organized complex and dynamical systems, which form a collective intelligence. Observing individual honey bees is, therefore, vital for understanding collective behavior, decision making, and organization of tasks within the colony.
 
-Within the BeesBook\footnote{\url{http://beesbook.mi.fu-berlin.de/wordpress/}; Last accessed: 16.03.2016, 12:05~p.m.} project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony. Shortly after birth, each bee has been marked on their thorax using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the colony. The comb is observed by four cameras over a period of nine weeks and each picture is evaluated automatically. The resulting data set contains the position of each bee and its decoded id for each point in time.
+Within the BeesBook\footnote{\url{http://beesbook.mi.fu-berlin.de/wordpress/}; Last accessed: 16.03.2016, 12:05~p.m.} project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony. Shortly after birth, each bee has been marked on their thorax using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the colony. The comb is observed by four cameras over a period of nine weeks and each picture is evaluated automatically. The resulting data set contains, for each point in time, the exact position of each bee on the honey comb, its decoded id and its age.
 
 In this thesis, temporal worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee and a link between two individuals is created if they share a position close to each other. The temporal networks are aggregated for several points in time.  Social network analysis methods are applied to determine the usefulness and the characteristics of the resulting networks and its communities.
 
@@ -53,8 +53,14 @@ Are they stable regarding their properties? How do members move between communit
 This work is meant to be the foundation for further more hypothesis-driven research using a network science approach to study the complex system of honey bee colonies and their collective behavior.
 
 \section{Methodology}
-explorativ
-Network Science Approach.
+The methodology of this thesis follows in the first part a classical explorative data analysis procedure to understand the given data set and estimate its quality. The elaborated characteristics of the dataset are then used to define parameters and steps for the network extraction pipeline. The pipeline is tested, reviewed and refined in an iterative process. The resulting networks are evaluated after each refinement step of the pipeline using the following approaches: (1)~check network properties by investigating the effects of pipeline parameters and features (2)~check network quality using the provided age information of bees, (3)~comparing to a random graph model~(Erdös-Renyi), and (4)~repeatability of known results concerning community structures.
 
 \section{Outline}
-[TODO]
+This thesis is organized as follows.
+Chapter~\ref{ch:bg}, gives a short introduction into social network analysis (SNA) and defines network measures, terms, and algorithms used throughout this work.
+In chapter~\ref{ch:relatedwork} a brief summary about the current state of research concerning social insect networks, temporal (dynamic) networks and community detection in animal social networks is given. 
+How the networks are derived from the given dataset is described in chapter~\ref{ch:approach}.
+Also, the implementation of the network pipeline and its parameters are presented, as well as steps and decisions during the network analyses and community detection process.
+The results of the network analysis and the characteristics of the extracted communities are presented in chapter~\ref{ch:results}.
+Finally, in chapter~\ref{ch:conclusion} I explore the results and discuss limitations.
+I conclude with directions for future work.
