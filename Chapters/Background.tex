@@ -114,7 +114,6 @@ Communities in animal social networks refer to groups of individuals that are as
 
 There are a lot of different approaches and algorithms who adress the detection of communities. \textcite{fortunato2010community} gives an extended overview of the various types of community detection algorithms.
 Explaining any of those would be beyond the scope of this work. For example, traditional methods include algorithms based on graph partitioning, hierarchical clustering, and spectral clustering. There are also divisive and agglomerative algorithms.
-
 The algorithms used in this work are described in the following sections and include the leading eigenvector~\cite{newman2006finding} and walktrap~\cite{pons2005computing} algorithm.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -122,25 +121,17 @@ The algorithms used in this work are described in the following sections and inc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Modularity is a quantity, that measures the quality of a partitioning. It can be used to compare a community partition to another and decide for the better one. Modularity optimization is also used for community detection algorithms.
 
-A high modularity of a network indicates more connection between nodes within a community and fewer connections between nodes of different communities. The basic idea is: If the fraction of links inside the community is higher, than expected in the same community of a related random graph having the same degree distribution, then it is a community in the sense of modularity.
+A high modularity of a network indicates more connection between nodes within a community and fewer connections between nodes of different communities. The basic idea is: If the fraction of links inside the community is higher, than expected in the same community of a related random graph having the same degree distribution, then it is a community in the sense of modularity. This difference is summed up and normalized. If all nodes fall into one community the modularity is $0$. Fewer links inside the community than expected result in a negative value, otherwise positive.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Leading Eigenvector}
+\subsection{Leading Eigenvector and Walktrap}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-This algorithm was proposed by \textcite{newman2006finding}. It uses the eigenvectors of matrices for finding community structures in networks. It is a top-down hierarchical approach that optomizes modularity.
+The \emph{leading eigenvecor} algorithm was proposed by \textcite{newman2006finding}. It uses the eigenvectors of matrices for finding community structures in networks. It is a top-down hierarchical approach that optimizes modularity. The algorithm starts with all nodes inside one community, therefor a modularity of 0. In each step, the network is split into two parts, so that the modularity of the new separation increases. The splitting is done by first calculating the leading eigenvector of the modularity matrix and then splitting the graph in a way that modularity improvement is maximised based on the leading eigenvector. The algorithms stops if the modularity is not increasing anymore.
 
-``In each step, the graph is split into two parts in a way that the separation itself yields a significant increase in the modularity. The split is determined by evaluating the leading eigenvector of the so-called modularity matrix, and there is also a stopping condition which prevents tightly connected groups to be split further.~(stackoverflow)
-
-``The heart of this algorithm is the spectral optimisation of modularity by using the eigenvalues and eigenvectors of the modularity matrix. First, the leading eigenvector of the modularity matrix is calculated, and then the graph is split into two parts in a way that modularity improvement is maximised based on the leading eigenvector. After that, the modularity contribution is calculated at each step in the subdivision of a network. It stops once the value of the modularity contribution is not positive.''~\cite{yang2016comparative}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Walktrap}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO: make own text]
-This algorithm is based on random walks. The general idea is that if you perform random walks on the graph, then the walks are more likely to stay within the same community because there are only a few edges that lead outside a given community. Walktrap runs short random walks (depending on one of its parameters, default is 4) and uses the results of these random walks to merge separate communities in a bottom-up manner. Again, you can use the modularity score to select where to cut the dendrogram.~(stackoverflow)
-
-``It is a hierarchical clustering algorithm. The basic idea of this method is that short distance random walks tend to stay in the same community. Starting from a totally non-clustered partition, the distances between all adjacent nodes are computed. Then, two adjacent communities are chosen, they are merged into a new one and the distances between communities are updated. This step is repeated $(N - 1)$ times.''~\cite{yang2016comparative}
+This \emph{walktrap} algorithm by~\textcite{pons2005computing} is based on random walks. The authors consider random walks as a tool to calculate similarity between nodes of a network. It uses a bottom-up hierarchical approch, that means the algorithms start with each node it is own community. The basic idea of walktrap is, that short distance random walks (the step size is a parameter) tend to stay in the same community, because there are only a few links that lead outside a given community.
+The results of these random walks are used to merge separate communities.
+Again modularity can be used to cut the dendrogram in an optimal place.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Communities in Evolving Networks}
