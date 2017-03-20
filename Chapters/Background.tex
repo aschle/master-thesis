@@ -106,12 +106,11 @@ It measures the extend to which a node lies on paths between other nodes. Nodes 
 \section{Community Detection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To understand the large-scale structure of networks, one can look at the network's community structure. Communities are naturally occuring groups within a network, usually also called clusters, cohesive groups or modules and have no widely accepted, unique definition~\cite{palla2005uncovering}.
-A graph can be seperated into groups of nodes that have few links between them and opposed to the graph partitioning problem the number and size of communities is not predetermined~\cite[p.~371]{newman2010networks}.
+To understand the large-scale structure of networks, one can look at the network's community structure. Communities are naturally occurring groups within a network, usually also called clusters, cohesive groups or modules and have no widely accepted, unique definition~\cite{palla2005uncovering}.
+For my work, I adapt the definition according to~\textcite{barabasi2016network}: 
+``In network science, we call a community a group of nodes that have a higher likelihood of connecting to each other than to nodes from other communities.''~\cite[p.~TODO]{barabasi2016network}. In contrast to a simple graph partition, the number and size of communities is not predetermined or set in advance.
 
-``In network science we call a community a group of nodes that have a higher likelihood of connecting to each other than to nodes from other communities.''~\cite[p.~X]{barabasi2016network}. It is a locally densely connected subgraph with a higher-than-average density~\cite[p.~X]{barabasi2016network}.
-
-Communities in animal social networks, refer to groups of individuals that are associated more with each other than they are with the rest of the population. The social organization of the group can be encoded in its communities.~\cite{croft2008exploring}
+Communities in animal social networks refer to groups of individuals that are associated more with each other than they are with the rest of the population. These communities reflect an intermediate level of social organization, which is located between the individual and population level~\cite{croft2008exploring}.
 
 There are a lot of different approaches and algorithms who adress the detection of communities. \textcite{fortunato2010community} gives an extended overview of the various types of community detection algorithms.
 Explaining any of those would be beyond the scope of this work. For example, traditional methods include algorithms based on graph partitioning, hierarchical clustering, and spectral clustering. There are also divisive and agglomerative algorithms.
@@ -121,12 +120,14 @@ The algorithms used in this work are described in the following sections and inc
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Modularity}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO]
+Modularity is a quantity, that measures the quality of a partitioning. It can be used to compare a community partition to another and decide for the better one. Modularity optimization is also used for community detection algorithms.
+
+A high modularity of a network indicates more connection between nodes within a community and fewer connections between nodes of different communities. The basic idea is: If the fraction of links inside the community is higher, than expected in the same community of a related random graph having the same degree distribution, then it is a community in the sense of modularity.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Leading Eigenvector}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO: make own text]
 This algorithm was proposed by \textcite{newman2006finding}. It uses the eigenvectors of matrices for finding community structures in networks. It is a top-down hierarchical approach that optomizes modularity.
 
 ``In each step, the graph is split into two parts in a way that the separation itself yields a significant increase in the modularity. The split is determined by evaluating the leading eigenvector of the so-called modularity matrix, and there is also a stopping condition which prevents tightly connected groups to be split further.~(stackoverflow)
