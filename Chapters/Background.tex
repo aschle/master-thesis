@@ -15,12 +15,7 @@ The network model conceptualizes social, economic, or political structures as la
 In mathematical terms, networks are graphs, and thus consist of \emph{nodes} (vertex, representing individuals), and \emph{links} (edges, relationships or interactions).
 Social network analysis provides a set of methods, measures and theories, borrowed from network and graph theory, to investigate social structures and its dynamics.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Animal Interaction Networks}
-\label{sec:animalNW}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 This work is focusing on the special case of animal social networks.
 Networks where individuals are nodes and edges are defined as interaction events between individuals are called \emph{interaction networks}, sometimes also contact networks. 
 According to~\textcite{charbonneau2013social} those interactions used as an edge can be of four different types when looking at animal networks: spatial proximity, physical contact (usually with antennae, “antennation”), a food exchange event (trophallaxis), or specific communication signals.
@@ -70,7 +65,6 @@ of theoretically possible links is defined as $D=\frac{2L}{N(N-1)}$.
 
 \end{description}
 
-\subsection{Network Centrality and Centralization}
 When looking at the networks local structure (node level), it is possible to identify nodes, which are important or central to the network, regarding different aspects. This concept is called \emph{centrality} and measures the influence of a node in a network.~\cite{newman2010networks}
 
 In the course of analysing networks and their local node level structures, you will find and encounter the most important (central) nodes and vertices by indicators of centrality. These indicators give values to the nodes and therefore they can be listed in a way of importance.
@@ -99,7 +93,25 @@ It measures the extend to which a node lies on paths between other nodes. Nodes 
 \section{Temporal Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO]
+Disjoint, Overlapping, Cumulative
+[10] Börner, Katy, and David E. Polley. Visual insights: A practical guide to making sense of data. MIT Press (2014): 59p
+
+Discrete - cumulativ, and (overlapping) time window and\\
+continuous approach (interactions with start and end timestamp)\\
+Moody James
+Daniel McFarland, and 
+Skye
+Bender
+deMoll
+ Dynamic network
+ visualization. American Journal of Sociology 110.4 (2005): 1206-1241.
+
+Challenges: size of time interval, modeling nodes and edge weights, forgetting rate\\
+
+time-ordered and time-aggregated~\cite{farine2015constructing}
+
+discrete snapshot approach and  continuous approach~\cite{Pinter-Wollman2014}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -134,7 +146,7 @@ The results of these random walks are used to merge separate communities.
 Again modularity can be used to cut the dendrogram in an optimal place.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Communities in Evolving Networks}
+\section{Communities in Temporal Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \label{sec:bg:tracking}
 According to \textcite{aynaud2013communities} and \textcite{brodka2014community} there are three main approaches for community detection in temporal networks (also called community tracking): (1) using a static community detection algorithm on several snapshots and then solving a matchig problem, (2) using algorithms who are directly suited for temporal networks and (3) using incremental or online algorithms when processing data streams. For each of the three approaches, several mehods already exist.

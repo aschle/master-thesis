@@ -96,6 +96,7 @@ higher clustering coefficient than in random\\
 
 Using the leading eigenvector (LE) algorithm in all three networks two communities with about the same number of nodes are detected. With walktrap in network 1 two communities and in network 2 and 3, three communities. The exact number of community members for algorithm is shown in table~\ref{tab:networks}.
 
+\subsection{Age Distribution of Communities}
 The first community (LE-C1, WT-C1) contains the queen and bees who are on average younger than the second community (LE-C2, WT-C3). For walktraps third community it is a middle-aged community (WT-C2). The age difference for network 1 is $8.4$ days, for network 2 $10.9$ days, and for network 3 $14.4$ days on average for leading eigenvector communities.
 
 The age distribution for each community and network is depicted in figure~\ref{fig:ageDistribution}.
@@ -247,7 +248,7 @@ Walktrap revealed the same two communities like leading eigenvector for all thre
 \end{figure}
 
 
-\subsection{Community members over time}
+\section{Community members over time}
 The match value between the two communities in successive time steps are calculated with formula~(\ref{eq:match}) and presented in figure~\ref{fig:membersLE} for the resulting communities using the leading eigenvector algorithm and figure~\ref{fig:membersWT} for the communities detected with walktrap.
 
 \begin{figure}[htb]
@@ -269,6 +270,3 @@ The match value between the two communities in successive time steps are calcula
 	\caption[Community matching]{\textbf{Community matching} The numbers indicate the match values in percent. The community marked with * contains the queen. \emph{Green} represents the younger community \emph{orange} the older community, and gray the middle-aged community. The light gray arrow represents match values below three percent.}
 	\label{fig:members}
 \end{figure}
-
-\section{Summary}
-TODO
