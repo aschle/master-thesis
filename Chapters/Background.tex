@@ -20,9 +20,7 @@ This work is focusing on the special case of animal social networks.
 Networks where individuals are nodes and edges are defined as interaction events between individuals are called \emph{interaction networks}, sometimes also contact networks. 
 According to~\textcite{charbonneau2013social} those interactions used as an edge can be of four different types when looking at animal networks: spatial proximity, physical contact (usually with antennae, “antennation”), a food exchange event (trophallaxis), or specific communication signals.
 
-I decided to use spatial proximity as the interaction type for edges.
-Those edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. As edge weights the frequency and duration of interactions are commonly used.
-
+Edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. As edge weights represents the strength of the relationship or the number of interactions~\cite{farine2015constructing}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -30,7 +28,25 @@ Those edges can be directed (e.g. trophallaxis) or undirected, weighted or unwei
 \label{sec:definitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The definitions are mainly taken from~\textcite{barabasi2016network} for general definitions and from~\textcite{wey2008social} for more animal specific definitions, if not stated otherwise. The measures are for undirected and weighted graphs.
+The following definitions are mainly taken from~\textcite{barabasi2016network} and ~\textcite{newman2010networks}.
+
+\begin{figure}[!b]
+\colorbox{usethiscolorhere}{
+\begin{minipage}{\dimexpr\textwidth-2\fboxsep}
+
+\begin{enumerate}
+	\item[(1)] X
+	\item[(2)] X
+	\item[(3)] X
+	\item[(4)] X
+	\item[(5)] X	
+	\item[(6)] X
+	\item[(7)] X
+\end{enumerate}
+
+\end{minipage}
+}
+\end{figure}
 
 
 \begin{description}
@@ -93,25 +109,11 @@ It measures the extend to which a node lies on paths between other nodes. Nodes 
 \section{Temporal Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Disjoint, Overlapping, Cumulative
-[10] Börner, Katy, and David E. Polley. Visual insights: A practical guide to making sense of data. MIT Press (2014): 59p
+When modeling temporal or so-called dynamic networks two main approaches exists (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
 
-Discrete - cumulativ, and (overlapping) time window and\\
-continuous approach (interactions with start and end timestamp)\\
-Moody James
-Daniel McFarland, and 
-Skye
-Bender
-deMoll
- Dynamic network
- visualization. American Journal of Sociology 110.4 (2005): 1206-1241.
+The time-aggregated approach aggregates the data for each snapshot and therefore reduces the available information per edge. In contrast, the time-ordered approach keeps the information for each edge, when the interaction occurred and how long it lasted. It provides a detailed insight when timing and order of interactions are important.  And therefore it can be used to model the topological flow information through a network.
 
-Challenges: size of time interval, modeling nodes and edge weights, forgetting rate\\
-
-time-ordered and time-aggregated~\cite{farine2015constructing}
-
-discrete snapshot approach and  continuous approach~\cite{Pinter-Wollman2014}
-
+Choosing suitable time intervals for aggregating is challenging~\cite{Pinter-Wollman2014}, but a lot of methods for analyzing those networks already exists, whereas for time-ordered networks, only limit toolset is available. In time-aggregated networks, the modeling nodes and edge weights can be challenging when taking into account that interactions, which took place earlier or later in time are weighted accordingly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

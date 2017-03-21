@@ -37,7 +37,7 @@ Automatic tracking allows shifting more towards the temporal and dynamic investi
 
 \section{Research Goal}
 
-The aim of this thesis is to investigate whether the provided data set of tracked honey bees is useful for creating worker-worker interaction networks using spatial proximity as a proxy for interactions between bees. Thus, I need to implement a pipeline to infer networks out of the data set. Furthermore I want to find out if the resulting networks are suitable for social network analysis.
+The aim of this thesis is to investigate whether the provided data set of tracked honey bees is useful for creating worker-worker interaction networks using spatial proximity as a proxy for interactions between bees. Thus, I need to implement a pipeline to generate networks out of the given data set. Furthermore, I want to find out if the resulting networks are suitable for social network analysis.
 
 I want to achieve my research goals by answering the following questions:
 
@@ -45,26 +45,25 @@ I want to achieve my research goals by answering the following questions:
 \item \emph{Is it possible to infer networks with the provided honey bee tracking data?}\\
 What challenges and limitations does the data set imply? What pipeline parameters are necessary?
 \item \emph{What kind of worker-worker interaction networks emerge and how are they structured?}\\
-How are those networks characterized and are they different from a random network?
+What is their topology, what properties are characteristic and how do they differ from randomly generated networks?
 \item \emph{Does the network display a meaningful community structure?}\\
-Are those communities robust in terms of pipeline parameters?
-\item \emph{How are communities characterized?}\\
-Do they reflect known colony behavior in terms of age and spatial distribution?
-\item \emph{How do the communities emerge over time?}\\
+Are those communities robust regarding pipeline parameters?
+\item \emph{How are the identified communities characterized?}\\
+Do they reflect already known colony behavior concerning age and spatial distribution?
+\item \emph{How do these communities emerge over time?}\\
 Are they stable regarding their properties? How do members move between communities?
 \end{enumerate}
 
-This work is meant to be the foundation for further more hypothesis-driven research using a network science approach to study the complex system of honey bee colonies and their collective behavior.
+This work is meant to be the foundation for further more hypothesis-driven research using a network science approach to study and evaluate the complex system of honey bee colonies and their collective behavior.
 
 \section{Methodology}
-The methodology of this thesis follows in the first part a classical explorative data analysis procedure to understand the given data set and estimate its quality. The elaborated characteristics of the dataset are then used to define parameters and steps for the network extraction pipeline. The pipeline is tested, reviewed and refined in an iterative process. The resulting networks are evaluated after each refinement step of the pipeline using the following approaches: (1)~check network properties by investigating the effects of pipeline parameters and features (2)~check network quality using the provided age information of bees, (3)~comparing to a random graph model~(Erdös-Renyi), and (4)~repeatability of known results concerning community structures.
+The methodology of this thesis follows a standard explorative data analysis procedure, mainly to understand the given data set and estimate its quality. The elaborated characteristics of the dataset are then used to define parameters and steps for the network extraction process. This pipeline is tested, reviewed and refined in an iterative process.
+After each step of refinement, the resulting network is evaluated using the following approaches: (1) check its properties by investigating the effects of pipeline parameters, and features (2) verify its quality using the provided age information of bees, (3) comparing it to a random graph model (Erdös-Renyi), and (4) repeatability of known results and facts concerning its community structures.
 
 \section{Outline}
-This thesis is organized as follows.
-Chapter~\ref{ch:bg}, gives a short introduction into social network analysis (SNA) and defines network measures, terms, and algorithms used throughout this work.
-In chapter~\ref{ch:relatedwork} a brief summary about the current state of research concerning social insect networks, temporal (dynamic) networks and community detection in animal social networks is given. 
-How the networks are derived from the given dataset is described in chapter~\ref{ch:approach}.
-Also, the implementation of the network pipeline and its parameters are presented, as well as steps and decisions during the network analyses and community detection process.
-The results of the network analysis and the characteristics of the extracted communities are presented in chapter~\ref{ch:results}.
-Finally, in chapter~\ref{ch:conclusion} I explore the results and discuss limitations.
-I conclude with directions for future work.
+This thesis is organized as follows. Chapter~\ref{ch:bg} gives a short introduction into social network analysis (SNA) and defines network measures, terms, and algorithms used throughout this work.
+In chapter~\ref{ch:relatedwork}, a brief summary of the current state of research concerning social insect networks, temporal networks and community detection in animal social networks is given.
+Chapter~\ref{ch:approach} describes my research approach in general and how the pipeline produces networks out of the given dataset, what steps are needed and what parameters it uses.
+Also, I explain and justify what decisions I took during the network analyses and community detection process.
+Chapter~\ref{ch:results} reports the results of the network analysis and the characteristics of the extracted communities.
+Finally, in chapter~\ref{ch:conclusion} I explore the results, discuss limitations and conclude with directions for future work.
