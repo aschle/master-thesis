@@ -1,11 +1,15 @@
 \chapter{Introduction}
 \label{ch:intro}
 
-Social insect societies are formed by thousands of individuals, which continuously move and interact with each other inside a dark nest. Honey bee colonies are thus organized complex and dynamical systems, which form a collective intelligence. Observing individual honey bees is, therefore, vital for understanding collective behavior, decision making, and organization of tasks within the colony.
+A social insect society is formed by thousands of individuals, which continuously move and interact with each other inside a dark nest. 
+Honey bees are organized in colonies, which form a complex and dynamical system.
+Observing individual honey bees and their interactions with each other is, therefore, vital for understanding collective behavior, decision making, and organization of tasks within the colony.
 
-Within the BeesBook\footnote{\url{http://beesbook.mi.fu-berlin.de/wordpress/}; Last accessed: 16.03.2016, 12:05~p.m.} project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony. Shortly after birth, each bee has been marked on their thorax using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the colony. The comb is observed by four cameras over a period of nine weeks and each picture is evaluated automatically. The resulting data set contains, for each point in time, the exact position of each bee on the honey comb, its decoded id and its age.
+Within the BeesBook\footnote{\url{http://beesbook.mi.fu-berlin.de/wordpress/}; Last accessed: 16.03.2016, 12:05~p.m.} project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony, who are inside the honeycomb.
 
-In this thesis, temporal worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee and a link between two individuals is created if they share a position close to each other. The temporal networks are aggregated for several points in time.  Social network analysis methods are applied to determine the usefulness and the characteristics of the resulting networks and its communities.
+Shortly after birth, each bee is marked on their thorax by using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the observation colony. Four cameras, taking three pictures per second, observe the comb over a period of nine weeks. An image analysis pipeline evaluates each picture automatically. The resulting data set contains, for each point in time, the exact position of each bee on the honeycomb, its decoded id, and its age.
+
+In this thesis, temporal worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee, and a link between two individuals results if they are located close each other. The temporal networks are aggregated for several points in time.  Social network analysis methods are applied to determine the usefulness and the characteristics of the resulting networks and its communities.
 
 Until now, social network analysis has been applied to only a subset of a honey bee colonies live, simply because the data were not available to this extent and quality so far.
 
