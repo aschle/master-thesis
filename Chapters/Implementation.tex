@@ -81,8 +81,9 @@ The tagging period (67 days long) started on 28.06.2016 and lasted until 02.09.2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The data is organized in so-called \emph{frame containers}.
-Each frame container corresponds to one video file of a single camera and consists of about $1024$ \emph{frames}.
-Each frame holds a list of bees, which were detected by the image analysis pipeline.
+Each frame container corresponds to one video file of a single camera and consists of about $1024$ \emph{frames}. So the frame container specifies the camera (\emph{camId}), which took the video.
+Each frame holds a list of bees, which were detected by the image analysis pipeline. A frame is attributed with a \emph{timestamp}. The timestamps across cameras are not identical.
+
 A bee \emph{detection} has the following attributes:
 
 \begin{table}[!h]
@@ -91,42 +92,95 @@ A bee \emph{detection} has the following attributes:
 \textbf{xpos}: & $x$ coordinate of bee with respect to the image in pixel \\
 \textbf{ypos}: & $y$ coordinate of bee with respect to the image in pixel \\
 \textbf{decodedId}: & decoded 12-bit id \\
+\\
+\textbf{camId}: & id of the camera ${0,1,2,3}$ \\
+\textbf{timestamp}: & unix timestamp \\
 \end{tabular}
 \end{table}
 
-The frame container specifies the camera, which took the video. A frame is also attributed with a timestamp. The timestamps across cameras are not identical. The data can be accessed iterating on the frame level, using two a start and end timestamp, for specifying the time interval of interest. The complete data scheme can be found on GitHub\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: 2106-02-16, 04:46PM}. 
+The data can be accessed iterating on the frame level, using a start and end timestamp, for specifying the time interval of interest. The complete data scheme can be found on GitHub\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: 2106-02-16, 04:46PM}. 
 
 [TODO: schema aufmalen oder weglassen?]\\
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ID Probabilities and Confidence Level}
+\subsection{ID Probabilities, Confidence Level, and Quality}
 \label{subsec:confidence}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Twelve bits can encode the identity of 4096 bees.
-Each bit of the decodedId is not a one or zero, but represents a probability between $0$ and $255$, normalized to a value between one and zero. It indicates the reliability of the image analysis pipeline for that specific bit.
+Each bit of the decodedId is not a one or zero, but represents a probability between $0$ and $255$, normalized to a value between $0$ and $1$. It indicates the reliability of the image analysis pipeline for that specific bit.
 I define the confidence $c$ for a bit $b$, analougus to Leon~\textcite[p.~14]{leon2016}, as $c(b)=2\cdot|b-0.5|$. The confidence of an decodedId is therefore the minimum of all bit confidences.
 
-The amount of data that remains for further processing and its correctness depends on the chosen level of confidence. Figure~\ref{fig:remainingData} shows the relationship between confidence, the amount of remaining data and the unique number of decodedIds. The higher the chosen confidence level, the less data remains. [TODO unique IDs beschreiben]
+The amount of data that remains for further processing and its correctness depends on the chosen level of confidence.
+
+I use the age information of the bees to check the quality of the remaining data. On 26.07.2016, about half of the bee tags ($2014$ out of $4096$) were assigned to a bee. This day was chosen to determine the effects of the confidence on data quality and the amount of remaining data.
+
+I examined (1) the number of detections and (2) the number of unique ids, depending on the chosen confidence.
+For each detection the age was calculated. A detection with a negative age is counted as a wrong detection. I assumed that the number of wrong detections also occured among detections with a positive age, but remained unseen. I therefore doubled the error.
+Ananlougus an unique id with a negative age is counted as \emph{wrong} ID.
+
+Figure~\ref{fig:remainingVSquality} shows that with an increasing confidence, the remaining data and unique IDs do decrease, as expected. Also even though the number of wrong detections decreases steadily with an increasing confidence level, the number of wrong IDs only starts to decrease with a very high level of confidence.
+
+Even with an confidence level of $100\%$, $30.2\%$ of the reamining unique IDs are wrong (have a negative age), corresponding to only $2.5\%$ wrong detections of the reamining detections. Therefore, to obtain a more reliable dataset, wrong detections need to be filtered out independent of the confidence value.
+
+\begin{table*}[!b]
+\colorbox{usethiscolorhere}{
+\begin{minipage}{\dimexpr\textwidth-2\fboxsep}%
+\vspace{5mm}
+\begin{description}
+	\item[Frame container] A container for all frames, which belong to a specific video file of a certain camera.
+	\item[Frame] A container, holding all detections of one camera image, at a certain point in time.
+	\item[Detection] A detection of a bee at a certain point in time, with a decodedId 12-bit id.
+	\item[DecodedId] 12 probability values, representing the maybe identity of a bee.
+	\item[Confidence] Value between 0 and 1 (or 0 and 100\%).
+	\item[ID] The decimal representation of an decodedId, after applying a certain confidece value.
+\end{description}
+\vspace{5mm}
+\end{minipage}}
+\end{table*}
 
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/confVSamount}
-        \caption[Remaining Detections]{Remaining Detections depending on the level of confidence.}
-        \label{fig:confVSamount}
+        \includegraphics[width=\textwidth]{Figures/detectionsWrongConf}
+        \caption[Detections]{ \textbf{Detections and wrong detections} xxx}
+        \label{fig:detections}
     \end{subfigure}
     \begin{subfigure}[b]{0.45\textwidth}
-        \includegraphics[width=\textwidth]{Figures/confVSids}
-        \caption[Unique IDs]{Number of unique IDs depending on the level of confidence.}
-        \label{fig:confVSids}
+        \includegraphics[width=\textwidth]{Figures/idsWrongConf}
+        \caption[IDs]{\textbf{IDs and wrong IDs} xxx}
+        \label{fig:ids}
     \end{subfigure}
- 	\caption[Remaining data]{\textbf{Remaining data} [TODO: beide in eins und ganze breite, welcher Datensatz, wie viele IDs waren vergeben, 100 Ids entspricht 4096]}
- 	\label{fig:remainingData}
- \end{figure}   
+ 	\caption[XX]{\textbf{XX} XXX}
+ 	\label{fig:remainingVSquality}
+ \end{figure}
+
+
+\subsection{Detection Frequency Filter}
+A good indicator is the detection frequency of IDs. IDs with a negative age are on average less detected than IDs with a positive age.
+
+IDs who definately exists, but their age can to be determinded are excluded from the analysis completely. These are bees, who were tagged later~($n=10$)\footnote{id= [2,
+	74,
+	2045,
+	3172,
+	3764,
+	3796,
+	3827,
+	3836,
+	3844,
+	3940]} and IDs whos detection frequency is absurd high but there age is unknown~($n=7$)\footnote{id=[has changed! 
+	17,
+	168,
+	801,
+	888,
+	2045,
+	2357,
+	2607]}
+
+For each analysis day the number of detections per ID is obtained, excluding the mentioned IDs above. The frequency distribution tells that, IDs with a negative age are detected less often ($704$ frames $\pm 65$)  than bees with a positive age ($36.603$ frames $\pm 2.345$). The cutoff is 99\% of the negative IDs distribution. All IDs with a detection frequency below $4737 \pm 644$ frames are discarded. A list with possible (valid) IDs is kept for each day. Using this list, faulty detections can be filtered out beforehand.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -166,56 +220,8 @@ The number of gaps those bee time series have, is important, because in a later 
 \end{figure}
 
 \clearpage
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Data Quality and the Detection Frequency Filter}
-\label{subsec:quality}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The quality of the data could be indirectly checked using the age information of bees. On 26.07.2016, about half of the bee tags ($2014$ of $4096$) were assigned to a bee. This day was chosen to determine the effects of the confidence level on data quality.
-At first, for each detection the age of that bee was calculated, a negative age was counted as a wrong detection. I assumed that the number of wrong detections indicated by negative age also occured in the positive half, but remained unseen, therefore I doubled the error. Secondly, the number of wrong unique IDs is also determinde using the age test. Figure~\ref{fig:quality} shows that even though the number of wrong detections
-decreases steadily with an increasing confidence level, but the number of wrong IDs only starts to decrease with a very high level.
-
-Even with an confidence level of $100\%$, $30.2\%$ of the unique IDs are wrong (have a negative age), corresponding to only $2.5\%$ of detections. Therefore wrong IDs need to be filtered out anyway (independent of the confidence value), to obtain a more reliable dataset. A good indicator is the detection frequency of IDs. IDs with a negative age are on average less detected than IDs with a positive age.
-
-\begin{figure}
-	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{Figures/confVSdetquality}
-		\caption[Wrong Detections]{Wrong detections in relation to the level of confidence.}
-		\label{fig:confVSdetquality}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{Figures/confVSidsquality}
-		\caption[Unique IDs]{Number of wrong IDs depending on the level of confidence.}
-		\label{fig:confVSidsquality}
-	\end{subfigure}
-	\caption[Data Quality]{The number of wrong detections decreases with an increasing level of confidence. In contrast, the number of false IDS becomes noticeably less only with a very high confidence level. The amount of remaining data decreases with an increasing confidence level. The number of unique IDs behave similar. (Dataset: 26.07.2016, 16:00-16:05) (Dataset: 26.07.2016, 16:00-16:05)}
-	\label{fig:quality}
-\end{figure}
-
-IDs who definately exists, but their age can to be determinded are excluded from the analysis completely. These are bees, who were tagged later~($n=10$)\footnote{id= [2,
-	74,
-	2045,
-	3172,
-	3764,
-	3796,
-	3827,
-	3836,
-	3844,
-	3940]} and IDs whos detection frequency is absurd high but there age is unknown~($n=7$)\footnote{id=[has changed! 
-	17,
-	168,
-	801,
-	888,
-	2045,
-	2357,
-	2607]}
-
-For each analysis day the number of detections per ID is obtained, excluding the mentioned IDs above. The frequency distribution tells that, IDs with a negative age are detected less often ($704$ frames $\pm 65$)  than bees with a positive age ($36.603$ frames $\pm 2.345$). The cutoff is 99\% of the negative IDs distribution. All IDs with a detection frequency below $4737 \pm 644$ frames are discarded. A list with possible (valid) IDs is kept for each day. Using this list, faulty detections can be filtered out beforehand.
-
-
+\subsection{Implications}
 For further analysis I use the following days: 14.08.2016, 17.08.2016, 20.08.2016, 02.09.2016 with a confidence level of $95\%$. This period is chose because of XY.
 
 Because bee time series contain a lot of short gaps (mean = 3, 95\% confidence), the inferring of edges (bees who are close to each other at the same time), should be not that strict, or at least variable. This has to be taken into acoount, when looking at spatialy close bees.
