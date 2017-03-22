@@ -1,40 +1,10 @@
 \chapter{Results}
 \label{ch:results}
 
-I analyzed three daily networks, these are referred to below as network~1~($N=922$), network~2~($N=978$) and network~3~($N=922$), or $g_1$, $g_2$, and $g_3$. Each network is aggregated for ten hours (108~000 frames) starting at 8~a.m. and lasting until 6~p.m. I chose the 20.08.2016, 22.08.2016, and 24.08.2016, because at this point in time the hive also contained tagged foragers, thus older bees. At the same time young bees were added to the colony, see table~\ref{tab:networks} for details. The age distribution for each network is shown in figure~\ref{fig:ages}. The match value, according to(\ref{eq:match}) between network 1 and 2 is 85\%~(833 bees), between network 2 and 3, it is 84\%~(823 bees) and between network 1 and 3, it is 78\%~(716 bees).
+I analyzed three daily networks, these are referred to below as network~1~($N=922$), network~2~($N=978$) and network~3~($N=922$), or $g_1$, $g_2$, and $g_3$. Each network is aggregated for ten hours (108~000 frames) starting at 8~a.m. and lasting until 6~p.m. I chose the 20.08.2016, 22.08.2016, and 24.08.2016, because at this point in time the hive also contained tagged foragers, thus older bees. At the same time young bees were added to the colony, see table~\ref{tab:networks} for details. The age distribution for each network is shown in figure~\ref{fig:ages}. The match value, according to equation~(\ref{eq:match}) between network 1 and 2 is 85\%~(833 bees), between network 2 and 3, it is 84\%~(823 bees) and between network 1 and 3, it is 78\%~(716 bees).
 
-\begin{table}[htb]
-\centering
-\caption[Sampling period]{\textbf{Sampling period} Overview of the chosen day networks including the number of added bees and the time they were added to the hive.}
-\vspace*{5mm}
-\begin{tabularx}{\textwidth}{ccccccc}
-\toprule
-{} & 20.08.16 & 21.08.16 & 22.08.16 & 23.08.16 & 24.08.16 \\
-\midrule
-Network ID & 1 & - & 2 & - & 3 & \\
-Number of added bees & 0 & 0 & 110 & 60 & 0 \\
-Time added & - & - & 2~p.m. & 6~p.m. & - \\
-\bottomrule
-\end{tabularx}
-\label{tab:networks}
-\end{table}
-
-
-\begin{table}[htb]
-\centering
-\caption[Global network properties]{\textbf{Global network properties} $N$ is the number of nodes, $L$ the number of edges, $D$ is the diameter, $\langle d_{\texttt{max}} \rangle$ is the average path length, $C_\Delta$ the global clustering coefficient, $\langle k \rangle$ the average degree and $\langle s \rangle$ represents the average strength, as introduced in section~\ref{sec:definitions}.}
-\label{tab:stats}
-\vspace*{5mm}
-\begin{tabularx}{\textwidth}{lcccccccc}
-\toprule
-{} &  $N$ &   $L$ &  $D$ &  $\langle d_{\texttt{max}} \rangle$ &  $\langle d \rangle$ &   $C_\Delta$ &  $\langle k \rangle$ &  $\langle s \rangle$ \\
-\midrule
-Network 1 &    922 &  291179 &     0.69 &         3 &              1.32 &  0.79 &      631.62 &      5680.17 \\
-Network 2 &    978 &  256066 &     0.54 &         3 &              1.46 &  0.72 &      523.65 &      3977.94 \\
-Network 3 &    922 &  259421 &     0.61 &         3 &              1.39 &  0.75 &      562.74 &      4205.99 \\
-\bottomrule
-\end{tabularx}
-\end{table}
+\input{Tables/res-networks.tex}
+\input{Tables/res-stats.tex}
 
 \begin{figure}[htb]
 	\centering
@@ -43,55 +13,183 @@ Network 3 &    922 &  259421 &     0.61 &         3 &              1.39 &  0.75 
 	\label{fig:ages}
 \end{figure}
 
-\section{Network Topology and Type}
-TODO
-\subsection{Global Structure - Network Level}
-Each network consists of one giant component. Table~\ref{tab:stats} summarizes basic network properties. The network densities are over 50\%. The diameter is for all three networks 3 and the average path length is below two. Compared to an Erdös-Renyi random graph the global clustering coefficient is higher: $0.68$ for $g_1$, $0.54$ for $g_2$, and $0.61$ for $g_3$, with an SD $<0.00005$ averaged over 100 runs. The average strength is ther average number of times two bees are spatially close to each other. On average a bee is connected to 68\% for $g_1$, 54\% for $g_2$ and 61\% for $g_3$ percent of all bees in the network. The degree distribution is bimodal (see figure~\ref{fig:statDegreeDist}. The distribution of strength is shown in figure~\ref{fig:statStrengthDist} and the distribution of edge weights in figure~\ref{fig:statEdgeWeightDist}.
+
+\section{Network Topology and Centrality}
+
+Each network consists of one giant component. Table~\ref{tab:stats} summarizes basic network properties. The network density id for all networks over 50\%. The diameter is for all three networks $3$ and the average path length is below two. Compared to an Erdös-Renyi random graph the global clustering coefficient is higher, averaged over 100 runs per network with an SD below $0.00005$.
+
+On average a bee is connected to 68\%, 54\% and 61\% percent of all bees in the network. Figure~\ref{fig:statDegreeDist} show a slighty bimodal degree distribution. The degree distribution does not follow a pow law, which is typical for real world social networks. 
+
+The distribution of strength is shown in figure~\ref{fig:statStrengthDist} and the distribution of edge weights is depicted in figure~\ref{fig:statEdgeWeightDist}.
 
 \begin{figure}[!t]
 	\centering
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{Figures/stat-degreeDist}
+	\includegraphics[width=0.92\textwidth]{Figures/stat-degreeDist}
 	\caption[Degree distribution]{Degree distribution}
 	\label{fig:statDegreeDist}
-	\vspace*{5mm}
 	\end{subfigure} 
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{Figures/stat-strengthDist}
+	\includegraphics[width=0.92\textwidth]{Figures/stat-strengthDist}
 	\caption[Strength distribution]{Strength distribution}
 	\label{fig:statStrengthDist}
-	\vspace*{5mm}
 	\end{subfigure}
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
-	\includegraphics[width=\textwidth]{Figures/stat-edgeWeightDist}
+	\includegraphics[width=0.92\textwidth]{Figures/stat-lccDist}
+	\caption[Local clustering coefficient]{Local clustering coefficient}
+	\label{fig:statlccDist}
+	\end{subfigure}
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-edgeWeightDist}
 	\caption[Edge weight distribution]{Edge weight distribution}
 	\label{fig:statEdgeWeightDist}
-	\vspace*{5mm}
 	\end{subfigure}
 	\caption[Degree, strength and edge weight distribution]{\textbf{Degree, strength and edge weight distribution} for all three networks.}
 	\label{fig:distributions}
 \end{figure}
 
 
-\subsection{Local Structure - Node Level}
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-closenessDist}
+	%\caption[Unweighted Closeness Centrality]{Unweighted Closeness Centrality}
+	\label{fig:closenessDistUW}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-closenessWDist}
+	%\caption[Weighted Closeness Centrality]{Weighted Closeness Centrality}
+	\label{fig:closenessDistW}
+	\end{subfigure}
+	\caption[Closeness Centrality]{\textbf{Closeness Centrality}}
+	\label{fig:closenessDist}
+\end{figure}
 
-[TODO: PLOT closeness, betweenness, local clustering coefficient, eigenvector centrality, weighted and unweighted]
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-betweenDist}
+	%\caption[Unweighted Closeness Centrality]{Unweighted Closeness Centrality}
+	\label{fig:betweenDistUW}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-betweenWDist}
+	%\caption[Weighted Closeness Centrality]{Weighted Closeness Centrality}
+	\label{fig:betweenDistW}
+	\end{subfigure}
+	\caption[Betweenness Centrality]{\textbf{Betweenness Centrality}}
+	\label{fig:betweenDist}
+\end{figure}
 
-\subsection{Network type}
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-evcDist}
+	%\caption[Unweighted Closeness Centrality]{Unweighted Closeness Centrality}
+	\label{fig:betweenevcUW}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-evcWDist}
+	%\caption[Weighted Closeness Centrality]{Weighted Closeness Centrality}
+	\label{fig:betweenevcW}
+	\end{subfigure}
+	\caption[Eigenvector Centrality]{\textbf{Eigenvector Centrality}}
+	\label{fig:evcDist}
+\end{figure}
 
-[TODO: compare to random graph]\\
-degree distribution random poisson or binominal, not random power law\\
-giant component, connectedness\\
-average path length and diameter very small, small world phenomenon\\
-higher clustering coefficient than in random\\
+\section{Node Level Metrics in Relation to the Age of Bees}
 
-\section{Network Metrics in Relation to Age of Bees}
+Closenes centrality (weighted and unweighted) in relation to age is depicted in figure~\ref{fig:closenessAge}. Betweennes centrality (weighted and unweighted) in relation to age is depicted in figure~\ref{fig:betweenAge}. Eigenvector centrality (weighted and unweighted) in relation to age is depicted in figure~\ref{fig:evcAge}.
 
-[TODO: all plot in relation to age]
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-degreeAge}
+	%\caption[Unweighted Closeness Centrality]{Unweighted Closeness Centrality}
+	\label{fig:degreeAge}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-strengthAge}
+	%\caption[Weighted Closeness Centrality]{Weighted Closeness Centrality}
+	\label{fig:strengthAge}
+	\end{subfigure}
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-lccAge}
+	%\caption[Weighted Closeness Centrality]{Weighted Closeness Centrality}
+	\label{fig:lccsAge}
+	\end{subfigure}
+	\caption[Degree, strength and local clustering coefficient in relation to Age]{\textbf{Degree, strength and local clustering coefficient in relation to Age} The age is measured in days. The gray line corresponds to the quee. Bees with negative age are excluded.}
+	\label{fig:degstrlcc}
+\end{figure}
 
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-closenessAge}
+	%\caption[Unweighted Closeness Centrality]{Unweighted Closeness Centrality}
+	\label{fig:closenessAgeUW}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-closenessWAge}
+	%\caption[Weighted Closeness Centrality]{Weighted Closeness Centrality}
+	\label{fig:closenessAgeW}
+	\end{subfigure}
+	\caption[Closeness Centrality and Age]{\textbf{Closeness Centrality and Age} The age is measured in days. The gray line corresponds to the quee. Bees with negative age are excluded.}
+	\label{fig:closenessAge}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-betweenAge}
+	%\caption[Unweighted Betweennes Centrality]{Unweighted Betweennes Centrality}
+	\label{fig:betweenAgeUW}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-betweenWAge}
+	%\caption[Weighted Betweennes Centrality]{Weighted Betweennes Centrality}
+	\label{fig:betweenAgeW}
+	\end{subfigure}
+	\caption[Betweennes Centrality and Age]{\textbf{Betweennes Centrality and Age} The age is measured in days. The gray line corresponds to the quee. Bees with negative age are excluded.}
+	\label{fig:betweenAge}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-evcAge}
+	%\caption[Unweighted Betweennes Centrality]{Unweighted Betweennes Centrality}
+	\label{fig:evcAgeUW}
+	\end{subfigure} 
+	\begin{subfigure}[b]{1.0\textwidth}
+	\centering
+	\includegraphics[width=0.92\textwidth]{Figures/stat-evcWAge}
+	%\caption[Weighted Eigenvector Centrality]{Weighted Eigenvector Centrality}
+	\label{fig:evcAgeW}
+	\end{subfigure}
+	\caption[Eigenvector Centrality and Age]{\textbf{Eigenvector Centrality and Age} The age is measured in days. The gray line corresponds to the quee. Bees with negative age are excluded.}
+	\label{fig:evcAge}
+\end{figure}
+
+\clearpage
 \section{Community Detection}
 
 Using the leading eigenvector (LE) algorithm in all three networks two communities with about the same number of nodes are detected. With walktrap in network 1 two communities and in network 2 and 3, three communities. The exact number of community members for algorithm is shown in table~\ref{tab:networks}.
@@ -247,6 +345,7 @@ Walktrap revealed the same two communities like leading eigenvector for all thre
 	\label{fig:communitiesPerNetworkWT}
 \end{figure}
 
+\clearpage
 
 \section{Community members over time}
 The match value between the two communities in successive time steps are calculated with formula~(\ref{eq:match}) and presented in figure~\ref{fig:membersLE} for the resulting communities using the leading eigenvector algorithm and figure~\ref{fig:membersWT} for the communities detected with walktrap.

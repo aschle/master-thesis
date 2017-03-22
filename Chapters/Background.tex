@@ -15,75 +15,52 @@ The network model conceptualizes social, economic, or political structures as la
 In mathematical terms, networks are graphs, and thus consist of \emph{nodes} (vertex, representing individuals), and \emph{links} (edges, relationships or interactions).
 Social network analysis provides a set of methods, measures and theories, borrowed from network and graph theory, to investigate social structures and its dynamics.
 
-
 This work is focusing on the special case of animal social networks.
 Networks where individuals are nodes and edges are defined as interaction events between individuals are called \emph{interaction networks}, sometimes also contact networks. 
 According to~\textcite{charbonneau2013social} those interactions used as an edge can be of four different types when looking at animal networks: spatial proximity, physical contact (usually with antennae, “antennation”), a food exchange event (trophallaxis), or specific communication signals.
 
-Edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. As edge weights represents the strength of the relationship or the number of interactions~\cite{farine2015constructing}.
+Edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. The edge weights represent the strength of the relationship commonly the number or duration of interactions is used~\cite{farine2015constructing}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Network Measure, Metrics and Algorithms}
+\section{Network Measure and Metrics}
 \label{sec:definitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following definitions are mainly taken from~\textcite{barabasi2016network} and ~\textcite{newman2010networks}.
+The following definitions are mainly taken from~\textcite{barabasi2016network} and ~\textcite{newman2010networks}. the gray box summarizes the basic variables and terms of this work. [TODO: Box referencing as table and align bottom.]
 
-\begin{figure}[!b]
 \colorbox{usethiscolorhere}{
-\begin{minipage}{\dimexpr\textwidth-2\fboxsep}
-
-\begin{enumerate}
-	\item[(1)] X
-	\item[(2)] X
-	\item[(3)] X
-	\item[(4)] X
-	\item[(5)] X	
-	\item[(6)] X
-	\item[(7)] X
-\end{enumerate}
-
-\end{minipage}
-}
-\end{figure}
-
-
+\begin{minipage}[!b]{\dimexpr\textwidth-2\fboxsep}%
+\vspace{5mm}
 \begin{description}
-\item[Network size] $N$ is the total number of nodes (animals).
-
-\item[Number of links] $L$ is the total number of links (social interaction).
-
-\item[Edge weight] $w_i$ of an edge $l_i$ is an indicator of how important that edge is.
-
-\item[Density] $D$ is the number of realized links divided by the number
-of theoretically possible links is defined as $D=\frac{2L}{N(N-1)}$.
-
-\item[Component] is a subnet of nodes in a network, so that there is a path between any two nodes that belong to the component.
-
-\item[Degree] $k_i$ of a node $n_i$ represents the number of edges a node has; so the number of other animals this animal interacts with.
-
-\item[Average Degree] $\langle k \rangle$
-
-\item[Strength] $s_i$ of a node is also called the weighted degree. It measures the total weight of edges connected to a node $n_i$ and is definded as $s_i = \sum_{j=1}^{n}w_{ij}$ according to~\textcite{barrat2004architecture}
-
-\item[Average Strength] $\langle s \rangle$
-
-\item[Path length] $d$ the shortest number of links between two nodes.
-
-\item[Average path length] $\langle d \rangle$ is the average of all shortest path between all pairs of nodes.
-
-\item[Diameter] $d_{\texttt{max}}$ is the longest of all path length. The distance between the two furthest nodes, the longest possible path length in the network.
-
-\item[Global clustering coefficient] $C_\Delta$ also called transitivity. According to~\cite{wasserman1994social} is is defined as $C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$.
-
-\item[Local clustering coefficient] $c_i$ of a node $n_i$ quantifies how close its neighbours are to being a clique (complete graph).
-
+	\item[Network size] $N$ is the total number of nodes, respectivly animals in a network.
+	\item[Number of links] $L$ is the total number of links, social interactions, in a network.
+	\item[Edge weight] $w_i$ of an edge $l_i$ is an indicator of how important that edge is.
+	\item[Component] is a subnet of nodes in a network, so that there is a path between any two nodes that belong to the component.
+	\item[Degree] $k_i$ of a node $n_i$ represents the number of edges a node has; so the number of other animals this animal interacts with.	
+	\item[Average Degree] $\langle k \rangle$, the number of animals one animal interacts with on average.
+	\item[Path length] $d$ the shortest number of links between two nodes.
+	\item[Average path length] $\langle d \rangle$ is the average of all shortest path between all pairs of nodes.
+	\item[Diameter] $d_{\texttt{max}}$ is the longest of all path length. The distance between the two furthest nodes, the longest possible path length in the network.
 \end{description}
+\vspace{5mm}
+\end{minipage}}
 
+
+\paragraph{Density} $D$ is the number of realized links divided by the number
+of theoretically possible links is defined as $$D=\frac{2L}{N(N-1)}$$ Is it independent from the edge weights.
+
+\paragraph{Strength} $s_i$ of a node is also called the weighted degree. It measures the total weight of edges connected to a node $n_i$ and is definded as $$s_i = \sum_{j=1}^{n}w_{ij}$$ according to~\textcite{barrat2004architecture}. The average strength denoted as $\langle s \rangle$.
+
+\paragraph{Global clustering coefficient} $C_\Delta$ also called transitivity. According to~\textcite{wasserman1994social} it is defined as $$C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$$.
+
+\paragraph{Local clustering coefficient} $c_i$ of a node $n_i$ quantifies how close its neighbours are to being a clique (complete graph).
+
+\paragraph{Centrality}
 When looking at the networks local structure (node level), it is possible to identify nodes, which are important or central to the network, regarding different aspects. This concept is called \emph{centrality} and measures the influence of a node in a network.~\cite{newman2010networks}
-
 In the course of analysing networks and their local node level structures, you will find and encounter the most important (central) nodes and vertices by indicators of centrality. These indicators give values to the nodes and therefore they can be listed in a way of importance.
+
+The the weighted versions of betweenness and closeness using Dijktra and the inverse of the edge weights.
 
 \paragraph{Degree Centrality}
 Degree centrality $C^i_D$ of a node $n_i$ is the normalized degree $k_i$ in relation to the whole network, it is calculated as follows:
@@ -102,7 +79,6 @@ $$C_C^i=\frac{N}{\sum_{j}d_{ij}}$$
 
 \paragraph{Betweenness Centrality}
 It measures the extend to which a node lies on paths between other nodes. Nodes that occur on many shortest pathts between other nodes have higher betweenness that those that do not.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
