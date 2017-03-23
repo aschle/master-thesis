@@ -203,7 +203,12 @@ The number of gaps those bee time series have, is important, because in a later 
 \subsection{Detection Frequency Filter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A good indicator is the detection frequency of IDs. IDs with a negative age are on average less detected than IDs with a positive age.
+A good indicator, weather a bee is alive and present on a specific day, is the detection frequency of IDs. The hypothesis is: Bees with IDs who have a low detection rate are not physically present in the hive (do not exists at that day), due to detection errors of the image analysis pipeline.
+To check this hypothesis, I investigate weather these is a correlation between age of the bee (ID) and detection frequency.
+
+
+
+IDs with a negative age are on average less detected than IDs with a positive age.
 
 IDs who definately exists, but their age can to be determinded are excluded from the analysis completely. These are bees, who were tagged later~($n=10$)\footnote{id= [2,
 	74,
