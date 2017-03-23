@@ -29,24 +29,27 @@
  	\label{fig:obssetup}
 \end{figure}
 
-The dataset derives from video files, that capture tagged honey bees of one colony in an observation hive.
+The dataset derives from high resoluted video files, that capture tagged honey bees of one colony in an one-frame observation hive.
 The individuals of the colony, including about 3200 bees over a nine weeks period, were tagged with circular 12-bit markers (figure~\ref{fig:markers}, section~\ref{ch:intro}).
-Two cameras per side filmed the complete honeycomb permanently. Figure~\ref{fig:cams} illustrates the camera setup.
-The recording season lasted nine weeks (63 days), from 19.07.2016 until 19.09.2016, with some interruptions due to maintenance work and technical failures.
-For further analysis, I chose three days (20.08., 22.08., and 24.08.) highlighted in figure~\ref{fig:period}.
+Two cameras per side filmed the complete honeycomb permanently.
+Figure~\ref{fig:cams} illustrates the camera setup.
+The \emph{recording period} lasted nine weeks (63 days), from 19.07.2016 until 19.09.2016, with some interruptions due to maintenance work and technical failures. [TODO: verlinken Appendix, uebersicht ueber gute und schlechte Zeiträume][TODO: Abbildung Aufnahmezeitraum]
 
 All four cameras ($4000\times3000$ pixels) record $3.5$ frames per second. 
-An image analysis pipeline~\cite{wario2015automatic} extracts all bees in each frame.
+An image analysis pipeline~\cite{wario2015automatic} detects all bees in each frame.
 The resulting detection data is stored in a binary file format.
-A python library\footnote{The library is called \texttt{bb-binary} and can be found on github: \url{https://github.com/BioroboticsLab/bb_binary}; Last accesed: 2106-02-16, 04:28PM} provides an frame-level access to the binary files.
-The size of the complete dataset is $470$~GB, about $7.5$~GB of binary data per day.
+An python library\footnote{The library is called \texttt{bb-binary} and is created by the Biorobotics Lab. It can be found on github: \url{https://github.com/BioroboticsLab/bb_binary}; Last accesed: 2106-02-16, 04:28PM} provides an frame-level access to those binary files.
+The size of the dataset is $470$~GB, about $7.5$~GB of binary data per day.
 
-The tagging period (67 days long) started on 28.06.2016 and lasted until 02.09.2016. Exactly $3.191$ bees were tagged. The young bees, which are raised in a separate hive, were tagged and then added to the observation hive, about noon each day. Figure~\ref{fig:tagging} shows the frequency of the tagging. The hatching day for each bee was documented; therefore the age of each bee at a particular point in time can be calculated.
+The tagging period (67 days long) started on 28.06.2016 and lasted until 02.09.2016. Exactly $3.191$ bees were tagged. The young bees, which are raised in a separate hive, were tagged and then added to the observation hive, about noon each day. Figure~\ref{fig:tagging} shows the frequency of the tagging. The hatching day for each bee is documented; therefore the age of each bee at a particular point in time can be calculated.
+
+[TODO: Begruendung des gewaehlten Zeitraumes: Funktionstüchtigkeit und Altersverteilung]
+For further analysis, I chose three days (20.08., 22.08., and 24.08.) highlighted in figure~\ref{fig:period}.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/tagging_period}
-	\caption[Tagging frequency]{Tagging frequency: The bees were primarily tagged during the week. On average 48 bees were tagged each day, considering only tagging days, the average is about 91 ($\pm50$) bees (median 118). [TODO: combine with other image]}
+	\caption[Tagging frequency]{Tagging frequency: The bees were primarily tagged during the week. On average 48 bees were tagged each day, considering only tagging days, the average is about 91 ($\pm50$) bees (median 118). [TODO: combine with other image or make nicer!]}
 	\label{fig:tagging}
 \end{figure}
 
@@ -66,25 +69,23 @@ The tagging period (67 days long) started on 28.06.2016 and lasted until 02.09.2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The data is organized in so-called \emph{frame containers}.
 Each frame container corresponds to one video file of a single camera and consists of about $1024$ \emph{frames}. So the frame container specifies the camera (\emph{camId}), which took the video.
-Each frame holds a list of bees, which were detected by the image analysis pipeline. A frame is attributed with a \emph{timestamp}. The timestamps across cameras are not identical.
+Each frame holds a list of bees, which were detected by the image analysis pipeline and is attributed with a \emph{timestamp}.
 
-A bee \emph{detection} has the following attributes:
+A bee \emph{detection} has, among others, the following attributes:
 
 \begin{table}[!h]
 \centering
 \begin{tabular}{rl}
 \textbf{xpos}: & $x$ coordinate of bee with respect to the image in pixel \\
 \textbf{ypos}: & $y$ coordinate of bee with respect to the image in pixel \\
-\textbf{decodedId}: & decoded 12-bit id \\
+\textbf{decoded ID}: & decoded 12-bit ID \\
 \\
-\textbf{camId}: & id of the camera ${0,1,2,3}$ \\
+\textbf{cam ID}: & ID of the camera ${0,1,2,3}$ \\
 \textbf{timestamp}: & unix timestamp \\
 \end{tabular}
 \end{table}
 
-The data can be accessed iterating on the frame level, using a start and end timestamp, for specifying the time interval of interest. The complete data scheme can be found on GitHub\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: 2106-02-16, 04:46PM}. 
-
-[TODO: schema aufmalen oder weglassen?]\\
+The data can be accessed iterating on frame level, using a start and end time\-stamp, for specifying a time interval. The complete data scheme can be found on GitHub\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: 2106-02-16, 04:46PM}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -94,20 +95,20 @@ The data can be accessed iterating on the frame level, using a start and end tim
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Twelve bits can encode the identity of 4096 bees.
-Each bit of the decodedId is not a one or zero, but represents a probability between $0$ and $255$, normalized to a value between $0$ and $1$. It indicates the reliability of the image analysis pipeline for that specific bit.
-I define the confidence $c$ for a bit $b$, analougus to Leon~\textcite[p.~14]{leon2016}, as $c(b)=2\cdot|b-0.5|$. The confidence of an decodedId is therefore the minimum of all bit confidences.
+Each bit of the decoded ID is not a one or zero, but represents a probability between $0$ and $255$, normalized to a value between $0$ and $1$. Therefore, a bit indicates the reliability of the image analysis pipeline.
+I define the confidence $c$ for a bit $b$, analougus to Leon~\textcite[p.~14]{leon2016}, as $c(b)=2\cdot|b-0.5|$. The confidence of a decoded ID is, accordingly, the minimum of all twelve bit confidences.
 
-The amount of data that remains for further processing and its correctness depends on the chosen level of confidence.
+The amount of data that remains for further processing and its correctness is highly dependent on the chosen level of confidence.
 
-I use the age information of the bees to check the quality of the remaining data. On 26.07.2016, about half of the bee tags ($2014$ out of $4096$) were assigned to a bee. This day was chosen to determine the effects of the confidence on data quality and the amount of remaining data.
+Additionally, I use the age information of the bees to check the quality of the remaining data. 
+I examined (1) the number of detections and (2) the number of unique IDs, depending on the chosen confidence.
+For each detection, the age was calculated. A detection with a negative age is counted as a wrong detection. I assumed that the number of wrong detections also occurred among detections with a positive age, but remained unseen; therefore I doubled the error, to be more accurate\footnote{On 26.07.2016, about half of the bee tags ($2014$ out of $4096$) were assigned. Because of this, that day was chosen to determine the effects of the level of confidence on data quality and the amount of remaining data.}. 
 
-I examined (1) the number of detections and (2) the number of unique ids, depending on the chosen confidence.
-For each detection the age was calculated. A detection with a negative age is counted as a wrong detection. I assumed that the number of wrong detections also occured among detections with a positive age, but remained unseen. I therefore doubled the error.
-Ananlougus an unique id with a negative age is counted as \emph{wrong} ID.
+For (2), analogous a unique ID with a negative age is counted as a \emph{wrong} ID.
 
-Figure~\ref{fig:remainingVSquality} shows that with an increasing confidence, the remaining data and unique IDs do decrease, as expected. Also even though the number of wrong detections decreases steadily with an increasing confidence level, the number of wrong IDs only starts to decrease with a very high level of confidence.
+As expected, with an increasing confidence, the remaining data and unique IDs do decrease (figure~\ref{fig:remainingVSquality}). Also even though the number of wrong detections decreases steadily with an increasing confidence level, the number of wrong IDs only starts to decrease with a very high level of confidence.
 
-Even with an confidence level of $100\%$, $30.2\%$ of the reamining unique IDs are wrong (have a negative age), corresponding to only $2.5\%$ wrong detections of the reamining detections. Therefore, to obtain a more reliable dataset, wrong detections need to be filtered out independent of the confidence value.
+With a confidence level of 100\%, 30.2\% of the remaining unique IDs are wrong (have a negative age), corresponding to only 2.5\% wrong detections of the remaining detections. Therefore, to obtain a more reliable dataset, wrong detections need to be filtered out, independently of the confidence value.
 
 \begin{figure}
     \centering
@@ -131,31 +132,19 @@ Even with an confidence level of $100\%$, $30.2\%$ of the reamining unique IDs a
 \centering
 \begin{tabularx}{\textwidth}{@{} r Y @{}}
 	\textbf{Frame container} &
-	A container for all frames,
-	which belong to a specific
-	video file of a certain camera.\\
+	A container for all frames, which belong to a specific video file of a certain camera.\\
 	\textbf{Frame} &
-	A container, holding all detections
-	of one camera image, at a certain
-	point in time.\\
-	\textbf{Detection} & A detection of a bee
-	at a certain point in time.\\
-	\textbf{DecodedID} & Identifyer of a bee,
-	12 probability values.\\
+	This includes all detections of one camera image, at a certain point in time.\\
+	\textbf{Detection} &
+	A detection of a bee at a certain point in time.\\
+	\textbf{Decoded ID} &
+	Identifyer of a bee consisting of 12 probability values, representing 12 bits.\\
 	\textbf{Confidence} &
-	Value between 0 and 100\%).\\
+	Value between 0\% and 100\%).\\
 	\textbf{ID} &
-	The decimal representation of
-	an decodedID, after applying
-	a certain confidece value.\\
-	\textbf{Bee time series} &
-	Binary sequency, indicating the
-	absece and presence of a certain
-	bee in a specific time interval.\\
-	\textbf{Pair time series} &
-	Binary sequency, indicating the
-	absence and presence of two
-	bees in a specific time interval.\\
+	The decimal representation of an decoded ID, after applying a certain confidence value.\\
+	\textbf{Bee time series} & Binary sequence, indicating the absence and presence of a certain bee in a particular time interval.\\
+	\textbf{Pair time series} & Binary sequence, indicating the absence and presence of two bees in a particular time interval.\\
 \end{tabularx}
 }
 \end{table}
