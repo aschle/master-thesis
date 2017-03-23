@@ -1,43 +1,13 @@
 
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/stat-edgeWeightDist}
-	\caption[Edge Weight Distribution]{Edge Weight Distribution - Edge weight is the contact frequency}
-	\label{fig:statEdgeWeightDist}
-\end{figure}
-
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/stat-lccDist}
-	\caption[Local clustering coefficien]{Local clustering coefficien - unweighted}
-	\label{fig:lccDist}
-\end{figure}
-
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/stat-degreeAge}
-	\caption[Degree VS Age]{Degree versus Age}
-	\label{fig:degreeAge}
-\end{figure}
-
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/stat-strengthAge}
-	\caption[Strength Age]{Strength Age}
-	\label{fig:strengthAge}
-\end{figure}	
-
-
-\begin{figure}[htb]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/stat-ccAge}
-	\caption[Local clustering coefficient]{Local clustering coefficient}
-	\label{fig:ccAge}
-\end{figure}
+Colony size was
+defined as the number of individuals in a colony on a given
+day and since it varied slightly across the duration of the
+observation period due to the birth and death of individuals,
+number of interactions and number of interaction partners
+for each individual were normalized for the total number of
+interactions and the total number of available partners,
+respectively, on each day.
+(naug2009structure)
 
 
 ``In other words, all members of a community must be reached through other members of the same community (connectedness). At the same time we expect that nodes that belong to a community have a higher probability to link to the other members of that community than to nodes that do not belong to the same community (density). While this hypothesis considerably narrows what would be considered a community, it does not uniquely define it.''~\cite[p.~X]{barabasi2016network}
