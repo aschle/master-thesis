@@ -8,7 +8,7 @@ undirected and weighted, aggregated networks\\
 
 Two bees are associated (spatially close to each other), if their distance is minor to a \emph{maximum distance}. As everything is very close in a bee hive this value is hard to choose. Only this criteria is very week, meaning having a resolution of three frames per seconds results in interactions which could only last for $0.33$ seconds. So an additional parameter the \emph{minimum contact duration} is introduced, it is the minimum time they have to spend at least nearby to be called associated.
 
-Taking the fragmentation of tracks into account, it is obvious that two bees could be nearby but not at the very same time, but slightly shifted. So the minimum contact duration would be too errow prone. To overcome this issue one could correct the bee tracks, by filling gaps of varius sizes and interpolating the position of that bee accordingly. This is rather time consuming for this amount of tracking data (TODO: naja so doll auch nicht, scipy.ndimage.morphology.binary\_dilation) and also considering, that the tracking data is going to be improved in the future, then manipulating the raw data seems senseless. I rather perform a gap filling (maybe similar to binary dilation) on the time series of pairs, but not on the bee tracks, because this is independent of the input data.
+Taking the fragmentation of tracks into account, it is obvious that two bees could be nearby but not at the very same time, but slightly shifted. So the minimum contact duration would be too errow prone. To overcome this issue one could correct the bee tracks, by filling gaps of varius sizes and interpolating the position of that bee accordingly. This is rather time consuming for this amount of tracking data (TODO: naja so doll auch nicht) and also considering, that the tracking data is going to be improved in the future, then manipulating the raw data seems senseless. I rather perform a gap filling (maybe similar to binary dilation?) on the time series of pairs, but not on the bee tracks, because this is independent of the input data.
 
 Edges are attributed with two parameters. The first one is the frequency of contacts, so how often they share a close position. The second parameter is the total duration of contact, how many time frames in total they spend close by.
 
@@ -74,17 +74,15 @@ For performing the network analysis, I chose the pipeline parameters as follows:
 
 \end{description}
 
-\begin{figure}[b]
+\begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.4\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{Figures/radius}
 		\caption[Contact Radius]{Contact Radius}
 		\label{fig:radius}
 	\end{subfigure}
-	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
-	%(or a blank line to force the subfigure onto a new line)
-	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{subfigure}[b]{0.4\textwidth}
 		\includegraphics[width=\textwidth]{Figures/sizeTagBee}
 		\caption[Bee and Tag Size]{Bee Length}
 		\label{fig:size}
@@ -93,4 +91,4 @@ For performing the network analysis, I chose the pipeline parameters as follows:
 	\label{fig:contactRadius}
 \end{figure}
 
-The networks are not thresholded (according to~\cite{farine2015constructing}).
+\clearpage

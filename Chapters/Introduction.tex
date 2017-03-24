@@ -1,27 +1,45 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \chapter{Introduction}
 \label{ch:intro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A social insect society is formed by thousands of individuals, which continuously move and interact with each other inside a dark nest. 
 Honey bees are organized in colonies, which form a complex and dynamical system.
-Observing individual honey bees and their interactions with each other is, therefore, vital for understanding collective behavior, decision making, and organization of tasks within the colony.
+Observing individual honey bees and their interactions with each other is, therefore, vital for understanding collective behavior and the organization of tasks within the colony.
 
-Within the BeesBook\footnote{\url{http://beesbook.mi.fu-berlin.de/wordpress/}; Last accessed: 16.03.2016, 12:05~p.m.} project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony, who are inside the honeycomb.
+Within the BeesBook project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony, that are inside the honeycomb.
 
-Shortly after birth, each bee is marked on their thorax by using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the observation colony. Four cameras, taking three pictures per second, observe the comb over a period of nine weeks. An image analysis pipeline evaluates each picture automatically. The resulting data set contains, for each point in time, the exact position of each bee on the honeycomb, its decoded id, and its age.
+Shortly after hatching, each bee is marked on their thorax by using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the observation colony. Four cameras observe the comb over a period of nine weeks, by capturing approximately three frames per second. An image analysis pipeline evaluates each frame automatically. The resulting data set contains, for each frame, the exact position of each detected bee on the honeycomb, and its age.
 
-In this thesis, temporal worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee, and a link between two individuals results if they are located close each other. The temporal networks are aggregated for several points in time.  Social network analysis methods are applied to determine the usefulness and the characteristics of the resulting networks and its communities.
+In this thesis, worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee, and a link between two nodes results if two bees are located close to each other over a specified period.
+The networks are time-aggregated, which means one network represents the data of multiple frames.
 
-Until now, social network analysis has been applied to only a subset of a honey bee colonies live, simply because the data were not available to this extent and quality so far.
+After extracting the temporal networks, social network analysis methods are applied to determine the characteristics of the resulting networks and its communities.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/markers}
-	\caption{Tagged bees inside the hive.}
+	\caption{Tagged bees inside the observation hive.}
 	\label{fig:markers}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivation}
-Most of the studies in the field of animal social network analysis, especially when analyzing the behaviour of social insects colonies, only include a reduced subset of the colonies life, due to a large number of individuals. Usually, the reduction is carried out on three levels (1) time and resolution, (2) space, and (3) number of individuals.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Colonies of social insects consist of a vast number of individuals. Due to technical and observational limitations, most studies in the field of animal social network analysis, related to insects, analyze only a small subset of a colonies' life.
+Usually, the reduction is carried out on three levels (1) time and resolution, (2) space, and (3) number of individuals.
+
+
+[TODO: umarbeiten!!!, einzelne Studien müssen in related work, (A) method/approach: network analysis, network properties and communities; (B) animals: focus bees, but also considering social insects studies; (C) tracking methods: manual tracking and automatic tracking; automatic tracking, more inclusive, temporal development, dadurch Mehrwert, d.h. gap of knowledge im Bereich: Social Network Analysis von Honey Bees with automatic tracking and long term development, hm... Studies in den anderen Bereichen (automatic tracking and social insects, manual tracking bees, manual tracking of social insects, with network science approach already exists). Automatic tracking allows shifting more towards the temporal and dynamic investigation.]
 
 Labeling only a subset of the colonies individuals, a short observation period, low res\-olution and manually extracting information from photos or videos is very common in behavioral sciences~\cite{naug2008structure, quevillon2015social}.
 
@@ -36,34 +54,43 @@ Automatic tracking allows shifting more towards the temporal and dynamic investi
 
 
 \section{Research Goal}
-
-The aim of this thesis is to investigate whether the provided data set of tracked honey bees is useful for creating worker-worker interaction networks using spatial proximity as a proxy for interactions between bees. Thus, I need to implement a pipeline to generate networks out of the given data set. Furthermore, I want to find out if the resulting networks are suitable for social network analysis.
+The aim of this thesis is to investigate whether the provided data set of tracked honey bees is useful for creating worker-worker interaction networks using spatial proximity as an indicator for interactions between bees. Thus, I need to implement a pipeline to extract networks out of the given data set. Furthermore, I want to find out if the resulting networks are suitable for social network analysis.
 
 I want to achieve my research goals by answering the following questions:
 
 \begin{enumerate}
 \item \emph{Is it possible to infer (temporal) networks with the provided honey bee tracking data?}\\
-What challenges and limitations does the data set imply? What pipeline parameters are necessary?
+What challenges and limitations does the data set imply?
+What pipeline parameters are necessary?
 \item \emph{What kind of worker-worker interaction networks emerge and how are they structured?}\\
-What is their topology, what properties are characteristic and how do they differ from randomly generated networks?
+What is their topology?
+What properties are characteristic and how do they differ from randomly generated networks?
 \item \emph{Does the network display a meaningful community structure?}\\
-Are those communities robust regarding pipeline parameters?
-\item \emph{How are the identified communities characterized?}\\
+How are the identified communities characterized?
 Do they reflect already known colony behavior concerning age and spatial distribution?
-\item \emph{How do these communities emerge over time?}\\
-Are they stable regarding their properties? How do members move between communities?
+\item \emph{How do these communities develop over time?}\\
+Are they stable regarding their properties?
+How do members move between communities?
 \end{enumerate}
 
-This work is meant to be the foundation for further more hypothesis-driven research using a network science approach to study and evaluate the complex system of honey bee colonies and their collective behavior.
+This work is meant to be the foundation to answer further more specific biological research questions using a network science approach to study and evaluate the complex system of honey bee colonies and their collective behavior.
 
 \section{Methodology}
-The methodology of this thesis follows a standard explorative data analysis procedure, mainly to understand the given data set and estimate its quality. The elaborated characteristics of the dataset are then used to define parameters and steps for the network extraction process. This pipeline is tested, reviewed and refined in an iterative process.
-After each step of refinement, the resulting network is evaluated using the following approaches: (1) check its properties by investigating the effects of pipeline parameters, and features (2) verify its quality using the provided age information of bees, (3) comparing it to a random graph model (Erdös-Renyi), and (4) repeatability of known results and facts concerning its community structures.
+The methodology of this thesis follows a standard explorative data analysis procedure, mainly to understand the given data set and estimate its quality. The elaborated characteristics of the dataset are then used to define parameters and the procedure of network extraction. This pipeline is developed, tested and then refined in an iterative process. Test results lead to new or changing functional requirements of the pipeline.
+
+The resulting networks are evaluated using the following approaches:
+
+\begin{itemize}
+\item Investigation of pipeline parameters' effects,
+\item Quality inspection by examining the age of bees,
+\item Comparison with a random graph model,
+\item Repeatability of known results and facts concerning community structures.
+\end{itemize}
 
 \section{Outline}
 This thesis is organized as follows. Chapter~\ref{ch:bg} gives a short introduction into social network analysis (SNA) and defines network measures, terms, and algorithms used throughout this work.
 In chapter~\ref{ch:relatedwork}, a brief summary of the current state of research concerning social insect networks, temporal networks and community detection in animal social networks is given.
-Chapter~\ref{ch:approach} describes my research approach in general and how the pipeline produces networks out of the given dataset, what steps are needed and what parameters it uses.
+Chapter~\ref{ch:approach} describes my research approach in general and how the pipeline infers networks out of the given dataset, what steps are needed and what parameters it uses.
 Also, I explain and justify what decisions I took during the network analyses and community detection process.
 Chapter~\ref{ch:results} reports the results of the network analysis and the characteristics of the extracted communities.
 Finally, in chapter~\ref{ch:conclusion} I explore the results, discuss limitations and conclude with directions for future work.

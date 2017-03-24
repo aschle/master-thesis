@@ -140,7 +140,7 @@ With a confidence level of 100\%, 30.2\% of the remaining unique IDs are wrong (
 	\textbf{Decoded ID} &
 	Identifyer of a bee consisting of 12 probability values, representing 12 bits.\\
 	\textbf{Confidence} &
-	Value between 0\% and 100\%).\\
+	Value between 0\% and 100\%.\\
 	\textbf{ID} &
 	The decimal representation of an decoded ID, after applying a certain confidence value.\\
 	\textbf{Bee time series} & Binary sequence, indicating the absence and presence of a certain bee in a particular time interval.\\
@@ -198,15 +198,15 @@ To check this hypothesis, I investigate weather there is a correlation between a
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/filter}
-	\caption[XXX]{\textbf{XXX} XXX}
+	\caption[Detection frequency of IDs]{\textbf{Detection frequency of IDs} [TODO: add legend to image: green - IDs with a positive age, yellow - IDs with a negative age] Data set: 24 hours 20.08.2016, total frames = 302400}
 	\label{fig:filter}
 \end{figure}
 
 
-
 IDs with a negative age are on average less detected than IDs with a positive age.
 
-IDs who definately exists, but their age can to be determinded are excluded from the analysis completely. These are bees, who were tagged later~($n=10$)\footnote{id= [2,
+I excluded IDs (in advance) with a negative age but a detection frequency over 10000 and bees, as they seem to be real bees, when looking at the videos (probably mistakes in hatching day table).
+IDs who definately exists, but their age can to be determinded are also excluded from the analysis completely. These are bees, who were tagged a long time after hatching~($n=10$)\footnote{id= [2,
 	74,
 	2045,
 	3172,
@@ -215,24 +215,17 @@ IDs who definately exists, but their age can to be determinded are excluded from
 	3827,
 	3836,
 	3844,
-	3940]} and IDs whos detection frequency is absurd high but there age is unknown~($n=7$)\footnote{id=[has changed! 
-	17,
-	168,
-	801,
-	888,
-	2045,
-	2357,
-	2607]}
+	3940]}
 
-For each analysis day the number of detections per ID is obtained, excluding the mentioned IDs above. The frequency distribution tells that, IDs with a negative age are detected less often ($704$ frames $\pm 65$)  than bees with a positive age ($36.603$ frames $\pm 2.345$). The cutoff is 99\% of the negative IDs distribution. All IDs with a detection frequency below $4737 \pm 644$ frames are discarded. A list with possible (valid) IDs is kept for each day. Using this list, faulty detections can be filtered out beforehand.
+For each analysis day the number of detections per ID is obtained, excluding the mentioned IDs.
+Additionally, I discarded all detections with an ID frequency below percentil 99, calculated for only the negative ID distribution.
+A list with valid IDs per day is kept to filter out wrong detection beforehand.
 
-\clearpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Implications}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO]
-For further analysis I use the following days: 14.08.2016, 17.08.2016, 20.08.2016, 02.09.2016 with a confidence level of $95\%$. This period is chose because of XY.
-
+For further analysis I use data of the following days: 20.08.2016, 22.08.2016, 24.08.2016. The confidence level is set to 95\%.
+This a good balance between gaps in the time series and quality of the data and amount of remaining data.
 Because bee time series contain a lot of short gaps (mean = 3, 95\% confidence), the inferring of edges (bees who are close to each other at the same time), should be not that strict, or at least variable. This has to be taken into acoount, when looking at spatialy close bees.

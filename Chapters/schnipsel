@@ -1,3 +1,31 @@
+\textcite{wey2008social}
+
+
+Look at \cite{quevillon2015social} for static network analysis stuff they measured (ants, only small amount with observed interaction using 20 Minute videos).
+
+\section{Networks in social Insects and Honey Bees}
+Structure of the social network and its influence on transmission dynamics in a honeybee colony
+
+In \emph{Social Insects: A Model System for Network Dynamics}~\cite{charbonneau2013social} a good overview is given about Role and Types of Networks in Social Insects.
+
+\section{Spatial Proximity Networks}
+
+TODO short summary, also on network sience methods:\\
+\emph{Long-term dynamics in proximity networks in ants}~\cite{jeanson2012long}\\
+
+\emph{Contact networks and transmission of an intestinal pathogen in bumble bee (Bombus impatiens) colonies}~\cite{otterstatter2007contact}
+
+\section{Temporal Aspects in Networks}
+
+\section{Network Analysis Tools}
+
+
+
+
+\footnote{\url{http://beesbook.mi.fu-berlin.de/wordpress/}; Last accessed: 16.03.2016, 12:05~p.m.}
+
+Thus, I need to implement a pipeline to extract networks out of the given data set. Furthermore, I want to find out if the resulting networks are suitable for social network analysis.
+
 The structure of my applied approach in the consideration and processing of the data of the honeybees is comprehensively illustrated in Fig. 4.1.
 
 In the first step, the date set was analyzed regarding data quality... 

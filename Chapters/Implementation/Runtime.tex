@@ -1,9 +1,8 @@
 \section{Implementation, Runtime and Complexity}
 For implementing the network pipeline python, with pandas and numpy, are used, because the bb\_binary library, for accessing the tracking, data is only available in python. The networks, in graphML format, are created using the python library \emph{NetworkX}\footnote{\url{https://networkx.github.io/} ; Last accessed: 2017-02-17, 08:07PM} in version 1.11.
-iGraph for community detection\\
-some bash scrips for generating multiple networks\\
+I used iGraph for community detection. Some bash scrips for generating multiple networks.
 
-bottleneck is reading bb\_binary data into pandas dataframes\\
-using multithreading for distribution on frame level (a process gets X frames for processing)\\
+Bottleneck is reading bb\_binary data into pandas dataframes.
+i used the multithreading for distributing the data an alevel of 5 minutes (a process the frames coresponding to 5 minutes).
 
-maybe some table with how long nees what with how many cores (hom much RAM and so on)\\
+Maybe some table with how long what step needs, with how many cores (hom much RAM and so on).
