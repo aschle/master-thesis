@@ -1,3 +1,16 @@
+[TODO: Systematization - Studies using network science approaches (network properties, measures and community detection) to investigate social behaviour of eighter (A) bees or (C) social insects with data derived from (X) automatic tracking methods or (long term, temporal analysis) (Y) manual tracking methods; list of studies for AY, BY and BX (short term, static), those are available, but not for AX, only one study but not investigating networks]\\
+
+[Summarize works important for my work: Mersch, Barachi, ... (only take 3 or 4)]\\
+
+[TODO: Table all studies and limitations: year, author, animal,  observation period (static, temporal), resolution, number of colonies, colony size, marked/observed individuals, did they consider age of animals, space limitations, \textbf{maybe put in appendix as reference???}]\\
+
+[TODO: Table all studies and information related to networks: network type (spatial, contact, food exchange), (un-)weighted, (un-)directed, if spatial proximity what definition, if weighted what weights, temporal or static, if temporal time-aggregated or time-ordered, \textbf{Ich schätze dieser Teil muss woanders hin.}]\\
+
+Information flow\\
+Resilience of Colony Function to Perturbation\\
+Disease Transmission\\
+Food Flow\\
+
 \textcite{wey2008social}
 
 
