@@ -1,30 +1,39 @@
 \chapter{Related Work}
 \label{ch:relatedwork}
 
-Relevant for my work are studies also using a network science approach focusing on interaction networks\footnote{Studies using worker-task, worker-nestarea, nestarea-nestarea or other bipartite networks are excluded.} to investigate the behavior of honey bees.
-Therefore, I conducted a literature review in the field of network analysis of social insect\footnote{Animals belonging to social insects are: ants, dees, wasps and termites.} colonies.
+Relevant for my work are studies also using a network science approach focusing on interaction networks\footnote{Studies using worker-task, worker-nest area, nest area-nest area or other bipartite networks are excluded.} to investigate the behavior of honey bees.\\
+Therefore, I conducted a literature review in the field of network analysis of social insect\footnote{Animals belonging to social insects are: ants, dees, wasps, and termites.} colonies.
 Besides other sources, I mainly considered the studies mentioned in the survey papers of~\textcite{Pinter-Wollman2014}, ~\textcite[chapter~15]{krause2014animal} and~\textcite{charbonneau2013social}
 
 I classified the studies by (A) type of analysis: temporal or static analysis (using automated or manual tracking over a long or short term); and (B) studied species: honey bees or other social insects.
-Additionally, I reviewed their shortcomings regarding time, space, and individuals and inspected, thus, the following characteristics: duration of the study, observation period, sampling resolution, the number of colonies and marked individuals, space limitations and whether they integrated cohorts related to age. The studies and their characteristics are summarized in table~\ref{tab:studies} (appendix~\ref{ch:appendix}).
+Additionally, I reviewed their shortcomings regarding time, space, and the number of individuals and, thus, inspected the following characteristics: duration of the study, observation period, sampling resolution, the number of colonies and marked individuals, space limitations and whether they integrated cohorts related to age. The studies and their characteristics are summarized in table~\ref{tab:studies} (appendix~\ref{ch:appendix}).
 
-A lot of work already exists in the field of static analysis of social insect networks~\cite{greenwald2015ant,pinter2011effect,otterstatter2007contact,quevillon2015social,naug2009structure,formica2012fitness,waters2012information}, but only a few studies related to honey bees~\cite{baracchi2014socio,naug2008structure,scholl2011olfactory}.
+A lot of work already exists in the field of static analysis of social insect networks~\cite{greenwald2015ant,pinter2011effect,otterstatter2007contact,quevillon2015social,naug2009structure,formica2012fitness,waters2012information,sendova2010emergency}, and a few studies related to honey bees~\cite{baracchi2014socio,naug2008structure,scholl2011olfactory,naug2007experimentally}.
 Studies focusing on temporal aspects only exists for ants~\cite{mersch2013tracking,blonder2011time,jeanson2012long}, but, to the best of my knowledge, not for honey bees.
-There is one work by~\cite{kimura2011new}, introducing an automatic tracking system for honeybees, but the system is, due to memory and storage limitations, not usable for long term observations, neighter did they approach network science methods for data analysis.
 
-Static/bees\\
-Focus~\textcite{baracchi2014socio}, spatial proximity, explain limitations\\
-Only mention shortly:\\
-\textcite{naug2008structure} trophallaxis, transfer duration and amount, too specialized\\
-\textcite{scholl2011olfactory} only interaction between age groups, no network measures\\
+The work by~\textcite{kimura2011new}, introducing an automatic tracking system for honeybees, but the system is, due to memory and storage limitations, not usable for long-term observations, neither did they use network science methods for data analysis.
 
-Temporal/insects\\
+\section{Static Network Analysis of honey bee colonies}
+The most advanced work studying honey bees using a network science approach is by~\textcite{baracchi2014socio}. Using colored numbered discs for individually marking bees, they revealed a highly compartmentalized structure inside the honey bee colony. Depending on the age, bees occupy different areas of the comb and correspond to different tasks. Also, there is limited contact within age groups.\\
+They used the frequency of interactions between bees as weights for edges in an undirected worker-worker interaction network, using the minor body length of a bee to define the radius of spatial proximity.
+They use the node level measures strength (weighted degree), closeness and eigenvector centrality to investigate the networks. A cluster analysis using as dissimilarity measures 'average linkage between groups' and 'squared Euclidian distance among network values' (net displacement, ward's linkage method with squared Euclidean distance as a measure of similarity).
+The main drawback is that they marked only 211 from three predefined age cohorts out of one colony with 4000 individuals and observed only one side of the observation hive for 10 hours, capturing at a low resolution of one frame per minute. [TODO: explain drawbakc of clustering in a better way]
+
+\textcite{scholl2011olfactory} investigate the mechanism for the emergence of organizational immunity by using unweighted, undirected physical contact and trophallaxis network. The observation is limited to one hour of video data for three days and spread over three weeks. Besides looking at the interaction between three predefined age groups no other methods regarding networks are used.  
+\cite{naug2008structure} looks at the network structure of weighted,  directed trophallaxis networks using four age cohorts and the changes in transmission dynamics produced by experimental manipulation. The data is limited to one hour and only first and second order interactions are considered.
+
+
+\section{Temporal Network Analysis of insect colonies}
 Focus: \textcite{mersch2013tracking}, time-aggregated, communities, but no other network aspects, age\\
+\textcite{mersch2013tracking} automatically tracked all individuals of six ant colonies over a period of 41 days. Applying the Infomap community detection algorithm to the physical contact networks for each day, revealed three distinct and robust groups. Each group represents a functional behavioral unit, with individuals changing groups as they age.
+
+
 \textcite{jeanson2012long}, weighted time-aggregated networks, spatial proximity, TODO find limitations\\
+
 Mention shortly:\\
+
 \textcite{blonder2011time}, time-aggregated and time-ordered,\\
-
-
+\textcite{blonder2011time} color painted all individuals of ant colonies (size 6-90 for each colony) and filmed the colonies for 30 minutes. Interactions between individuals were manually extracted by watching the videos. Using time-ordered (dynamic) networks they analyzed the temporal and spatial dynamics of information flow.
 
 
 Goal: Temporal social network analysis of honey bees.
