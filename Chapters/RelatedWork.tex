@@ -2,7 +2,7 @@
 \label{ch:relatedwork}
 
 Relevant for my work are studies also using a network science approach focusing on interaction networks\footnote{Studies using worker-task, worker-nest area, nest area-nest area or other bipartite networks are excluded.} to investigate the behavior of honey bees.\\
-Therefore, I conducted a literature review in the field of network analysis of social insect\footnote{Animals belonging to social insects are: ants, dees, wasps, and termites.} colonies.
+Therefore, I conducted a literature review in the field of network analysis of social insect\footnote{Animals belonging to social insects are: ants, bees, wasps, and termites.} colonies.
 Besides other sources, I mainly considered the studies mentioned in the survey papers of~\textcite{Pinter-Wollman2014}, ~\textcite[chapter~15]{krause2014animal} and~\textcite{charbonneau2013social}
 
 I classified the studies by (A) type of analysis: temporal or static analysis (using automated or manual tracking over a long or short term); and (B) studied species: honey bees or other social insects.
@@ -25,15 +25,34 @@ The main drawback is that they marked only 211 from three predefined age cohorts
 
 \textcite{naug2008structure} looks at the network structure of weighted,  directed trophallaxis networks using four age cohorts and the changes in transmission dynamics produced by experimental manipulation. The data is limited to one hour and only first and second order interactions are considered.
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Temporal Network Analysis of insect colonies}
-\textcite{mersch2013tracking} automatically tracked all individuals (122-192) of six ant colonies over a period of 41 days, with a resolution of two frames per second. They extracted time-aggregated weighted contact networks for each observation day, using antennation as the physical contact event. They applied the Infomap community detection algorithm to each network and revealed three distinct and robust groups. Each group represents a functional behavioral unit, with individuals changing groups as they age.
-Except for community detection, they did not use any other methods to investigate the resulting network properties.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcite{jeanson2012long} focus on the investigation of the temporal stability of spatial proximity networks in four ant colonies (55-58 individuals). Proximity is defined as 4/3 of an ant's body length, and the weight represents the total duration of association.
-The entire observation lasted for three weeks, resulting in time-aggregated networks per week and colony.
+Regarding the used methods, the study of~\textcite{mersch2013tracking} is very close to my work.
+They automatically tracked all individuals of six ant colonies over a period of 41 days using a resolution of two frames per second.
+For each observation day, the authors extracted time-aggregated weighted contact networks per colony, using antennation as the physical contact event.
+They applied the Infomap community detection algorithm to each daily network and thus revealed three distinct and robust groups.
+Each group represents a functional behavioral unit, with ants changing groups as they age.
+The six ant colonies, they studied, contained 122 to 192 individuals, which is relatively small compared to the size of honey bee colonies used in the static analysis approaches.
+Except for community detection, they did not use any other network science methods to investigate the network properties.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Another work, using automatic tracking, is by\textcite{jeanson2012long}.
+It focuses on the investigation of the temporal stability of spatial proximity networks in four ant colonies.
+Here, proximity is defined as $\frac{4}{3}$ of an ant’s body length.
+For each week of three weeks of observation, they generate weighted time-aggregated networks per colony,  using the total duration of association as the edge weights.
 They investigated the strength, betweenness and closeness centrality and found out that the networks are stable over time, without the queen contributing to the network structure.
-Ants with long lasting associations seem to have a reduced tendency to move, while mobile ants interact homogeneously with their nestmates.
+Individuals with long lasting associations seem to have a reduced tendency to move, while mobile ants interact homogeneously with their nestmates.
+Nevertheless, the size of the observed colonies ranges from 55 to 58 individuals, which is again, compared to bee colonies, rather small.
 
-The only study not only using time-aggregated but, time-ordered networks is by~\textcite{blonder2011time}. They color painted all individuals of four ant colonies (size 6-90 for each colony) and filmed each colony for 30 minutes on two days, being three weeks apart.
-The interactions, physical contact of the antenna and an ant body, between individuals were manually extracted by watching the videos. Using time-ordered (dynamic) networks, they analyzed the temporal and spatial dynamics of information flow.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The only study not only using time-aggregated but, time-ordered (dynamic) networks is by\textcite{blonder2011time}.
+They color painted all individuals of four ant colonies and filmed each colony for 30 minutes on two days, being three weeks apart.
+The interaction events, physical contact of an ant's antenna with an ant's body, were manually extracted by watching the videos. Edges are therefore time-stamped interactions between individuals.
+They show how temporal and spatial dynamics of individual interactions provide upper bounds to rates of colony-level information flow and how this flow scales with individual mobility and group size.
+This very specialized study on dynamics in information flow also observed colonies with 6 to only 90 individuals.
