@@ -2,41 +2,45 @@
 \label{ch:relatedwork}
 
 Relevant for my work are studies using a network analysis approach focusing on interaction networks\footnote{Studies using worker-task, worker-nestarea, nestarea-nestarea or other bipartite networks are excluded.} to investigate the behavior of social insects, especially honey bees.
-Therefore, I conducted a literature review in the field of network analysis of social insect\footnote{Animals belonging to social insects are: ants, bees, wasps, and termites.} colonies.
 I mainly reviewed studies mentioned in the survey papers of \textcite{Pinter-Wollman2014}, \textcite[chapter~15]{krause2014animal} and \textcite{charbonneau2013social}.
 
-
+[TODO: Stichpunkte (1) und (2)]
 The most relevant studies were classified by (1) type of analysis: temporal or static analysis (using automated or manual tracking over a long or short term); and (2) studied species: honey bees or other social insects.
-Additionally, I inspected their shortcomings regarding time, space, and the number of tracked individuals, and thus, examined the following characteristics: duration of the study, observation period, sampling resolution, the number of colonies and marked individuals, space limitations and whether they integrated age cohorts.
-Table~\ref{tab:studies} (Appendix~\ref{ch:appendix}) summarizes the extracted studies and their characteristics. Also, I summarized the used software tools for network analysis.
+Additionally, I inspected their shortcomings regarding time, space, and the number of tracked individuals, and thus, examined the following characteristics: total duration of study, observation period, sampling resolution, the number of colonies and marked individuals and space limitations.
+
+Table~\ref{tab:studies} (Appendix~\ref{ch:appendix}) summarizes the selected studies and their characteristics.
+I also recorded whether the studies included the aspect of age cohorts in their analysis and I list the used software tools for network analysis.
 
 
-In the field of static analysis of honey bee networks, a few studies exist~\cite{baracchi2014socio,naug2008structure,scholl2011olfactory,naug2007experimentally}, but most of the papers relate to other social insects like ants, wasps and bumblebees~\cite{greenwald2015ant,pinter2011effect,otterstatter2007contact,quevillon2015social,naug2009structure,formica2012fitness,waters2012information,sendova2010emergency}.
-Studies focusing on temporal aspects exist only for ants~\cite{mersch2013tracking,blonder2011time,jeanson2012long}, but, to the best of my knowledge, not for honey bee colonies.
+~\cite{greenwald2015ant,pinter2011effect,otterstatter2007contact,quevillon2015social,naug2009structure,formica2012fitness,waters2012information,sendova2010emergency}
+
+~\cite{baracchi2014socio,naug2008structure,scholl2011olfactory,naug2007experimentally}
 
 
-The work by \textcite{kimura2011new} presents an automatic tracking system for honeybees, but the system is due to memory and storage limitations not usable for long-term observations, neither did they use network analysis methods for data analysis.
+Within the scope of my literature review, I found a lot of studies in the field of static network analysis of ants, wasps and bumblebees, but only a few related to honey bees.
+Also, I found several studies focusing on temporal aspects of ant colonies~\cite{mersch2013tracking,blonder2011time,jeanson2012long}, but I didn't find any for honey bee colonies.
+
 
 \section{Static Network Analysis of Honey Bee Colonies}
 
 The most advanced work studying honey bees using a network science approach is by \textcite{baracchi2014socio}.
-Using colored numbered discs for individually marked bees, they reveal a highly compartmentalized structure inside the honey bee colony.
-Depending on the age, bees occupy separate areas of the comb and perform different tasks. Also, there is limited contact between age groups.
+Their studie revealed a highly compartmentalized structure inside the honey bee colony:
+Depending on the age, bees occupy separate areas of the comb and perform different tasks. Also, there is limited contact between different age groups.\\
 The frequency of interactions between bees is used as weights for edges in an undirected worker-worker interaction network. The body length of a bee defines the radius of spatial proximity.
 Baracchi and Cini make use of the node level measures strength (weighted degree), closeness and eigenvector centrality to investigate the networks.
-Furthermore, they perform a cluster analysis using the dissimilarity measures ’average linkage between groups’ and ’squared Euclidian distance among network values.'
+Furthermore, they perform a cluster analysis using the dissimilarity measures ’average linkage between groups' and ’squared Euclidian distance among network values.'
 The main drawback is that they marked only 211 bees from three predefined age cohorts out of one colony with 4000 individuals and observed only one side of the observation hive for ten hours by capturing with a low resolution of one frame per minute. [TODO: explain drawback of clustering in a better way]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcite{scholl2011olfactory} investigate the mechanism behind the emergence of organizational immunity by using unweighted, undirected physical contact and trophallaxis networks.
+\textcite{scholl2011olfactory} investigate the mechanism behind the emergence of organizational immunity of honey bee colonies by using unweighted, undirected physical contact and trophallaxis networks.
 In their case, the observation is limited to one hour per day, with three days of observation spread over three weeks.
-Besides looking at the interactions between three predefined age groups, no other methods regarding networks are used.
+In the field of network analysis they investigated the interactions between three predefined age groups.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\textcite{naug2008structure} inspects the network structure of weighted, directed trophallaxis networks using four age cohorts and evaluates the changes in transmission dynamics produced by experimental manipulation.
-The data set is limited to one hour and only first- and second-order trophallaxis interactions are considered. The food transfer from the forager to a worker bee is called first level interaction, the food transfer from that worker bee to other bees is called second-order. The study does not capture other levels of trophallaxis.
+\textcite{naug2008structure} inspects the network structure of weighted, directed trophallaxis networks using four age cohorts. He evaluates the changes in transmission dynamics produced by experimental manipulation.
+The data set is limited to one hour and only first- and second-order trophallaxis interactions are considered.\footnote{The food transfer from the forager to a worker bee is called first level interaction, the food transfer from that worker bee to other bees is called second-order.}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -50,23 +54,27 @@ They automatically tracked all individuals of six ant colonies over a period of 
 For each observation day, the authors extracted time-aggregated weighted contact networks per colony, using antennation as the physical contact event.
 They applied the Infomap community detection algorithm to each daily network and thus revealed three distinct and robust groups.
 Each group represents a functional behavioral unit, with ants changing groups as they age.
-The six ant colonies, they studied, contained 122 to 192 individuals, which is relatively small compared to the size of honey bee colonies used in the static analysis approaches.
 Except for community detection, they did not use any other network science methods to investigate the network properties.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Another work, using automatic tracking, is by\textcite{jeanson2012long}.
-It focuses on the investigation of the temporal stability of spatial proximity networks in four ant colonies.
+It focuses on the investigation of the temporal stability of spatial proximity networks in four ant colonies over three weeks.
 Here, proximity is defined as $\frac{4}{3}$ of an ant’s body length.
-For each week of three weeks of observation, they generate weighted time-aggregated networks per colony,  using the total duration of interaction as the edge weights.
+Per week and colony they generated weighted time-aggregated networksy,  using the total duration of interaction as the edge weights.
 They investigated the strength, betweenness and closeness centrality and found out that the networks are stable over time, without the queen contributing to the network structure.
-Individuals with long lasting interactions seem to have a reduced tendency to move, while mobile ants interact homogeneously with their nestmates.
-Nevertheless, the size of the observed colonies ranges from 55 to 58 individuals, which is again, compared to bee colonies, rather small.
+Also they state that individuals with long lasting interactions seem to have a reduced tendency to move, while mobile ants interact homogeneously with their nestmates.
+The size of the observed colonies ranges from 55 to 58 individuals.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The only study not only using time-aggregated but time-ordered (dynamic) networks is by \textcite{blonder2011time}.
-They marked all individuals of four ant colonies with colored paint and filmed each colony for 30 minutes on two days being three weeks apart.
-The interaction events, physical contact of an ant's antenna with an ant's body, were manually extracted by watching the videos. Edges are therefore time-stamped interactions between individuals.
-They show how temporal and spatial dynamics of individual interactions provide upper bounds to rates of colony-level information flow and how this flow scales with individual mobility and group size.
-This very specialized study on dynamics in information flow also observed colonies with 6 to only 90 individuals.
+They marked all individuals of four ant colonies and filmed each colony for 30 minutes on two days with three weeks in between.
+The interaction events, physical contact of antenna and body, were manually extracted by watching the videos. In the resulting networks, the edges are  time-stamped interactions between individuals.
+Their study shows how temporal and spatial dynamics of individual interactions provide upper bounds to rates of colony-level information flow and how this flow scales with individual mobility and group size.
+This very specialized study on dynamics in information flow also observed colonies with 6 to 90 individuals.
+
+% % % %
+
+In all these three studies each of the observed ant colonies contained a maximum of 200 individuals. This number is relatively small compared to the size of honey bee colonies used in the static analysis approaches.
+
