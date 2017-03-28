@@ -1,3 +1,13 @@
+##### DISCUSSION AND RECOMMENDATIONS
+\url{http://mathoverflow.net/questions/126704/the-probability-distribution-for-vertex-degree-in-a-unit-disc-graph-generated-fr}
+contact duration and contact frequency\\
+distances is are hard to measure, because hive is very small and dense (is spatial proximity a good proxy in this case)\\
+nur weil man mehr daten hat, muss es nicht unbedingt besser werden\\
+aber mehr daten (aufbereiteter guter datensatz), evtl. fragen stellen, an die man vorher noch nicht gedacht  hat.\\
+Measuring the robustness of network community structure using assortativity~\cite{shizuka2016measuring}
+
+
+
 [TODO: Systematization - Studies using network science approaches (network properties, measures and community detection) to investigate social behaviour of eighter (A) bees or (C) social insects with data derived from (X) automatic tracking methods or (long term, temporal analysis) (Y) manual tracking methods; list of studies for AY, BY and BX (short term, static), those are available, but not for AX, only one study but not investigating networks]\\
 
 [Summarize works important for my work: Mersch, Barachi, ... (only take 3 or 4)]\\
