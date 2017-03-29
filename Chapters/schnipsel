@@ -1,3 +1,45 @@
+
+
+------------------------------
+------------------------------
+A - Inferring Networks
+------------------------------
+------------------------------
+1 - Approach
+Literatur review
+iterative explorative Process
+table
+decision, because of...
+requirements, prototypePipeline, EvaluationResults - Circle
+..............................
+2 - The Dataset
+..............................
+3 - Network Pipeline
+..............................
+4 - Parameters of the Network Pipeline (networkPrams/dataParams)
+..............................
+5 - Results (Fazit networks/temporal: 2xYes, but ...)
+..............................
+------------------------------
+------------------------------
+B - Network Analysis
+------------------------------
+------------------------------
+1 - Network Topology and Characteristics
+* Approach: literatur others, table, decision by chriterias towards goals
+* Apply: list of my chosen methods
+..............................
+2 - Community Detection 
+* Approach: CommunityD algo (literatur, testing, choice)
+* Apply: algo LE+WT
+* -> investigate Age and Position of groups per snapshot
+..............................
+3  Community Development
+* Approach: Literatur find method
+* Apply: matchValue
+..............................
+
+
 ##### DISCUSSION AND RECOMMENDATIONS
 \url{http://mathoverflow.net/questions/126704/the-probability-distribution-for-vertex-degree-in-a-unit-disc-graph-generated-fr}
 contact duration and contact frequency\\

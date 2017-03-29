@@ -1,0 +1,73 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Network Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO überarbeiten]\\
+This section explains the what measures I used to investigate the properties of my temporal networks and justifies my choice. Also I explain how I chose a community detection algorithm and which one I picked. Explains method to examine age and spatial segregation of communities and how I study the development of communities.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Network Topology and Characteristics}
+\label{subsec:APmeasures}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO: überarbeiten]\\
+Table~\ref{tab:studies-measures} (or figure~\ref{fig:study-measures} summarized the used network analysis methods in the reviewed studies mentioned in chapter~\ref{ch:relatedwork}. The table includes global level measures, node level measures and other network analysis methods the authors used in their studies.
+I chose the measures for my own analysis, because of XY.
+[TODO: do I need to explain, why I used this and not that?]
+Therefore, I am going to analyse the global network properties and local node level properties listed in table~\ref{tab:netprop}.
+The node level metrics are investigated also in relation to the bees age.
+The global network properties are compared to an Erdos-Renyi random network, by averaging over 100 runs [TODO cite?].\\
+
+\input{Tables/approach-netproperties.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Community Detection}
+\label{subsec:APcommunityDet}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO: überarbeiten]\\
+(1) check reviwed studies, (2) check comparative analysis, (3) check algos by myselfe.
+The reviewed studies only include two examples of community and cluster analysis.
+\textcite{mersch2013tracking} used the infomap~\cite{rosvall2009map,rosvall2007information} algorithm. As they explain this algorithm only works for sparse networks, it is not applicable in my case. \textcite{baracchi2014socio} use a clustering algorithm. [TODO explain and why not want to use] I want to perform community detection insted of cluster analysis. [TODO: difference?]
+There are comparative analysis of community detection algorithms, e.g.~\cite{yang2016comparative, harenberg2014community}. They seem to be promising, but assume eighter a power law degree distribution or evaluate networks with a low density, which is not applicable here.
+
+Thererfor, I tested all community detection algorithms implemented in python, to find an algorithm, which works well for my case of animal social networks. The three most common python libraries for network analysis were reviewed: NetworkX\footnote{\url{https://networkx.github.io/}; Last accessed: 16.03.2016, 6:36~p.m.}, igraph\footnote{\url{http://igraph.org/python/}; Last accessed: 16.03.2016, 6:38~p.m.}, and graph-tool\footnote{\url{https://graph-tool.skewed.de/}; Last accessed: 16:03.2016, 6:39~p.m.})
+
+The algorithm needs to fulfill the following criteria:
+
+\begin{itemize}
+\item Support for large and very dense networks ($N>1000$, $D>50~\%$)
+\item Support weighted edges
+\item Fast runtime
+\end{itemize}
+
+Table~\ref{tab:algos} gives an overview about the twelve algorithms reviewed. Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations. Infomap and label propagation tend to partition all nodes into a single community, this is known especially in dense graphs~\cite{yang2016comparative, fortunato2010community}.
+The Louvain algorithm is the same as multilevel, but takes longer producing almost the same communities and therefore was also excluded. Walktrap was tested for different step size parameters, as suggested in~\cite{pons2005computing}, the communities remained almost the same (only a few nodes switched communities). 
+
+I had a closer look at fastgreedy, leading eigenvector, multilevel, and walktrap regarding the number of detected communities and community size for all three networks. Table~\ref{tab:algos4} shows the results. All algorithms found at least two communities. Except for leading eigenvector, there is a tendency that a third community exists.
+I decided to use two algorithms for community detection: leading eigenvector and walktrap. \textcite{farine2015constructing} explains that leading eigenvector is often used with animal social networks and works well. Walktrap is chosen for also  examining the possible third community.
+
+\input{Tables/algos.tex}
+\input{Tables/algos4.tex}
+
+\paragraph{Age Distribution of Communities}
+[TODO überarbeiten]\\
+For each community I investigated the age distribution and the average age for. I also investigated whether the age division persists in each snapshot. A two sample Kolmogorov-Smirnov test was used to determine the statistically difference of the age distribution between communities.
+Answer the question: Communities reflect different age groups?
+For hypothesis (2) the data is stored as a csv file of birth dates of each bee. For testing if age goups are different the Kolmogorov Smirnov Test was used.\\
+
+\paragraph{Spatial Distribution of Communities}
+[TODO überarbeiten]\\
+Communities occupy different areas of the comb (similar to~\cite{baracchi2014socio}). Do they stay at the same in each snapshot?
+Asnwer the question: Communities reflect groups of bees working in different areas of the hive? The data which was used to test the hypothesis (1) is saved in a sqlite database for faster access, because using bb\_binary (parsing the data over and over again) was to slow.\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Community Development}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO: write]\\
+how did others do that, reference literatur review\\
+methods in other reviewed studies\\
+chosen: match value, why\\
+apply:\\
+match value for complete network over snapshots (network member overlap)\\
+match values for all communities in snapshots (community member overlap)\\
+result: multimodal (per snapshot) graph, egde weight match value\\
