@@ -10,45 +10,30 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 This chapter describes the workflow and implementation I applied to reach my research goals.
-The first section describes the given data set and my approach to infer networks. It serves as a prerequisite for my further work.
-The second section exlplains the methods I used to analyse the resulting netowks regarding network properties, communities and its development.
+The first section describes the given data set and the approach to infer networks.
+Generally speaking, this first step of network interference, was primarily driven by a combination of an exploratory data analysis and an iterative pipeline development processes.
+It serves as a prerequisite for the further thesis.
+The second section explains the methods I used to analyze the resulting networks regarding network properties, communities, and its development.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % INFERRING NETWORKS APPROACH
 \section{Inferring Networks}
+\label{sec:infNetworks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO: write]
 
-Part one: process/approach/method to infer networks\\
-foundation, pre\\
-literatur review\\
-data analysis of given tracking data, preprocessing steps needed.\\
-iterative development process of:\\
-* develop/prototype pipeline\\
-* evaluate networks (4 criterias)\\
-* refine requirement\\
+To yield the first set of functional and non-functional requirements concerning the pipeline, I conducted (1) a data analysis of the given tracking data, and (2) a literature review,  already mentioned in chapter~\ref{ch:relatedwork}.
+(1) supported the forming of a general understanding of the given dataset, its structure, characteristics and estimation of its quality.
+The purpose of (2) was to get an overview of the possible types of networks and common methods and approaches in this field of research.
+The results of (1) and (2) are then used to decide for a type of network and its node and edge definitions.
+Furthermore, pipeline parameters are derived, and I decided for steps in the procedure of network extraction.
 
+This pipeline is developed, tested and then refined in an iterative process.
+The first prototype was implemented in regards to the first collected requirements and then iteratively tested and evaluated.
+Test evaluation results consequently lead to new or changing functional requirements.
+The evaluation is conducted by investigating the pipeline parameters' effects on network properties and checking the validity and quality of the networks by investigating the age of bees in the resulting network.
 
-1 - Approach\\
-Literatur review, studies, part of the table\\
-weighted/unweighted, directed/undirected\\
-weights: frequency and duration\\
-type: spatial, contact, food\\
-teporal: time-aggregated, time-ordered\\
--> chosen, why, chriteria\\
-decision, because of...\\
-
-iterative development process of pipeline\\
-0 - data analysis to get start requirements\\
-1 - Requirements\\
-prototype/implement\\
-2 - Pipeline --run--> Networks\\
-evaluation of networks (4 steps)\\
-3 - Evaluation results\\
-define and redefine requirements\\
--->Circle\\
 
 \input{Chapters/Implementation/A-dataset.tex}
 \input{Chapters/Implementation/A-pipeline.tex}
