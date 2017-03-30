@@ -64,17 +64,20 @@ Answer the question: Communities reflect groups of bees working in different are
 \subsection{Development of Communities in Temporal Networks}
 \label{sec:bg:tracking}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+According to \textcite{aynaud2013communities} and  \textcite{brodka2014community} there are three main approaches for community detection in temporal networks (sometimes referred to as community tracking): (1) using a static community detection algorithm on several snapshots and then solving a matching problem, (2) using algorithms that are directly suited for temporal networks and (3) using incremental or online algorithms when processing data streams. For each of the three approaches, several methods already exist.
+As community tracking is not the main focus of this work, I chose to apply the most natural method out of approach (1): detecting static communities for each snapshot and then matching those communities using set theory.
 
-According to \textcite{aynaud2013communities} and \textcite{brodka2014community} there are three main approaches for community detection in temporal networks (sometimes reffered to as community tracking): (1) using a static community detection algorithm on several snapshots and then solving a matchig problem, (2) using algorithms that are directly suited for temporal networks and (3) using incremental or online algorithms when processing data streams. For each of the three approaches, several mehods already exist.
-As community tracking is not the main focus of this work, I chose to apply the most intuitive method out of approach (1): detecting static communities for each snapshot and then matching those communities using set theory.
 
-Two communities at successive timesteps are matched if they share enough nodes. The \emph{match value} between two communities $C$ and $D$ according to~\textcite{hopcroft2004tracking} is defined as:
+Two communities at successive time steps are matched if they share enough nodes.
+The \emph{match value} between two communities $C$ and $D$ according to \textcite{hopcroft2004tracking} is defined as:
 
 \begin{equation}
 \label{eq:match}
 \texttt{match}(C,D) = \texttt{min}\left( \frac{\textbar C\cap D \textbar}{\textbar C\textbar }, \frac{\textbar C\cap D \textbar}{\textbar D \textbar }\right)
 \end{equation}
 
-This values is between 0 and 1. A high match value occurs, when two communities share a lot of nodes and are of a similar size. Communities with the highest value are matched. The author suggest to apply a threshold to more precisely define what ``share a lot of nodes'' means. Otherwise a matching could occur between communities with only 0.1\% of overlapping nodes. I matched all communities, but excluded values below 3\%.
 
-I calculated the match value between consecutive snapshots, to investigate the number of bees, that stay the same over time. Also I calculated all match values of all communities per snapshot.
+This value is between 0 and 1. A high match value occurs when two communities share many nodes and are of a similar size. Communities with the highest value are matched. The author suggests applying a threshold to more precisely define what ``share a lot of nodes'' means. Otherwise, a matching could occur between communities with only 0.1\% of overlapping nodes. I matched all communities, but excluded values below 3\%.
+
+
+I calculated the match value between consecutive snapshots, to investigate the number of bees, which stay the same over time. Also, I calculated all match values of all communities per snapshot.
