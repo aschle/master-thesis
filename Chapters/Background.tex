@@ -121,18 +121,3 @@ The \emph{leading eigenvecor} algorithm was proposed by \textcite{newman2006find
 This \emph{walktrap} algorithm by~\textcite{pons2005computing} is based on random walks. The authors consider random walks as a tool to calculate similarity between nodes of a network. It uses a bottom-up hierarchical approch, that means the algorithms start with each node it is own community. The basic idea of walktrap is, that short distance random walks (the step size is a parameter) tend to stay in the same community, because there are only a few links that lead outside a given community.
 The results of these random walks are used to merge separate communities.
 Again modularity can be used to cut the dendrogram in an optimal place.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Communities in Temporal Networks}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\label{sec:bg:tracking}
-According to \textcite{aynaud2013communities} and \textcite{brodka2014community} there are three main approaches for community detection in temporal networks (also called community tracking): (1) using a static community detection algorithm on several snapshots and then solving a matchig problem, (2) using algorithms who are directly suited for temporal networks and (3) using incremental or online algorithms when processing data streams. For each of the three approaches, several mehods already exist.
-
-As community tracking is not the main focus of this work, I chose to apply the most intuitive approach aout of approach (1): detecting static communities for each snapshot and then matching those communities using set theory.  Two communities at successive timesteps are matched if they share enough nodes. The \emph{match value} (between 1 and 0) between two communities $C$ and $D$ according to~\cite{hopcroft2004tracking} is defined as:
-
-\begin{equation}
-\label{eq:match}
-\texttt{match}(C,D) = \texttt{min}\left( \frac{\textbar C\cap D \textbar}{\textbar C\textbar }, \frac{\textbar C\cap D \textbar}{\textbar D \textbar }\right)
-\end{equation}
-
-A high match value accurse, when two communities share a lot of nodes and are of a similar size. Communities with the highest value are matched. A threshold should be applied to more precicley define what ``share enough nodes'' means.
