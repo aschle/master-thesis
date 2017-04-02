@@ -1,13 +1,69 @@
 \section{Static Analysis}
 
-Tabelle globale werte\\
-Vergleich mit random\\
-type of network: small world\\
+I analyzed a temporal network, consisting of three time-aggregated snapshots; these are referred to below as snapshot~1~($N=922$), snapshot~2~($N=978$) and snapshot~3~($N=922$). 
+The snapshots are aggregated for ten hours (108,000 frames) starting at 8~a.m. and lasting until 6~p.m, see table~\ref{tab:networks} for details about the added bees per day,  figure~\ref{fig:ages} for the age distributions. Figure~\ref{fig:network-matching} shows the proportion of intersecting bees between each snapshot. This figure illustrates the stability of the network concerning its size. 
 
-edge weights\\
-frequency vs total duration abbildung\\
-edge weight ist dann also frequency\\
-abbildung mit edge weight distribution\\
+\input{Tables/res-networks.tex}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.8\textwidth]{Figures/network_matching}
+	\caption[Number of bees per snapshot]{\textbf{Number of bees per snapshot} This figure show the amount of bees for each snapshot and the proportion of intersecting bees between snapshots.}
+	\label{fig:network-matching}
+\end{figure}
+
+Each snapshot consists of one large component.
+Table~\ref{tab:stats} summarizes basic network properties.
+For all, the density $D$ is over 50\%.
+The diameter $\langle d_{\texttt{max}} \rangle$ is three and the average shortest path length $\langle d \rangle$ is below two.
+The global clustering coefficient $C_\Delta$ of all snapshots is higher than compared to an Erdös-Renyi random graph, averaged over 100 runs using the same number of nodes and edges.
+The high clustering coefficient and the small diameter suggest a small-world network type.
+On average, each bee is connected to at least 50\% of all other bees in the network.
+
+Figure~\ref{fig:fVSd} shows a positive correlation between the frequency of interactions and the total duration of interactions (averaged).
+The frequency of interactions is used as weight of edges.
+The edge weight distribution is shown in figure~\ref{fig:edgeWdist}.
+Most edges have a low weight, only a few edges have a high weight.
+It seems that bees do not prefer individuals bees for interaction.
+
+\input{Tables/res-stats.tex}
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{0.49\textwidth}
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/n3-freqVSduration}
+	\caption[Type of edge weights]{Type of edge weights}
+	\label{fig:fVSd}
+	\end{subfigure} 
+	\begin{subfigure}[b]{0.49\textwidth}
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/n3-edgeWeightDist.pdf}
+	\caption[Edge weight distribution]{Edge weight distribution}
+	\label{fig:edgeWdist}
+	\end{subfigure}
+	\caption[Edge wights]{\textbf{Edge wights} }
+	\label{fig:edges}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{0.33\textwidth}
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/n3_detFvsAge}
+	\caption[]{}
+	\label{fig:n3detfVSage}
+	\end{subfigure} 
+	\begin{subfigure}[b]{0.66\textwidth}
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/n3_ages.pdf}
+	\caption[]{}
+	\label{fig:n3ageDist}
+	\end{subfigure}
+	\caption[X]{\textbf{X}}
+	\label{fig:ageDetF}
+\end{figure}
+
 
 detection frequency distribution\\
 age distribution\\
