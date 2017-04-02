@@ -43,6 +43,83 @@
 	\label{fig:observation-period}
 \end{figure}
 
-[TODO: Figure: Timeline - recording for each camera]
 
-[TODO: ]
+
+\section{Network Analysis}
+\label{app-analysis}
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/le_network1}
+		\caption[Network 1]{Network 1}
+		\label{fig:le1}
+		\vspace*{5mm}
+	\end{subfigure}
+	%\vspace{1cm} 
+	\begin{subfigure}[b]{1.0\textwidth}
+		\includegraphics[width=\textwidth]{Figures/le_network2}
+		\caption[Network 2]{Network 2}
+		\label{fig:le2}
+		\vspace*{5mm}
+	\end{subfigure}
+	%\vspace{1cm} 
+	\begin{subfigure}[b]{1.0\textwidth}
+		\includegraphics[width=\textwidth]{Figures/le_network3}
+		\caption[Network 3]{Network 3}
+		\label{fig:le3}
+		\vspace*{5mm}
+	\end{subfigure}
+	\caption[Communities per network - leading eigenvector]{\textbf{Communities per network - leading eigenvector} The \emph{green} colour represents the younger community, containing the queen. The \emph{orange} color represents the older community. The hive exit on side A is on the bottom right and on side B on the bottom left. The data is aggredated for the complete timeframe of ten hours.}
+	\label{fig:communitiesPerNetworkLE}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/wt_network1}
+		\caption[Network 1]{Network 1}
+		\label{fig:wt1}
+		\vspace*{5mm}
+	\end{subfigure}
+	%\vspace{1cm} 
+	\begin{subfigure}[b]{1.0\textwidth}
+		\includegraphics[width=\textwidth]{Figures/wt_network2}
+		\caption[Network 2]{Network 2}
+		\label{fig:wt2}
+		\vspace*{5mm}
+	\end{subfigure}
+	%\vspace{1cm} 
+	\begin{subfigure}[b]{1.0\textwidth}
+		\includegraphics[width=\textwidth]{Figures/wt_network3}
+		\caption[Network 3]{Network 3}
+		\label{fig:wt3}
+		\vspace*{5mm}
+	\end{subfigure}
+	\caption[Communities per network - walktrap]{\textbf{Communities per network - walktrap} The \emph{green} colour represents the younger community, containing the queen. The \emph{orange} color represents the older community. The \emph{gray} represents the middle-age community. The hive exit on side A is on the bottom right and on side B on the bottom left. The data is aggredated for the complete timeframe of ten hours.}
+	\label{fig:communitiesPerNetworkWT}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\begin{subfigure}[b]{1.0\textwidth}
+		\centering
+		\includegraphics[width=1.0\textwidth]{Figures/ageDistribution-LE}
+		\caption[Leading eigenvector]{Leading eigenvector}
+		\label{fig:ageLE}
+		\vspace*{5mm}
+	\end{subfigure}
+	%\vspace{1cm} 
+	\begin{subfigure}[b]{1.0\textwidth}	
+		\centering
+		\includegraphics[width=1.0\textwidth]{Figures/ageDistribution-WT}
+		\caption[Walktrap]{Walktrap}
+		\label{fig:ageWT}
+		\vspace*{5mm}
+	\end{subfigure}
+	%\vspace{1cm}
+	\caption[Age distribution for each community and network] {\textbf{Age distribution for each community and network} The \emph{green} bar is the community containing the queen. The queens age is not included in the statistic. The \emph{orange} bars coresspond to the second community, containing older bees. The \emph{gray} bars is a third community only revealed by walktrap and contains middle-aged bees.}
+	\label{fig:ageDistribution}
+\end{figure}
