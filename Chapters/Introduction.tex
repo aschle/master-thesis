@@ -14,42 +14,33 @@ Honey bees are organized in colonies, which form a complex and dynamical system.
 Observing individual honey bees and their interactions with each other is, therefore, vital for understanding collective behavior and the organization of tasks within the colony.
 
 Within the BeesBook project of the Biorobotics Lab of Freie Universität Berlin~\textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony, that are inside the honeycomb.
-
 Shortly after hatching, each bee is marked on their thorax by using circular 12-bit tags (figure~\ref{fig:markers}) and then added to the observation colony. Four cameras observe the comb over a period of nine weeks, by capturing approximately three frames per second. An image analysis pipeline evaluates each frame automatically. The resulting data set contains, for each frame, the exact position of each detected bee on the honeycomb, and its age.
 
-In this thesis, worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee, and a link between two nodes results if two bees are located close to each other over a specified period.
-The networks are time-aggregated, which means one network represents the data of multiple frames.
-
-After extracting the temporal networks, social network analysis methods are applied to determine the characteristics of the resulting networks and its communities.
-
-\begin{figure}[htb]
+\begin{figure}[b]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/markers}
 	\caption{Tagged bees inside the observation hive.}
 	\label{fig:markers}
 \end{figure}
 
+In this thesis, worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee, and a link between two nodes results if two bees are located close to each other over a specified period.
+The networks are time-aggregated, which means one network represents the data of multiple frames.
+After extracting the temporal networks, social network analysis methods are applied to determine the characteristics of the resulting networks and its communities.
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Motivation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-Colonies of social insects consist of a vast number of individuals. Due to technical and observational limitations, most studies in the field of animal social network analysis, related to insects, analyze only a small subset of a colonies' life.
-Usually, the reduction is carried out on three levels (1) time and resolution, (2) space, and (3) number of individuals.
-
-
-[TODO: umarbeiten!!!, einzelne Studien müssen in related work, (A) method/approach: network analysis, network properties and communities; (B) animals: focus bees, but also considering social insects studies; (C) tracking methods: manual tracking and automatic tracking; automatic tracking, more inclusive, temporal development, dadurch Mehrwert, d.h. gap of knowledge im Bereich: Social Network Analysis von Honey Bees with automatic tracking and long term development, hm... Studies in den anderen Bereichen (automatic tracking and social insects, manual tracking bees, manual tracking of social insects, with network science approach already exists). Automatic tracking allows shifting more towards the temporal and dynamic investigation.]
-
-Labeling only a subset of the colonies individuals, a short observation period, low res\-olution and manually extracting information from photos or videos is very common in behavioral sciences~\cite{naug2008structure, quevillon2015social}.
+Colonies of social insects consist of a vast number of individuals.
+The technique of manual insect tagging and tracking is widely applied in the behavioral sciences: First animals are marked using colored paint or numbered tags to distinguish individuals. Then, they are observed using a video recorder or by taking photos. The interaction data is obtained by repeatedly watching the video files and manually extracting events.
+Consequently, labeling only a subset of the colonies individuals, a short observation period, a low number of frames, or limiting the observation to only a small area of the hive is very common.
+Accordingly, most studies in the field of animal social network analysis, related to insects, analyzed only a reduced subset of a colonies' life. The majority of social insect interaction networks studies, due to previously technical limitations, aggregate temporal tracking data into a single static network~\cite[Chapter~15]{krause2014animal}.
 
 Recently, automated tracking of insects has become technically feasible~\cite{wario2015automatic, crall2015beetag, fiala2005comparing}.
-
-Using automated high resolution tracking data, which includes all individuals of the complete comb over a long time period allows for more advanced analysis focusing on temporal dynamics.
-
-
-The majority of social insect interaction networks studies, due to previously technical limitations, aggregate temporal tracking data into a single static network~\cite[Chapter~15]{krause2014animal}.
-Automatic tracking allows shifting more towards the temporal and dynamic investigation.
+Using automated high resolution tracking data, which includes all individuals of the complete comb over an extended period allows for more advanced analysis focusing on temporal dynamics.
+Therefore, automatic tracking allows shifting more towards the temporal and dynamic investigation.
 
 
 \section{Research Goal and Method}
