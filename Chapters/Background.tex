@@ -2,7 +2,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\chapter{Theoretical Background}
+\section{Social Network Analysis}
 \label{ch:bg}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -22,7 +22,18 @@ Edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Network Measures and Metrics}
+\subsection{Temporal Networks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+When modeling temporal or so-called dynamic networks two main approaches exists (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
+
+The time-aggregated approach aggregates the data for each snapshot and therefore reduces the available information per edge. In contrast, the time-ordered approach keeps the information for each edge, when the interaction occurred and how long it lasted. It provides a detailed insight when timing and order of interactions are important.  And therefore it can be used to model the topological flow information through a network.
+
+Choosing suitable time intervals for aggregating is challenging~\cite{Pinter-Wollman2014}, but a lot of methods for analyzing those networks already exists, whereas for time-ordered networks, only limit toolset is available. In time-aggregated networks, the modeling nodes and edge weights can be challenging when taking into account that interactions, which took place earlier or later in time are weighted accordingly.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Network Measures and Metrics}
 \label{sec:definitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -79,20 +90,10 @@ $$C_C^i=\frac{N}{\sum_{j}d_{ij}}$$
 \paragraph{Betweenness Centrality}
 It measures the extend to which a node lies on paths between other nodes. Nodes that occur on many shortest pathts between other nodes have higher betweenness that those that do not.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Temporal Networks}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-When modeling temporal or so-called dynamic networks two main approaches exists (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
-
-The time-aggregated approach aggregates the data for each snapshot and therefore reduces the available information per edge. In contrast, the time-ordered approach keeps the information for each edge, when the interaction occurred and how long it lasted. It provides a detailed insight when timing and order of interactions are important.  And therefore it can be used to model the topological flow information through a network.
-
-Choosing suitable time intervals for aggregating is challenging~\cite{Pinter-Wollman2014}, but a lot of methods for analyzing those networks already exists, whereas for time-ordered networks, only limit toolset is available. In time-aggregated networks, the modeling nodes and edge weights can be challenging when taking into account that interactions, which took place earlier or later in time are weighted accordingly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Community Detection}
+\subsection{Community Detection}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 To understand the large-scale structure of networks, one can look at the network's community structure. Communities are naturally occurring groups within a network, usually also called clusters, cohesive groups or modules and have no widely accepted, unique definition~\cite{palla2005uncovering}.
@@ -106,7 +107,7 @@ Explaining any of those would be beyond the scope of this work. For example, tra
 The algorithms used in this work are described in the following sections and include the leading eigenvector~\cite{newman2006finding} and walktrap~\cite{pons2005computing} algorithm.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Modularity}
+\subsubsection{Modularity}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Modularity is a quantity, that measures the quality of a partitioning. It can be used to compare a community partition to another and decide for the better one. Modularity optimization is also used for community detection algorithms.
 
@@ -114,7 +115,7 @@ A high modularity of a network indicates more connection between nodes within a 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Leading Eigenvector and Walktrap}
+\subsubsection{Leading Eigenvector and Walktrap}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The \emph{leading eigenvecor} algorithm was proposed by \textcite{newman2006finding}. It uses the eigenvectors of matrices for finding community structures in networks. It is a top-down hierarchical approach that optimizes modularity. The algorithm starts with all nodes inside one community, therefor a modularity of 0. In each step, the network is split into two parts, so that the modularity of the new separation increases. The splitting is done by first calculating the leading eigenvector of the modularity matrix and then splitting the graph in a way that modularity improvement is maximised based on the leading eigenvector. The algorithms stops if the modularity is not increasing anymore.
 

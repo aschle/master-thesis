@@ -1,8 +1,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Static Analysis}
+\section{Static Perspectives of Honey Bee Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+TODO write some intro
 
 I analyzed a temporal network, consisting of three time-aggregated snapshots; these are referred to below as snapshot~1~($N=922$), snapshot~2~($N=978$) and snapshot~3~($N=922$). 
 The snapshots are aggregated for ten hours (108,000 frames) starting at 8~a.m. and lasting until 6~p.m, see table~\ref{tab:networks} for details about the added bees per day,  figure~\ref{fig:ages} for the age distributions. Figure~\ref{fig:network-matching} shows the proportion of intersecting bees between each snapshot. This figure illustrates the stability of the network concerning its size. 
@@ -16,6 +18,9 @@ The snapshots are aggregated for ten hours (108,000 frames) starting at 8~a.m. a
 	\label{fig:network-matching}
 \end{figure}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Properties of the Colony}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Each snapshot consists of one large component.
 Table~\ref{tab:stats} summarizes basic network properties.
 For all, the density $D$ is over 50\%.
@@ -72,10 +77,14 @@ Figure~\ref{fig:n3ageDist} shows the age distribution of the investigated snapsh
 	\label{fig:ageDetF}
 \end{figure}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Degree, Strength and Local Clustering Coefficient}
+\subsection{Characteristics of Individual Bees}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Degree, Strength and Local Clustering Coefficient and \\
+Betweenness and Closeness Centrality\\
+\\
 bimodal degree distribution\\
 type of network: no scale free\\
 todo plot in relation to age of bees\\
@@ -93,16 +102,13 @@ todo plot in relation to detection frequency\\
 	\label{fig:n3-degreeStrLCC}
 \end{figure}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Betweenness and Closeness Centrality}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [TODO]\\
 in relation to age and detection frequency\\
 closeness\\
 betweenness\\
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Communities}
+\subsection{Functional Groups within the Colony}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The leading eigenvector community detection algorithms revealed two communities, about the same size, the walktrap algorithm instead three communities (see table~\ref{tab:n3-communities}).
 The communities correspond to separate age groups and are located in different regions on the comb (see figure~\ref{fig:n3-communities}). The younger communities are situated in the center and the old communities closer to the hive exit. The middle-aged community (only for walktrap) is located between and on the periphery. Table~\ref{tab:n3-pvalues2} shows the $p$-values for the two sampel KS-test.
