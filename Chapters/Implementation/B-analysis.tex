@@ -18,6 +18,15 @@ Therefore, I am going to analyse the global network properties and local node le
 The node level metrics are investigated also in relation to the bees age.
 The global network properties are compared to an Erdos-Renyi random network, by averaging over 100 runs [TODO cite?].\\
 
+The degree $k$ of a bee represents the number of other bees this focal animal interacts.
+Bees with a high number of interaction partners, therefore, have a high degree. Bees with a low number of interaction partners consequently a low degree.\\
+The strength $s$ of a bee is the total number of all its interactions. A high strength indicates that this bee has either a high number of interaction partners (with a low interaction frequency, low edge weight) or interaction partners, with a high interaction frequency (high edge weight).\\
+The local clustering coefficient (lcc) $c$ of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A high lcc indicates that its interaction partners all interact with each other. A low lcc shows the absence of those interactions.
+
+The betweenness of a bee measure how many shortest paths go through a bee, meaning how many information would flow through a bee or how many foods is transferred. A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing this bee would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.
+
+The closeness of a bee measures how fast it can reach all others in the network. A high closeness indicated a very short path to every other bee. A low closeness consequently a long path to all other bees. Regarding information flow, a bee with high closeness can spread information to all other bees very fast.
+
 \input{Tables/approach-netproperties.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
