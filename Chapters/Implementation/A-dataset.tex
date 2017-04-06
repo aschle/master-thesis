@@ -8,27 +8,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{\textwidth}
-	\centering
-	\includegraphics[width=0.8\textwidth]{Figures/setupCams}
-	\caption[Camera setup]{\textbf{Camera setup}}
-	\label{fig:cams}
-	\vspace{5mm}
-    \end{subfigure}
-    \begin{subfigure}[b]{\textwidth}
-	\centering
-	\includegraphics[width=0.65\textwidth]{Figures/beesClose}
-	\vspace{5mm}
-	\caption[Images for each camera]{\textbf{Images for each camera} Top: side~A, bottom: side~B}
-	\label{fig:veryclose}
-    \end{subfigure}
- 	\caption[Observation setup]{\textbf{Observation setup} Each side of the honeycomb is filmed by two cameras. The two cameras per side overlap, so bees inside this area are detected from both cameras.}
- 	\label{fig:obssetup}
-\end{figure}
-
 The dataset derives from high-resolution video files that capture tagged honey bees of one colony in a single frame observation hive.
 The bees are uniquely tagged with circular 12-bit markers (figure~\ref{fig:markers}, section~\ref{ch:intro}).
 Two cameras per side filmed the complete honeycomb permanently.
@@ -41,6 +20,26 @@ The resulting detection data is stored in a binary file format.
 A python library\footnote{The library is called \texttt{bb-binary} and is created by the Biorobotics Lab. It can be found on GitHub: \url{https://github.com/BioroboticsLab/bb_binary}; Last accessed: 2106-02-16, 04:28PM} provides a frame-level access to those binary files.
 The size of the dataset is $470$~GB, about $7.5$~GB of binary data per day.
 
+\begin{figure}
+    \centering
+    \begin{subfigure}[htb]{\textwidth}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figures/setupCams}
+	%\caption[Camera setup]{\textbf{Camera setup}}
+	%\label{fig:cams}
+	%\vspace{5mm}
+    \end{subfigure}
+    \begin{subfigure}[b]{\textwidth}
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/beesClose}
+	\vspace{5mm}
+	%\caption[Images for each camera]{\textbf{Images for each camera} Top: side~A, bottom: side~B}
+	%\label{fig:veryclose}
+    \end{subfigure}
+ 	\caption[Observation setup]{\textbf{Observation setup} Each side of the honeycomb is filmed by two cameras. The two cameras per side overlap, so bees inside this area are detected from both cameras.}
+ 	\label{fig:obssetup}
+\end{figure}
+
 The 67 days long \emph{tagging period} started on 28.06.2016 and lasted until 02.09.2016, resulting in $3.191$ tagged bees. The young bees, which were raised in a separate incubator, were tagged and then added to the observation hive, about noon each day.
 Figure~\ref{fig:tagging-period} (Appendix~\ref{ch:appendix}) shows the frequency of tagged bees per day. The hatching day for each bee is documented; therefore the age of each bee at a particular point in time can be calculated.
 The life expectancy of a honey bee during summer ranges from 30 to 60 days, according to \textcite[p. 27]{menzel2016intelligenz}
@@ -49,7 +48,7 @@ Hence, the maximum number of present bees in the hive is about $1,600$.
 For further network analysis, I chose three days: 20., 22., and 24. August.
 Those days were chosen because a wide range of age groups was present at this time. The hive especially contained older bees which are likely to be foragers. Besides, no data is missing on those days.
 
-\clearpage
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Data Scheme}

@@ -1,8 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Functional Groups within the Colony}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The leading eigenvector community detection algorithms revealed two communities, about the same size, the walktrap algorithm instead three communities (see table~\ref{tab:n3-communities}).
-The communities correspond to separate age groups and are located in different regions on the comb (see figure~\ref{fig:n3-communities}). The younger communities are situated in the center and the old communities closer to the hive exit. The middle-aged community (only for walktrap) is located between and on the periphery. Table~\ref{tab:n3-pvalues2} shows the $p$-values for the two sampel KS-test.
+The leading eigenvector community detection algorithms (LE) revealed two communities with a similar size. The walktrap algorithm (WT) discovered three communities instead, also evenly distributed. Table~\ref{tab:n3-communities} lists the precise number of members per community and algorithm.
+
+The communities correspond to different age groups. The young community is 13.15 days old (6.55 days for WT), and the old community is 28.70 days old (29.29 days for WT). The third middle-aged community of WT is 25.08 days old. The age distribution for each algorithm is represented in figure~\ref{fig:n3ageLE} and~\ref{fig:n3ageWT}. The two sample Kolmogorov-Smirnov test confirmed that the age distributions per community are significantly different. The corresponding $p$-values are listed in table~\ref{tab:n3-pvalues2}.
+
+Each community occupies a different region of the comb.
+Figure~\ref{fig:n3-communities} shows that the young communities spend the most time in the comb center and the old communities closer to the hive exit. The middle-aged community is positioned between the young and old community and in the periphery of the comb.
 
 \input{Tables/n3-members-communities.tex}
 \input{Tables/n3-age-kstest.tex}
@@ -12,18 +16,20 @@ The communities correspond to separate age groups and are located in different r
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/le_network3}
-	%\vspace{1pt}
+	\vspace{1pt}
 	\end{subfigure} 
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3-ageDistribution-LE}
 	\caption[Leading eigenvector communities]{Leading eigenvector communities}
+	\vspace{5mm}
 	\label{fig:n3ageLE}
 	\end{subfigure}
 	\begin{subfigure}[b]{1.0\textwidth}
-	\vspace{5mm}
+	\vspace{1pt}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/wt_network3}
+	\vspace*{1pt}
 	\end{subfigure}
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
@@ -31,6 +37,6 @@ The communities correspond to separate age groups and are located in different r
 	\caption[Walktrap communities]{Walktrap communities}
 	\label{fig:n3ageWT}
 	\end{subfigure}
-	\caption[Age and spatial distribution of communities]{\textbf{Age and spatial distribution of communities} \emph{Green} represents the young community occupying the center are of the comb and \emph{orange} the old community, which is situated closer to the hive access. For walktrap the middle-aged community is depicted in \emph{gray} and is located inbetween.}
+	\caption[Age and spatial distribution of communities]{\textbf{Age and spatial distribution of communities} \emph{Green} represents the young community occupying the center area of the comb and \emph{orange} the old community, which is situated closer to the hive access. For walktrap the \emph{gray} middle-aged community is positioned between the other to and in the periphery of the comb.}
 	\label{fig:n3-communities}
 \end{figure}
