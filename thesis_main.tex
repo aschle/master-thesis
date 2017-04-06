@@ -194,13 +194,13 @@
 
 \fancypagestyle{plain}{ % 'plain' page style (used for first page of chapter)
   \fancyhf{} % clear all header and footer fields
-  \fancyfoot[R]{\thepage}
+  \fancyfoot[LE,RO]{\thepage}
 }
 
 \pagestyle{fancy}
 
 \fancyhf{}  % delete all existing header formating
-\fancyhead[R]{\leftmark}  % represent the current chapter heading in uppercase
+\fancyhead[LE,RO]{\leftmark}  % represent the current chapter heading in uppercase
 \renewcommand{\chaptermark}[1]{ % adapt the shown chapter name: show it in lower case and with chapter number 
 \markboth{\thechapter.\ #1}{}}   
 
@@ -222,7 +222,7 @@
 \newcommand*\rot{\multicolumn{1}{R{45}{1em}}}% no optional argument here, please!
 
 \fancyfoot{} % delete all existing footer formating
-\fancyfoot[R]{\thepage} 
+\fancyfoot[LE,RO]{\thepage} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ---- Namen der Links im Dokument
