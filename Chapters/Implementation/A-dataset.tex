@@ -11,10 +11,10 @@
 The dataset derives from high-resolution video files that capture tagged honey bees of one colony in a single frame observation hive.
 The bees are uniquely tagged with circular 12-bit markers (figure~\ref{fig:markers}, section~\ref{ch:intro}).
 Two cameras per side filmed the complete honeycomb permanently.
-Figure~\ref{fig:cams} illustrates the camera setup.
+Figure~\ref{fig:obssetup} illustrates the camera setup.
 The \emph{recording period} lasted nine weeks (63 days), from 19.07.2016 until 19.09.2016, with some interruptions due to maintenance work and technical failures. An overview about the complete recording period is given in figure~\ref{fig:observation-period} in appendix~\ref{ch:appendix}.
 
-All four cameras, each with a resolution of $4000\times3000$ pixels, record $3.5$ frames per second. 
+All four cameras, each with a resolution of $4000\times3000$ pixel, record $3.5$ frames per second. 
 An image analysis pipeline~\cite{wario2015automatic} detects all bees in each frame.
 The resulting detection data is stored in a binary file format.
 A python library\footnote{The library is called \texttt{bb-binary} and is created by the Biorobotics Lab. It can be found on GitHub: \url{https://github.com/BioroboticsLab/bb_binary}; Last accessed: 2106-02-16, 04:28PM} provides a frame-level access to those binary files.
