@@ -2,7 +2,7 @@
 \subsection{Properties of the Bee Colony}
 \label{subsec:colony}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Each snapshot consists of one component, with 922 and 978 bees.
+Each snapshot consists of one component.
 Table~\ref{tab:stats} summarizes the basic network properties for each snapshot.
 The density $D$ is over 50\% for all snapshots.
 The diameter $\langle d_{\texttt{max}} \rangle$ is three and the average shortest path length $\langle d \rangle$ is below two.
@@ -15,11 +15,11 @@ I chose the frequency of interactions as the weight for edges.
 The edge weight distribution is shown in figure~\ref{fig:edgeWdist}.
 Most edges have a low weight; only a few edges have a high weight.
 It seems that bees do not prefer individuals bees for interaction.
-Figure~\ref{fig:n3ageDist} shows the age distribution of the investigated snapshot. This distribution does not seem to follow any known distribution. It corresponds to the artificial tagging of bees. Consequently, bees of certain age groups are simply not present. The detection frequency of an individual bee is negatively correlated with its age (figure~\ref{fig:n3detfVSage}).
+Figure~\ref{fig:n3ageDist} shows the age distribution of the investigated snapshot 3. This distribution does not seem to follow any known distribution. It corresponds to the artificial tagging of bees. Consequently, bees of certain age groups are simply not present. The detection frequency of an individual bee is negatively correlated with its age (figure~\ref{fig:n3detfVSage}).
 
 \input{Tables/res-stats.tex}
 
-\begin{figure}[htbp]
+\begin{figure}[htb]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 	\centering
@@ -37,20 +37,20 @@ Figure~\ref{fig:n3ageDist} shows the age distribution of the investigated snapsh
 	\label{fig:edges}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[htb]
 	\centering
 	\begin{subfigure}[b]{0.33\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3_detFvsAge}
-	\caption[]{}
+	\caption[Correlation]{Correlation}
 	\label{fig:n3detfVSage}
 	\end{subfigure} 
 	\begin{subfigure}[b]{0.66\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3_ages.pdf}
-	\caption[]{}
+	\caption[Age distribution of the snapshot]{Age distribution of the snapshot}
 	\label{fig:n3ageDist}
 	\end{subfigure}
-	\caption[X]{\textbf{X}}
+	\caption[Correlation of age and detection frequency]{\textbf{X}}
 	\label{fig:ageDetF}
 \end{figure}
