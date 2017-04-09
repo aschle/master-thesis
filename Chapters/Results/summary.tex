@@ -1,30 +1,95 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion of Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-summary of result in relation to goals (static part)\\
-(2)\\
-goal kind of worker-worker interaction networks emerge\\
-structure\\
-topology\\
-characteristic properties\\
-different from random\\
-global/local, colony/ population, bee/individual\\
-
-(3)\\
-meaningful community structure\\
-how are communities charcterized\\
-do they reflect known colony behaviour concerning age and spatial distribution?\\
-
-summary of results in relation to goals (temporal part)\\
-(4)\\
-how do communities develop over time\\
-stable regarding their properties\\
-how do members move\\
+following part summarizes the presented results in relation to the research goals, listed in section~\ref{sec:intro:goals}\\
+discusses the results per goal\\
+implications towards goal 1 (inferring temporal networks)\\
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Network Topology and Characteristic Properties}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\emph{Goal 2:
+What kind of worker-worker interaction networks emerge and how are they structured?
+What is their topology?
+What properties are characteristic and how do they differ from randomly generated networks?}
+
+A) high density 69\%, 54\%, 61\%\\
+cumulated data for 10 hours\\
+compared to \textcite{mersch2013tracking} it is similar 72\%$\pm5.3$, but they reduced density to 25\%, ants\\
+compared to \textcite{baracchi2014socio} (0.15) the density is very high, but they only had 1 frame per minute and 10 hours of data\\
+also one should not compare networks created by different techniques~\cite{castles2014social}\\
+
+B) small world type and no scale free\\
+average shortest path $1.4$,
+gcc higher than random,
+diameter 3, random 2\\
+short path/way for communication and transfer of something\\
+rapid communication between nodes\\
+many biological networks, including insect colonies are thought to approximate scale-free networks, degree follows power law and hubs, also belong to small world class networks~\textcite{holme2013temporalbook} (!)\\
+
+C) no hierarcical structure, dezentralized, no hubs, no central nodes\\
+no central authority, dezentralized controle~\textcite{seeley1989honey}\\
+
+D) correlation: detection frequency, age, network measures\\
+foragers outside, affects their connectedness~\textcite{baracchi2014socio}\\
+division of labor: old (foragers), middle-aged (storers), young (nursing, according to \textcite{seeley1989social}\\
+age based task division, division of labout\\
+temporal polyethism (Lindauer/Rosch/Sagakami)\\
+
+E) bimodal distribution of network measures imply 2 groups of bees\\
+old group > 45, high lcc, rest low, rest of the bees: low lcc, rest high\\
+resuls from detection frequency\\
+no studies showing distributions, just \cite{baracchi2014socio}, 3 age groups, no exact age and network measure distributions\\
 
 
-stable global structure over time\\
-degree dist, centrality and so on stays the same over the three snapshots\\
-dynamic local structure (node level, individual bee)\\
-bees change communities as they age\\
-conclusion: verifies my definition of the networks and chosen parameters\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Characterization of Community Structure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\emph{Goal 3:
+Does the network display a meaningful community structure?
+How are the identified communities characterized?
+Do they reflect already known colony behavior concerning age and spatial distribution?}
+
+according to the definition of communities (we call a community a group of nodes that have a higher likelihood of connecting to each other than to nodes from other communities, leading eigenvector and walktrap optimize modularity), found 2 to 3 groups depending on algorithm\\
+found communities, despite high density, without thesholding edges with low values, as opposed to~\textcite{mersch2013tracking}\\
+spacial fidelity (fidelity ist echt ein komisches Wort): young communitiy located in upper center of comb (brood), old community close to the hive exit, middle-aged are placed inbetween and around the young group (maybe pollen,nectar,honey?)\\
+similar to the results of \textcite{mersch2013tracking} location of ant communities also close to brood, inbetween and close to exit, but ant colonies insted of honey bees, method both community detection, but they used infomap, I used LE and WT\\
+also very similar to results of \textcite{baracchi2014socio}: foraging bees close to exit (old bees), nurses close to brood and middle-aged bees inbetween\\
+but they used some hierarchical clustering (clustered based on network measures: strength, eigenvector and betweenness with average linkage, squared euclidian distance) and no community detection algorithm\\
+interaction frequency vergleichen mit~\textcite{scholl2011olfactory}, young, middle, old\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Dynamics of Community Members}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\emph{Goal 4:
+How do these communities develop over time?
+Are they stable regarding their properties?
+How do members move between communities?}
+
+per snapshot 2-3 age groups\\
+per snapshot groups in different region of the comb: center (brood), close to exit (foragers?), inbetween and outer parts (storing stuff?) (inspected images of the comb)\\
+bees from younger communities move to older communities as they age, not the other way around (only very few older bees change back to younger groups)
+
+in honey bees workers change tasks over the course of their lifetime, starting as nurses in the nest and ending as foragers outside~\cite{seeley1982adaptive,johnson2008within}\\
+\textcite{johnson2008within} observed two within-nest bees: young bees brood care tasks, middle-aged bees specialized on nectar processing and nest maintenance\\
+\textcite{seeley1982adaptive} 5 female casts: queen (reproductive cast), 4 age subcasts among workers: cell cleaning, broodnest, food storage, forager
+
+difference method: transitions for each day over a three day period (spread over 5 days), \textcite{mersch2013tracking} grouped 11/10 days together and then investigated transitions of ants, 70\% threshold, age related  behavioural maturation is a slow and noisy process in ants with important individual variations~\cite{mersch2013tracking}\\
+honey bees instead kind of fast and not that noisy\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Implications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+1. - stable global structure of the colony over time\\
+a) stable network properties: distribution of network measures (degree, strength, lcc, $C_B$ and $C_C$ stays the same over the three snapshots\\
+b) communities stay the same over the snapshots (age groups, spatial groups)
+
+2. - dynamic local structure (node level, individual bee): bees change communities as they age\\
+
+as expected from honey bee colonies, confirms research results of others\\
+verifies my definition of the networks (network pipeline) and chosen network parameters, validates the first goal: inferrence of temporal networks\\
