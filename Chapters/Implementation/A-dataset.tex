@@ -142,21 +142,60 @@ Therefore, to obtain a more reliable dataset, invalid detections need to be filt
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Detection Frequency Filter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/filter}
+	\caption[Detection frequency of IDs]{\textbf{Detection frequency of IDs} [TODO: add legend] \emph{Orange} coressponds to bees with a negative age and \emph{green} displays bees with a positive age.\protect\footnotemark}
+	\label{fig:filter}
+\end{figure}
+\footnotetext{Data set: 20.08.2016, 24 hours, number of total frames: 302400}
+
+A good indicator, whether a bee detection represents a real bee on the comb is its detection frequency.
+The hypothesis is:
+Individuals with a very low detection rate seem to be detection errors and lead to the assumption that those bees do not exist.
+To check this hypothesis, I investigate the correlation between the detection frequency of bees and their age.
+Figure~\ref{fig:filter} shows that bees with a negative age are on average less detected than bees with a positive age.
+
+During my analysis, I noticed the existence of bees with a high detection frequency attributed with a negative age. I inspected the corresponding photos and confirmed that those bee detections correspond to living individuals and are no artifacts. Probably this result from a mistake in the table, which reports the hatching days for each bee.
+Consequently, I excluded bees from this analysis, which had a negative age, but a detection frequency over 10,000 frames. Also I excluded bees~($n=10$), whose age is unknown\footnote{id= [2,
+    74,
+    2045,
+    3172,
+    3764,
+    3796,
+    3827,
+    3836,
+    3844,
+    3940]}.
+For each analysis day, the number of detections per ID is calculated, excluding the mentioned IDs.
+To obtain a reliable dataset, I filtered invalid detections, by discarding all detections with an ID frequency below the 99th percentile of negative IDs.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Time Series of Bees and Bee Pairs}
 \label{subsec:tracking}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The dataset is transformed into binary \emph{bee time series}, depicted in figure~\ref{fig:structure} (left and middle). A time series of a bee is a sequence of zeros and ones indicating the absence and presence of a bee over a specified time interval.
-I examined the effect the level of confidence has on the bee time series.
-As expected, with an increasing confidence level the average gap length decreases and the overall number of gaps increases (figure~\ref{fig:gaps}).
+The dataset is transformed into binary \emph{bee time series}, depicted in figure~\ref{fig:structure} left and middle.
+A bee time series represents the absence and presence of a bee over a specified sequence of frames.
+For further processing I use the bee time series to extract \emph{pair time series} of bees that are spatially close (figure~\ref{fig:structure}, right).
+A one indicates that a pair of bees is detected and both bees are spatially close in a certain frame.
+By analyzing the resulting pair time series, I noticed that the sequences of ones are often interrupted by short sequences of zeroes.
+I assume that those short gaps do not refer to any meaningful behavior of the bees. Bees are not able to approach each other and move apart within a second because they simply do not move that fast.
+Therefore I concluded, that those gaps originate from detection errors and consequently need to be treated in an appropriate way during further data processing.
 
-The number of gaps, those bee time series has, is important because in a later step I want to extract pairs of close bees, who are present at the very same time. I call those \emph{pair time series}, as shown in figure~\ref{fig:structure} (right). So a lot of gaps in bee time series could lead to a lot of gaps in the pair time series.
+I examined how the level of confidence effects the pair time series.
+As expected, with an increasing confidence level the average gap length decreases and the overall number of gaps increases (figure~\ref{fig:gaps}).
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/structure}
-	\caption[Structure of dataset]{\textbf{Structure of dataset} \emph{Left}: original dataset - containing a sequence of frames with bee detections; \emph{Middle:} binary bee time series - zero and one indicate absence and presence of a bee; \emph{Right:} binary pairs time series - zero and one indicate the absence and presence of two bees in the same frame.}
+	\caption[Structure of dataset]{\textbf{Structure of dataset} \emph{Left}: original dataset - containing a sequence of frames with bee detections; \emph{Middle:} binary bee time series - zero and one indicate absence and presence of a bee; \emph{Right:} binary pairs time series - zero and one indicate the absence and presence of two bees in the same frame.[TODO wrong picture, number of gaps in PAIR time series not bee time sereis is needed here!]}
 	\label{fig:structure}
 \end{figure}
 
@@ -178,40 +217,6 @@ The number of gaps, those bee time series has, is important because in a later s
 
 \footnotetext{Data set: 26.07.2016, 16:00-16:05}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{Detection Frequency Filter}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A good indicator, whether a bee is alive and present on a particular day, is its detection frequency. The hypothesis is: Bees who have a low detection rate are not physically present in the hive, respectively do not exists at that day.
-To check this hypothesis, I investigate whether there is a correlation between the age of bees and their detection frequency.
-
-\begin{figure}[t]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/filter}
-	\caption[Detection frequency of IDs]{\textbf{Detection frequency of IDs} [TODO: add legend] \emph{Orange} coressponds to bees with a negative age and \emph{green} displays bees with a positive age.\protect\footnotemark}
-	\label{fig:filter}
-\end{figure}
-
-\footnotetext{Data set: 20.08.2016, 24 hours, number of total frames: 302400}
-
-Bess with a negative age are on average detected less frequently than bees with a positive age.
-In advance, I excluded bees from the statistics, which had a negative age, but a detection frequency over 10000 frames. Their detection frequency is similar to that from bees with a positive age. I looked at the corresponding photos taken by the camera and confirmed that those are living bees and no artifacts.\footnote{Probably a mistake in the table, which reports the hatching days for each bee.}
-Also I excluded bees~($n=10$), whose age is unknown\footnote{id= [2,
-    74,
-    2045,
-    3172,
-    3764,
-    3796,
-    3827,
-    3836,
-    3844,
-    3940]}.
-
-For each analysis day, the number of detections per ID is obtained, excluding the mentioned IDs.
-Additionally, I discarded all detections with an ID frequency below the 99th percentile of negative IDs.
-A list of valid IDs per day is kept to filter out wrong detections beforehand.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
