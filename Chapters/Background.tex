@@ -1,6 +1,6 @@
 \chapter{Theoretical Background of Network Analysis of Insect Colonies}
-
-TODO some intro
+The following chapter gives a short introduction into social network analysis (SNA). It introduces social insect interaction networks, as a special type of a biological\footnote{Maybe more preciese: within species interaction network.} network. It defines terms and concepts used throughout this work and explains used network metrics and algorithms.
+Furthermore the most relevant studies using a network analysis approach focusing on interaction networks of social insects are reviewed, classified and summarized.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -11,7 +11,6 @@ TODO some intro
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following chapter gives a short introduction into social network analysis (SNA). It introduces social insect interaction networks, as a special type of a biological\footnote{Maybe more preciese: within species interaction network.} network. Also, it defines terms and concepts used throughout this work and explains used network metrics and algorithms.
 
 A \emph{social network} is a representation of a social structure comprising actors such as individuals, affiliations, as well as their social interactions.
 The network model conceptualizes social, economic, or political structures as lasting patterns of interactions between actors~\cite{wasserman1994social}.
@@ -23,11 +22,8 @@ According to~\textcite{charbonneau2013social} those interactions used as an edge
 
 Edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. The edge weights represent the strength of the relationship; commonly the number or duration of interactions is used~\cite{farine2015constructing}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \subsection{Temporal Networks}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 When modeling temporal or so-called dynamic networks two main approaches exists (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
 
 The time-aggregated approach aggregates the data for each snapshot and therefore reduces the available information per edge. In contrast, the time-ordered approach keeps the information for each edge, when the interaction occurred and how long it lasted. It provides a detailed insight when timing and order of interactions are important.  And therefore it can be used to model the topological flow information through a network.
