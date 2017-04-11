@@ -24,7 +24,11 @@ The non-hierarchical global network structure of the honey bee colony is stable 
 These network analysis results verify the definition of interaction networks by the initially chosen set of parameters and the functionality of the network pipeline in general.
 The network pipeline is suitable, and it provides an excellent foundation for further investigations.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Limitations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 (1) limitations by the dataset and implementation of the pipeline\\
 (2) decisions taken concerning the type of spatial proximity networks\\
 (3) regarding methods for network analysis and temporal aspects\\
@@ -50,25 +54,54 @@ aggregating the data for a large time window, results in a noisy network with a 
 in this context, strength is the only measure I used, which holds more specific information, because its cumulating interaction informaion\\
 The selection of an algorithm for detecting communities is limited to algorithms finding non-overlapping structures due to the high density and size of the networks.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Future Work}
-(1) recommendations for further studies, (2) recommendation for change\\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+(A) recommendation for change\\
+(B) recommendations for further studies\\
 each recommendation should directly trace a direct conclusion\\
 
-investigate: correlation of density and time, upper bound? or 100\% density after some X frames?\\
-are communities robust regarding pipeline parameters maximum distance, minimum contact duration, window size (yes they are, tested for some values, but not systhematically)\\
-pipelie parameters (maximum distance, minimum contact duration, window size) effects on network properties (degree, strength,lcc, edgeweights) ... tested but not systematically only some values and only window size up to one hour, should be done more systematically\\
-compare the networks to random geometric graph~\cite{rgg2002} and model a walking bee as a random walker\\
-so far nodes are attributed with only age and detection frequency, add other stuff, e.g. average speed, total distance traveled\\
-compute centrality measures per community\\
-weighted edges, should also inpect weighted versions of node measures (this was a bit to complicated, already implemented weighted version in networkX and igraoh do favour weights over number of hops, should look at~\textcite{opsahl2010node}, but depending on what you want to investigate you have to choose the $\alpha$)\\
+
+(A) things to change and do differently (methods)\\
+
+compare the networks to a random geometric graph~\cite{rgg2002} and model a walking bee as a random walker\\
+this could be a better model, than just comparing it to the simple Erdös-Reniy random graph\\
+
+exploit the potential of weighted edges (frequency and duration) by:\\
+
+(1) apply a network reduction algorithm to reduce density and noise, by applying (no simple edge thresholding), the proposed disparity filter by \textcite{serrano2009extracting}\\
+the disparity measure characterizes the level of local heterogeneity~\cite{barthelemy2003spatial}
+
+(2) inpecting the weighted versions of node measures\\
+the already implemented version of weighted measures (e.g closeness and betweenness) in iGraph and networkX do favour edge weights over the number of hops, by applying Dijkstra for calculating the shortes paths. \textcite{opsahl2010node} proposes weighted network measures by providing a generalized degree and shortest path algorithm. A tuning parameter has to be set according to a reseach setting and data is defines weather to emphasis the importantce of number of links or weights more.
+
+(3) depending on the topic of research a normalization of the networks regarding the detection rate of individuals could be purposeful\\
+eighter by normalizing the edge weight by e.g. applying the simple ratio index (SRI)~\footnote{Dividing the edge weight by the proportion of times two individuals were seen
+together out of the total number of times those individuals were observed.} 
+or by normalizing the particular node level measure by taking the detection frequency of that focal individual into account\\
+
+
+(B) things to investigate further\\
+
+correlation of the networks density and size of time window for aggregation, is there an upper bound of density or does it reach 100\%
+
+are the detected communities robust regarding the pipeline parameters maximum distance, minimum contact duration, and window size (yes they are, I tested this for some values, also with different algorithms), should be studied more systhematically\\
+
+pipelie parameters (maximum distance, minimum contact duration, window size) and its effects on network properties (degree, strength, lcc, edgeweights, centrality measures), I tested this, but not systematically, only for a few combination of values and only window sizes up to one hour, should be done more systematically\\
+
+so far the nodes in the networks are only attributed with the age and detection frequency of individuals, add other stuff, e.g. average speed of a bee and its total distance traveled, could be added for further analysis\\
+
+compute centrality measures for each community, to see if they are different regarding those measures\\
+
 compare analysis results to NON artifical bees networks\\
-investigate different granularities (size of time window)\\
-study longer time period not only 5 days\\
-normalized edge weight (SRI - Simple Ratio Index, SRI measures
-the proportion of times two individuals were seen
-together out of the total number of times those individ-
-uals were observed, by \textcite{croft2008exploring}) or normalized degree and stuff by frequency of detection\\
-apply network reduction algorithm to reduce density and noise, by applying (no simple edge thresholding), disparity filter~\textcite{serrano2009extracting}
+
+investigate different granularities (size of time window), for more dynamic analysis\\
+
+long term studies, to investigate the seasonal change in honey bee colonies\\
+
+
 
 \vspace{2cm}
 more data does not mean better analysis, one have to ask good questions, develop specialized hypothesis, a lot of options\\
