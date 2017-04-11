@@ -25,14 +25,30 @@ These network analysis results verify the definition of interaction networks by 
 The network pipeline is suitable, and it provides an excellent foundation for further investigations.
 
 \section{Limitations}
-regarding my methods, concerning implementation\\
-dataset: quality, kind of a bit complex preprocessing (syncing cameras, removing invalid data, confidence), but still dead bess and almost dead bees in network\\
-definition of interaction - minimum contact duration maybe was not the best idea\\
-type of network spatial proximity (only proxy for interaction, no real interaction) -> maybe better contact (angle of bees similar to Mersch)/food-exchange network (interaction events), too much noise in the data\\
+(1) limitations by the dataset and implementation of the pipeline\\
+(2) decisions taken concerning the type of spatial proximity networks\\
+(3) regarding methods for network analysis and temporal aspects\\
 
+(1) dataset and implementation\\
+(a) low quality requires complex steps during preprocessing\\
+filter out detections with a low confidence level and using a list of valid IDs per day\\
+but still some individuals remain in the extracted networks, that should not exist\\
+also bees who are going to die on that day remain in the network\\
+(b) data reduction by prefiltering of detections and is also caused by the syncing of cameras (frames are missing)\\
+try to solve this problem by the parameter fill gap size is not a perfect solution, because to 100 accurate, compromize, but was appropriate for first steps towards using network analysis methods\\
+but data will be exchanged by tracking data in the future, least effort\\
 
-age distribution has some gaps (tagging not on weekends)-> not sure about it effects\\
-context, missing domain knowledge, working in an interdisziplinary teams\\
+(2) network type and temporal spects\\
+(a) the definition of spatial proximity by only a maximal distance and a minimum contact duration is very loose,
+generally spatial proximity is just an indicator for interaction, but does not relate to real interactions, but addds much noise to the networks\\
+especially in hooney bee colonies, where space is limited anyway, this definition could be too vague\\
+using contact events (e.g. by including an angle) or food-exchange events for defining edges, could be more appropritae for more specialized biological research questions\\
+high density could also be an effect of an large maximum distance parameter or a too long chosen value for the minimum contact duration to long, too much noise\\
+
+(3) analysis methods and temporal spects\\
+aggregating the data for a large time window, results in a noisy network with a global state of the colony, rather than capturing more fine granular dynamics, as opposed to time-ordered networks with time stamped interactions\\
+in this context, strength is the only measure I used, which holds more specific information, because its cumulating interaction informaion\\
+The selection of an algorithm for detecting communities is limited to algorithms finding non-overlapping structures due to the high density and size of the networks.
 
 \section{Future Work}
 (1) recommendations for further studies, (2) recommendation for change\\
@@ -56,6 +72,6 @@ apply network reduction algorithm to reduce density and noise, by applying (no s
 
 \vspace{2cm}
 more data does not mean better analysis, one have to ask good questions, develop specialized hypothesis, a lot of options\\
-explorative analysis approach difficult with data from animals I do not know, maybe easier with 'human' data (missing domain data)\\
+explorative analysis approach difficult with data from animals I do not know, maybe easier with 'human' data (missing domain data), context, limited domain knowledge, working in an interdisziplinary teams promising\\
 alienation: automatic tracking -> no relation to the data or how the data was collected or animals\\
 just applying network method to new research fields, sometimes just replicates known facts, Ending with: Zitat Krause (Buch)
