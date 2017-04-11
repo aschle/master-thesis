@@ -1,27 +1,28 @@
 \begin{table}[htbp]
+\small
 \centering
-\caption[X]{\textbf{X} X\\
+\caption[Chosen algorithms for community detection]{\textbf{Chosen algorithms for community detection} These four algorithms were tested, and the comparison of their results are displayed for all three snapshots.\\
 }
 \label{tab:algos4}
 
 \begin{tabular}{lcccc}
 \toprule
 	 {} &
-	 fastgreedy &
-	 leading eigenvector &
-	 multilevel &
-	 walktrap \\ \midrule
+	 \rotatebox{90}{fastgreedy} &
+	 \rotatebox{90}{\textbf{leading eigenvector}} &
+	 \rotatebox{90}{multilevel} &
+	 \rotatebox{90}{\textbf{walktrap}} \\ \midrule
 	 
-	  Network 1
+	  Snapshot 1
 	  & 473 & 488 & 462 & 490 \\
 	  & 434 & 434 & 427 & 431 \\
 	  & 15 &   & 33 & (1) \\ \midrule
-	  Network 2
+	  Snapshot 2
 	  & 504 & 503 & 481 & 372 \\
 	  & 467 & 475 & 439 & 311 \\
 	  & 7 &   &  58 & 294 \\
 	  & & & & (1) \\ \midrule
-	  Network 3
+	  Snapshot 3
 	  & 534 & 537 & 505 & 310 \\
 	  & 388 & 385 & 415 & 390 \\
 	  &  &   &  (2) & 231 \\

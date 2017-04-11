@@ -1,21 +1,17 @@
-\newcommand{\mc}[2]{\multicolumn{#1}{c}{#2}}
-\definecolor{Gray}{gray}{0.92}
-\newcolumntype{a}{>{\columncolor{Gray}}c}
-\newcolumntype{b}{>{\columncolor{white}}c}
-
 \begin{table}[htbp]
+\small
 \caption[Compairing community detection algorithms]{\textbf{Comparing community detection algorithms} Comparison of algorithms implemented in python. Criterias are the support of weighted edges, runtime and number of communities. A runtime indicated by $-$ mean no termination after 15~minutes.\\
 }
 \label{tab:algos}
 
-\begin{tabular}{laacaaccccccc}
+\begin{tabularx}{\textwidth}{lcccccccccccc}
 \toprule
 	 {} &
-	 \rotatebox{90}{fastgreedy$^1$} &
-	 \rotatebox{90}{leading eigenvector$^1$} &
+	 \rotatebox{90}{\textbf{fastgreedy$^1$}} &
+	 \rotatebox{90}{\textbf{leading eigenvector$^1$}} &
 	 \rotatebox{90}{louvain$^2$} &
-	 \rotatebox{90}{multilevel$^1$} &
-	 \rotatebox{90}{walktrap$^1$} &
+	 \rotatebox{90}{\textbf{multilevel$^1$}} &
+	 \rotatebox{90}{\textbf{walktrap$^1$}} &
 	 
 	 \rotatebox{90}{infomap$^1$} &
 	 \rotatebox{90}{label propagation$^1$} &
@@ -36,7 +32,7 @@
 	  & 15 &  &  & 33 & (1) &  &  &  &  &  &  &  \\
 	 \bottomrule
 	 
-\end{tabular}
+\end{tabularx}
 \begin{flushright}
 \footnotesize{
 $^1$ igraph, $^2$ NetworkX, $^3$ graph-tool\\

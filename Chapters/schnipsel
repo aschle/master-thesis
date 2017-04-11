@@ -1,4 +1,8 @@
-
+The only study not only using time-aggregated but time-ordered (dynamic) networks is by \textcite{blonder2011time}.
+They marked all individuals of four ant colonies and filmed each colony for 30 minutes on two days with three weeks in between.
+The interaction events, physical contact of antenna and body, were manually extracted by watching the videos. In the resulting networks, the edges are  time-stamped interactions between individuals.
+Their study shows how temporal and spatial dynamics of individual interactions provide upper bounds to rates of colony-level information flow and how this flow scales with individual mobility and group size. [TODO: reframe summary of study results! ask somebody]
+This very specialized study on dynamics in information flow also observed colonies with 6 to 90 individuals.
 
 ------------------------------
 ------------------------------

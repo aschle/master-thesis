@@ -1,37 +1,38 @@
-\chapter{Conclusion and Future Work}
+\chapter{Conclusion}
 \label{ch:conclusion}
 
-Summary based on 4 goals:\\
-small world network (short distances, efficient communication between bees)\\
-non-scale free networks (non hierarchical structure, no central bees)\\
-correlation: detection frequency, age, network measures and kind of bimodal distributions, hint for functional groups\\
-age based groups, spatial fidality, according to temporal polythingy\\
-move to older functional groups as they age\\
+inferred time-aggregated networks out of high resolution tracking data of one honey bee colony\\
+weighted undirected spatial proximity networks at three consecutive timesteps over a period of five days\\
+analysis regarding network topology, community structures and development of community members\\
 
-1. - stable global structure of the colony over time\\
-- stable network properties: distribution of network measures (degree, strength, lcc, $C_B$ and $C_C$ stays the same over the three snapshots\\
-- communities stay the same over the snapshots (age groups, spatial groups)
-2. - dynamic local structure (node level, individual bee): bees change communities as they age\\
-->\\
-as expected from honey bee colonies, confirms research results of others\\
-verifies my definition of the networks and the network pipeline\\
-and chosen network parameters (maximal distance and minimum contact duration)\\
+the small world characteristic allows for efficient communication within the bee colony\\
+it is not a scale-free networks, as opposed to other real-wordl networks\\
+the topology of the network is non-hierarchical, therefor no central bees in the sense of degree, strength, and centrality measure like closeness and betweenness exists\\
+older bees are generally less detected than younger bees\\
+position in the network also depends on the age\\
+detected communities relate to age based groups with a spatial fidality towards regions of the comb, explanation: temporal polyethism\\
+also bees move to older functional groups as they age\\
+
+
+stable global non-hierarchical structure of the colony over time (topology, distribution of measures, communities)\\
+but dynamic local structure nodes/bees change communities as they age\\
+is aligned with previous studies and confirms research results of others (no central authority, dezentralized, temporal polyethism)\\
+
+
+verifies my definition of the networks and the network pipeline with the chosen network parameters (maximal distance and minimum contact duration)\\
 therefore analysis results validate the first goal: inferrence of time-aggregated networks seems to be ok\\
+network pipeline is suitable for further research, good foundation, maybe with some modifications, depending on the aimed goals, fine tuning\\
 
-network pipeline can be used for further research, maybe with some modifications, but depends on what one wants to investigate\\
-
-more data does not mean better analysis\\
-explorative analysis approach difficult with data from animals I do not know, maybe easier with 'human' data\\
-difficult to frame a hypothesis\\
-alienation: automatic tracking -> no relation to the data or animals\\
 
 \section{Limitations}
 regarding my methods, concerning implementation\\
-dataset: quality, kind of a bit complex preprocessing (syncing cameras, removing invalid data, confidence)\\
+dataset: quality, kind of a bit complex preprocessing (syncing cameras, removing invalid data, confidence), but still dead bess and almost dead bees in network\\
 definition of interaction - minimum contact duration maybe was not the best idea\\
-type of network spatial proximity -> maybe better contact/food-exchange network (interaction events), too much noise in the data\\
-context, working in an interdisziplinary teams, would easier to understand results and more efficient\\
-age distribution has some gaps -> not sure about it effects\\
+type of network spatial proximity (only proxy for interaction, no real interaction) -> maybe better contact (angle of bees similar to Mersch)/food-exchange network (interaction events), too much noise in the data\\
+
+
+age distribution has some gaps (tagging not on weekends)-> not sure about it effects\\
+context, missing domain knowledge, working in an interdisziplinary teams\\
 
 \section{Future Work}
 (1) recommendations for further studies, (2) recommendation for change\\
@@ -52,3 +53,9 @@ the proportion of times two individuals were seen
 together out of the total number of times those individ-
 uals were observed, by \textcite{croft2008exploring}) or normalized degree and stuff by frequency of detection\\
 apply network reduction algorithm to reduce density and noise, by applying (no simple edge thresholding), disparity filter~\textcite{serrano2009extracting}
+
+\vspace{2cm}
+more data does not mean better analysis, one have to ask good questions, develop specialized hypothesis, a lot of options\\
+explorative analysis approach difficult with data from animals I do not know, maybe easier with 'human' data (missing domain data)\\
+alienation: automatic tracking -> no relation to the data or how the data was collected or animals\\
+just applying network method to new research fields, sometimes just replicates known facts, Ending with: Zitat Krause (Buch)
