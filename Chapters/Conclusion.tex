@@ -42,65 +42,50 @@ The selection of an algorithm for detecting communities is limited to algorithms
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Future Work}
+\section{Recommendations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-(A) recommendation for change\\
-(B) recommendations for further studies\\
-each recommendation should directly trace a direct conclusion\\
+The following sections list recommendations for change regarding the applied methods. The focus lies on methods to reduce the noise within the network.
 
 
-(A) things to change and do differently (methods)\\
+\paragraph{More Dynamic and Temporal Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+By lowering the window size of the aggregated network and by investigating different granularities could allow for a more dynamic analysis of the networks. Instead of using time-aggregated networks, one could shift towards the use of time-ordered networks by using time-stamped interactions.
 
-compare the networks to a random geometric graph~\cite{rgg2002} and model a walking bee as a random walker\\
-this could be a better model, than just comparing it to the simple Erdös-Reniy random graph\\
+\paragraph{Focus on Important Interactions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+For reducing the edges to only meaningful interactions, I see three main approaches.
+The space on the honeycomb is limited and crowded. Therefore fine tuning of pipeline parameters by reducing the size of the maximum distance and by increasing the number of frames for minimum contact duration is an option.
+Instead of keeping the definition of spatial proximity I would recommend extracting contact events (e.g. by including an angle, so bees facing each other) or trophallaxis events for defining the edges, especially when using those networks to investigating more specific biological research questions.
+Moreover, a simple global threshold for excluding edges below a certain value could be used.
 
+\paragraph{Use the Potential of Weighted Edges}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Instead of applying a global threshold, a specific network reduction algorithms can extract the backbone structure of the network. The disparity measure characterizes the level of local heterogeneity of edges~\cite{barthelemy2003spatial}. \textcite{serrano2009extracting} uses this definition to proposes a disparity filter algorithm which seems promising but needs further investigation. 
+For all network measures utilized in this work, weighted versions exist. The already implemented versions of weighted measures (e.g., closeness and betweenness) in iGraph and networkX do favor edge weights over the number of links and simply apply Dijkstra for calculating the shortest paths. \textcite{opsahl2010node} proposes weighted network measures by providing a generalized degree and shortest path algorithm. A tuning parameter has to be chosen, which defines whether to emphasize the number of links or weights of edges. This parameter has to be chosen according to the given research question.
 
-reduce density and noise:
+\paragraph{Normalizing by the Detection Frequency of Individuals}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Depending on the topics of further research a normalization of the networks regarding the detection rate of individuals could be purposeful. 
+I see two options, either by normalizing the edge weight by e.g. applying the simple ratio index (SRI); or by normalizing the particular node level measure by taking the detection frequency of that focal individual into account.
 
-especially in honey bee colonies, where space is limited anyway, this definition could be too vague, high density could also be an effect of an large maximum distance parameter or a too long chosen value for the minimum contact duration to long, too much noise\\
-
-using contact events (e.g. by including an angle) or food-exchange events for defining edges, could be more appropritae for more specialized biological research questions\\
-
-use time-ordered networks with time stamped interactions\\
-
-shorter time windows\\
-
-
-exploit the potential of weighted edges (frequency and duration) by:\\
-
-(1) apply a network reduction algorithm to reduce density and noise, by applying (no simple edge thresholding), the proposed disparity filter by \textcite{serrano2009extracting}\\
-the disparity measure characterizes the level of local heterogeneity~\cite{barthelemy2003spatial}
-
-(2) inpecting the weighted versions of node measures\\
-the already implemented version of weighted measures (e.g closeness and betweenness) in iGraph and networkX do favour edge weights over the number of hops, by applying Dijkstra for calculating the shortes paths. \textcite{opsahl2010node} proposes weighted network measures by providing a generalized degree and shortest path algorithm. A tuning parameter has to be set according to a reseach setting and data is defines weather to emphasis the importantce of number of links or weights more.
-
-(3) depending on the topic of research a normalization of the networks regarding the detection rate of individuals could be purposeful\\
-eighter by normalizing the edge weight by e.g. applying the simple ratio index (SRI)~\footnote{Dividing the edge weight by the proportion of times two individuals were seen
-together out of the total number of times those individuals were observed.} 
-or by normalizing the particular node level measure by taking the detection frequency of that focal individual into account\\
+\paragraph{Random Geometric Graph}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Instead of comparing the network to an Erdös-Reniy random graph model a new model could be proposed.
+Each frame can be modeled by a random geometric graph~\cite{rgg2002}, but with placing the nodes in each step not completely randomly, but by modeling the bee as a random walker. The direction of movement could be chosen randomly, but the distance of a step could be selected according to the average speed of bees. 
 
 
-(B) things to investigate further\\
+\section{Outlook}
 
-correlation of the networks density and size of time window for aggregation, is there an upper bound of density or does it reach 100\%
+pipeline parameters (maximum distance, minimum contact duration, window size) and its effects on network properties (degree, strength, lcc, edgeweights, centrality measures), robust, I tested this, but not systematically, only for a few combination of values and only window sizes up to one hour, should be done more systematically\\
 
 are the detected communities robust regarding the pipeline parameters maximum distance, minimum contact duration, and window size (yes they are, I tested this for some values, also with different algorithms), should be studied more systhematically\\
 
-pipelie parameters (maximum distance, minimum contact duration, window size) and its effects on network properties (degree, strength, lcc, edgeweights, centrality measures), I tested this, but not systematically, only for a few combination of values and only window sizes up to one hour, should be done more systematically\\
-
-so far the nodes in the networks are only attributed with the age and detection frequency of individuals, add other stuff, e.g. average speed of a bee and its total distance traveled, could be added for further analysis\\
-
-compute centrality measures for each community, to see if they are different regarding those measures\\
-
-compare analysis results to NON artifical bees networks\\
-
-investigate different granularities (size of time window), for more dynamic analysis\\
-
 long term studies, to investigate the seasonal change in honey bee colonies\\
 
+compare analysis results to wild, not domesticated bees networks\\
 
-\subsection{Closing Remarks}
+\section{Closing Remarks}
 In the first step, the automatic tracking of animals leads to more data, which covers a longer observation period and with a higher sampling resolution. The simultaneous observation of not only more individuals but also several colonies under distinct conditions becomes possible in an efficient way.
 The availability of more data, which is not limited towards a specific study purpose, opens the space to investigate the data in an explorative way and to discover the unexpected.
 The prerequisite for studying non-human animal data in an explorative way that fosters the framing of a novel biological hypothesis is either a personal, profound domain knowledge or the constant support of experts of that species.
