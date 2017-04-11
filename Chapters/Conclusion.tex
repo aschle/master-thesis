@@ -29,30 +29,16 @@ The network pipeline is suitable, and it provides an excellent foundation for fu
 \section{Limitations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-(1) limitations by the dataset and implementation of the pipeline\\
-(2) decisions taken concerning the type of spatial proximity networks\\
-(3) regarding methods for network analysis and temporal aspects\\
+The following section outlines limitations concerning the accuracy and quality of the resulting networks and describes restrictions emerging from a high density.
 
-(1) dataset and implementation\\
-(a) low quality requires complex steps during preprocessing\\
-filter out detections with a low confidence level and using a list of valid IDs per day\\
-but still some individuals remain in the extracted networks, that should not exist\\
-also bees who are going to die on that day remain in the network\\
-(b) data reduction by prefiltering of detections and is also caused by the syncing of cameras (frames are missing)\\
-try to solve this problem by the parameter fill gap size is not a perfect solution, because to 100 accurate, compromize, but was appropriate for first steps towards using network analysis methods\\
-but data will be exchanged by tracking data in the future, least effort\\
+Despite complex preprocessing the quality of the extracted networks could be higher. Although I filtered out erroneous detections before network generation, a few number of individuals remain in the extracted networks, that should not exist according to the studies tagging and hatching documentation. Besides, part of the network are bees, which die at some point during the aggregation period.\\
+The prefiltering of detections and the synchronization of camera frames reduces the amount of data available for the extraction of interactions. The gap size parameter tries to fix the resulting gaps but does not solve the problem perfectly. I suppose that some interactions are shorter than they are in reality, which distorts the networks a bit. As more accurate tracking data will replace the data in the future, this was an excellent choice with an appropriate amount of effort.
 
-(2) network type and temporal spects\\
-(a) the definition of spatial proximity by only a maximal distance and a minimum contact duration is very loose,
-generally spatial proximity is just an indicator for interaction, but does not relate to real interactions, but addds much noise to the networks\\
-especially in hooney bee colonies, where space is limited anyway, this definition could be too vague\\
-using contact events (e.g. by including an angle) or food-exchange events for defining edges, could be more appropritae for more specialized biological research questions\\
-high density could also be an effect of an large maximum distance parameter or a too long chosen value for the minimum contact duration to long, too much noise\\
-
-(3) analysis methods and temporal spects\\
-aggregating the data for a large time window, results in a noisy network with a global state of the colony, rather than capturing more fine granular dynamics, as opposed to time-ordered networks with time stamped interactions\\
-in this context, strength is the only measure I used, which holds more specific information, because its cumulating interaction informaion\\
-The selection of an algorithm for detecting communities is limited to algorithms finding non-overlapping structures due to the high density and size of the networks.
+Spatial proximity is an indicator for interaction but does not relate to actual interactions. The definition of spatial proximity by a maximal distance and a minimum contact duration is very loose and especially in honey bee colonies, where space is limited, leads to many edges and consequently to a high density of the network. The high noise weakens or blurred the real interactions between individuals.
+My choice of aggregating the networks for ten hours supports this nosiness, resulting in a global state of the colony, rather than capturing finer granular dynamics.\\
+In this context, the network property strength is the only measure I used, which profits by the aggregation, all other measures are less meaningful.
+Due to the high density and size of the network, the methods I can apply concerning community detection are limited.
+The selection of an algorithm for detecting communities is limited to algorithms finding only non-overlapping structures.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,6 +54,18 @@ each recommendation should directly trace a direct conclusion\\
 
 compare the networks to a random geometric graph~\cite{rgg2002} and model a walking bee as a random walker\\
 this could be a better model, than just comparing it to the simple Erdös-Reniy random graph\\
+
+
+reduce density and noise:
+
+especially in honey bee colonies, where space is limited anyway, this definition could be too vague, high density could also be an effect of an large maximum distance parameter or a too long chosen value for the minimum contact duration to long, too much noise\\
+
+using contact events (e.g. by including an angle) or food-exchange events for defining edges, could be more appropritae for more specialized biological research questions\\
+
+use time-ordered networks with time stamped interactions\\
+
+shorter time windows\\
+
 
 exploit the potential of weighted edges (frequency and duration) by:\\
 
