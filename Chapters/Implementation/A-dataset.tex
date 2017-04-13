@@ -141,6 +141,7 @@ Therefore, to obtain a more reliable dataset, invalid detections need to be filt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Detection Frequency Filter}
+\label{subsubsec:dataset:filter}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
@@ -196,24 +197,6 @@ As expected, with an increasing confidence level the average gap length decrease
 	\caption[Structure of dataset]{\textbf{Structure of dataset} \emph{Left}: original dataset - containing a sequence of frames with bee detections; \emph{Middle:} binary bee time series - zero and one indicate absence and presence of a bee; \emph{Right:} binary pairs time series - zero and one indicate the absence and presence of two bees in the same frame.}
 	\label{fig:structure}
 \end{figure}
-
-\begin{figure}[htb]
-	\centering
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{Figures/gaplen}
-		\caption[Length of gaps]{\textbf{Length of gaps}}
-		\label{fig:gaplen}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{Figures/numgaps}
-		\caption[Number of gaps]{\textbf{Number of gaps}}
-		\label{fig:numgaps}
-	\end{subfigure}
-	\caption[Influence of Confidence Level on Gaps]{\textbf{Influence of confidence level on gaps} [TODO: add legend][TODO wrong picture, number of gaps in PAIR time series not bee time sereis is needed here!][TODO: wrong figure not gaps of bee series, but gaps in pair series should be here] With an increasing level of confidence the average gap length decreases and the number of gaps per bee series increases. \emph{Orange} indicates the median, \emph{green the mean}.\protect\footnotemark }
-	\label{fig:gaps}
-\end{figure}
-
-\footnotetext{Data set: 26.07.2016, 16:00-16:05}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

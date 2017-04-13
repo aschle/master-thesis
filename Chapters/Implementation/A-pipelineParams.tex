@@ -1,35 +1,68 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Specifying the Network and its Parameters}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[TODO] decisions and study table\\
+type of network: time-aggregated (time-aggregated, time-ordered)\\
+type of interaction: spatial proximity network (spatial, contact, food)\\
+directed or undirected\\
+weighted/unweighted: type of weights: frequency and duration\\
+
+A node in the network is a bee.
+They are distinguished by IDs.
+The network consists only of bees that interact.
+Two bees are associated (spatially close to each other), if their distance is smaller then a \emph{maximum distance}.
+Using only this criterion leads to a many interactions, because an interaction could only last for $0.33$ seconds
+So an additional parameter the \emph{minimum contact duration} is introduced, it is the minimum time they have to spend close to each other in order to be called associated.
+
+Edges are assigned two attributes. The first one is the frequency of contacts, how often they share a close position. The second parameter is the total duration of contact, how many time frames in total they spend close by.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Pipeline Parameters}
-weighted temporal (time-aggregated) spatial proximity interaction networks out of tracking data\\
-1) parameters for resulting networks: minimum contact duration, start-timestamp, window size in min, maximal distance\\
-2) parameters resulted from dataset characteristics: confidence, file with valid ID lists, gap size\\
-
-[TODO überarbeiten]\\
-
-For performing the network analysis, I chose the pipeline parameters as follows:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The network pipeline takes two types of parameters: one for specifying the resulting network and how spacial proximity is defined and one relates to the data set.
 
 \begin{description}
-\item[Confidence] As explained in section~\ref{subsec:confidence}, the confidence is set to $95\%$.
+\item[Maximum distance] level of closeness between to individual bees~(in pixel)
+\item[Minimum contact duration] the number of frames two individuals need to spend close by in order to count it as an interaction~(in frames)
+\item [Start timestamp] starting point of the network aggregation~(as UTC string)
+\item [Window size] size of time window for aggregating the network~(in minutes)
 
-\item[Maximum Distance] I chose the length of a bee body, according to \textcite{baracchi2014socio}, as the maximum distance between two bees (figure~\ref{fig:radius}). The average bee length of $212$px ($\pm 16$px)  was determinded by manually measuring the length of all bees ($n=337$) in four images (one for each camera, 21.07.2016, 03:00PM) using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed: 22.02.2016}.
+\vspace{5mm}
 
-\item[Gap Size] The gap size is set to two frames. This value corresponds to the median gap length in the time series of pairs ($\texttt{mode}=1$, $\texttt{mean}=27$). [TODO: what dataset was used (95\% confidence, XXX\% cutOff, XXXpx maximal distance, date, camera)]
-
-\item[Minimum Contact Duration] This is set to three frames (one second). This corresponds to~\textcite{mersch2013tracking}, they as well exclude interactions below one second. Looking at the frequency distribution of chains of ones ($1$, $11$, $111$, and so on) of the pair time series (after filling the gaps), then: $\texttt{mode}=1$, $\texttt{median}=2$ and $\texttt{mean}=4$. Three frames corresponds to $57\%$ of all chains, this seem to be reasonable. [TODO: what dataset was used (95\% confidence, XXX\% cutOff, XXXpx maximal distance, date, camera)] [TODO add time for throphalaxis min and max]
-
+\item[Confidence] level of confidence, as described in section~\nameref{subsec:confidence}~(in percent)
+\item[Valid IDs] list of valid ids within a specified time interval, as described in section~\nameref{subsubsec:dataset:filter}~(in csv file format)
+\item[Gap Size] this is used to corect the time series of bee pairs~(in frames)
+\item[Number of CPUs] number of used CPUs for parallelization
+\item[Year] calculate bee IDs and stitching of camera images according to the observation period~(2015 or 2016)
 \end{description}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Chosen Parameter Values for Network Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Tables/chosenParams.tex}
+
+The values are chosen according to biological constraints and similar to other studies, for better comparability.
+I chose the length of a bee body, according to \textcite{baracchi2014socio}, as the maximum distance between two bees (figure~\ref{fig:contactRadius}). The average bee length of $212$px ($\pm 16$px)  was determinded by manually measuring the length of all bees ($n=337$) of four camera images using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed:
+ 22.02.2016}.
+The minimum contact duration is set to three frames (one second). This corresponds to~\textcite{mersch2013tracking}, they as also exclude interactions below one second.
+To keep about 50\% of the data the confidence is set to $95\%$.
+The gap size is set to two frames. This value corresponds to the median gap length in the time series of pairs.
 
 \begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{0.4\textwidth}
+	\begin{subfigure}[b]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{Figures/sizeTagBee}
+		\caption[Body length of a bee]{Body length of a bee}
+		\label{fig:size}
+	\end{subfigure}
+	\hspace{0.08\textwidth}
+	\begin{subfigure}[b]{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{Figures/radius}
-		\caption[Contact Radius]{Contact Radius}
+		\caption[Contact radius]{Contact radius}
 		\label{fig:radius}
-	\end{subfigure}
-	\begin{subfigure}[b]{0.4\textwidth}
-		\includegraphics[width=\textwidth]{Figures/sizeTagBee}
-		\caption[Bee and Tag Size]{Bee Length}
-		\label{fig:size}
 	\end{subfigure}
 	\caption{Distance Between Bees: A length of a bee is chosen as the maximal  distance between bees.}
 	\label{fig:contactRadius}
