@@ -179,17 +179,16 @@ To obtain a reliable dataset, I filtered invalid detections, by discarding all d
 \label{subsec:tracking}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The dataset is transformed into binary \emph{bee time series}, depicted in figure~\ref{fig:structure} left and middle.
-A bee time series represents the absence and presence of a bee over a specified sequence of frames.
+I investigated the quality of the initial data regarding its completeness of bee tracks. A bee tracks represent the movement of an individual over time. I transformed the initial data set into binary \emph{bee time series}, depicted in figure~\ref{fig:structure} left and middle.
+A bee time series, similar to a track, represents the absence and presence of a bee over a specified sequence of frames.
 For further processing I use the bee time series to extract \emph{pair time series} of bees that are spatially close (figure~\ref{fig:structure}, right).
 A one indicates that a pair of bees is detected and both bees are spatially close in a certain frame.
+
+
 By analyzing the resulting pair time series, I noticed that the sequences of ones are often interrupted by short sequences of zeroes.
+As stated before, the higher the level of confidence, the more data is discarded. This data reduction leads consequently to more zeroes in both time series.
 I assume that those short gaps do not refer to any meaningful behavior of the bees. Bees are not able to approach each other and move apart within a second because they simply do not move that fast.
 Therefore I concluded, that those gaps originate from detection errors and consequently need to be treated in an appropriate way during further data processing.
-
-I examined how the level of confidence effects the pair time series.
-As expected, with an increasing confidence level the average gap length decreases and the overall number of gaps increases (figure~\ref{fig:gaps}).
 
 \begin{figure}[htb]
 	\centering
