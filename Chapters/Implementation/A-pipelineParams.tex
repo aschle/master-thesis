@@ -17,22 +17,29 @@ The first one is the frequency of contacts, meaning how often they share a close
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Pipeline Parameters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The network pipeline takes two types of parameters: one for specifying the resulting network and how spacial proximity is defined and one relates to the data set.
+The network pipeline takes two types of parameters. The first set of parameters defines the resulting network and the exact type of spatial proximity. The second set relates to the given data set. Both parameter types are described below.
 
-\begin{description}
-\item[Maximum distance] level of closeness between to individual bees~(in pixel)
-\item[Minimum contact duration] the number of frames two individuals need to spend close by in order to count it as an interaction~(in frames)
-\item [Start timestamp] starting point of the network aggregation~(as UTC string)
-\item [Window size] size of time window for aggregating the network~(in minutes)
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\textwidth}{@{} r Y @{}}
+\textbf{Maximum distance} & level of closeness between to individual bees~(in pixel) \vspace{3mm} \\
+\textbf{Minimum} & the number of frames two individuals need to spend close\\
+\textbf{Contact duration} &  to each other to count it as an interaction ~(in frames) \vspace{3mm} \\
+\textbf{Start timestamp}: & starting point of the network aggregation~(as UTC string) \vspace{3mm} \\
+\textbf{Window size}: & size of time window for aggregating the network~(in minutes) \\
+\end{tabularx}
+\end{table}
 
-\vspace{5mm}
-
-\item[Confidence] level of confidence, as described in section~\nameref{subsec:confidence}~(in percent)
-\item[Valid IDs] list of valid ids within a specified time interval, as described in section~\nameref{subsubsec:dataset:filter}~(in csv file format)
-\item[Gap Size] this is used to corect the time series of bee pairs~(in frames)
-\item[Number of CPUs] number of used CPUs for parallelization
-\item[Year] calculate bee IDs and stitching of camera images according to the observation period~(2015 or 2016)
-\end{description}
+\begin{table}[htbp]
+\centering
+\begin{tabularx}{\textwidth}{@{} r Y @{}}
+\textbf{Confidence} & level of confidence, as described in section~\nameref{subsec:confidence}~(in percent) \vspace{3mm}\\
+\textbf{Valid IDs} & list of valid ids within a specified time interval, as described in section~\nameref{subsubsec:dataset:filter}~(in CSV file format) \vspace{3mm}\\
+\textbf{Gap Size} & for correcting, filling gaps in, the time series of bee pairs~(in frames) \vspace{3mm}\\
+\textbf{Number of CPUs} & number of used CPUs for parallelization \vspace{3mm}\\
+\textbf{Year} & calculate bee IDs and stitching of camera images according to the observation period~(2015 or 2016)\\
+\end{tabularx}
+\end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Chosen Parameter Values for Network Analysis}
