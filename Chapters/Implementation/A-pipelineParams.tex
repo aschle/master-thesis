@@ -3,20 +3,16 @@
 \subsection{Specifying the Network and its Parameters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO] decisions and study table\\
-type of network: time-aggregated (time-aggregated, time-ordered)\\
-type of interaction: spatial proximity network (spatial, contact, food)\\
-directed or undirected\\
-weighted/unweighted: type of weights: frequency and duration\\
+As this work constitues the first step towards network analysis using this tracking data I chose to infer time-aggregated spatial proximity network. The Accordingly, the interactions are undirected but weighted.
+A node in the network is a bee, identified by an ID.
+The network consists only of bees that interact with other bees at least once, during the specified time interval.\\
+Two bees are associated (spatially close to each other), if their distance is smaller than a \emph{maximum distance}.
+Using only this criterion leads to many interactions, resulting in a very dense network because an interaction could only last for 0.33 seconds.
+Therefore, an additional parameter the \emph{minimum contact duration} is introduced.
+It specifies the minimum time two bees have to spend close to each other to be called associated.
 
-A node in the network is a bee.
-They are distinguished by IDs.
-The network consists only of bees that interact.
-Two bees are associated (spatially close to each other), if their distance is smaller then a \emph{maximum distance}.
-Using only this criterion leads to a many interactions, because an interaction could only last for $0.33$ seconds
-So an additional parameter the \emph{minimum contact duration} is introduced, it is the minimum time they have to spend close to each other in order to be called associated.
-
-Edges are assigned two attributes. The first one is the frequency of contacts, how often they share a close position. The second parameter is the total duration of contact, how many time frames in total they spend close by.
+Edges are assigned two attributes.
+The first one is the frequency of contacts, meaning how often they share a close position. The second parameter refers to the total duration of contact, so the total time they spend nearby.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Pipeline Parameters}
@@ -42,6 +38,9 @@ The network pipeline takes two types of parameters: one for specifying the resul
 \subsubsection{Chosen Parameter Values for Network Analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \input{Tables/chosenParams.tex}
+
+For further network analysis, I chose three days: 20., 22., and 24. August.
+Those days were chosen because a wide range of age groups was present at this time. The hive especially contained older bees which are likely to be foragers. Besides, no data is missing on those days.
 
 The values are chosen according to biological constraints and similar to other studies, for better comparability.
 I chose the length of a bee body, according to \textcite{baracchi2014socio}, as the maximum distance between two bees (figure~\ref{fig:contactRadius}). The average bee length of $212$px ($\pm 16$px)  was determinded by manually measuring the length of all bees ($n=337$) of four camera images using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed:
