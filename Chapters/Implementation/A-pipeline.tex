@@ -4,36 +4,33 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This section describes the pipeline for generating spatial proximity networks out of honey bee tracking data. The network pipeline takes as input a path to the data  and a set of parameter described before and outputs a graph in graphML file format. The pipeline is parallelized on frame level, that means, each process gets a portion (frames for a timeinterval of five minutes) of the data and extracts interactions/edges. The main process accumulates everything and creates a network.\\
+This section describes the pipeline for generating spatial proximity networks out of honey bee tracking data. The network pipeline takes as input a path to the data and a set of parameter previously described and outputs a network in graphML file format. I parallelized the pipeline is on the frame level. That means each process gets a fraction of the data and extracts interactions for a time interval of five minutes. The main process accumulates the resulting interactions and creates a final network.
 
 The pipeline consist of the following steps:
 
 \begin{enumerate}
 \item \textbf{Prefilter detections}\\
-All detections below the chosen level of confidence level are filtered out.
+All detections below the chosen level of confidence are filtered out.
 
 \item \textbf{Simple stitching}\\
-Each side of the hive consists of two cameras. 	The $x$-coordinates of each detection (of the right	cameras) is moved further to the right, also adding an offset of $2\times \texttt{maximum distance}$. So the left and the right detection of each side of the hive are move into one reference system.
+For each camer positioned on the right hand side of the hive (camera 1 and 3), the $x$-coordinates of each detection is offseted to the right ($2\times \texttt{maximum distance}$), to combine all detections per side into one coordinate system.
 
-\item \textbf{Syncronize Cameras}\\
-For each side of the hive the cameras need to be syncronized. In the normal case the difference between consecutive frames should be about $0.332$~seconds, due to technical problem this value can be lower ($0.003$ ) and higher ($2.932$) at certain times. Cameras 3 and 2 and cameras 1 and 0 are matched, frames without a match are dropped (shorter number of frames, matchen, threshold $0.33/2$, minimum).
+\item \textbf{Syncronize cameras}\\
+The cameras do not capture all images syncronously and sometime take more or less than $3.5$ images per second.
+Therefore, the cameras pers side need to be syncronized. In the normal case the difference between consecutive frames should be about $0.332$~seconds, due to technical problem this value can be lower ($0.003$ ) and higher ($2.932$) at certain times. The frames of cameras 3 and 2 and cameras 1 and 0 are matched, frames without a match are discarded.
 
-\item \textbf{Discard Detections with certain IDs}\\
-All detections whos ID is in a list are keept, other detections are discarded.
+\item \textbf{Discard detections with certain IDs}\\
+All bee detections with an ID contained in a valid ID list are keept, all other detections are discarded.
 
 \item \textbf{Extract close pairs}\\
-For each side of the hive, all close pairs according to the maximum distance parameter are calculated and then joined together using a KDE-tree.
-
-\item \textbf{Combine data of to sides of the hive}\\
-Per frame the data gets combined.
+For each side of the hive, all close bee pairs according to the maximum distance parameter are calculated using an KDE-tree and then combined.
 
 \item \textbf{Generate time series of bee pairs}\\
-The data structure (frames and detection) is transformed to time series of bee pairs.
+The data structure (frames and pairs of bees) is transformed to time series of bee pairs.
 
 \item \textbf{Correct pair time series.}\\
-The time series of bees are corrected by filling in the gaps of length \texttt{gap size}.
+The time series of bees are corrected by filling in the gaps of a certain length (gap size parameter).
 
 \item \textbf{Extract interactions}\\
-The edges and its attributes (frequency and duration) are extracted from the time series of bees using the minimum contact duration parameter. A sequence of at least X ones counts as one interaction. The frequency of those series adn the total duration (number of ones) are the attributes.
-
+The edges and its attributes (frequency and duration) are extracted from the time series of bees using the minimum contact duration parameter. A sequence of ones with a length of at least minimum contact duration are evaluated as an interaction . The frequency of those series and the total duration (number of ones) are the attributes.
 \end{enumerate}
