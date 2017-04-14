@@ -16,12 +16,15 @@ I summarized the network analysis methods of the reviewed studies (chapter~\ref{
 Table~\ref{tab:study-measures} summarizes the used network analysis methods of the reviewed studies.
 The network measures I chose for the global level and node level analysis are listed in table~\ref{tab:netprop} and were defined in chapter~\ref{sec:definitions}.
 
-The degree of a bee represents the number of other bees this focal animal interacts. Bees with a high number of interaction partners, therefore, have a high degree.\\
-The strength of a bee is the total number of all its interactions. A high strength indicates that this bee has either a high number of interaction partners, with a low edge weight or interaction partners, with a high edge weight.\\
-The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A high lcc indicates that its interaction partners all interact with each other. A low lcc shows the absence of those interactions.\\
-The betweenness of a bee measure how many shortest paths go through a bee, meaning how many information flows through a bee.
-A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing this bee would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.\\
-The closeness of a bee measures how fast this bee can reach all others in the network. A high closeness indicated a very short path to every other bee. Regarding information flow, a bee with high closeness can spread information to all other bees very fast.
+The degree of a bee represents the number of other bees this focal animal interacts.
+Bees with a high number of interaction partners, therefore, have a high degree.
+The strength of a bee is the total number of all its interactions. A high strength indicates that this honeybee has either a large number of interaction partners, with a low edge weight or interaction partners, with a high edge weight.
+The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A large lcc indicates that its interaction partners all interact with each other. A low lcc shows the absence of those interactions.
+The betweenness of a bee measure how many shortest paths go through a bee, meaning how many information flows through a bee. A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing
+this bee from the hive would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.
+The closeness of a bee measures how fast this bee can reach all others in the network. A high closeness would indicate a very short path to every other bee. Regarding information flow, a bee with high closeness can spread information to all other bees
+very fast.
+I examined all node level metrics concerning the age of bees and their detection frequency. The global network properties are compared to an Erdős-Réniy random network, by averaging over 100 runs.
 
 All node level metrics are investigated in relation to the age of bees and its detection frequency.
 The global network properties are compared to an Erd\H{o}s-R\'{e}niy random network, by averaging over 100 runs.\\
@@ -33,11 +36,12 @@ The global network properties are compared to an Erd\H{o}s-R\'{e}niy random netw
 \subsection{Detecting Communities}
 \label{subsec:APcommunityDet}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO: überarbeiten]\\
-(1) check reviwed studies, (2) check comparative analysis, (3) check algos by myselfe.
-The reviewed studies only include two examples of community and cluster analysis.
-\textcite{mersch2013tracking} used the infomap~\cite{rosvall2009map,rosvall2007information} algorithm. As they explain this algorithm only works for sparse networks, it is not applicable in my case. \textcite{baracchi2014socio} use a clustering algorithm. [TODO explain and why not want to use] I want to perform community detection insted of cluster analysis. [TODO: difference?]
-There are comparative analysis of community detection algorithms, e.g.~\cite{yang2016comparative, harenberg2014community}. They seem to be promising, but assume eighter a power law degree distribution or evaluate networks with a low density, which is not applicable here.
+For finding an appropriate community detection algorithms, I checked the reviewed studies for applicable methods and scanned papers, which compare various community detection algorithms. Finally, I checked a subset of algorithms, which I identified as suitable in this context.
+
+The reviewed studies only include two examples of community respectively cluster analysis. \textcite{mersch2013tracking} used the infomap~\cite{rosvall2009map,rosvall2007information} algorithm. According to the authors, this algorithm only works with sparse networks and is therefore not applicable in my case of densely connected spatial proximity networks. \textcite{baracchi2014socio} use a hierarchical clustering to infer groups of bees within the network that are similar regarding the measures strength, eigenvector, and betweenness centrality. In contrast to the resulting groups of community detection, groups identified by hierarchical clustering do not automatically refer to dense subgraphs of the network.
+
+Much literature on the comparative analysis of community detection algorithms exist, e.g.~\cite{yang2016comparative, harenberg2014community}. Some studies seem to be promising, but assume either a power law degree distribution or
+evaluate networks with a low density, which is not applicable here.
 
 Thererfor, I tested all community detection algorithms implemented in python, to find an algorithm, which works well for my case of animal social networks. The three most common python libraries for network analysis were reviewed: NetworkX\footnote{\url{https://networkx.github.io/}; Last accessed: 16.03.2016, 6:36~p.m.}, igraph\footnote{\url{http://igraph.org/python/}; Last accessed: 16.03.2016, 6:38~p.m.}, and graph-tool\footnote{\url{https://graph-tool.skewed.de/}; Last accessed: 16:03.2016, 6:39~p.m.})
 
