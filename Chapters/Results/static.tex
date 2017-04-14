@@ -3,17 +3,23 @@
 \section{Static Perspectives of Honey Bee Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The networks are examindes on the levels.
+First of all I examine the networks' global structure and derive properties of the overall colony (global level). Second I study the characteristics of individual bees (local level), and it's relation to detection frequency and age.
+Additionally, I investigate the intermediate level of the colonies social organization by detecting communities and inspecting their practical meaning.\\
+
 I analyzed a temporal network, consisting of three time-aggregated snapshots; these are referred to below as snapshot~1~($N=922$), snapshot~2~($N=978$) and snapshot~3~($N=922$). 
-The snapshots are aggregated for ten hours (108,000 frames) starting at 8~a.m. and lasting until 6~p.m, see table~\ref{tab:networks} for details about the added bees per day and figure~\ref{fig:ages} for the age distributions. Figure~\ref{fig:network-matching} shows the proportion of intersecting bees between each snapshot. This figure illustrates the stability of the network concerning its size. 
+The snapshots are aggregated for ten hours (108,000 frames) starting at 8~a.m. and lasting until 6~p.m, see table~\ref{tab:networks} for details about the added bees per day. Figure~\ref{fig:network-matching} shows the proportion of intersecting bees between consecutive snapshot. This figure illustrates the stability of the network concerning its size. 
 
 \input{Tables/res-networks.tex}
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/network_matching}
-	\caption[Number of bees per snapshot]{\textbf{Number of bees per snapshot} This figure show the amount of bees for each snapshot and the proportion of intersecting.}
+	\caption[Number of bees per snapshot]{\textbf{Number of bees per snapshot} [TODO: bessere Beschreibung]This figure shows the amount of bees for each snapshot and the proportion of intersecting.}
 	\label{fig:network-matching}
 \end{figure}
+
+
 
 \input{Chapters/Results/static-colony.tex}
 \input{Chapters/Results/static-bees.tex}
