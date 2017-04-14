@@ -3,31 +3,31 @@
 \section{Methods for Analyzing Spatial Proximity Networks}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO überarbeiten]\\
-This section explains the what measures I used to investigate the properties of my temporal networks and justifies my choice. Also I explain how I chose a community detection algorithm and which one I picked. Explains method to examine age and spatial segregation of communities and how I study the development of communities.
+This section outlines the methods I used to investigate the networks on a global, intermediate and local level.
+It justifies the choice of network measures for the global analysis of the colony.
+Also, I report the decision for a community detection algorithm and the method to examine age and spatial segregation of communities.
+Furthermore, I explain what approach I used to study the development of communities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Investigating the Topology and Network Characteristics}
 \label{subsec:APmeasures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-[TODO: überarbeiten]\\
-Table~\ref{tab:studies-measures} (or figure~\ref{fig:study-measures} summarized the used network analysis methods in the reviewed studies mentioned in chapter~\ref{ch:relatedwork}. The table includes global level measures, node level measures and other network analysis methods the authors used in their studies.
-I chose the measures for my own analysis, because of XY.
-[TODO: do I need to explain, why I used this and not that?]
-Therefore, I am going to analyse the global network properties and local node level properties listed in table~\ref{tab:netprop}.
-The node level metrics are investigated also in relation to the bees age.
-The global network properties are compared to an Erd\H{o}s-R\'{e}niy random network, by averaging over 100 runs [TODO cite?].\\
+I summarized the network analysis methods of the reviewed studies (chapter~\ref{ch:relatedwork}) to gain an overview of established procedures in the field of social insect networks. I grouped the methods by global level measures, node level measures and other network analysis methods.
+Table~\ref{tab:study-measures} summarizes the used network analysis methods of the reviewed studies.
+The network measures I chose for the global level and node level analysis are listed in table~\ref{tab:netprop} and were defined in chapter~\ref{sec:definitions}.
 
-The degree $k$ of a bee represents the number of other bees this focal animal interacts.
-Bees with a high number of interaction partners, therefore, have a high degree. Bees with a low number of interaction partners consequently a low degree.\\
-The strength $s$ of a bee is the total number of all its interactions. A high strength indicates that this bee has either a high number of interaction partners (with a low interaction frequency, low edge weight) or interaction partners, with a high interaction frequency (high edge weight).\\
-The local clustering coefficient (lcc) $c$ of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A high lcc indicates that its interaction partners all interact with each other. A low lcc shows the absence of those interactions.
+The degree of a bee represents the number of other bees this focal animal interacts. Bees with a high number of interaction partners, therefore, have a high degree.\\
+The strength of a bee is the total number of all its interactions. A high strength indicates that this bee has either a high number of interaction partners, with a low edge weight or interaction partners, with a high edge weight.\\
+The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A high lcc indicates that its interaction partners all interact with each other. A low lcc shows the absence of those interactions.\\
+The betweenness of a bee measure how many shortest paths go through a bee, meaning how many information flows through a bee.
+A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing this bee would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.\\
+The closeness of a bee measures how fast this bee can reach all others in the network. A high closeness indicated a very short path to every other bee. Regarding information flow, a bee with high closeness can spread information to all other bees very fast.
 
-The betweenness of a bee measure how many shortest paths go through a bee, meaning how many information would flow through a bee or how many foods is transferred. A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing this bee would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.
-
-The closeness of a bee measures how fast it can reach all others in the network. A high closeness indicated a very short path to every other bee. A low closeness consequently a long path to all other bees. Regarding information flow, a bee with high closeness can spread information to all other bees very fast.
+All node level metrics are investigated in relation to the age of bees and its detection frequency.
+The global network properties are compared to an Erd\H{o}s-R\'{e}niy random network, by averaging over 100 runs.\\
 
 \input{Tables/approach-netproperties.tex}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Detecting Communities}
