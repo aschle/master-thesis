@@ -4,36 +4,32 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 This section outlines the methods I used to investigate the networks on a global, intermediate and local level.
-It justifies the choice of network measures for the global analysis of the colony.
-Also, I report the decision for a community detection algorithm and the method to examine age and spatial segregation of communities.
+It explains the choice of network measures used for the global analysis.
+Also, I report the decision for a community detection algorithm and illustrate the methods to examine the segregation of communities concerning age and spatial distribution.
 Furthermore, I explain what approach I used to study the development of communities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Investigating the Topology and Network Characteristics}
 \label{subsec:APmeasures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-I summarized the network analysis methods of the reviewed studies (chapter~\ref{ch:relatedwork}) to gain an overview of established procedures in the field of social insect networks. I grouped the methods by global level measures, node level measures and other network analysis methods.
+I summarized the network analysis methods of the reviewed studies (chapter~\ref{ch:relatedwork}) to gain an overview of established procedures in the field of social insect networks. I grouped the methods by global measures, node level measures and other network analysis methods.
 Table~\ref{tab:study-measures} summarizes the used network analysis methods of the reviewed studies.
-The network measures I chose for the global level and node level analysis are listed in table~\ref{tab:netprop} and were defined in chapter~\ref{sec:definitions}.
+The network measures I chose for the global and node level analysis are listed in table~\ref{tab:netprop} and were defined in chapter~\ref{sec:definitions}.
 
 The degree of a bee represents the number of other bees this focal animal interacts.
-Bees with a high number of interaction partners, therefore, have a high degree.
-This measure was chosen because it reveals a lot about the general topology of a network.\\
-The strength of a bee is the sum of all its edge weights. A high strength refers either to a large number of interaction partners with a low edge weight or a low number of interaction partners with high edge weights. Especially for aggregated networks this measure accumulates valuable information regarding the interaction activity of bees.\\
+Bees with a high number of interaction partners, have a high degree.
+This measure was chosen because it reveals a lot about the general topology of a network.
+The strength of a bee is the sum of its edge weights. A high strength refers either to a large number of interaction partners with a low edge weight or a low number of interaction partners with high edge weights. Especially for aggregated networks this measure accumulates valuable information regarding the interaction activity of bees.
 The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A large lcc shows that most of its interaction partners interact with each other. A low lcc indicates the absence of those interactions.
-It is a good indicator for the embeddedness of single bees.\\
+It is a good indicator for the embeddedness of single bees.
 
-The betweenness of a bee measure how many shortest paths go through a bee, meaning how many information flows through a bee. A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing this bee from the hive would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.\\
-The closeness of a bee measures how fast this bee can reach all others in the network. A high closeness would indicate a very short path to every other bee. Regarding information flow, a bee with high closeness can spread information to all other bees very fast.\\
+The betweenness of a bee measures, how many shortest paths go through that bee. A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing this bee from the hive would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.
+The closeness of a bee measures how fast this bee can reach all others in the network. A high closeness would indicate a very short path to every other bee. Regarding information flow, a bee with high closeness can spread e.g. information to all other bees very fast.
 I selected these centrality measures exemplarily.
 
-I examined all node level metrics concerning the age of bees and their detection frequency. The global network properties are compared to an Erdős-Réniy random network, by averaging over 100 runs.
-
-All node level metrics are investigated in relation to the age of bees and its detection frequency.
-The global network properties are compared to an Erd\H{o}s-R\'{e}niy random network, by averaging over 100 runs.\\
+I examined all node level metrics concerning the age of bees and their detection frequency. The global network properties are compared to an Erd\H{o}s-R\'{e}niy  random network, by averaging over 100 runs.
 
 \input{Tables/approach-netproperties.tex}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Detecting Communities}
@@ -54,14 +50,14 @@ The algorithm needs to fulfill the following criterias:
 \item Fast runtime
 \end{itemize}
 
-Table~\ref{tab:algos} gives an overview about the twelve algorithms reviewed. Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations. Infomap and label propagation tend to partition all nodes into a single community, this is known especially in dense graphs~\cite{yang2016comparative, fortunato2010community}.
+Table~\ref{tab:algos} gives an overview about the algorithms reviewed. Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations. Infomap and label propagation tend to partition all nodes into a single community, this is known especially in dense graphs~\cite{yang2016comparative, fortunato2010community}.
 The Louvain algorithm~\footnote{Implemented in python for networkX: \url{http://perso.crans.org/aynaud/communities/api.html}} (networkX) is the same as multilevel (iGraph), but takes longer producing almost the same communities and therefore was also excluded. Walktrap was tested for different step size parameters, as suggested in~\cite{pons2005computing}, the communities remained almost the same, only a few nodes switched communities.
 
 I examined the number and size of detected communities for the algorithms fastgreedy, leading eigenvector, multilevel, and walktrap for all three snapshots. Table~\ref{tab:algos4} gives an overview about the results.
 All algorithms found at least two communities.
 Except for leading eigenvector, most tend to find three communities.
 
-I decided to use two algorithms for community detection: leading eigenvector and walktrap. \textcite{farine2015constructing} explains that leading eigenvector is often used with animal social networks and works well. Walktrap is chosen for also examining the possible third community.
+I decided to use two algorithms for community detection: leading eigenvector and walktrap. \textcite{farine2015constructing} explains that leading eigenvector is often used with animal social networks and works well. Walktrap is chosen for also examining the third community.
 
 \input{Tables/algos.tex}
 \input{Tables/algos4.tex}
