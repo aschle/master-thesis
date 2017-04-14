@@ -51,6 +51,7 @@ Hence, the maximum number of present bees in the hive is about $1,600$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{table}[!t]
+\small
 \colorbox{usethiscolorhere}{
 \centering
 \begin{tabularx}{\textwidth}{@{} r Y @{}}
@@ -101,12 +102,12 @@ The data can be accessed by iterating on the frame level, using a start and end 
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{Figures/detectionsWrongConf}
         \caption[Detections]{\textbf{Detections}}
         \label{fig:detections}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \end{subfigure}%
+    \begin{subfigure}[b]{0.5\textwidth}
         \includegraphics[width=\textwidth]{Figures/idsWrongConf}
         \caption[IDs]{\textbf{IDs}}
         \label{fig:ids}
@@ -143,7 +144,7 @@ Therefore, to obtain a more reliable dataset, invalid detections need to be filt
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/filter}
-	\caption[Detection frequency of IDs]{\textbf{Detection frequency of IDs} [TODO: add legend] \emph{Orange} coressponds to bees with a negative age and \emph{green} displays bees with a positive age.\protect\footnotemark}
+	\caption[Detection frequency of IDs]{\textbf{Detection frequency of IDs}\emph{Orange} coressponds to bees with a negative age and \emph{green} displays bees with a positive age.\protect\footnotemark The \emph{gray} line represents the 99th percentile of bees with a negative age.}
 	\label{fig:filter}
 \end{figure}
 \footnotetext{Data set: 20.08.2016, 24 hours, number of total frames: 302400}
