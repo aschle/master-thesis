@@ -3,20 +3,18 @@
 \label{subsec:colony}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Each snapshot consists of one component.
-The density $D$ is over 50\% for all snapshots (69\%; 54\%; 61\%).
-The diameter $\langle d_{\texttt{max}} \rangle$ is $3$ and the average shortest path length $\langle d \rangle$ is inbetween $1$ and $2$.
-The global clustering coefficient $C_\Delta$ of all snapshots is higher than compared to an Erd\H{o}s-R\'{e}niy random graph, averaged over 100 runs using the same number of nodes and edges.
-On average, each bee is connected to at least 50\% of the colony (68\%; 52\%; 61\%). During the ten hour observation peroid a bee interacts on average over $4,000$ times ($5,680$; $3,978$; $4,206$)
+The density $D$ is over 50\% for all snapshots (69\%; 54\%; 61\%). The diameter $\langle d_{\texttt{max}} \rangle$ $3$ and the average shortest path $\langle d \rangle$ length between $1$ and $2$. The global clustering coefficient (gcc) $C_\Delta$ of all snapshots is higher than compared to an Erd\H{o}s-R\'{e}niy random graph, averaged over 100 runs using the same number of nodes and edges. On average, each bee is connected to at least 50\% of the colony (68\%; 52\%; 61\%). During the ten-hour observation period, a bee interacts on average over $4,000$ times ($5,680$; $3,978$; $4,206$).
 Table~\ref{tab:stats} summarizes those basic network properties for each snapshot and lists the values of its corresponding random graph.
 
+For further analysis, I select snapshot~3 because no young bees were added to the colony during that day and unlike snapshop~1 bees below the age of five days were part of the colony (Figure~\ref{fig:agesAll}).
+Figure~\ref{fig:n3ageDist} shows the age distribution of the further investigated snapshot 3. This distribution corresponds to the artificial tagging of the bees. Consequently, bees of certain age groups are simply not present. The detection frequency of an individual bee is negatively correlated with its age (Figure~\ref{fig:n3detfVSage}).
 
-Figure~\ref{fig:n3ageDist} shows the age distribution of the further investigated snapshot 3. This distribution corresponds to the artificial tagging of the bees. Consequently, bees of certain age groups are simply not present. The detection frequency of an individual bee is negatively correlated with its age (figure~\ref{fig:n3detfVSage}).
 
-\input{Tables/res-stats.tex}
-
-The edge weight distribution is shown in figure~\ref{fig:edgeWdist}.
+The edge weight distribution is shown in Figure~\ref{fig:edgeWdist}.
 Most edges have a low weight; only a few edges have a high weight.
 It seems that bees do not prefer individuals bees for interaction.[TODO. figure out what it means.]
+
+\input{Tables/res-stats.tex}
 
 \begin{figure}[bp]
 	\centering
@@ -38,6 +36,6 @@ It seems that bees do not prefer individuals bees for interaction.[TODO. figure 
 	\caption[Edge weight distribution]{Edge weight distribution}
 	\label{fig:edgeWdist}
 	\end{subfigure}
-	\caption[Age distribution, correlation with detection frequency and edge weight distribution of snapshot~3]{\textbf{Age distribution, correlation with detection frequency and edge weight distribution of snapshot~3} (a) Detection frequency and the age of a bee seem to be negatively correlated. (b) The age of bees ranges from one to 60 day, but some age groups are missing. (c) The edge weight distribution decays exponentially.}
+	\caption[Age distribution, correlation with detection frequency and edge weight distribution of snapshot~3]{\textbf{Age distribution, correlation with detection frequency and edge weight distribution of snapshot~3} (a) Detection frequency and the age of a honeybee seem to be negatively correlated. (b) The age of bees ranges from $1$ to $60$ day, but some age groups are missing. (c) The edge weight distribution decays exponentially.}
 	\label{fig:ageDetF}
 \end{figure}

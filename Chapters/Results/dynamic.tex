@@ -1,22 +1,22 @@
 \section{Temporal Perspectives of Honey Bee Networks}
-I investigate the stability of local and global properties, as well as the stability of functional groups of bees concerning age and spatial distribution. Furthermore, the dynamics of individual bees regarding their group membership over time is examined.
+I investigate the stability of local and global properties, as well as the stability of functional groups of bees concerning age and spatial distribution. Furthermore, the dynamics of individual bees regarding their group membership over time is examined.\\
 
-For all three snapshots, the same exponentially decay regarding the edge weights can be seen in figure~\ref{fig:statEdgeWeightDist}.
+For all three snapshots, the same exponential decay regarding the edge weights can be seen in Figure~\ref{fig:statEdgeWeightDist}.
 The analysis of snapshot~1 and 2 showed that the same characteristic distribution of degree, strength, lcc, betweenness, and closeness for snapshot~1~\ref{fig:n1-degreeStrLCC} and snapshot~2~\ref{fig:n2-degreeStrLCC} exists. They also follow a normal distribution. The correlation between the local measure and detection frequency and age remains.
-This shows that the characteristics described in section~\ref{subsubsec:bees} applies for all three snapshots and is, therefore, stable for this investigated time interval. A low hierarchical structure and the correlation with age and detection frequency seem to be a global property of the colony.
+All of this shows that the characteristics described in section~\ref{subsubsec:bees} apply for all three snapshots and are therefore stable for the investigated time interval. A low hierarchical structure and the correlation with age and detection frequency seem to be global properties of the colony.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Stability of Functional Groups}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Table~\ref{tab:communities} lists the exact number of bees per community for each algorithm and snapshot.
-For each snapshot, the leading eigenvector detected two communities with about the same number of bees.
+For each snapshot, LE detected two communities with about the same number of bees.
 The first communities CY(1,2,3) contain the queen and on average younger bees than the second communities CO(1,2,3).\\
-In comparison, walktrap identified three communities, but two for the first snapshot.
+In comparison, WT identified three communities, but two for the first snapshot.
 Again the first communities CY(1,2,3) consist of the queen and on average younger bees than the second CM(2,3) and third communities CO(1,2,3).
 The bees in CM2 and CM3 are on average younger than the bees in CO2 and CO3.
 Figure~\ref{fig:ageDistribution} depicts the age distribution for each community and snapshot.
 
-A two-sample Kolmogorov–Smirnov test showed that the age distributions are significantly different ($p< 0.001$) for both algorithms. However, the $p$-values for the walktrap communities CM2, CO2, and CM3, CO3 are lower.
+A two-sample Kolmogorov–Smirnov test showed that the age distributions are significantly different ($p< 0.001$) for both algorithms. However, the $p$-values for the WT communities CM2, CO2, and CM3, CO3 are lower.
 The spatial segregation of the communities is very similar in all three snapshots. For further reference see the heat maps in~\ref{fig:communitiesPerNetworkWT} and~\ref{fig:communitiesPerNetworkLE}.
 The detected communities seem to differ in their respective age and occupy different areas of the comb, but remain stable over this inpected time interval.
 
@@ -26,29 +26,30 @@ The detected communities seem to differ in their respective age and occupy diffe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Dynamic of Individual Bees}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Figure~\ref{fig:membersLE} (LE) and figure~\ref{fig:membersWT} (WT) show the flow of bees between consecutive snapshots and communities.
-For leading eigenvector communities, the majority of bees stay in their age group, and a small fraction of bees switches to older communities.
+Figure~\ref{fig:membersLE}~(LE) and figure~\ref{fig:membersWT}~(WT) show the flow of bees between consecutive snapshots and communities.
+For LE-communities, the majority of bees stay in their age group, and a small fraction of bees switches to older communities.
 Only a few bees change to younger communities.
-The new middle-aged communities CM2 and CM3, detected by walktrap, consist partly of young (CY1) and old (CO1) bees. The switching behavior of individuals between communities is similar to leading eigenvector.
+
+The new middle-aged communities~(CM2) of WT is formed equally by members of the young (CY1) and old (CO1) communities. The switching behavior of individuals between communities is similar to LE.
 Individual bees change communities as they age.
 
 \begin{figure}[htb]
 	\centering
-	\begin{subfigure}[b]{0.49\textwidth}
+	\begin{subfigure}[b]{1\textwidth}
 	\centering
-	\includegraphics[width=0.95\textwidth]{Figures/LE_matching}
+	\includegraphics[width=1\textwidth]{Figures/LE_matching.pdf}
 	\caption[Leading eigenvector communities]{Leading eigenvector communities}
 	\label{fig:membersLE}
-	\vspace*{5mm}
+	\vspace*{10mm}
 	\end{subfigure} 
-	\begin{subfigure}[b]{0.49\textwidth}
+	\begin{subfigure}[b]{1\textwidth}
 	\centering
-	\includegraphics[width=0.95\textwidth]{Figures/WT_matching}
+	\includegraphics[width=1\textwidth]{Figures/WT_matching.pdf}
 	\caption[Walktrap communities]{Walktrap communities}
 	\label{fig:membersWT}
 	\vspace*{5mm}
 	\end{subfigure}
 	\caption[Dynamics of bees]{\textbf{Dynamics of bees} 
-	Each column represents a time step, the colored rectangles represent the communities for each step, and the height of the rectangles corresponds to the number of its community members, as referenced by the number. \emph{Green} indicates the community containing young bees and the queen, \emph{gray} represents the community containing middle-aged bees (only for WT), and \emph{orange} the community containing old bees. This figure shows that the major part of the bees either stays in the same aged community or switch to an older group.}
+	Each column represents a time step, the colored rectangles represent the communities for each step, and the height of the rectangles corresponds to the number of its community members, as referenced by the number. \emph{Green} indicates the community containing young bees and the queen, \emph{gray} represents the community containing middle-aged bees (only for WT), and \emph{orange} the community containing old bees. This figure shows that the major part of the bees either stays in the same aged community or switch to an older group. The \emph{light gray} boxes represent the number of bees that are added to the colony and bees that disappear.}
 	\label{fig:members}
 \end{figure}
