@@ -28,7 +28,9 @@ Reduce the amount of data to obtain a reliable data set, by filtering out detect
 This step consist of the time synchronization of each of the two cameras and the joining of the data per frame.
 \end{enumerate}
 
-A tradeoff between the remaining amount of data that can be used for network inference and the data's quality had to be found. A high confidence value reduces the amount of data and produces gaps, whereas the gap size parameter tries to fix this problem. 
+A tradeoff exists between the remaining amount of data that can be used for network inference and the data's.
+A high confidence value reduces the amount of data and produces gaps.
+The gap size parameter tries to fix this problem. 
 
 It is also possible to infer time-aggregated networks, but with restrictions.
-When limiting the window size for network aggregation to the biological rhythms of day and night\footnote{Any other window size entails the inclusion of the duration of biological processes related to honey bees, I would need to know beforehand. Alternatively, I would need to apply a method to infer an appropriate window size out of the given data, this it out of scope.}, then due to a large number of interruptions, only a small amount of useful analysis days remain.
+When limiting the window size for network aggregation to the biological rhythms of day and night\footnote{Any other window size entails the inclusion of the duration of biological processes related to honey bees, I would need to know beforehand. Alternatively, I would need to apply a method to infer an appropriate window size out of the given data, this it out of scope.}, only a small amount of useful analysis days remain due to a large number of interruptions.
