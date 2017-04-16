@@ -8,13 +8,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The dataset derives from high-resolution video files that capture tagged honey bees of one colony in a single frame observation hive.
+The dataset is derived from high-resolution video files that capture tagged honey bees of one colony in a single frame observation hive.
 The bees are uniquely tagged with circular 12-bit markers (figure~\ref{fig:markers}, section~\ref{ch:intro}).
-Two cameras per side filmed the complete honeycomb permanently.
+Two cameras per side filmed the complete honeycomb.
 Figure~\ref{fig:obssetup} illustrates the camera setup.
-The \emph{recording period} lasted nine weeks (63 days), from 19.07.2016 until 19.09.2016, with some interruptions due to maintenance work and technical failures. An overview about the complete recording period is given in figure~\ref{fig:observation-period} in appendix~\ref{ch:appendix}.
+The \emph{recording period} lasted nine weeks (63 days), from 19.07.2016 until 19.09.2016, with some interruptions due to maintenance work and technical failures.
+An overview about the complete recording period is given in Figure~\ref{fig:observation-period} in Appendix~\ref{ch:appendix}.
 
-All four cameras, each with a resolution of $4000\times3000$ pixel, record $3.5$ frames per second. 
+All four cameras, each with a resolution of $4000\times3000$ pixel, recorded $3.5$ frames per second. 
 An image analysis pipeline~\cite{wario2015automatic} detects all bees in each frame.
 The resulting detection data is stored in a binary file format.
 A python library\footnote{The library is called \texttt{bb-binary} and is created by the Biorobotics Lab. It can be found on GitHub: \url{https://github.com/BioroboticsLab/bb_binary}; Last accessed: 2106-02-16, 04:28PM} provides a frame-level access to those binary files.
@@ -27,10 +28,12 @@ The size of the dataset is $470$~GB, about $7.5$~GB of binary data per day.
  	\label{fig:obssetup}
 \end{figure}
 
-The 67 days long \emph{tagging period} started on 28.06.2016 and lasted until 02.09.2016, resulting in $3.191$ tagged bees. The young bees, which were raised in a separate incubator, were tagged and then added to the observation hive, about noon each day.
-Figure~\ref{fig:tagging-period} (Appendix~\ref{ch:appendix}) shows the frequency of tagged bees per day. The hatching day for each bee is documented; therefore the age of each bee at a particular point in time can be calculated.
+The 67 day \emph{tagging period} began on 28.06.2016 and lasted until 02.09.2016, resulting in $3.191$ tagged bees.
+The young bees, which were raised in a separate incubator, were tagged and then added to the observation hive at noon each day.
+Figure~\ref{fig:tagging-period} shows the frequency of tagged bees per day.
+The hatching day for each bee is documented and therefore the age of each bee at a particular point in time can be calculated.
 The life expectancy of a honey bee during summer ranges from 30 to 60 days, according to \textcite[p. 27]{menzel2016intelligenz}
-Hence, the maximum number of present bees in the hive is about $1,600$.
+The maximum number of present bees in the hive is about $1,600$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,6 +44,8 @@ Hence, the maximum number of present bees in the hive is about $1,600$.
 
 \begin{table}[!t]
 \small
+\caption[X]{\textbf{XXX} XXX [TODO: good title and ref in text]}
+\label{tab:dataset}
 \colorbox{usethiscolorhere}{
 \centering
 \begin{tabularx}{\textwidth}{@{} r Y @{}}
@@ -62,19 +67,20 @@ Hence, the maximum number of present bees in the hive is about $1,600$.
 }
 \end{table}
 
-The data is organized in so-called \emph{frame containers}.
-Each frame container corresponds to one video file of a certain camera and consists of about $1024$ frames.
-Each \emph{frame} holds a list of bees, which were detected by the image analysis pipeline.
+The data is organized in \emph{frame containers}.
+Each frame container corresponds to one video file from a particular camera and contains aproximately $1024$ frames.
+Each \emph{frame} contains a list of bees, which were detected by the image analysis pipeline.
 
-A bee \emph{detection} has, among others, the following attributes:
+A bee \emph{detection} includes following attributes:
 
 \begin{table}[!h]
+\small
 \centering
 \begin{tabular}{rl}
-\textbf{xpos}: & $x$ coordinate of bee with respect to the image in pixel \\
-\textbf{ypos}: & $y$ coordinate of bee with respect to the image in pixel \\
-\textbf{decoded ID}: & decoded 12-bit ID \\
-\textbf{cam ID}: & ID of the camera ${0,1,2,3}$ \\
+\textbf{xpos}: & $x$ coordinate of bee with respect to the image in pixel \vspace{2mm}\\
+\textbf{ypos}: & $y$ coordinate of bee with respect to the image in pixel \vspace{2mm}\\
+\textbf{decoded ID}: & decoded 12-bit ID \vspace{2mm}\\
+\textbf{cam ID}: & ID of the camera ${0,1,2,3}$ \vspace{2mm}\\
 \textbf{timestamp}: & unix timestamp with milliseconds\\
 \end{tabular}
 \end{table}
@@ -108,21 +114,23 @@ The data can be accessed by iterating on the frame level, using a start and end 
 \footnotetext{Data set: 26.07.2016, 4~p.~m., 10~minutes, all cameras}
 
 Twelve bits can encode the identity of 4096 bees.
-Each bit of the decoded ID is not a one or zero but represents a probability between $0$ and $255$, normalized to a value between $0$ and $1$.
+Each bit of the decoded ID represents a probability between $0$ and $255$, normalized to a value between $0$ and $1$.
 Therefore, a bit indicates the confidence of the image analysis pipeline for that specific bit.
-I define the confidence $c$ for a bit $b$, analogously to Leon~\textcite[p.~14]{leon2016}, as $c(b)=2\cdot|b-0.5|$.
+I define the confidence $c$ for a bit $b$, analogously to Leon~\textcite[p.~14]{leon2016}, as $$c(b)=2\cdot|b-0.5|$$
 The confidence of a decoded ID is, accordingly, the minimum of all twelve bits' confidences.
 Detections with a confidence below a certain level are removed from the data set.
-Consequently, a high level of confidence reduces the amount of data, which remains for further processing.
+Consequently, a high level of confidence reduces the amount of data available for further processing.
 
-I use the age information of the bees to check the quality of the remaining data.
+I use the age of the bees to check the quality of the remaining data.
+If the pipeline detected a code that has not been assigned a bee will have a negative age value.
 A bee has a negative age, if the pipeline detected a code, that was not used yet.
 I examined the number of remaining bee detections and IDs, depending on the chosen confidence by calculating the age of each bee detection and ID.
-A bee detection with a negative age is counted as an \emph{invalid detection}. Also, an ID with a negative age is counted as an \emph{invalid ID}.
+A bee detection with a negative age is counted as an \emph{invalid detection} and an ID with a negative age is counted as an \emph{invalid ID}.
 
-As expected, with increasing confidence, the number of remaining detections and IDs decreases (figure~\ref{fig:remainingVSquality}), as well as the fraction of invalid detections and IDs.
-With a confidence level of 100\%, the fraction of invalid detections reaches the value of 2.5\%. However, the fraction of invalid IDs stays at the high value of 30.2\%. Consequently, selecting a high level of confidence is not sufficient for obtaining a high data quality.
-Therefore, to obtain a more reliable dataset, invalid detections need to be filtered out, in addition to choosing a good level of confidence.
+As expected, with increasing confidence levels, the number of remaining detections and IDs decreases (Figure~\ref{fig:remainingVSquality}), as does the fraction of invalid detections and IDs.
+With a confidence level of 100\%, the fraction of invalid detections reaches 2.5\%.
+However, the fraction of invalid IDs remains at the high value of 30.2\%. Consequently, selecting a high level of confidence is not sufficient.
+To obtain a more reliable dataset, invalid detections need to be filtered out.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,13 +146,15 @@ Therefore, to obtain a more reliable dataset, invalid detections need to be filt
 \end{figure}
 \footnotetext{Data set: 20.08.2016, 24 hours, number of total frames: 302400}
 
-A good indicator, whether a bee detection represents a real bee on the comb is its detection frequency.
-The hypothesis is:
-Individuals with a very low detection rate seem to be detection errors and lead to the assumption that those bees do not exist.
+A good indicator if a bee detection represents a real bee on the comb is the detection frequency of its ID.
+Individuals with a very low detection rate may be detection errors.
 To check this hypothesis, I investigate the correlation between the detection frequency of bees and their age.
-Figure~\ref{fig:filter} shows that bees with a negative age are on average less detected than bees with a positive age.
+Figure~\ref{fig:filter} shows that bees with a negative age are
+observed less often than bees with a positive age.
 
-During my analysis, I noticed the existence of bees with a high detection frequency attributed with a negative age. I inspected the corresponding photos and confirmed that those bee detections correspond to living individuals and are no artifacts. Probably this result from a mistake in the table, which reports the hatching days for each bee.
+During my analysis, I noticed the existence of a group of bees with a negative age and a high detection frequency.
+I inspected the corresponding photos and confirmed that those bee detections correspond to living individuals and are not artifacts.
+This results likely from a mistake in the reported hatching date for each bee.
 Consequently, I excluded bees from this analysis, which had a negative age, but a detection frequency over 10,000 frames. Also I excluded bees~($n=10$), whose age is unknown\footnote{id= [2,
     74,
     2045,
@@ -165,20 +175,23 @@ To obtain a reliable dataset, I filtered invalid detections, by discarding all d
 \label{subsec:tracking}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-I investigated the quality of the initial data regarding its completeness of bee tracks. A bee tracks represent the movement of an individual over time. I transformed the initial data set into binary \emph{bee time series}, depicted in figure~\ref{fig:structure} left and middle.
+I investigated the quality of the initial data regarding its completeness of bee tracks.
+A bee track represents the movement of an individual over time.
+I transformed the initial data set into binary \emph{bee time series}, depicted in Figure~\ref{fig:structure} left and middle.
 A bee time series, similar to a track, represents the absence and presence of a bee over a specified sequence of frames.
-For further processing I use the bee time series to extract \emph{pair time series} of bees that are spatially close (figure~\ref{fig:structure}, right).
+For further processing I use the bee time series to extract \emph{pair time series} of bees that are spatially close (Figure~\ref{fig:structure}, right).
 A one indicates that a pair of bees is detected and both bees are spatially close in a certain frame.
 
 
 By analyzing the resulting pair time series, I noticed that the sequences of ones are often interrupted by short sequences of zeroes.
-As stated before, the higher the level of confidence, the more data is discarded. This data reduction leads consequently to more zeroes in both time series.
+As stated before, the higher the level of confidence, the more data is discarded.
+This data reduction leads to more zeroes in both time series.
 I assume that those short gaps do not refer to any meaningful behavior of the bees. Bees are not able to approach each other and move apart within a second because they simply do not move that fast.
-Therefore I concluded, that those gaps originate from detection errors and consequently need to be treated in an appropriate way during further data processing.
+Therefore, I concluded, that those gaps originate from detection errors and consequently need to be treated in an appropriate way during further data processing.
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/structure}
 	\caption[Structure of dataset]{\textbf{Structure of dataset} \emph{Left}: original dataset - containing a sequence of frames with bee detections; \emph{Middle:} binary bee time series - zero and one indicate absence and presence of a bee; \emph{Right:} binary pairs time series - zero and one indicate the absence and presence of two bees in the same frame.}
 	\label{fig:structure}
-\end{figure}
+\end{figure}git
