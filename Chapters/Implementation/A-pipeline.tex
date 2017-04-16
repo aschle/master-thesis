@@ -17,7 +17,7 @@ The pipeline consist of the following steps:
 All detections below the chosen level of confidence are filtered out.
 
 \item \textbf{Simple stitching}\\
-For each camera positioned on the right hand side of the hive (camera 1 and 3), the $x$-coordinates of each detection is offset to the right ($2\times$maximum distance), to combine all detections per side into one coordinate system.
+For each camera positioned on the right hand side of the hive (camera 1 and 3), the $x$-coordinates of each detection is offsetted to the right ($2\times$maximum distance), to combine all detections per side into one coordinate system.
 
 \item \textbf{Syncronize cameras}\\
 The cameras do not capture all images syncronously and sometime take more or less than $3.5$ images per second.
@@ -27,7 +27,7 @@ Therefore, the cameras per side need to be syncronized. In the normal case the d
 All bee detections with an ID contained in a valid ID list are keept, all other detections are discarded.
 
 \item \textbf{Extract close pairs}\\
-For each side of the hive, all close bee pairs according to the maximum distance parameter are calculated using an KDE-tree and then combined.
+For each side of the hive, all close bee pairs according to the maximum distance parameter are calculated using an KDE-tree.
 
 \item \textbf{Generate time series of bee pairs}\\
 The data structure (frames and pairs of bees) is transformed to time series of bee pairs.

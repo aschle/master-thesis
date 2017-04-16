@@ -3,9 +3,14 @@
 \subsection{Defining the Network and its Parameters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-As this work constitues the first step towards network analysis using this tracking data I chose to infer a time-aggregated spatial proximity network.
+As this work constitutes the first step towards network analysis using this tracking data I chose to infer a time-aggregated spatial proximity network.
 Accordingly, the interactions are undirected but weighted.
-A node in the network is a bee, identified by an ID.
+Methods for analyzing static networks are widely established.
+Static tools and algorithms are already implemented and used by a large community.
+The results of the network analysis are easy to understand and interpret.
+Additionally, static networks are the precondition for applying traditional community detection algorithms. My choice also establishes the comparability with \textcite{mersch2013tracking}.
+
+Each node in the network represents a bee, identified by an ID.
 The network consists only of bees that interact with other bees at least once, during the specified time interval.
 
 Two bees are associated (spatially close to each other) if their distance is smaller than a \emph{maximum distance}.
@@ -14,7 +19,16 @@ Therefore, an additional parameter, the \emph{minimum contact duration}, is intr
 It specifies the minimum time two bees have to spend close to each other to be called associated.
 
 Edges are assigned two attributes.
-The first one is the frequency of contacts, meaning how often they share a close position. The second parameter refers to the total duration of contact, so the total time they spend nearby.
+The first one is the frequency of contacts, meaning how often they share a close position. The second parameter refers to the total duration of all contacts.
+
+% adrian
+%frequenz = irgendwas pro zeit
+%ist aber nicht wirklich so oder? 
+%vllt nennst du das dann besser 'contacts', ist aber natürlich etwas aufwending dass %üerall zu ändern....
+%zB
+%"...is the overall number of 
+%individual contacts lasting at least as long as the minimum contact duration, refered %to as \emph{contacts} ." + vllt "... and are seperated at least by the max. gap
+%length from other contacts"
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{Pipeline Parameters}
@@ -26,11 +40,11 @@ The network pipeline takes two types of parameters. The first set of parameters 
 \small
 \centering
 \begin{tabularx}{\textwidth}{@{} r Y @{}}
-\textbf{Maximum distance} & level of closeness between to individual bees~(in pixel) \vspace{2mm} \\
-\textbf{Minimum} & the number of frames two individuals need to spend close\\
+\textbf{Maximum distance} & Level of closeness between to individual bees.~(in pixel) \vspace{2mm} \\
+\textbf{Minimum} & The number of frames two individuals need to spend close.\\
 \textbf{Contact duration} &  to each other to count it as an interaction ~(in frames) \vspace{2mm} \\
-\textbf{Start timestamp} & starting point of the network aggregation~(as UTC string) \vspace{2mm} \\
-\textbf{Window size} & size of time window for aggregating the network~(in minutes) \vspace{4mm}\\
+\textbf{Start timestamp} & Starting point of the network aggregation.~(as UTC string) \vspace{2mm} \\
+\textbf{Window size} & Size of time window for aggregating the network.~(in minutes) \vspace{4mm}\\
 \end{tabularx}
 \end{table}
 
@@ -38,11 +52,11 @@ The network pipeline takes two types of parameters. The first set of parameters 
 \small
 \centering
 \begin{tabularx}{\textwidth}{@{} r Y @{}}
-\textbf{Confidence} & level of confidence, as described in section~\nameref{subsec:confidence}~(in percent) \vspace{2mm}\\
-\textbf{Valid IDs} & list of valid ids within a specified time interval, as described in section~\nameref{subsubsec:dataset:filter}~(in CSV file format) \vspace{2mm}\\
-\textbf{Gap Size} & for correcting, filling gaps in, the time series of bee pairs~(in frames) \vspace{2mm}\\
-\textbf{Number of CPUs} & number of used CPUs for parallelization \vspace{2mm}\\
-\textbf{Year} & calculate bee IDs and stitching of camera images according to the observation period~(2015 or 2016)\\
+\textbf{Confidence} & Level of confidence, as described in section~\nameref{subsec:confidence}.~(in percent) \vspace{2mm}\\
+\textbf{Valid IDs} & List of valid IDs within a specified time interval, as described in section~\nameref{subsubsec:dataset:filter}.~(in CSV file format) \vspace{2mm}\\
+\textbf{Gap Size} & Gaps in time series of bee pairs are assumed to be the result of missing detections. Gaps of this size are filled up.~(in frames)\vspace{2mm}\\
+\textbf{Number of CPUs} & Number of used CPUs for parallelization. \vspace{2mm}\\
+\textbf{Year} & Calculate bee IDs and stitching of camera images according to the observation period.~(2015 or 2016)\\
 \end{tabularx}
 \end{table}
 
@@ -60,7 +74,7 @@ I chose the length of a bee body, according to \textcite{baracchi2014socio}, as 
 The average bee length of $212$px ($\pm 16$px)  was determined by manually measuring the length of all bees ($n=337$) in images from the four cameras using the tool ImageJ\footnote{\url{http://imagej.net/Welcome}; Last accessed:
  22.02.2016}.
 The minimum contact duration is set to three frames (one second). This value corresponds to~\textcite{mersch2013tracking}, as they also exclude interactions below one second.
-The networks are aggregated for ten hours during daylight; this corresponds to the biological rhythms of bees.
+The networks are aggregated for ten hours during daylight; this corresponds to the biological rhythm of bees.
 
 The confidence level is set to $95\%$, which will keep about 60\% of the data.
 The gap size is set to two frames. This value corresponds to the median gap length in the time series of bee pairs.
