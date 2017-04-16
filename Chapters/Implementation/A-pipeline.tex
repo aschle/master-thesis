@@ -4,7 +4,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This section describes the pipeline for generating spatial proximity networks out of honey bee tracking data. The network pipeline takes as input a path to the data and a set of parameter previously described and outputs a network in graphML file format. I parallelized the pipeline is on the frame level. That means each process gets a fraction of the data and extracts interactions for a time interval of five minutes. The main process accumulates the resulting interactions and creates a final network.
+This section describes the pipeline for generating spatial proximity networks out of honey bee tracking data.
+The input for the network pipeline are the data and a set of parameters previously described.
+It outputs a network in graphML file format.
+I parallelized the pipeline on the frame level.
+That means each process gets a fraction of the data and extracts interactions for a time interval of five minutes. The main process accumulates the resulting interactions and creates a final network.
 
 The pipeline consist of the following steps:
 
@@ -13,11 +17,11 @@ The pipeline consist of the following steps:
 All detections below the chosen level of confidence are filtered out.
 
 \item \textbf{Simple stitching}\\
-For each camer positioned on the right hand side of the hive (camera 1 and 3), the $x$-coordinates of each detection is offseted to the right ($2\times \texttt{maximum distance}$), to combine all detections per side into one coordinate system.
+For each camera positioned on the right hand side of the hive (camera 1 and 3), the $x$-coordinates of each detection is offset to the right ($2\times$maximum distance), to combine all detections per side into one coordinate system.
 
 \item \textbf{Syncronize cameras}\\
 The cameras do not capture all images syncronously and sometime take more or less than $3.5$ images per second.
-Therefore, the cameras pers side need to be syncronized. In the normal case the difference between consecutive frames should be about $0.332$~seconds, due to technical problem this value can be lower ($0.003$ ) and higher ($2.932$) at certain times. The frames of cameras 3 and 2 and cameras 1 and 0 are matched, frames without a match are discarded.
+Therefore, the cameras per side need to be syncronized. In the normal case the difference between consecutive frames should be about $0.332$~seconds, due to technical problems this value can be lower ($0.003$ ) and higher ($2.932$) at certain times. The frames of cameras 3 and 2 and cameras 1 and 0 are matched, frames without a match are discarded.
 
 \item \textbf{Discard detections with certain IDs}\\
 All bee detections with an ID contained in a valid ID list are keept, all other detections are discarded.
@@ -29,13 +33,15 @@ For each side of the hive, all close bee pairs according to the maximum distance
 The data structure (frames and pairs of bees) is transformed to time series of bee pairs.
 
 \item \textbf{Correct pair time series.}\\
-The time series of bees are corrected by filling in the gaps of a certain length (gap size parameter).
+The time series of bees are corrected by filling in the gaps of less than a certain length (gap size parameter).
 
 \item \textbf{Extract interactions}\\
-The edges and its attributes (frequency and duration) are extracted from the time series of bees using the minimum contact duration parameter. A sequence of ones with a length of at least minimum contact duration are evaluated as an interaction . The frequency of those series and the total duration (number of ones) are the attributes.
+The edges and edge attributes (frequency and duration) are extracted from the time series of bees using the minimum contact duration parameter.
+A sequence of ones with a length of at least the minimum contact duration are evaluated as an interaction.
+The frequency of those series and the total duration (number of ones) are the attributes.
 \end{enumerate}
 
 
-I used python to implement the network pipeline, because the library to access the tracking data is only available in python.
+I used python to implement the network pipeline because the library to access the tracking data is only available in python.
 The data analysis is done with pandas~\footnote{\url{http://pandas.pydata.org/}} and numpy~\footnote{\url{http://www.numpy.org/}} using the web-based environment Jupyter Notebook\footnote{\url{http://jupyter.org/}}.
-The networks are saved in graphML format and are created using the python library networkX\footnote{\url{https://networkx.github.io/} Last accessed: 2017-02-17, 08:07PM}  in version 1.11. iGraph\footnote{\url{http://igraph.org/python/}} was used for community detection and for network analysis.
+The networks are saved in graphML format and are created using the python library networkX\footnote{\url{https://networkx.github.io/} Last accessed: 2017-02-17, 08:07PM} version 1.11. iGraph\footnote{\url{http://igraph.org/python/}} was used for community detection and for network analysis.
