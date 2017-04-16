@@ -1,6 +1,7 @@
 \chapter{Theoretical Background for Network Analysis of Insect Colonies}
+\label{ch:foundation}
 The following chapter gives a short introduction into social network analysis (SNA) and introduces social insect interaction networks, as a specific type of a biological network. It defines terms and concepts used throughout this work and explains the used network metrics and algorithms.
-Furthermore, I summarize the most relevant studies, that use a network analysis approach to investigate interaction networks of social insect colonies.
+Further, I summarize the most relevant studies, which use a network analysis approach to investigate interaction networks of social insect colonies.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -24,9 +25,12 @@ Edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted.
 
 
 \subsection{Temporal Networks}
-When modeling temporal or so-called dynamic networks, two main approaches exist: (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
+When modeling \emph{temporal} or so-called \emph{dynamic networks}, two main approaches exist: (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
 
-The time-aggregated approach aggregates the data for each snapshot and therefore reduces the available information per edge. In contrast, the time-ordered approach retains the information about when the interaction occurred and how long it lasted. It provides a detailed insight when timing and order of interactions are important. Moreover, therefore it can be used to model the topological flow of information through a network.
+The time-aggregated approach cumulates the data for each snapshot and reduces the available information per edge.
+In contrast, the time-ordered approach retains the information about when interactions occurred and how long they lasted.
+It provides a detailed insight when timing and order of interactions are important.
+It can be used to model the topological flow of information through a network.
 
 Choosing a suitable time interval for data aggregation is challenging~\cite{Pinter-Wollman2014}, but many methods for analyzing time-aggregated networks already exists, whereas, for time-ordered networks, only a limit toolset is available. To model nodes and edge weights in time-aggregated networks can be challenging when taking into account that interactions, which occurred earlier or later in time should be weighted accordingly.
 
@@ -132,7 +136,7 @@ In each step, the network is split into two parts, so that the modularity of the
 The splitting is done by first calculating the leading eigenvector of the modularity matrix and then splitting the graph in a way that maximizes the modularity improvement based on the leading eigenvector.
 The algorithm stops if the modularity does not further increase.
 
-The \emph{walktrap} algorithm by\textcite{pons2005computing} is based on random walks.
+The \emph{walktrap} algorithm by \textcite{pons2005computing} is based on random walks.
 The authors consider random walks as a tool to calculate the similarity between nodes of a network.
 It uses a bottom-up hierarchical approach, that means the algorithm starts with each node in a single community.
 The basic idea of walktrap is that short distance random walks (the step size is a parameter) tend to stay in the same community because there are only a few links that lead outside a given community.
