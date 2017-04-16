@@ -10,75 +10,114 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The purpose of this thesis was to investigate worker-worker interaction networks of a honey bee colony.
-To achieve this, I implemented a pipeline for the extraction of time-aggregated networks using the provided high-resolution honey bee tracking data.
-Moreover, the resulting weighted undirected spatial proximity networks of three consecutive time steps were analyzed regarding their network topology, community structures and the development of community members.
+To achieve this, I implemented a pipeline for the extraction of time-aggregated networks using high-resolution honey bee tracking data.
+The topology, community structures and development of community members were examined from the resulting weighted, undirected, spatial proximity networks of three consecutive time steps.
 
-As opposed to most real-world networks, the examined honey bee interaction networks are not scale-free. They are characterized by a non-hierarchical topology and a decentralized structure.
-The small world characteristic of those networks allows efficient communication within the bee colony.
-The detected communities within the honey bee colony, relate to age-based functional groups with a spatial fidelity towards different areas of the comb.
-There are different types of cells (e.g. brood, honey, and pollen) and honeybees occupying different areas relate to distinct tasks.
+As opposed to most real-world networks, the examined honey bee interaction networks are not scale-free.
+They are characterized by a non-hierarchical topology and a decentralized structure.
+The small-world characteristic of honey bee networks allows for efficient communication within the bee colony.
+The observed communities within the honey bee colony, are formed of age-based functional groups with a spatial fidelity towards different areas of the comb.
+There are different types of cells (e.g. brood, honey, and pollen) and honeybees occupying different areas have distinct tasks.
 
-The global network structure of the honey bee colony is stable over time, but its local structure is highly dynamic as individual bees change communities as they age.
-My results are aligned with established state of research and directly relate to the absence of a central authority and the decentralized organization of honey bee colonies shaped by temporal polyethism.
+The global network structure of the honey bee colony is stable over time, but its local structure is highly dynamic.
+Individual bees change communities as they age.
+My results align with the established state of the research: the absence of a central authority and the decentralized organization of honey bee colonies shaped by temporal polyethism.
 
 My network analysis results verify the network pipeline, my definition of spatial proximity networks and the initially chosen parameters.
-It can be stated, that the network pipeline provides an excellent foundation for further investigations.
+The network pipeline provides an excellent foundation for further investigations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Limitations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following section outlines limitations concerning the accuracy and quality of the resulting networks. Especially the restrictions, which result from the high density of the networks, are pointed out.
+The following section outlines limitations concerning the accuracy and quality of the resulting networks.
+Especially, consequences of the networks' high density are pointed out.
 
-Despite a complex preprocessing procedure, the quality of the extracted networks could be higher. Although I filtered out erroneous detections before network generation, a few number of individuals remain in the extracted networks, that should not exist according to the tagging and hatching documentation. Besides this, bees which are dying at some point during the aggregation period, are part of the network.\\
-The prefiltering of detections, as well as the synchronization of four cameras, reduces the amount of data which remains for the extraction of interactions. The gap size parameter was an attempt to compensate this shortcoming of the provided data set but does not perfectly solve the problem. I suppose that some interactions are shorter than they are in reality, which distorts the networks.
+Despite a complex preprocessing procedure, several shortcomings concerning the 
+the quality of the extracted networks still exist.
+I filtered out erroneous detections before network generation; however a few individuals remain in the extracted networks that should not exist according to the tagging and hatching documentation.
+Besides this, bees which are dying at some point during the aggregation period, are part of the network.
+This fact needs to be considered depending on the research context.
 
-Spatial proximity is an indicator for interaction but does not capture actual interactions. The definition of spatial proximity by a maximal distance and a minimum contact duration is very loose, especially on a honeycomb, where space is limited. It leads to many edges and a high density of the network resulting in high noise. This noise provokes a blurred image of real interactions between bees. My choice of aggregating the networks for ten hours fosters this noisiness, resulting in a global state of the colony, rather than capturing finer granular dynamics.
+The prefiltering of detections, as well as the synchronization of four cameras, reduces the amount of data that remains for the extraction of interactions.
+The gap size parameter was an attempt to compensate for this shortcoming of the data but does not perfectly solve the problem.
+I believe that some observed interactions are shorter than they are in reality, which distorts the networks.
 
-In this context, the network property strength is the only measure, which profits by the aggregation, all other measures are less meaningful. Due to the high density and size of the network, the methods I can apply concerning community detection are limited. The selection of an algorithm for detecting communities is restricted to algorithms finding only non-overlapping structures.
+Spatial proximity is an indicator for interaction but it does not capture actual interactions.
+The definition of spatial proximity by a maximal distance and a minimum contact duration is very loose, especially on a honeycomb with limited space.
+It leads to many edges and a high density of the network resulting in high noise.
+This noise creates a blurred image of real interactions between bees.
+My choice of aggregating the networks for ten hours fosters this noisiness, resulting in a global state of the colony, rather than capturing finer granular dynamics.
+
+In this context, the network property strength is the only measure, that profits from the aggregation.
+All other measures are less meaningful.
+Due to the high density and size of the network, the methods I can apply for community detection are limited.
+The selection of an algorithm for detecting communities is restricted to algorithms finding only non-overlapping structures.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Recommendations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-This sections list recommendations for change regarding the applied methods. I am focusing on concepts to reduce the noise within the network.
+This sections list recommendations for improving the applied methods. I am focusing on concepts to reduce the noise within the network.
 
 
 \paragraph{More Dynamic and Temporal Analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Lowering the window size of the aggregated network and investigating different granularities could allow more dynamic analysis of the networks. Instead of using time-aggregated networks, one could shift towards the use of time-ordered networks by using time-stamped interactions.
+Lowering the window size of the aggregated network and investigating different granularities could allow more dynamic analysis of the networks.
+Instead of using time-aggregated networks, one could shift towards the use of time-ordered networks by using time-stamped interactions.
+
 
 \paragraph{Focusing on Important Interactions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The space on the honeycomb is limited and crowded. For reducing the number of edges to only meaningful interactions, I see three main approaches. For the time being, it is an option to fine tune the pipeline parameters by lowering the size of the maximum distance and by raising the number of frames for minimum contact duration. Instead of keeping the definition of spatial proximity I would recommend extracting contact events (e.g. by including an angle, so bees facing each other) or trophallaxis events for defining the edges, especially when using those networks to investigating more specific biological research questions. Moreover, a simple global threshold for excluding edges below a certain value could be used.
+The space on the honeycomb is limited and crowded.
+For reducing the number of edges to only meaningful interactions, I see three main approaches.
+For the time being, it is an option to fine tune the pipeline parameters by lowering the size of the maximum distance and by raising the number of frames for minimum contact duration.
+Instead of keeping the definition of spatial proximity, I would recommend extracting contact events (e.g. by including an angle, so bees facing each other) or trophallaxis events for defining the edges, especially when using those networks to investigating more specific biological research questions.
+
 
 \paragraph{Using the Potential of Weighted Edges}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Instead of applying a global threshold to reduce the density, a network reduction algorithms could be implemented to extract the backbone structure of the network. \textcite{serrano2009extracting} propose a disparity filter algorithm which seems promising but needs further investigation.
-The disparity measure characterizes the level of local heterogeneity of edges~\cite{barthelemy2003spatial}. For all network measures utilized in this work, weighted versions exist. The already implemented weighted measures (e.g., closeness and betweenness) in iGraph and networkX favor edge weights over the number of links and simply apply Dijkstra for calculating the shortest paths. \textcite{opsahl2010node} propose weighted network measures by providing a generalized degree and shortest path algorithm. The tuning parameter, Opsahl et al. introduce, has to be chosen. This parameter defines whether to emphasize the number of links or the weights of edges and must be selected according to a predefined research question.
+A simple global threshold for excluding edges below a certain value could be used.
+Instead of applying a global threshold to reduce the density, a network reduction algorithm could be implemented to extract the backbone structure of the network.
+\textcite{serrano2009extracting} propose a disparity filter algorithm, which seems promising but needs further investigation.
+The disparity measure characterizes the level of local heterogeneity of edges~\cite{barthelemy2003spatial}.
+For all network measures utilized in this work, weighted versions exist.
+The weighted measures (e.g., closeness and betweenness) implemented in iGraph and networkX favor edge weights over the number of links and simply apply Dijkstra for calculating the shortest paths. \textcite{opsahl2010node} propose weighted network measures by providing a generalized degree and shortest path algorithm. The tuning parameter, Opsahl et al. introduce, has to be chosen. This parameter defines whether to emphasize the number of links or the weights of edges and must be selected according to a predefined research question.
+
 
 \paragraph{Normalizing by the Detection Frequency of Individuals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Depending on the topics of further research a normalization of the networks regarding the detection rate of individuals could be purposeful. I propose two options: either normalize the edge weight by e.g. applying the simple ratio index\footnote{Dividing the edge weight by the proportion of times two individuals were seen together out of the total number of times those individuals were observed.} (SRI)~\cite{formica2012fitness}; or normalize the particular node level measure by taking the detection frequency of that focal individual into account.
+Depending on the topics of further research a normalization of the networks regarding the detection rate of individuals could be useful.
+I propose two options: either normalize the edge weight by applying the simple ratio index\footnote{Dividing the edge weight by the proportion of times two individuals were seen together out of the total number of times those individuals were observed.} (SRI)~\cite{formica2012fitness} or normalize the particular node level measure by taking the detection frequency of that focal individual into account.
 
 \paragraph{Random Geometric Graph}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Instead of comparing the honeybee network to an Erd\H{o}s-R\'{e}niy graph a new model could be implemented.  At the starting point, a random geometric graph~\cite{rgg2002} can be used. In each frame, the nodes could be placed not completely randomly, preferably by modeling the behavior of a bee as a random walker. The direction of movement could be chosen randomly, but the distance of a step might be selected according to the average speed of bees.
+Instead of comparing the honeybee network to an Erd\H{o}s-R\'{e}niy graph a new model could be implemented.
+As the starting point, a random geometric graph~\cite{rgg2002} can be used.
+In each frame, the nodes could be placed not completely randomly, preferably by modeling the behavior of a bee as a random walker.
+The direction of movement could be chosen randomly, but the distance of a step might be selected according to the average speed of bees.
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Outlook}
-To fine tune the pipeline parameters for the network, one should systematically investigate the parameters effects on network properties. I already started to analyze this, but only for a few combinations of values, and for window sizes up to one hour.
-Similarly, the robustness of the detected communities regarding the pipeline parameters is worth to be studied further systematically.
-In my work, I tested the robustness just for some values, but there are more to investigate. In the case of robustness, I  focused more on different algorithms.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+To fine tune the pipeline parameters for the network, one should systematically investigate the parameters effects on network properties.
+I started to analyze this, but only for a few combinations of values and for window sizes up to one hour.
+Similarly, the robustness of the detected communities regarding the pipeline parameters is worthy of further study.
 In addition, the provided dataset facilitates the investigation of seasonal change in honey bee colonies using network analysis methods. Long-term dynamics offer a high potential for further studies. It would be interesting to compare my network analysis results of domesticated honey bees to the social networks of wild honey bees, to discover differences regarding individual behavior and global colony organization.
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Closing Remarks}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The automatic tracking of a vast number of animals over an extended observation period with a high sampling resolution leads to an enormous amount of data.
 The simultaneous observation of not only more individuals but also several colonies under distinct conditions becomes possible in an efficient way.
-The availability of this data, which is not targeted towards a specific study purpose, opens the space to investigate the data in an explorative way and to discover the unexpected.
+The availability of this data, which was not collected for a specific study, opens the space to investigate the data in an explorative way and to discover the unexpected.
 
 The prerequisites for studying non-human animal data in an explorative way that fosters the framing of a novel biological hypothesis are either a personal, profound domain knowledge or the constant support of experts of the studied species.
 Valuable information which is beneficial for data analysis and understanding the context of research is gained during the process of manual data collection by observing the animals face to face.
@@ -86,3 +125,5 @@ An automatic observation process veils this part and therefore increases the abs
 
 Applying network analysis methods to novel datasets carries the risk of either simply describing network structures or leading to the restating of well-known facts.
 Framing biological research questions that benefit from network science methods or the development of new techniques in the field of network analysis with the help of this unique dataset should be the overall goal.
+
+Nevertheless this descriptive network analysis was nessesary to gain trust in the data and to identify limitations.
