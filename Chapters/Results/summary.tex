@@ -5,65 +5,72 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 In the following chapter, I summarize and discuss my results considering the current state of research.
-This part is structured according to the research goals, listed in section~\ref{sec:intro:goals}.
+This part is structured according to the research goals, listed in Section~\ref{sec:intro:goals}.
 First I discuss the topology of the spatial proximity networks of honey bees and its characteristic properties.
-Secondly, I compare the discovered communities and their development over time with existing theories regarding temporal polyethism.
+Secondly, I compare the observed communities and their development over time with existing theories regarding temporal polyethism.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Network Topology and Properties of Honey Bee Colonies}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The investigated honey bee spatial proximity networks are characterized by a high density (69\%, 54\%, 61\%), which means the bees encounter many nestmates during the ten hours of data aggregation.
-That results either from a high activity or the fact that the comb is simply very full.
-The latter increases the probability that two bees are close to each other. 
-Comparing to the ant contact networks of \textcite{mersch2013tracking} ($D = 72\%\pm5.3$), the values are similar. In contrast to \textcite{baracchi2014socio} ($D=0.15$) the density is higher, probably due to their lower observation resolution of one frame per minute.
+The honey bee spatial proximity networks are characterized by a high density (69\%, 54\%, 61\%), which means the bees encounter many nestmates during the ten hours of data aggregation.
+That results either from high activity or the fact that the comb is simply very full.
+The latter increases the probability that two bees are close to each other.\\
+Comparing this result to the ant contact networks of Mersch~et~al.\cite{mersch2013tracking}~($D=72\%\pm5.3$), the values are similar.
+In contrast, when compared to \textcite{baracchi2014socio}~($D=0.15$) the density is higher, probably due to their lower observation resolution of one frame per minute.
 
 
-The small diameter~($d_{\texttt{max}}=3$) of my investigated networks and the low average shortest path of $1.4$ in combination with a high global clustering coefficient (0.79, 0.72, 0.75) are characteristic for a class of networks known as small-world networks.
+The small diameter~($d_{\texttt{max}}=3$) of my investigated networks and the low average shortest path of~$1.4$ in combination with a high global clustering coefficient~($0.79$, $0.72$, $0.75$) are characteristic for a class of networks known as small-world networks.
 This type of networks allows for rapid and efficient communication between individuals.
 
 
-\textcite{charbonneau2013social} state that it is assumed for many biological networks, including insect colonies, to approximate scale-free networks.
-For some of them, the scale-free property has been shown, but for social insect networks, this question remains open.
-The authors justify this by the fact that the so far investigated social insect colonies are often small and therefore the methods for the recognition of scale-free phenomena are limited.
+\textcite{charbonneau2013social} state that it is assumed that many biological networks, including insect colonies, approximate scale-free networks.
+For some of them, the scale-free property has been shown, but for social insect networks this question remains open.
+Investigated social insect colonies are often small and therefore the methods for the recognition of scale-free phenomena are limited.
 They do not specify the type of social insect networks, whether the inference of interactions is based on spatial proximity, physical contacts, or food transfer events.\\
-The size of the network I explored is large compared to present studies (section ~\ref{ch:relatedwork}). The degree distribution of the investigated spatial proximity network of honey bees does not follow a power-law:
-The absence of hubs and a non-hierarchical structure characterizes this network.
-This result corresponds to the decentralized structure of a honey bee colony, and the absence of a central authority described by \textcite{seeley1989honey}.
+The network I explored is large compared to past studies (Section ~\ref{ch:relatedwork}). The degree distribution of the investigated spatial proximity network of honey bees does not follow a power-law;
+the absence of hubs and a non-hierarchical structure characterizes this network.
+This result corresponds to the decentralized structure of a honey bee colony, and the absence of a central authority described by Seeley~\cite{seeley1989honey}.
 
 
-I noticed bimodal degree, strength, closeness and betweenness distributions and a right skewed lcc distribution, corresponding mainly to bees older than 45 days.
-While inspecting this group of bees, I found out that this group has a very low detection rate and is not part of any other following snapshot. Probably this group of bees dies during that day. Bees who are present in the hive earlier that day and are then absent for the rest of the day have very low network measure values. The total number of old bees is relatively small compared to other age groups. Consequently, low network measure values strongly affect the mean of that old group and should be excluded in future studies.
+I noticed bimodal degree, strength, closeness and betweenness distributions and a right skewed lcc distribution, corresponding mainly to bees older than~45~days.
+While inspecting this group of bees, I found that this group has a very low detection rate and is not part of any other following snapshot.
+Probably this group of bees dies during that day.
+Bees who are present in the hive earlier that day and are then absent for the rest of the day have very low network measure values.
+The total number of old bees is relatively small compared to other age groups.
+Consequently, low network measure values strongly affect the mean of that old group and should be excluded in future studies.
 
 
-Generally, I observed a correlation between the detection frequency of a bee, its age, and its corresponding network measure value. Older bees are detected less often than younger bees and therefore differ regarding their network measures.
-The age-based task division of bees in a colony observed by \textcite{seeley1989social} might be an explanation; namely, old bees are foragers, the middle-aged bees relate to several tasks inside the hive but mainly they store resources, and young bees are primarily nursing.
-\textcite{baracchi2014socio} also assumed that the time which bees spend outside the hive, probably affects their connectedness within the interaction network and.
+Generally, I observed a correlation between the detection frequency of a bee, its age, and its corresponding network measure value.
+Older bees are detected less often than younger bees and therefore differ in their network measures.
+The age-based task division of bees in a colony observed by \textcite{seeley1989social} might be an explanation; namely, old bees are foragers, the middle-aged bees conduct several tasks inside the hive but mainly they store resources, and young bees are primarily nursing.
+\textcite{baracchi2014socio} also assumed that the time which bees spend outside the hive probably affects their connectedness within the interaction network.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Characterization of Functional Groups and its Dynamics}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-According to the definition of communities in section~\ref{subsec:bg:communities}, I found two to three communities, depending on the used algorithm.
+According to the definition of communities in Section~\ref{subsec:bg:communities}, I found two to three communities, depending on the algorithm applied.
 
-The algorithms (LE and WT) detected communities, despite a high density and without thresholding edges of low values, as opposed to~\textcite{mersch2013tracking}.
-They reduced the network's density artificially to 25\% to apply the infomap algorithm.
+The algorithms (LE and WT) detected communities, despite a high network density and without thresholding edges of low values, as opposed to~\textcite{mersch2013tracking}.
+The authors reduced the network's density artificially to 25\% to apply the infomap algorithm.
 
-I also studied the spatial fidelity of the revealed communities and their age composition, similar to \textcite{baracchi2014socio}. I found out that bees that are on average younger are located close to the brood (upper center of the comb); bees that are on average older are situated closer to the hive exit, and the on average middle-aged bees are placed between the two groups and around the brood, where the cells for honey storage are positioned.
+I also examined the spatial fidelity of the revealed communities and their age composition, similar to \textcite{baracchi2014socio}.
+I found that younger bees are located close to the brood (upper center of the comb); older bees are situated closer to the hive exit, and middle-aged bees are placed between the two groups and around the brood, where the cells for honey storage are located.
 
-I inspected three snapshots over a period of five days and found out that the detected communities are stable over time. Age-division and spatial fidelity can be observed in all the snapshot.
+I inspected three snapshots over a period of five days and found that the detected communities are stable over time.
+Age-division and spatial fidelity can be observed in all the snapshots.
 Bees from younger communities move to older communities as they age. Only a few bees changed from older to younger communities.
 
-It is surprising that my results align with \textcite{baracchi2014socio}, because they did not use a community detection algorithm. The authors conducted a hierarchical clustering based on the network measures strength, eigenvector and betweenness centrality of individual bees. Moreover, their colony contained bees of three predetermined age cohorts, instead of representing all age groups ranging from 0 to 60 days, as in my study.
+It is surprising that my results align with \textcite{baracchi2014socio}, because they did not use a community detection algorithm.
+The authors conducted a hierarchical clustering based on the network measures strength, eigenvector and betweenness centrality of individual bees.
+Moreover, their colony contained bees of three predetermined age cohorts, instead of representing all age groups ranging from 0 to 60 days, as in my study.
 
-[start - TODO: put into related work part]\\
-Generally, the theory that bees change tasks over the course of their lifetime, starting as nurses in the nest and ending as foragers outside, termed as temporal polyethism,  is widely accepted and has been studied for a long time~\cite{seeley1982adaptive, johnson2008within, lindauer1952beitrag}.
-\textcite{johnson2008within} observed two groups of within-nest bees: young bees responsible for the brood care and middle-aged bees specialized on nectar processing and nest maintenance. Instead, \textcite{seeley1982adaptive} distincts four age subcastes among worker bees besides the queen cast: cell cleaning, brood nest, food storage, forager. \textcite{lindauer1952beitrag} defined certain tasks a bee can perform at any given age. Also, a bee can perform several different tasks per day. The bee is flexible and responds to the given needs of the hive. Young bees mostly clean cells and old bees mainly forage, instead middle-aged bees perform several tasks.
-[end - TODO: put into related work part]\\
-
-The communities I detected relate to the groups of bees formed by temporal polyethism. The old bees are positioned closer to the hive exit, probably relate to the group of foragers, the middle-aged group spatially close to the storage cells relate to food storage bees and the group of young bees relate to the cell cleaning and brood care because they are located close to the brood. My findings are very close to the ones of \textcite{baracchi2014socio}.
+The communities I detected are similar to the groups of bees formed by temporal polyethism.
+The old bees positioned closer to the hive exit may be the foragers, the middle-aged group spatially close to the storage cells may be the food storage bees and the group of young bees  may be the cell cleaning and brood care bees because they are located close to the brood. My findings are very close to the ones of \textcite{baracchi2014socio}.
 
 The two approaches discovered the same functional groups of the bee colony, on the one hand by node level network measures (hierarchical clustering) and on the other hand by a higher than expected density of nodes (community detection).
-That acknowledges the existence of the age-based division of labor in honey bee colonies as well as the higher communication frequency within groups than between groups. Nevertheless, the low modularity score indicates that the segregation of groups is not that obvious and strict; therefore much interaction between groups exists.
+That acknowledges the existence of the age-based division of labor in honey bee colonies as well as the higher communication frequency within groups than between groups.
+Nevertheless, the low modularity score indicates that the segregation of groups is not that obvious and strict; therefore a lot of interaction between groups exists.
 
 \textcite{mersch2013tracking} revealed that the behavioral maturation of ants is a slow and noisy process. Instead of investigating the transition of individuals day wise, they grouped 41 days in four periods. For each period they assigned each ant to a community if it was found in this community 70\% of the time.
 It seems that honey bee transitions are in contrast to ants faster and smoother.
