@@ -9,36 +9,16 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-This chapter describes the methodology I applied to reach my research goals. 
-In the first section, I describe the data and the approach to infer networks.
-The network interference was driven by a combination of an exploratory data analysis and an iterative pipeline development process.
-It serves as a prerequisite for the network analysis part of this thesis.
-The second section explains the methods I used to analyze the properties, communities, and development of the resulting networks.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% INFERRING NETWORKS APPROACH
-\section{Inferring Spatial Proximity Networks}
-\label{sec:infNetworks}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-To generate functional and non-functional requirements of the pipeline, I conducted an analysis of the tracking data and a literature review, presented in section~\ref{ch:relatedwork}.
-The analysis led to a general understanding of the data, its structure, characteristics and an estimation of its quality.\\
-The purpose of the literature review was to get an overview of the common methods and approaches regarding network analysis in the field behavioral insect studies.
-Both results are then used to select a network type and to define its nodes and links.
-Furthermore, I inferred specific pipeline parameters and decided for the procedure of network extraction.
+In this chapter, I outline the methodology I applied to reach my research goals. 
+In the first section, I describe the data and the experimental setup.
+In the second section, I share my findings concerning data quality and the steps needed to obtain a reliable dataset.
+Then I describe my approach to infer networks.
+The last section explains the methods I used to analyze the properties, communities, and development of the resulting networks.
 
 
-The pipeline was developed, tested and refined in an iterative process.
-Accordingly, the results of the evaluation lead to new or changing functional requirements.
-The evaluation is conducted by reviewing the pipeline parameters' effects on network properties and checking the validity and quality of the networks by investigating the age of bees in the resulting network.
-
-
-\input{Chapters/Implementation/A-dataset.tex}
-\input{Chapters/Implementation/A-pipelineParams.tex}
-\input{Chapters/Implementation/A-pipeline.tex}
-\input{Chapters/Implementation/A-results.tex}
-
-
-% NETWORK ANALYSIS APPROACH
+\input{Chapters/Implementation/setup_dataset.tex}
+\input{Chapters/Implementation/dataquality_cleansing.tex}
+\input{Chapters/Implementation/inf_networks.tex}
 \input{Chapters/Implementation/B-analysis.tex}
+
+
