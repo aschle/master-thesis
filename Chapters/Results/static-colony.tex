@@ -5,7 +5,7 @@
 Each snapshot consists of one component.
 The density $D$ is over~50\% for all snapshots (69\%; 54\%; 61\%).
 The diameter $\langle d_{\texttt{max}} \rangle$ is~$3$ and the average shortest path length $\langle d \rangle$ is between~$1$ and~$2$.
-The global clustering coefficient~(gcc) $C_\Delta$ of all snapshots is higher than compared to an Erd\H{o}s-R\'{e}niy random graph, averaged over~100 runs using the same number of nodes and edges.
+The global clustering coefficient~(gcc) $C_\Delta$ of all snapshots is higher than compared to an Erd\H{o}s-R\'{e}niy random graph, averaged over~100 runs using the same number of nodes and links.
 On average, each bee is connected to at least~50\% of the colony~(68\%; 52\%; 61\%).
 During the ten-hour observation period, a bee interacts over $4,000$ times~($5,680$; $3,978$; $4,206$) on average.
 Table~\ref{tab:stats} summarizes the basic network properties for each snapshot and lists the values of its corresponding random graph.
@@ -17,8 +17,8 @@ Consequently, bees of certain age groups are simply not present.
 The detection frequency of an individual bee is negatively correlated with its age~(Figure~\ref{fig:n3detfVSage}).
 
 
-The edge weight distribution is shown in Figure~\ref{fig:edgeWdist}.
-Most edges have a low weight; only a few edges have a high weight.
+The link weight distribution is shown in Figure~\ref{fig:edgeWdist}.
+Most links have a low weight; only a few links have a high weight.
 It seems that bees do not prefer individuals bees for interaction.[TODO. figure out what it means.]
 
 \input{Tables/res-stats.tex}
@@ -36,13 +36,12 @@ It seems that bees do not prefer individuals bees for interaction.[TODO. figure 
 	\includegraphics[width=1.0\textwidth]{Figures/n3_ages.pdf}
 	\caption[Age distribution]{Age distribution}
 	\label{fig:n3ageDist}
-	\end{subfigure}
-	\begin{subfigure}[b]{1\textwidth}
+	\end{subfigure}	\begin{subfigure}[b]{1\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3-edgeWeightDist.pdf}
-	\caption[Edge weight distribution]{Edge weight distribution}
+	\caption[Link weight distribution]{Link weight distribution}
 	\label{fig:edgeWdist}
 	\end{subfigure}
-	\caption[Age distribution, correlation with detection frequency and edge weight distribution of snapshot~3]{\textbf{Age distribution, correlation with detection frequency and edge weight distribution of snapshot~3} (a) Detection frequency and the age of a honeybee seem to be negatively correlated. (b) The age of bees ranges from $1$ to $60$ days, but some age groups are missing. (c) The edge weight distribution decays exponentially.}
+	\caption[Age distribution, correlation with detection frequency and link weight distribution of snapshot~3]{\textbf{Age distribution, correlation with detection frequency and link weight distribution of snapshot~3} (a) Detection frequency and the age of a honeybee seem to be negatively correlated. (b) The age of bees ranges from $1$ to $60$ days, but some age groups are missing. (c) The link weight distribution decays exponentially.}
 	\label{fig:ageDetF}
 \end{figure}

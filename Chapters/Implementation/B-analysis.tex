@@ -16,21 +16,21 @@ I summarized the network analysis methods of the reviewed studies (chapter~\ref{
 Table~\ref{tab:study-measures} summarizes the used network analysis methods of the reviewed studies.
 The network measures I chose for the global and node level analysis are listed in table~\ref{tab:netprop} and were defined in chapter~\ref{sec:definitions}.
 
-Each edge in the network is attributed with the frequency of interactions and total duration of interactions between the two individuals.
-Figure~\ref{fig:fVSd} shows a strong positive correlation between those two values. For further analysis I decided to use the frequency of interactions as the weight for edges, analogously to \cite{mersch2013tracking,baracchi2014socio}.
+Each link in the network is attributed with the frequency of interactions and total duration of interactions between the two individuals.
+Figure~\ref{fig:fVSd} shows a strong positive correlation between those two values. For further analysis I decided to use the frequency of interactions as the weight for links, analogously to \cite{mersch2013tracking,baracchi2014socio}.
 
 
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3-freqVSduration}
-	\caption[Frequency and total duration of interaction]{\textbf{Frequency and total duration of interaction} The two edge weight values show a strong positive correlation. The data of the three snapshots is aggregated.}
+	\caption[Frequency and total duration of interaction]{\textbf{Frequency and total duration of interaction} The two link weight values show a strong positive correlation. The data of the three snapshots is aggregated.}
 	\label{fig:fVSd}
 \end{figure}
 
 The degree of a bee represents the number of other bees this focal animal interacts.
 Bees with a high number of interaction partners, have a high degree.
 This measure was chosen because it reveals a lot about the general topology of a network.
-The strength of a bee is the sum of its edge weights. A high strength refers either to a large number of interaction partners with a low edge weight or a low number of interaction partners with high edge weights. Especially for aggregated networks this measure accumulates valuable information regarding the interaction activity of bees.
+The strength of a bee is the sum of its link weights. A high strength refers either to a large number of interaction partners with a low link weight or a low number of interaction partners with high link weights. Especially for aggregated networks this measure accumulates valuable information regarding the interaction activity of bees.
 The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A large lcc shows that most of its interaction partners interact with each other. A low lcc indicates the absence of those interactions.
 It is a good indicator for the embeddedness of single bees.
 
@@ -57,7 +57,7 @@ The algorithm needs to fulfill the following criterias:
 
 \begin{itemize}
 \item Support for large and very dense networks ($N=1000$, $D>50\%$)
-\item Support for weighted edges
+\item Support for weighted link
 \item Fast runtime
 \end{itemize}
 

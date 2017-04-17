@@ -18,21 +18,23 @@ The network model conceptualizes social, economic, or political structures as la
 In mathematical terms, networks are graphs and thus consist of \emph{nodes} (vertex, representing individuals), and \emph{links} (edges, relationships or interactions).
 Social network analysis provides a set of methods, measures, and theories, borrowed from network and graph theory, to investigate social structures and its dynamics.
 
-This work focuses on the special case of social insect networks, where individuals are nodes and edges represent interaction events between individuals. Those networks are called \emph{interaction networks} and sometimes also association networks.
-According to~\textcite{charbonneau2013social} those interactions used as an edge can be of four different types when looking at social insect networks: spatial proximity, physical contact (usually with antennae, ``antennation''), a food exchange event (trophallaxis\footnote{The mouse-to-mouse transfer of fluids is called trophallaxis and is used by social insects.}), or specific communication signals.
+This work focuses on the special case of social insect networks, where individuals are nodes and links represent interaction events between individuals. Those networks are called \emph{interaction networks} and sometimes also association networks.
+According to~\textcite{charbonneau2013social} those interactions used as an link can be of four different types when looking at social insect networks: spatial proximity, physical contact (usually with antennae, ``antennation''), a food exchange event (trophallaxis\footnote{The mouse-to-mouse transfer of fluids is called trophallaxis and is used by social insects.}), or specific communication signals.
 
-Edges can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. The edge weights represent the strength of the relationship; commonly the number or duration of interactions is used~\cite{farine2015constructing}.
+Links can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. The link weights represent the strength of the relationship; commonly the number or duration of interactions is used~\cite{farine2015constructing}.
+In the course of this work I use the term \emph{frequency} to refer to the total number of occurences~(absolute frequency), as opposed to the use of this term in physics. 
+
 
 
 \subsection{Temporal Networks}
 When modeling \emph{temporal} or so-called \emph{dynamic networks}, two main approaches exist: (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
 
-The time-aggregated approach cumulates the data for each snapshot and reduces the available information per edge.
+The time-aggregated approach cumulates the data for each snapshot and reduces the available information per link.
 In contrast, the time-ordered approach retains the information about when interactions occurred and how long they lasted.
 It provides a detailed insight when timing and order of interactions are important.
 It can be used to model the topological flow of information through a network.
 
-Choosing a suitable time interval for data aggregation is challenging~\cite{Pinter-Wollman2014}, but many methods for analyzing time-aggregated networks already exists, whereas, for time-ordered networks, only a limit toolset is available. To model nodes and edge weights in time-aggregated networks can be challenging when taking into account that interactions, which occurred earlier or later in time should be weighted accordingly.
+Choosing a suitable time interval for data aggregation is challenging~\cite{Pinter-Wollman2014}, but many methods for analyzing time-aggregated networks already exists, whereas, for time-ordered networks, only a limit toolset is available. To model nodes and link weights in time-aggregated networks can be challenging when taking into account that interactions, which occurred earlier or later in time should be weighted accordingly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -51,7 +53,7 @@ The following definitions are mainly taken from~\textcite{barabasi2016network} a
 \begin{description}
 	\item[Network size] $N$ is the total number of nodes, respectively animals in a network.
 	\item[Number of links] $L$ is the total number of links in a network, representing social interactions.
-	\item[Edge weight] $w_{ij}$ of an edge between node $n_i$ and $n_j$ is an indicator of how important that edge is.
+	\item[Link weight] $w_{ij}$ of an link between node $n_i$ and $n_j$ is an indicator of how important that link is.
 	\item[Component] is a subnet of nodes in a network so that there is a path between any two nodes that belong to the component.
 	\item[Degree] $k_i$ of a node $n_i$ represents the number of other animals this focal animal interacts with.
 	\item[Average Degree] $\langle k \rangle$ is the number of interaction partners an animal has on average in the network.
@@ -69,7 +71,7 @@ The following definitions are mainly taken from~\textcite{barabasi2016network} a
 of theoretically possible links is defined as: $$D=\frac{2L}{N(N-1)}$$
 
 \paragraph{Strength} $s_i$ of a node $n-i$ is also called the weighted degree.
-It measures the total weight of edges connected to that node.
+It measures the total weight of links connected to that node.
 The average strength is denoted as~$\langle s \rangle$.
 According to~\textcite{barrat2004architecture} it is defined as:
 $$s_i = \sum_{j=1}^{n}w_{ij}$$. 

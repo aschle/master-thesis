@@ -46,7 +46,7 @@ I believe that some observed interactions are shorter than they are in reality, 
 
 Spatial proximity is an indicator for interaction but it does not capture actual interactions.
 The definition of spatial proximity by a maximal distance and a minimum contact duration is very loose, especially on a honeycomb with limited space.
-It leads to many edges and a high density of the network resulting in high noise.
+It leads to many links and a high density of the network resulting in high noise.
 This noise creates a blurred image of real interactions between bees.
 My choice of aggregating the networks for ten hours fosters this noisiness, resulting in a global state of the colony, rather than capturing finer granular dynamics.
 
@@ -72,25 +72,25 @@ Instead of using time-aggregated networks, one could shift towards the use of ti
 \paragraph{Focusing on Important Interactions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The space on the honeycomb is limited and crowded.
-For reducing the number of edges to only meaningful interactions, I see three main approaches.
+For reducing the number of link to only meaningful interactions, I see three main approaches.
 For the time being, it is an option to fine tune the pipeline parameters by lowering the size of the maximum distance and by raising the number of frames for minimum contact duration.
-Instead of keeping the definition of spatial proximity, I would recommend extracting contact events (e.g. by including an angle, so bees facing each other) or trophallaxis events for defining the edges, especially when using those networks to investigating more specific biological research questions.
+Instead of keeping the definition of spatial proximity, I would recommend extracting contact events (e.g. by including an angle, so bees facing each other) or trophallaxis events for defining the links, especially when using those networks to investigating more specific biological research questions.
 
 
-\paragraph{Using the Potential of Weighted Edges}
+\paragraph{Using the Potential of Weighted Links}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-A simple global threshold for excluding edges below a certain value could be used.
+A simple global threshold for excluding links below a certain value could be used.
 Instead of applying a global threshold to reduce the density, a network reduction algorithm could be implemented to extract the backbone structure of the network.
 \textcite{serrano2009extracting} propose a disparity filter algorithm, which seems promising but needs further investigation.
-The disparity measure characterizes the level of local heterogeneity of edges~\cite{barthelemy2003spatial}.
+The disparity measure characterizes the level of local heterogeneity of links~\cite{barthelemy2003spatial}.
 For all network measures utilized in this work, weighted versions exist.
-The weighted measures (e.g., closeness and betweenness) implemented in iGraph and networkX favor edge weights over the number of links and simply apply Dijkstra for calculating the shortest paths. \textcite{opsahl2010node} propose weighted network measures by providing a generalized degree and shortest path algorithm. The tuning parameter, Opsahl et al. introduce, has to be chosen. This parameter defines whether to emphasize the number of links or the weights of edges and must be selected according to a predefined research question.
+The weighted measures (e.g., closeness and betweenness) implemented in iGraph and networkX favor link weights over the number of links and simply apply Dijkstra for calculating the shortest paths. \textcite{opsahl2010node} propose weighted network measures by providing a generalized degree and shortest path algorithm. The tuning parameter, Opsahl et al. introduce, has to be chosen. This parameter defines whether to emphasize the number of links or the weights of links and must be selected according to a predefined research question.
 
 
 \paragraph{Normalizing by the Detection Frequency of Individuals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Depending on the topics of further research a normalization of the networks regarding the detection rate of individuals could be useful.
-I propose two options: either normalize the edge weight by applying the simple ratio index\footnote{Dividing the edge weight by the proportion of times two individuals were seen together out of the total number of times those individuals were observed.} (SRI)~\cite{formica2012fitness} or normalize the particular node level measure by taking the detection frequency of that focal individual into account.
+I propose two options: either normalize the link weight by applying the simple ratio index\footnote{Dividing the link weight by the proportion of times two individuals were seen together out of the total number of times those individuals were observed.} (SRI)~\cite{formica2012fitness} or normalize the particular node level measure by taking the detection frequency of that focal individual into account.
 
 \paragraph{Random Geometric Graph}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
