@@ -135,7 +135,7 @@ It uses the eigenvectors of matrices for finding community structures in network
 It is a top-down hierarchical approach that optimizes modularity.
 The algorithm starts with all nodes inside one community (modularity is 0).
 In each step, the network is split into two parts, so that the modularity of the new separation increases.
-The splitting is done by first calculating the leading eigenvector of the modularity matrix and then splitting the graph in a way that maximizes the modularity improvement based on the leading eigenvector.
+The splitting is done by first calculating the leading eigenvector of the modularity matrix and then splitting the network in a way that maximizes the modularity improvement based on the leading eigenvector.
 The algorithm stops if the modularity does not further increase.
 
 The \emph{walktrap} algorithm by \textcite{pons2005computing} is based on random walks.
