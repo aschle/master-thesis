@@ -1,7 +1,8 @@
 \chapter{Theoretical Background for Network Analysis of Insect Colonies}
 \label{ch:foundation}
-The following chapter gives a short introduction into social network analysis (SNA) and introduces social insect interaction networks, as a specific type of a biological network. It defines terms and concepts used throughout this work and explains the used network metrics and algorithms.
-Further, I summarize the most relevant studies, which use a network analysis approach to investigate interaction networks of social insect colonies.
+The following chapter gives a short introduction into social network analysis (SNA) and introduces social insect interaction networks, as a specific type of a biological network. It defines terms and concepts used throughout this work and explains the applied network metrics and algorithms.
+I also provide a summary of the most relevant studies that use a network analysis approach to investigate interaction networks of social insect colonies.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -15,26 +16,26 @@ Further, I summarize the most relevant studies, which use a network analysis app
 
 A \emph{social network} is a representation of a social structure comprising actors such as individuals, affiliations, as well as their social interactions.
 The network model conceptualizes social, economic, or political structures as lasting patterns of interactions between actors~\cite{wasserman1994social}.
-In mathematical terms, networks are graphs and thus consist of \emph{nodes} (vertex, representing individuals), and \emph{links} (edges, relationships or interactions).
-Social network analysis provides a set of methods, measures, and theories, borrowed from network and graph theory, to investigate social structures and its dynamics.
+In mathematical terms, networks are graphs and thus consist of \emph{nodes} (vertices, representing individuals), and \emph{links} (edges, relationships or interactions).
+Social network analysis provides a set of methods, measures, and theories, borrowed from network and graph theory, to investigate social structures and their dynamics.
 
-This work focuses on the special case of social insect networks, where individuals are nodes and links represent interaction events between individuals. Those networks are called \emph{interaction networks} and sometimes also association networks.
-According to~\textcite{charbonneau2013social} those interactions used as an link can be of four different types when looking at social insect networks: spatial proximity, physical contact (usually with antennae, ``antennation''), a food exchange event (trophallaxis\footnote{The mouse-to-mouse transfer of fluids is called trophallaxis and is used by social insects.}), or specific communication signals.
+This work focuses on the special case of social insect networks, where individuals are nodes and links represent interaction events between individuals. Those networks are called \emph{interaction networks} or association networks.
+According to~\textcite{charbonneau2013social}, the interactions used as a link can be of four different types when looking at social insect networks: spatial proximity, physical contact (usually with antennae, ``antennation''), a food exchange event (trophallaxis\footnote{The mouth-to-mouth transfer of fluids is called trophallaxis and is used by social insects.}), or specific communication signals.
+Links can be directed (e.g. trophallaxis) or undirected and weighted or unweighted. The link weights represent the strength of the relationship; commonly the number or duration of interactions is used~\cite{farine2015constructing}.
 
-Links can be directed (e.g. trophallaxis) or undirected, weighted or unweighted. The link weights represent the strength of the relationship; commonly the number or duration of interactions is used~\cite{farine2015constructing}.
 In the course of this work I use the term \emph{frequency} to refer to the total number of occurences~(absolute frequency), as opposed to the use of this term in physics. 
 
 
-
 \subsection{Temporal Networks}
-When modeling \emph{temporal} or so-called \emph{dynamic networks}, two main approaches exist: (1) time-aggregated (discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot, and (2) the time-ordered (continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
+When modeling \emph{temporal} or \emph{dynamic networks}, two main approaches exist: (1)~time-aggregated~(discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot; and~(2)~the time-ordered~(continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
 
 The time-aggregated approach cumulates the data for each snapshot and reduces the available information per link.
 In contrast, the time-ordered approach retains the information about when interactions occurred and how long they lasted.
 It provides a detailed insight when timing and order of interactions are important.
 It can be used to model the topological flow of information through a network.
 
-Choosing a suitable time interval for data aggregation is challenging~\cite{Pinter-Wollman2014}, but many methods for analyzing time-aggregated networks already exists, whereas, for time-ordered networks, only a limit toolset is available. To model nodes and link weights in time-aggregated networks can be challenging when taking into account that interactions, which occurred earlier or later in time should be weighted accordingly.
+Choosing a suitable time interval for data aggregation is challenging~\cite{Pinter-Wollman2014}, but many methods for analyzing time-aggregated networks already exists, whereas, for time-ordered networks, only a limited toolset is available.
+To model nodes and link weights in time-aggregated networks can be challenging, when since interactions, which occurred earlier or later in time, should be weighted accordingly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -42,30 +43,34 @@ Choosing a suitable time interval for data aggregation is challenging~\cite{Pint
 \label{sec:definitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following definitions are mainly taken from~\textcite{barabasi2016network} and ~\textcite{newman2010networks}. The gray box below summarizes the basic variables and terms used in the course of this work.\\
+The following definitions are mainly taken from~\textcite{barabasi2016network} and ~\textcite{newman2010networks}. Table~\ref{tab:theory} summarizes the basic variables and terms used in the course of this work.
 
-\colorbox{usethiscolorhere}{
-\begin{minipage}[!b]{\dimexpr\textwidth}%
-\parbox{0.95\textwidth}{
+\begin{table}[!bp]
 \small
-\begin{addmargin}[1em]{0em}
-\vspace{5mm}
-\begin{description}
-	\item[Network size] $N$ is the total number of nodes, respectively animals in a network.
-	\item[Number of links] $L$ is the total number of links in a network, representing social interactions.
-	\item[Link weight] $w_{ij}$ of an link between node $n_i$ and $n_j$ is an indicator of how important that link is.
-	\item[Component] is a subnet of nodes in a network so that there is a path between any two nodes that belong to the component.
-	\item[Degree] $k_i$ of a node $n_i$ represents the number of other animals this focal animal interacts with.
-	\item[Average Degree] $\langle k \rangle$ is the number of interaction partners an animal has on average in the network.
-	\item[Path length (distance)] $d_{ij}$ is the shortest number of links between the nodes $n_i$ and $n_j$.
-	\item[Average path length] $\langle d \rangle$ is the average of all shortest paths between all pairs of nodes.
-	\item[Diameter] $d_{\texttt{max}}$ represents the length of the longest shortest paths, respectively the longest possible path length in the network.
-\end{description}
-\vspace{5mm}
-\end{addmargin}
+\caption[Definitions]{\textbf{Definitions} Basic network science terms and definitions.}
+\label{tab:theory}
+\vspace{3mm}
+\colorbox{usethiscolorhere}{
+\centering
+\begin{tabularx}{\textwidth}{@{} r Y @{}}
+	\textbf{Network size} &
+	$N$~is the total number of nodes, representing the number of animals in a network.\vspace{2mm}\\
+	\textbf{Number of links} &
+	$L$~is the total number of links in a network, representing social interactions.\vspace{2mm}\\
+	\textbf{Link weight} &
+	$w_{ij}$ of an link between node $n_i$ and $n_j$ is an indicator of how important that link is.\vspace{2mm}\\
+	\textbf{Component} &
+	is a subnet of nodes in a network so that there is a path between any two nodes that belong to the component.\vspace{2mm}\\
+	\textbf{Degree} &
+	$k_i$ of a node $n_i$ represents the number of other animals this focal animal interacts with.\vspace{2mm}\\
+	\textbf{Average degree} &
+	$\langle k \rangle$ is the number of interaction partners an animal has, on average, in the network.\vspace{2mm}\\
+	\textbf{Path length} & $d_{ij}$ is the shortest number of links between the nodes $n_i$ and~$n_j$, also called distance.\vspace{2mm}\\
+	\textbf{Average path length} & $\langle d \rangle$ is the average of all shortest paths between all pairs of nodes.\vspace{2mm}\\
+	\textbf{Diameter} & $d_{\texttt{max}}$ represents the length of the longest of all shortest paths, the longest possible path length in the network.\\
+\end{tabularx}
 }
-\end{minipage}}
-
+\end{table}
 
 \paragraph{Density} $D$ is the number of realized links divided by the number
 of theoretically possible links is defined as: $$D=\frac{2L}{N(N-1)}$$
@@ -76,21 +81,22 @@ The average strength is denoted as~$\langle s \rangle$.
 According to~\textcite{barrat2004architecture} it is defined as:
 $$s_i = \sum_{j=1}^{n}w_{ij}$$. 
 
-\paragraph{Global clustering coefficient (gcc)} $C_\Delta$ is also called transitivity. According to~\textcite{wasserman1994social} it is defined as: $$C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$$.
+\paragraph{Global clustering coefficient (gcc)} $C_\Delta$ is also called transitivity. The gcc is based on triplets. A connected triplet consists of three nodes connected by two links. A triangle consists of three connected triplets. 
+ According to~\textcite{wasserman1994social} the gcc is defined as: $$C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$$.
 
 \paragraph{Local clustering coefficient (lcc)} $c$ of a node $n$ quantifies how close its neighbors are
 to being a clique.
 
 \paragraph{Centrality}
-When looking at the node level structure of a network, it is possible to identify nodes, which are important or central to the network, regarding different aspects. This concept is called \emph{centrality} and measures the influence of a node in a network.
+When looking at the node level structure of a network, it is possible to identify nodes, which are important or central to different aspects of the network. This concept is called \emph{centrality} and measures the influence of a node in a network.
 
 \paragraph{Degree Centrality}
-$C^i_D$ is the normalized degree $k_i$ of a node $n_i$ in relation to the whole network. Its is calculated as follows:
+$C^i_D$ is the normalized degree $k_i$ of a node $n_i$ in relation to the whole network. It is calculated as follows:
 $$C^i_D=\frac{k_i}{N-1}$$
 
 \paragraph{Closeness Centrality}
 $C^i_C$ of a node $n_i$ measures how close this node is to all other nodes in the network. 
-It is the average length of shortes paths between node $n_i$ and all other nodes in the network.
+It is the average length of shortest paths between node $n_i$ and all other nodes in the network.
 
 $$C_C^i=\frac{N}{\sum_{j}d_{ij}}$$
 
@@ -108,7 +114,7 @@ To understand the large-scale structure of networks, one can look at the network
 For my work, I adapt the definition according to~\textcite[p. 322]{barabasi2016network}: 
 ``In network science, we call a community a group of nodes that have a higher likelihood of connecting to each other than to nodes from other communities.'' In contrast to a simple graph partition, the number and size of communities is not predetermined or set in advance.
 
-Communities in animal social networks refer to groups of individuals that are associated more with each other than they are with the rest of the population. These communities reflect an intermediate level of social organization, which is located between the individual and population level~\cite{croft2008exploring}.
+In animal social networks, communities refer to groups of individuals that are associated more with each other than they are with the rest of the population. These communities reflect an intermediate level of social organization, which is located between the individual and population level~\cite{croft2008exploring}.
 
 There are a lot of different approaches and algorithms that address the detection of communities. \textcite{fortunato2010community} gives an extensive overview of the various types of community detection algorithms.
 Explaining any of those would be beyond the scope of this work. For example, traditional methods include algorithms based on graph partitioning, hierarchical clustering, and spectral clustering. There are also divisive and agglomerative algorithms.
@@ -118,13 +124,14 @@ The algorithms used in this work are described in the following sections and inc
 \subsubsection{Modularity}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Modularity is a quantity that measures the quality of a partitioning.
-It can be used to compare a community partition to another and decide for the better one.
+It can be used to compare one community partition to another and to decide which is the better one.
 Modularity optimization is also used for community detection algorithms.
-A high modularity of a network indicates more connection between nodes within a community and fewer connections between nodes of different communities.
-The basic idea is: If the fraction of links inside the community is higher, than expected in the same community of a corresponding random graph having the same degree distribution, then it is a community in the sense of modularity.
+A high modularity of a network indicates more connections between nodes within a community and fewer connections between nodes of different communities.
+The basic idea is: If the fraction of links inside the community is higher than expected in the same community of a corresponding random graph with the same degree distribution, then it is a community in the sense of modularity.
 This difference is summed up and normalized.
+
+Fewer links inside the community than expected result in a negative value, more links positive.
 If all nodes fall into one community, the modularity is $0$.
-Fewer links inside the community than expected result in a negative value, otherwise positive.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,8 +146,8 @@ The splitting is done by first calculating the leading eigenvector of the modula
 The algorithm stops if the modularity does not further increase.
 
 The \emph{walktrap} algorithm by \textcite{pons2005computing} is based on random walks.
-The authors consider random walks as a tool to calculate the similarity between nodes of a network.
-It uses a bottom-up hierarchical approach, that means the algorithm starts with each node in a single community.
+The authors use random walks as a tool to calculate the similarity between nodes of a network.
+The algorithm uses a bottom-up hierarchical approach, which means the algorithm starts with each node in a single community.
 The basic idea of walktrap is that short distance random walks (the step size is a parameter) tend to stay in the same community because there are only a few links that lead outside a given community.
 The results of these random walks are used to merge separate communities.
 Again modularity can be used to cut the dendrogram at an optimal place.
