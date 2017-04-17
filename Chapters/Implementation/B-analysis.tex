@@ -4,20 +4,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 This section outlines the methods I used to investigate the networks on a global, intermediate and local level.
-It explains the choice of network measures used for the global analysis.
-Also, I report the decision for a community detection algorithm and illustrate the methods to examine the segregation of communities concerning age and spatial distribution.
-Furthermore, I explain what approach I used to study the development of communities.
+I present the choice of network measures used for the global analysis and explain the decision to use a community detection algorithm.
+I illustrate the methods to examine the segregation of communities by age and spatial distribution.
+Furthermore, I describe the approach used to study the development of communities.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Investigating the Topology and Network Characteristics}
 \label{subsec:APmeasures}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-I summarized the network analysis methods of the reviewed studies (chapter~\ref{ch:relatedwork}) to gain an overview of established procedures in the field of social insect networks. I grouped the methods by global measures, node level measures and other network analysis methods.
-Table~\ref{tab:study-measures} summarizes the used network analysis methods of the reviewed studies.
+I summarized the network analysis methods of the reviewed studies (Chapter~\ref{ch:relatedwork}) to gain an overview of established procedures in the field of social insect networks.
+I grouped the methods by global measures, node level measures and other network analysis methods.
+Table~\ref{tab:study-measures} summarizes the network analysis methods applied by the reviewed studies.
 The network measures I chose for the global and node level analysis are listed in table~\ref{tab:netprop} and were defined in chapter~\ref{sec:definitions}.
 
 Each link in the network is attributed with the frequency of interactions and total duration of interactions between the two individuals.
-Figure~\ref{fig:fVSd} shows a strong positive correlation between those two values. For further analysis I decided to use the frequency of interactions as the weight for links, analogously to \cite{mersch2013tracking,baracchi2014socio}.
+Figure~\ref{fig:fVSd} shows a strong positive correlation between those two values.
+For further analysis I decided to use the frequency of interactions as the weight for links, analogously to \cite{mersch2013tracking,baracchi2014socio}.
 
 
 \begin{figure}[htb]
@@ -27,18 +29,25 @@ Figure~\ref{fig:fVSd} shows a strong positive correlation between those two valu
 	\label{fig:fVSd}
 \end{figure}
 
-The degree of a bee represents the number of other bees this focal animal interacts.
-Bees with a high number of interaction partners, have a high degree.
+The degree of a bee represents the number of other bees this focal animal interacts with.
+Bees with a high number of interaction partners have a high degree.
 This measure was chosen because it reveals a lot about the general topology of a network.
-The strength of a bee is the sum of its link weights. A high strength refers either to a large number of interaction partners with a low link weight or a low number of interaction partners with high link weights. Especially for aggregated networks this measure accumulates valuable information regarding the interaction activity of bees.
-The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}. A large lcc shows that most of its interaction partners interact with each other. A low lcc indicates the absence of those interactions.
+The strength of a bee is the sum of its link weights.
+A high strength refers either to a large number of interaction partners with a low link weight or a low number of interaction partners with high link weights.
+Especially for aggregated networks this measure accumulates valuable information regarding the interaction activity of bees.
+The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}.
+A large lcc shows that most of its interaction partners interact with each other.
+A low lcc indicates the absence of those interactions.
 It is a good indicator for the embeddedness of single bees.
 
-The betweenness of a bee measures, how many shortest paths go through that bee. A bee with a high betweenness would be central or important for the network in the sense of information flow. Removing this bee from the hive would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.
-The closeness of a bee measures how fast this bee can reach all others in the network. A high closeness would indicate a very short path to every other bee. Regarding information flow, a bee with high closeness can spread e.g. information to all other bees very fast.
-I selected these centrality measures exemplarily.
+The betweenness of a bee measures the number of shortest paths between two other bees that go through that bee.
+A bee with a high betweenness would be important for the information flow of the network.
+Removing this bee from the hive would lead to the breakdown of information or food flow and would negatively affect the robustness of the network.
+The closeness of a bee measures how fast this bee can reach all others in the network.
+A high closeness would indicate a very short path to every other bee.
+A bee with high closeness can spread information to all other bees very quickly.
 
-I examined all node level metrics concerning the age of bees and their detection frequency. The global network properties are compared to an Erd\H{o}s-R\'{e}niy  random network, by averaging over 100 runs.
+I examined all node level measures concerning the age of bees and their detection frequency. The global network measures are compared to an Erd\H{o}s-R\'{e}niy random network, by averaging over 100 runs.
 
 \input{Tables/approach-netproperties.tex}
 
@@ -46,13 +55,18 @@ I examined all node level metrics concerning the age of bees and their detection
 \subsection{Detecting Communities}
 \label{subsec:APcommunityDet}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For finding an appropriate community detection algorithms, I checked the reviewed studies for applicable methods and scanned papers, which compare various community detection algorithms. Finally, I checked a subset of algorithms, which I identified as suitable in this context.
+For finding an appropriate community detection algorithm, I checked the reviewed studies for applicable methods and scanned papers that compare various community detection algorithms.
+I identified a subset of algorithms as suitable and checked them.
 
-The reviewed studies only include two examples of community respectively cluster analysis. \textcite{mersch2013tracking} used the infomap~\cite{rosvall2009map,rosvall2007information} algorithm. According to the authors, this algorithm only works with sparse networks and is therefore not applicable in my case of densely connected spatial proximity networks. \textcite{baracchi2014socio} use a hierarchical clustering to infer groups of bees within the network that are similar regarding the measures strength, eigenvector, and betweenness centrality. In contrast to the resulting groups of community detection, groups identified by hierarchical clustering do not automatically refer to dense subgraphs of the network.
+The reviewed studies only include one examples of community detection and one example of cluster analysis. \textcite{mersch2013tracking} used the infomap~\cite{rosvall2009map,rosvall2007information} algorithm.
+According to the authors, this algorithm only works with sparse networks and is therefore not applicable in my case of densely connected spatial proximity networks.
+Baracchi and Cini~\cite{baracchi2014socio} use a hierarchical clustering to infer groups of bees within the network that are similar in strength, eigenvector, and betweenness centrality.
+In contrast to the resulting groups of community detection, groups identified by hierarchical clustering do not automatically refer to dense subgraphs of the network.
 
-Much literature on the comparative analysis of community detection algorithms exist, e.g.~\cite{yang2016comparative, harenberg2014community}. Some studies seem to be promising, but assume either a power law degree distribution or
+Abundant literature on the comparative analysis of community detection algorithms exists, e.g.~\cite{yang2016comparative, harenberg2014community}.
+Some studies seem to be promising for choosing an appropriate algorithm, but assume either a power law degree distribution or
 evaluate networks with a low density, which is not applicable here.
-Thererfore, I tested community detection algorithms implemented in python, to find an algorithm, which works well for my case of animal social networks. The three most common python libraries for network analysis were reviewed: NetworkX\footnote{\url{https://networkx.github.io/}; Last accessed: 16.03.2016, 6:36~p.m.}, igraph\footnote{\url{http://igraph.org/python/}; Last accessed: 16.03.2016, 6:38~p.m.}, and graph-tool\footnote{\url{https://graph-tool.skewed.de/}; Last accessed: 16:03.2016, 6:39~p.m.})
+Thererfore, I tested community detection algorithms, implemented in python, to find an algorithm that works well for animal social networks. The three most common python libraries for network analysis were reviewed: NetworkX\footnote{\url{https://networkx.github.io/}; Last accessed: 16.03.2016, 6:36~p.m.}, igraph\footnote{\url{http://igraph.org/python/}; Last accessed: 16.03.2016, 6:38~p.m.}, and graph-tool\footnote{\url{https://graph-tool.skewed.de/}; Last accessed: 16:03.2016, 6:39~p.m.}.
 The algorithm needs to fulfill the following criterias:
 
 \begin{itemize}
@@ -61,40 +75,51 @@ The algorithm needs to fulfill the following criterias:
 \item Fast runtime
 \end{itemize}
 
-Table~\ref{tab:algos} gives an overview about the algorithms reviewed. Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations. Infomap and label propagation tend to partition all nodes into a single community, this is known especially in dense graphs~\cite{yang2016comparative, fortunato2010community}.
-The Louvain algorithm~\footnote{Implemented in python for networkX: \url{http://perso.crans.org/aynaud/communities/api.html}} (networkX) is the same as multilevel (iGraph), but takes longer producing almost the same communities and therefore was also excluded. Walktrap was tested for different step size parameters, as suggested in~\cite{pons2005computing}, the communities remained almost the same, only a few nodes switched communities.
+Table~\ref{tab:algos} gives an overview about the algorithms reviewed.
+Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations.
+Infomap and label propagation tend to partition all nodes into a single community, this is known, especially in dense graphs~\cite{yang2016comparative, fortunato2010community}.
+The Louvain algorithm\footnote{Implemented in python for networkX: \url{http://perso.crans.org/aynaud/communities/api.html}} (networkX) is the same as multilevel (iGraph), but takes longer and produces almost the same communities and was therefore was also excluded.
+Walktrap was tested for different step size parameters, as suggested in~\cite{pons2005computing}, the communities remained almost the same, only a few nodes switched communities.
 
-I examined the number and size of detected communities for the algorithms fastgreedy, leading eigenvector, multilevel, and walktrap for all three snapshots. Table~\ref{tab:algos4} gives an overview about the results.
+I examined the number and size of detected communities for the algorithms fastgreedy, leading eigenvector, multilevel, and walktrap for all three snapshots. Table~\ref{tab:algos4} gives an overview of the results.
 All algorithms found at least two communities.
 Except for leading eigenvector, most tend to find three communities.
 
-I decided to use two algorithms for community detection: leading eigenvector and walktrap. \textcite{farine2015constructing} explains that leading eigenvector is often used with animal social networks and works well. Walktrap is chosen for also examining the third community.
+I decided to use two algorithms for community detection: leading eigenvector and walktrap. \textcite{farine2015constructing} explain that leading eigenvector is often used with animal social networks and works well. Walktrap is also chosen for also examining the third community (Table~\ref{tab:algos4}).
 
 \input{Tables/algos.tex}
 \input{Tables/algos4.tex}
 
 \subsubsection{Age and Spatial Distribution of Communities}
-To answer the question whether communities reflect different age groups, I studied the average age and the general age distribution of communities. I also investigated whether the age division persists in each snapshot. A two-sample Kolmogorov-Smirnov test was used to determine the statistical difference of the age distribution between communities.
+To answer the question whether communities reflect different age groups, I examined the average age and the general age distribution of the communities.
+I also investigated whether the age division persists in each snapshot.
+A two-sample Kolmogorov-Smirnov test was used to determine the statistical difference of the age distribution between communities.
 
-To investigate whether communities reflect groups of bees working in different areas of the comb, I used heat maps to determine the core regions per group and snapshot visually.
-I stored the positions of all bees present within the ten hour time windows in an SQLite database to faster access the data and to eliminate the time-consuming parsing.
+To investigate whether communities reflect groups of bees working in different areas of the comb, I used heat maps to determine the core regions per group.
+I stored the positions of all bees present within the ten hour time windows in an SQLite database for faster access to the data and to eliminate the time-consuming parsing.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Development of Community Members}
 \label{sec:bg:tracking}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-According to \textcite{aynaud2013communities} and  \textcite{brodka2014community} there are three main approaches for community detection in temporal networks (sometimes referred to as community tracking): (1) using a static community detection algorithm on several snapshots and then solving a matching problem, (2) using algorithms that are directly suited for temporal networks and (3) using incremental or online algorithms when processing data streams. For each of the three approaches, several methods already exist.
-As community tracking is not the main focus of this work, I chose to apply the most natural method out of approach (1): detecting static communities for each snapshot and then matching those communities using set theory.
+According to \textcite{aynaud2013communities} and  \textcite{brodka2014community}, there are three main approaches for community detection in temporal networks (sometimes referred to as community tracking): (1) using a static community detection algorithm on several snapshots and then solving a matching problem, (2) using algorithms that are directly suited for temporal networks and (3) using incremental or online algorithms when processing data streams.
+For each of the three approaches, several methods already exist.
+As community tracking is not the main focus of this work, I chose to apply the most natural method: detecting static communities for each snapshot and then matching those communities using set theory.
 
-Two communities at successive time steps are matched if they share enough nodes.
-The \emph{match value} between two communities $C$ and $D$ according to \textcite{hopcroft2004tracking} is defined as:
+Two communities at successive times are matched if they share enough nodes.
+The \emph{match value} between two communities $C$ and $D$ according to Hopcroft~et~al.~\cite{hopcroft2004tracking} is defined as:
 
 \begin{equation}
 \label{eq:match}
 \texttt{match}(C,D) = \texttt{min}\left( \frac{\textbar C\cap D \textbar}{\textbar C\textbar }, \frac{\textbar C\cap D \textbar}{\textbar D \textbar }\right)
 \end{equation}
 
-This value is between 0 and 1. A high match value occurs when two communities share many nodes and are of a similar size. Communities with the highest value are matched, respectively represent the same community to different points in time. The author suggests applying a threshold to more precisely define what ``share enough nodes'' means. Otherwise, a matching could occur between communities with only 0.1\% of overlapping nodes.
+This value is between 0 and 1.
+A high match value occurs when two communities share many nodes and are of a similar size.
+Communities with high match values represent the same community at different points in time.
+The author suggests applying a threshold to more precisely define what ``share enough nodes'' means.
+Otherwise, communities with only 0.1\% of nodes overlapping could be matched.
 
-To investigate the total number of bees, that remain in the network over the three snapshots, I inspected the match value of bees in consecutive snapshots. Also, I calculated all match values between communities in consecutive snapshots and additionally calculated the number of intersecting bees. I visualize the dynamic movement
+To investigate the total number of bees that remain in the network over the three snapshots, I inspected the match value of bees in consecutive snapshots.
+I also calculated all match values between communities in consecutive snapshots and  the number of intersecting bees. I visualize the dynamic movement
 of bees between groups of different snapshots with a flowchart diagram using the JavaScript library D3.js\footnote{\url{https://d3js.org/}}.
