@@ -45,25 +45,26 @@ The maximum number of present bees in the hive is about $1,600$.
 
 \begin{table}[!t]
 \small
-\caption[X]{\textbf{XXX} XXX [TODO: good title and ref in text]}
+\caption[Terms concerning the data]{\textbf{Terms concerning the data}}
 \label{tab:dataset}
+\vspace{3mm}
 \colorbox{usethiscolorhere}{
 \centering
 \begin{tabularx}{\textwidth}{@{} r Y @{}}
 	\textbf{Frame container} &
-	Contains all frames, which belong to a specific video file of a certain camera.\\
+	Contains all frames, which belong to a specific video file of a certain camera.\vspace{2mm}\\
 	\textbf{Frame} &
-	A frame is one picture of one camera and includes all bee detections.\\
+	A frame is one picture of one camera and includes all bee detections.\vspace{2mm}\\
 	\textbf{Detection} &
-	Detection of a bee at a certain point in time.\\
+	Detection of a bee at a certain point in time.\vspace{2mm}\\
 	\textbf{Decoded ID} &
-	Identifier of a bee consisting of 12 probability values, representing 12 bits.\\
+	Identifier of a bee consisting of 12 probability values, representing 12 bits.\vspace{2mm}\\
 	\textbf{Confidence} &
-	Value between 0\% and 100\% according to~(\ref{eq:confidence})\\
+	Value between 0\% and 100\% according to~(\ref{eq:confidence})\vspace{2mm}\\
 	\textbf{ID} &
-	Decimal representation of a decoded ID.\\
-	\textbf{Bee time series} & Binary sequence, indicating the absence and presence of a certain bee in a particular time interval.\\
-	\textbf{Pair time series} & Binary sequence, indicating whether or not two bees are close to each other, in a particular time interval.\\
+	Decimal representation of a decoded ID.\vspace{2mm}\\
+	\textbf{Bee time series} & Binary sequence, indicating the absence and presence of a certain bee in a particular time interval.\vspace{2mm}\\
+	\textbf{Pair time series} & Binary sequence, indicating whether or not two bees are close to each other, in a particular time interval.\vspace{2mm}\\
 \end{tabularx}
 }
 \end{table}
@@ -74,7 +75,7 @@ Each \emph{frame} contains a list of bees, which were detected by the image anal
 
 A bee \emph{detection} includes following attributes:
 
-\begin{table}[!bp]
+\begin{table}[!h]
 \small
 \centering
 \begin{tabular}{rl}
@@ -172,6 +173,7 @@ Consequently, these bess were excluded from the analysis. Also I excluded bees~(
     3836,
     3844,
     3940]}.
+
 For each analysis day, the number of detections per ID is calculated, excluding the mentioned IDs.
 To obtain a reliable dataset, I filtered invalid detections, by discarding all detections with an ID frequency below the 99th percentile of the negative IDs.
 
@@ -196,9 +198,9 @@ Gaps in the pair time series frequently correspond to gaps in one or both bee ti
 Bees are not able to approach each other and move apart within a second because they simply do not move that fast.
 Therefore, I concluded, that those gaps originate from detection errors and consequently need to be treated in an appropriate way during further data processing.
 
-\begin{figure}[htb]
+\begin{figure}[tp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/structure}
 	\caption[Structure of dataset]{\textbf{Structure of dataset} \emph{Left}: original dataset - containing a sequence of frames with bee detections; \emph{Middle:} binary bee time series - zero and one indicate absence and presence of a bee; \emph{Right:} binary pairs time series - zero and one indicate the absence and presence of two bees in the same frame.}
 	\label{fig:structure}
-\end{figure}git
+\end{figure}

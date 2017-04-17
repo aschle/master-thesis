@@ -44,14 +44,7 @@ The network pipeline takes two types of parameters. The first set of parameters 
 \textbf{Minimum} & The number of frames two individuals need to spend close.\\
 \textbf{Contact duration} &  to each other to count it as an interaction ~(in frames) \vspace{2mm} \\
 \textbf{Start timestamp} & Starting point of the network aggregation.~(as UTC string) \vspace{2mm} \\
-\textbf{Window size} & Size of time window for aggregating the network.~(in minutes) \vspace{4mm}\\
-\end{tabularx}
-\end{table}
-
-\begin{table}[htbp]
-\small
-\centering
-\begin{tabularx}{\textwidth}{@{} r Y @{}}
+\textbf{Window size} & Size of time window for aggregating the network.~(in minutes) \vspace{6mm}\\
 \textbf{Confidence} & Level of confidence, as described in section~\nameref{subsec:confidence}.~(in percent) \vspace{2mm}\\
 \textbf{Valid IDs} & List of valid IDs within a specified time interval, as described in section~\nameref{subsubsec:dataset:filter}.~(in CSV file format) \vspace{2mm}\\
 \textbf{Gap Size} & Gaps in time series of bee pairs are assumed to be the result of missing detections. Gaps of this size are filled up.~(in frames)\vspace{2mm}\\
@@ -77,7 +70,9 @@ The networks are aggregated for ten hours during daylight; this corresponds to t
 The confidence level is set to $95\%$, which will keep about 60\% of the data.
 The gap size is set to two frames. This value corresponds to the median gap length in the time series of bee pairs.
 
-\begin{figure}[htb]
+\input{Tables/chosenParams.tex}
+
+\begin{figure}[bp]
 	\centering
 	\begin{subfigure}[b]{0.45\textwidth}
 		\includegraphics[width=\textwidth]{Figures/sizeTagBee}
@@ -95,4 +90,3 @@ The gap size is set to two frames. This value corresponds to the median gap leng
 	\label{fig:contactRadius}
 \end{figure}
 
-\input{Tables/chosenParams.tex}
