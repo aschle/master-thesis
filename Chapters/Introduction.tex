@@ -15,7 +15,7 @@ Observing individual honey bees and their interactions with each other is vital 
 
 Within the BeesBook project of the Biorobotics Lab of Freie Universität Berlin, \textcite{wario2015automatic} developed technologies to automatically track all individuals of a honey bee (Apis mellifera) colony that are inside the honeycomb.
 Shortly after hatching, each bee is marked with a circular 12-bit tag (Figure~\ref{fig:markers}) on their thorax and then added to the observation colony.
-Several cameras observe the colony over a period of nine weeks. An image analysis pipeline evaluates each frame automatically. The resulting data set contains the exact position of each detected bee on the honeycomb and its age for each frame.
+Several cameras observe the colony over a period of nine weeks. An image analysis pipeline evaluates each frame automatically. The resulting dataset contains the exact position of each detected bee on the honeycomb and its age for each frame.
 
 \begin{figure}[b]
 	\centering
@@ -24,7 +24,7 @@ Several cameras observe the colony over a period of nine weeks. An image analysi
 	\label{fig:markers}
 \end{figure}
 
-In this thesis, worker-worker interaction networks, based on spatial proximity, are derived from the described data set. Each node in the network is a bee and a link between two nodes results if two bees are located close to each other for a specified period.
+In this thesis, worker-worker interaction networks, based on spatial proximity, are derived from the described dataset. Each node in the network is a bee and a link between two nodes results if two bees are located close to each other for a specified period.
 The networks are time-aggregated, which means that one network represents the data of multiple frames.
 After extracting the static networks, social network analysis methods are applied to determine the characteristics of the resulting networks and its social structure.
 
@@ -89,8 +89,8 @@ The second part analyzes properties, communities, and the development of the ide
 
 \section{Outline}
 This thesis is organized as follows.
-Chapter~\ref{ch:foundation} is a short introduction into social network analysis (SNA). I define network measures, terms, and algorithms used throughout this work and provide a brief summary of the current state of research concerning social insect networks, temporal networks and community detection in animal social networks.
-In Chapter~\ref{ch:approach} I describe my research approach in general and how the pipeline infers networks out of the given dataset, what steps are needed and what parameters it uses.
+Chapter~\ref{ch:foundation} is a short introduction to social network analysis. I define network measures, terms, and algorithms used throughout this work and provide a brief summary of the current state of research concerning social insect networks, temporal networks and community detection in animal social networks.
+In Chapter~\ref{ch:approach}, I describe my research approach in general and how the pipeline infers networks out of the given dataset, what steps are needed and what parameters it uses.
 Also, I explain and justify what decisions I took during the network analyses and community detection process.
 In Chapter~\ref{ch:results}, I report the results of the network analysis and the characteristics of the extracted communities.
 Finally, in chapter~\ref{ch:conclusion}, I summarize the results, discuss limitations and conclude with directions for future work.

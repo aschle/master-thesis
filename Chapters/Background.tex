@@ -20,22 +20,11 @@ In mathematical terms, networks are graphs and thus consist of \emph{nodes} (ver
 Social network analysis provides a set of methods, measures, and theories, borrowed from network and graph theory, to investigate social structures and their dynamics.
 
 This work focuses on the special case of social insect networks, where individuals are nodes and links represent interaction events between individuals. Those networks are called \emph{interaction networks} or association networks.
-According to~\textcite{charbonneau2013social}, the interactions used as a link can be of four different types when looking at social insect networks: spatial proximity, physical contact (usually with antennae, ``antennation''), a food exchange event (trophallaxis\footnote{The mouth-to-mouth transfer of fluids is called trophallaxis and is used by social insects.}), or specific communication signals.
-Links can be directed (e.g. trophallaxis) or undirected and weighted or unweighted. The link weights represent the strength of the relationship; commonly the number or duration of interactions is used~\cite{farine2015constructing}.
+According to~\textcite{charbonneau2013social}, the interactions used as a link can be of four different types when looking at social insect networks: spatial proximity, physical contact (usually with antennae, ``antennation''), a food exchange event (trophallaxis), or specific communication signals. Trophallaxis is the directed mouth-to-mouth transfer of fluids and is used by social insects to exchange information and food.
+
+Links can be directed or undirected and weighted or unweighted. The link weights represent the strength of the relationship; commonly the number or duration of interactions is used~\cite{farine2015constructing}.
 
 In the course of this work I use the term \emph{frequency} to refer to the total number of occurences~(absolute frequency), as opposed to the use of this term in physics. 
-
-
-\subsection{Temporal Networks}
-When modeling \emph{temporal} or \emph{dynamic networks}, two main approaches exist: (1)~time-aggregated~(discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot; and~(2)~the time-ordered~(continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
-
-The time-aggregated approach cumulates the data for each snapshot and reduces the available information per link.
-In contrast, the time-ordered approach retains the information about when interactions occurred and how long they lasted.
-It provides a detailed insight when timing and order of interactions are important.
-It can be used to model the topological flow of information through a network.
-
-Choosing a suitable time interval for data aggregation is challenging~\cite{Pinter-Wollman2014}, but many methods for analyzing time-aggregated networks already exists, whereas, for time-ordered networks, only a limited toolset is available.
-To model nodes and link weights in time-aggregated networks can be challenging, when since interactions, which occurred earlier or later in time, should be weighted accordingly.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -43,7 +32,8 @@ To model nodes and link weights in time-aggregated networks can be challenging, 
 \label{sec:definitions}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The following definitions are mainly taken from~\textcite{barabasi2016network} and ~\textcite{newman2010networks}. Table~\ref{tab:theory} summarizes the basic variables and terms used in the course of this work.
+The following definitions are mainly taken from \textcite{barabasi2016network} and \textcite{newman2010networks} and refer to undirected and unweighted static network measures, except for strength.
+Table~\ref{tab:theory} summarizes the basic variables and terms used in the course of this work.
 
 \begin{table}[!tp]
 \small
@@ -54,54 +44,79 @@ The following definitions are mainly taken from~\textcite{barabasi2016network} a
 \centering
 \begin{tabularx}{\textwidth}{@{} r Y @{}}
 	\textbf{Network size} &
-	$N$~is the total number of nodes, representing the number of animals in a network.\vspace{2mm}\\
+	$N$ is the total number of nodes, representing the number of animals in a network.\vspace{2mm}\\
 	\textbf{Number of links} &
-	$L$~is the total number of links in a network, representing social interactions.\vspace{2mm}\\
+	$L$ is the total number of links in a network, representing social interactions.\vspace{2mm}\\
 	\textbf{Link weight} &
-	$w_{ij}$ of an link between node $n_i$ and $n_j$ is an indicator of how important that link is.\vspace{2mm}\\
+	$w_{ij}$ of an link $l_{ij}$ between node $i$ and $j$ is an indicator of how important that link is.\vspace{2mm}\\
 	\textbf{Component} &
 	is a subnet of nodes in a network so that there is a path between any two nodes that belong to the component.\vspace{2mm}\\
 	\textbf{Degree} &
-	$k_i$ of a node $n_i$ represents the number of other animals this focal animal interacts with.\vspace{2mm}\\
+	$k_i$ of a node $i$ represents the number of other animals the $i$-th animal interacts with.\vspace{2mm}\\
 	\textbf{Average degree} &
 	$\langle k \rangle$ is the number of interaction partners an animal has, on average, in the network.\vspace{2mm}\\
-	\textbf{Path length} & $d_{ij}$ is the shortest number of links between the nodes $n_i$ and~$n_j$, also called distance.\vspace{2mm}\\
-	\textbf{Average path length} & $\langle d \rangle$ is the average of all shortest paths between all pairs of nodes.\vspace{2mm}\\
+	\textbf{Shortest path length} & $d_{ij}$ is the shortest number of links between the nodes $i$ and~$j$, also called distance.\vspace{2mm}\\
+
+	\textbf{Average shortest} & $\langle d \rangle$ is the average of all shortest paths between all\\
+	\textbf{path length} & pairs of nodes.\vspace{2mm}\\
 	\textbf{Diameter} & $d_{\texttt{max}}$ represents the length of the longest of all shortest paths, the longest possible path length in the network.\\
 \end{tabularx}
 }
 \end{table}
 
 \paragraph{Density} $D$ is the number of realized links divided by the number
-of theoretically possible links is defined as: $$D=\frac{2L}{N(N-1)}$$
+of theoretically possible links is defined as
+\begin{equation}
+\label{eq:density}
+D=\frac{2L}{N(N-1)}.
+\end{equation}
 
-\paragraph{Strength} $s_i$ of a node $n-i$ is also called the weighted degree.
+\paragraph{Strength} $s_i$ of a node $i$ is also called the weighted degree.
 It measures the total weight of links connected to that node.
 The average strength is denoted as~$\langle s \rangle$.
-According to~\textcite{barrat2004architecture} it is defined as:
-$$s_i = \sum_{j=1}^{n}w_{ij}$$. 
+According to~\textcite{barrat2004architecture} it is defined as
+\begin{equation}
+\label{eq:strength}
+s_i = \sum_{j=1}^{N}w_{ij}. 
+\end{equation}
 
 \paragraph{Global clustering coefficient (gcc)} $C_\Delta$ is also called transitivity. The gcc is based on triplets. A connected triplet consists of three nodes connected by two links. A triangle consists of three connected triplets. 
- According to~\textcite{wasserman1994social} the gcc is defined as: $$C_\Delta = \frac{3 \times \texttt{number of triangles}}{\texttt{number of connected triples}}$$.
+ According to~\textcite{wasserman1994social} the gcc is defined as
+ 
+\begin{equation}
+\label{eq:gcc}
+c_\Delta = \frac{(\text{number of triangles}) \times 3}{(\text{number of connected triples})}.
+\end{equation}
 
-\paragraph{Local clustering coefficient (lcc)} $c$ of a node $n$ quantifies how close its neighbors are
-to being a clique.
+\paragraph{Local clustering coefficient (lcc)} $c_i$ of a node $i$ quantifies how close the node's neighborhood is to beeing a complete subgraph and is defined as
+
+\begin{equation}
+\label{eq:lcc}
+c_i = \frac{(\text{number of pairs of neighbors of }i\text{ that are connected})}{(\text{number of pairs of neighbors of }i)}.
+\end{equation}
 
 \paragraph{Centrality}
 When looking at the node level structure of a network, it is possible to identify nodes, which are important or central to different aspects of the network. This concept is called \emph{centrality} and measures the influence of a node in a network.
 
 \paragraph{Degree Centrality}
-$C^i_D$ is the normalized degree $k_i$ of a node $n_i$ in relation to the whole network. It is calculated as follows:
-$$C^i_D=\frac{k_i}{N-1}$$
+$C^i_D$ is the normalized degree $k_i$ of a node $i$ in relation to the whole network. It is calculated as
+
+\begin{equation}
+\label{eq:degrC}
+C^i_D=\frac{k_i}{N-1}.
+\end{equation}
 
 \paragraph{Closeness Centrality}
-$C^i_C$ of a node $n_i$ measures how close this node is to all other nodes in the network. 
-It is the average length of shortest paths between node $n_i$ and all other nodes in the network.
+$C^i_C$ of a node $i$ measures how close this node is to all other nodes in the network. 
+It is the average length of shortest paths between node $i$ and all other nodes in the network and is calculated as
 
-$$C_C^i=\frac{N}{\sum_{j}d_{ij}}$$
+\begin{equation}
+\label{eq:cc}
+C_C^i=\frac{N}{\sum_{j}d_{ij}}.
+\end{equation}
 
 \paragraph{Betweenness Centrality}
-$C^i_B$ of a node $n_i$ measures the extent to which a node lies on paths between other nodes. Nodes that occur on many shortest paths between other nodes have a higher betweenness that those that do not.
+$C^i_B$ of a node $i$ measures the extent to which a node lies on shortest paths between other nodes. Nodes that occur on many shortest paths between other nodes have a higher betweenness that those that do not.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -151,3 +166,14 @@ The algorithm uses a bottom-up hierarchical approach, which means the algorithm 
 The basic idea of walktrap is that short distance random walks (the step size is a parameter) tend to stay in the same community because there are only a few links that lead outside a given community.
 The results of these random walks are used to merge separate communities.
 Again modularity can be used to cut the dendrogram at an optimal place.
+
+\subsection{Temporal Networks}
+When modeling \emph{temporal} or \emph{dynamic networks}, two main approaches exist: (1)~time-aggregated~(discrete), where the data is aggregated either in a disjoint, overlapping or cumulative snapshot; and~(2)~the time-ordered~(continuous) approach, with interactions having a start and end timestamp~\cite{moody2005dynamic, Pinter-Wollman2014, blonder2012temporal}.
+
+The time-aggregated approach cumulates the data for each snapshot and reduces the available information per link.
+In contrast, the time-ordered approach retains the information about when interactions occurred and how long they lasted.
+It provides a detailed insight when timing and order of interactions are important.
+It can be used to model the topological flow of information through a network.
+
+Choosing a suitable time interval for data aggregation is challenging~\cite{Pinter-Wollman2014}, but many methods for analyzing time-aggregated networks already exists, whereas, for time-ordered networks, only a limited toolset is available.
+To model nodes and link weights in time-aggregated networks can be challenging, when since interactions, which occurred earlier or later in time, should be weighted accordingly.

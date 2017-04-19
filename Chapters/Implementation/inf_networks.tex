@@ -42,7 +42,7 @@ It specifies the minimum time two bees have to spend close to each other to be c
 Links are assigned two attributes.
 The first one is the frequency of contacts, meaning how often they share a close position. The second parameter refers to the total duration of all contacts.
 
-The network pipeline takes two types of parameters. The first set of parameters defines the resulting network and the exact type of spatial proximity. The second set relates to the given data set. Both parameter types are described below.
+The network pipeline takes two types of parameters. The first set of parameters defines the resulting network and the exact type of spatial proximity. The second set relates to the given dataset. Both parameter types are described below.
 
 \begin{table}[htbp]
 \small
@@ -106,7 +106,7 @@ The gap size is set to two frames. This value corresponds to the median gap leng
 \subsection{Summary}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The goal, as mentioned in~\ref{sec:intro:goals}, was to answer the question whether it is possible to infer temporal networks with the provided honey bee tracking data and to work out challenges and limitations regarding the provided data set. Furthermore, it was a goal to identify the parameters necessary for the pipeline.
+The goal, as mentioned in~\ref{sec:intro:goals}, was to answer the question whether it is possible to infer temporal networks with the provided honey bee tracking data and to work out challenges and limitations regarding the provided dataset. Furthermore, it was a goal to identify the parameters necessary for the pipeline.
 
 \subsubsection{Pipeline Parameters}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,7 +126,7 @@ It is possible to infer networks, but a complex preprocessing of the dataset is 
 
 \begin{enumerate}
 \item \textbf{Reduction of data}\\
-Reduce the amount of data to obtain a reliable data set, by filtering out detections with a low confidence value or by IDs with a low detection frequency.
+Reduce the amount of data to obtain a reliable dataset, by filtering out detections with a low confidence value or by IDs with a low detection frequency.
 \item \textbf{Combine camera data}\\
 This step consist of the time synchronization of each of the two cameras and the joining of the data per frame.
 \end{enumerate}
