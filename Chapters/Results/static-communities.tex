@@ -3,8 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The leading eigenvector~(LE) community detection algorithms revealed two communities with a similar size~(modularity score of~$0.25$).
-The walktrap algorithm~(WT) discovered three communities instead, also evenly distributed~(modularity score of~$0.23$).
-Table~\ref{tab:n3-communities} lists the precise number of members per community and algorithm for snapshot~3.
+The walktrap algorithm~(WT) discovered three communities instead, also evenly distributed~(modularity score of~$0.23$).~Table~\ref{tab:n3-communities} lists the precise number of members per community and algorithm for snapshot~3.
 
 For both algorithms the communities correspond to different age groups.
 For LE, the average age of the young community is~$13.2$~days and the average age of  the old community is~$28.7$~days.
@@ -20,7 +19,7 @@ Figure~\ref{fig:n3-communities} shows that the young communities spend the most 
 \input{Tables/n3-members-communities.tex}
 \input{Tables/n3-age-kstest.tex}
 
-\begin{figure}[!htb]
+\begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
@@ -30,7 +29,7 @@ Figure~\ref{fig:n3-communities} shows that the young communities spend the most 
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3-ageDistribution-LE}
-	\caption[Leading eigenvector communities]{Leading eigenvector communities}
+	\caption[Leading eigenvector (LE) communities]{Leading eigenvector (LE) communities}
 	\label{fig:n3ageLE}
 	\end{subfigure}
 	
@@ -45,7 +44,7 @@ Figure~\ref{fig:n3-communities} shows that the young communities spend the most 
 	\begin{subfigure}[b]{1.0\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3-ageDistribution-WT}
-	\caption[Walktrap communities]{Walktrap communities}
+	\caption[Walktrap (WT) communities]{Walktrap (WT) communities}
 	\label{fig:n3ageWT}
 	\end{subfigure}
 	
@@ -53,6 +52,6 @@ Figure~\ref{fig:n3-communities} shows that the young communities spend the most 
 	\caption[Age and spatial distribution of communities]{
 	\textbf{Age and spatial distribution of communities}
 	\emph{Green} represents the young community occupying the center area of the comb and \emph{orange} the old community, which is situated closer to the hive access.
-	For walktrap, the \emph{gray} middle-aged community is positioned between the other to and in the periphery of the comb.}
+	For WT, the \emph{gray} middle-aged community is positioned between the other to and in the periphery of the comb.}
 	\label{fig:n3-communities}
 \end{figure}
