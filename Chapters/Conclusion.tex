@@ -84,7 +84,7 @@ Instead of applying a global threshold to reduce the density, a network reductio
 \textcite{serrano2009extracting} propose a disparity filter algorithm, which seems promising but needs further investigation.
 The disparity measure characterizes the level of local heterogeneity of links~\cite{barthelemy2003spatial}.
 For all network measures utilized in this work, weighted versions exist.
-The weighted measures (e.g., closeness and betweenness) implemented in iGraph and networkX favor link weights over the number of links and simply apply Dijkstra~\cite{dijkstra1959note} for calculating the shortest paths. \textcite{opsahl2010node} propose weighted network measures by providing a generalized degree and shortest path algorithm. The tuning parameter, Opsahl et al. introduce, has to be chosen. This parameter defines whether to emphasize the number of links or the weights of links and must be selected according to a predefined research question.
+The weighted measures (e.g., closeness and betweenness) implemented in igraph and networkX favor link weights over the number of links and simply apply Dijkstra~\cite{dijkstra1959note} for calculating the shortest paths. \textcite{opsahl2010node} propose weighted network measures by providing a generalized degree and shortest path algorithm. The tuning parameter, Opsahl et al. introduce, has to be chosen. This parameter defines whether to emphasize the number of links or the weights of links and must be selected according to a predefined research question.
 
 
 \paragraph{Normalizing by the Detection Frequency of Individuals}
@@ -94,7 +94,7 @@ I propose two options: either normalize the link weight by applying the simple r
 
 \paragraph{Random Geometric Graph}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Instead of comparing the honeybee network to an Erd\H{o}s-R\'{e}niy graph a new model could be implemented.
+Instead of comparing the honeybee network to an Erd\H{o}s-R\'{e}nyi graph a new model could be implemented.
 As the starting point, a random geometric graph~\cite{rgg2002} can be used.
 In each frame, the nodes could be placed not completely randomly, preferably by modeling the behavior of a bee as a random walker.
 The direction of movement could be chosen randomly, but the distance of a step might be selected according to the average speed of bees.

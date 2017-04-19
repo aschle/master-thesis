@@ -15,10 +15,9 @@ Furthermore, I describe the approach used to study the development of communitie
 I summarized the network analysis methods of the reviewed studies (Chapter~\ref{ch:relatedwork}) to gain an overview of established procedures in the field of social insect networks.
 I grouped the methods by global measures, node level measures and other network analysis methods.
 Table~\ref{tab:study-measures} summarizes the network analysis methods applied by the reviewed studies.
-The network measures I chose for the global and node level analysis are listed in table~\ref{tab:netprop} and were defined in chapter~\ref{sec:definitions}.
+The network measures I chose for the global and node level analysis are listed in Table~\ref{tab:netprop} and were defined in Chapter~\ref{sec:definitions}.
 
-Each link in the network is attributed with the frequency of interactions and total duration of interactions between the two individuals.
-Figure~\ref{fig:fVSd} shows a strong positive correlation between those two values.
+Each link in the network is attributed with the frequency of interactions and total duration of interactions between the two individuals. Figure~\ref{fig:fVSd} shows a strong positive correlation between those two values.
 For further analysis I decided to use the frequency of interactions as the weight for links, analogously to \cite{mersch2013tracking,baracchi2014socio}.
 
 
@@ -35,7 +34,7 @@ This measure was chosen because it reveals a lot about the general topology of a
 The strength of a bee is the sum of its link weights.
 A high strength refers either to a large number of interaction partners with a low link weight or a low number of interaction partners with high link weights.
 Especially for aggregated networks this measure accumulates valuable information regarding the interaction activity of bees.
-The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to being a clique\footnote{A clique is a complete subgraph.}.
+The local clustering coefficient (lcc) of a bee indicates how close its interaction partners are to form a complete subgraph.
 A large lcc shows that most of its interaction partners interact with each other.
 A low lcc indicates the absence of those interactions.
 It is a good indicator for the embeddedness of single bees.
@@ -47,7 +46,7 @@ The closeness of a bee measures how fast this bee can reach all others in the ne
 A high closeness would indicate a very short path to every other bee.
 A bee with high closeness can spread information to all other bees very quickly.
 
-I examined all node level measures concerning the age of bees and their detection frequency. The global network measures are compared to an Erd\H{o}s-R\'{e}niy random network, by averaging over 100 runs.
+I examined all node level measures concerning the age of bees and their detection frequency. The global network measures are compared to an Erd\H{o}s-R\'{e}nyi random network, by averaging over 100 runs.
 
 \input{Tables/approach-netproperties.tex}
 
@@ -66,19 +65,16 @@ In contrast to the resulting groups of community detection, groups identified by
 Abundant literature on the comparative analysis of community detection algorithms exists, e.g.~\cite{yang2016comparative, harenberg2014community}.
 Some studies seem to be promising for choosing an appropriate algorithm, but assume either a power law degree distribution or
 evaluate networks with a low density, which is not applicable here.
-Thererfore, I tested community detection algorithms, implemented in python, to find an algorithm that works well for animal social networks. The three most common python libraries for network analysis were reviewed: NetworkX\footnote{\url{https://networkx.github.io/}; Last accessed: 16.03.2016, 6:36~p.m.}, igraph\footnote{\url{http://igraph.org/python/}; Last accessed: 16.03.2016, 6:38~p.m.}, and graph-tool\footnote{\url{https://graph-tool.skewed.de/}; Last accessed: 16:03.2016, 6:39~p.m.}.
-The algorithm needs to fulfill the following criterias:
+Thererfore, I tested community detection algorithms, implemented in python, to find an algorithm that works well for animal social networks. The three most common python libraries for network analysis were reviewed: NetworkX\footnote{\url{https://networkx.github.io/}; Last accessed: March 16, 2016; 6:36~p.m.}, igraph\footnote{\url{http://igraph.org/python/}; Last accessed: March 16, 2016; 6:38~p.m.}, and graph-tool\footnote{\url{https://graph-tool.skewed.de/}; Last accessed: March 16, 2016; 6:39~p.m.}.
+The algorithm needs to fulfill the following criteria: support for large (($N=1000$) and dense ($D>50\%$) networks, support for weighted links, as well as a fast runtime.
 
-\begin{itemize}
-\item Support for large and very dense networks ($N=1000$, $D>50\%$)
-\item Support for weighted link
-\item Fast runtime
-\end{itemize}
+\input{Tables/algos.tex}
+\input{Tables/algos4.tex}
 
 Table~\ref{tab:algos} gives an overview about the algorithms reviewed.
 Five algorithms did not terminate after 15~minutes and were therefore excluded from further investigations.
 Infomap and label propagation tend to partition all nodes into a single community, this is known, especially in dense graphs~\cite{yang2016comparative, fortunato2010community}.
-The Louvain algorithm\footnote{Implemented in python for networkX: \url{http://perso.crans.org/aynaud/communities/api.html}} (networkX) is the same as multilevel (iGraph), but takes longer and produces almost the same communities and was therefore was also excluded.
+The Louvain algorithm implemented in networkX is the same as multilevel implemented in igraph, but takes longer and produces almost the same communities and was also excluded.
 Walktrap was tested for different step size parameters, as suggested in~\cite{pons2005computing}, the communities remained almost the same, only a few nodes switched communities.
 
 I examined the number and size of detected communities for the algorithms fastgreedy, leading eigenvector, multilevel, and walktrap for all three snapshots. Table~\ref{tab:algos4} gives an overview of the results.
@@ -87,12 +83,11 @@ Except for leading eigenvector, most tend to find three communities.
 
 I decided to use two algorithms for community detection: leading eigenvector and walktrap. \textcite{farine2015constructing} explain that leading eigenvector is often used with animal social networks and works well. Walktrap is also chosen for also examining the third community (Table~\ref{tab:algos4}).
 
-\input{Tables/algos.tex}
-\input{Tables/algos4.tex}
+
 
 \subsubsection{Age and Spatial Distribution of Communities}
 To answer the question whether communities reflect different age groups, I examined the average age and the general age distribution of the communities.
-I also investigated whether the age division persists in each snapshot.
+I also investigated, if the age division persists in each snapshot.
 A two-sample Kolmogorov-Smirnov test was used to determine the statistical difference of the age distribution between communities.
 
 To investigate whether communities reflect groups of bees working in different areas of the comb, I used heat maps to determine the core regions per group.
@@ -107,11 +102,11 @@ For each of the three approaches, several methods already exist.
 As community tracking is not the main focus of this work, I chose to apply the most natural method: detecting static communities for each snapshot and then matching those communities using set theory.
 
 Two communities at successive times are matched if they share enough nodes.
-The \emph{match value} between two communities $C$ and $D$ according to Hopcroft~et~al.~\cite{hopcroft2004tracking} is defined as:
+The \emph{match value} between two communities $C$ and $D$ according to Hopcroft~et~al.~\cite{hopcroft2004tracking} is defined as
 
 \begin{equation}
 \label{eq:match}
-\texttt{match}(C,D) = \texttt{min}\left( \frac{\textbar C\cap D \textbar}{\textbar C\textbar }, \frac{\textbar C\cap D \textbar}{\textbar D \textbar }\right)
+\text{match}(C,D) = \text{min}\left( \frac{\textbar C\cap D \textbar}{\textbar C\textbar }, \frac{\textbar C\cap D \textbar}{\textbar D \textbar }\right).
 \end{equation}
 
 This value is between 0 and 1.
@@ -122,4 +117,4 @@ Otherwise, communities with only 0.1\% of nodes overlapping could be matched.
 
 To investigate the total number of bees that remain in the network over the three snapshots, I inspected the match value of bees in consecutive snapshots.
 I also calculated all match values between communities in consecutive snapshots and  the number of intersecting bees. I visualize the dynamic movement
-of bees between groups of different snapshots with a flowchart diagram using the JavaScript library D3.js\footnote{\url{https://d3js.org/}}.
+of bees between groups of different snapshots with a flowchart diagram using the JavaScript library D3.js\footnote{\url{https://d3js.org/}; Last accessed: April 19, 2016; 3:18~p.m.}.

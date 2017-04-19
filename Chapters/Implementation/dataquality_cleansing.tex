@@ -7,7 +7,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this section, I describe the data scheme and investigate the quality of the tracking data and completeness of bee tracks. I propose a way to filter invalid detections to gain a cleaned and valid dataset, which can be used to infer networks.
+In this section, I describe the data scheme and investigate the quality of the tracking data and completeness of bee tracks. I propose a way to filter invalid detections to gain a cleaned and valid dataset, which can be used to infer networks. Frequently used terms are listed in Table~\ref{tab:dataset}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -17,28 +17,29 @@ In this section, I describe the data scheme and investigate the quality of the t
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The data is organized in \emph{frame containers}.
-Each frame container corresponds to one video file from a particular camera and contains aproximately $1024$ frames.
+Each frame container corresponds to one video file from a particular camera and contains aproximately 1,024 frames.
 Each \emph{frame} contains a list of bees, which were detected by the image analysis pipeline.
-A bee \emph{detection} includes following attributes:
+A bee \emph{detection} includes following attributes:\\
 
 \begin{table}[!h]
 \small
 \centering
 \begin{tabular}{rl}
-\textbf{xpos}: & $x$ coordinate of bee with respect to the image in pixel \vspace{2mm}\\
-\textbf{ypos}: & $y$ coordinate of bee with respect to the image in pixel \vspace{2mm}\\
-\textbf{decoded ID}: & decoded 12-bit ID \vspace{2mm}\\
-\textbf{cam ID}: & ID of the camera ${0,1,2,3}$ \vspace{2mm}\\
-\textbf{timestamp}: & unix timestamp with milliseconds\\
+\textbf{x pos} & $x$ coordinate of bee with respect to the image in pixel \vspace{2mm}\\
+\textbf{y pos} & $y$ coordinate of bee with respect to the image in pixel \vspace{2mm}\\
+\textbf{decoded ID} & decoded 12-bit ID \vspace{2mm}\\
+\textbf{cam ID} & ID of the camera: ${0,1,2,3}$ \vspace{2mm}\\
+\textbf{timestamp} & unix timestamp with milliseconds\\
 \end{tabular}
 \end{table}
 
-The data can be accessed by iterating on the frame level, using a start and end time\-stamp for specifying time interval. The complete data scheme can be found on GitHub\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: 2106-02-16, 04:46PM}.
+\newpage
+The data can be accessed by iterating on the frame level, using a start and end time\-stamp for specifying time interval. The complete data scheme can be found on GitHub\footnote{\url{https://github.com/BioroboticsLab/bb_binary/blob/master/bb_binary/bb_binary_schema.capnp}; Last accessed: February 16, 2016; 4:46~p.m.}.
 
 
 \begin{table}[!t]
 \small
-\caption[Terms concerning the data]{\textbf{Terms concerning the data}}
+\caption[Terms related to the dataset]{\textbf{Terms related to the dataset}}
 \label{tab:dataset}
 \vspace{3mm}
 \colorbox{usethiscolorhere}{
@@ -51,9 +52,7 @@ The data can be accessed by iterating on the frame level, using a start and end 
 	\textbf{Detection} &
 	Detection of a bee at a certain point in time.\vspace{2mm}\\
 	\textbf{Decoded ID} &
-	Identifier of a bee consisting of 12 probability values, representing 12 bits.\vspace{2mm}\\
-	\textbf{Confidence} &
-	Value between 0\% and 100\% according to~(\ref{eq:confidence})\vspace{2mm}\\
+	Identifier of a bee consisting of twelve probability values, representing twelve bits.\vspace{2mm}\\
 	\textbf{ID} &
 	Decimal representation of a decoded ID.\vspace{2mm}\\
 	\textbf{Bee time series} & Binary sequence, indicating the absence and presence of a certain bee in a particular time interval.\vspace{2mm}\\
@@ -81,13 +80,11 @@ The data can be accessed by iterating on the frame level, using a start and end 
         \label{fig:ids}
     \end{subfigure}
  	\caption[Quality of detections and IDs]{\textbf{Quality of detections and IDs} \emph{Light green} represents the number of remaining data and \emph{dark green} indicates the fraction of invalid data. (a) Proportion of remaining and invalid detections. (b) IDs, that are detected at least once, in relation to invalid IDs.
- 	[Data: 26.07.2016, 4~p.~m., 10~minutes, four cameras]}
+ 	[Dataset: ten minutes; four cameras; July 26, 2016; 4~p.m.]}
  	\label{fig:remainingVSquality}
 \end{figure}
 
-\footnotetext{}
-
-Twelve bits can encode the identity of 4096 bees.
+Twelve bits can encode the identity of 4,096 bees.
 Each bit of the decoded ID represents a probability between $0$ and $255$, normalized to a value between $0$ and $1$.
 Therefore, a bit indicates the confidence of the image analysis pipeline for that specific bit.
 I define the confidence $c$ for a bit $b$, analogously to Leon~\textcite[p.~14]{leon2016}, as
@@ -128,27 +125,17 @@ observed less often than bees with a positive age.
 During my analysis, I noticed the existence of a group of bees with a negative age and a high detection frequency.
 I inspected the corresponding photos and confirmed that those bee detections correspond to living individuals and are not artifacts.
 This results likely from a mistake in the reported hatching date for each bee.
-Consequently, these bess were excluded from the analysis. Also I excluded bees~($n=10$), whose age is unknown\footnote{id= [2,
-    74,
-    2045,
-    3172,
-    3764,
-    3796,
-    3827,
-    3836,
-    3844,
-    3940]}.
+Consequently, these bess were excluded from the analysis. Also I excluded bees~($n=10$), whose age is unknown.
 
 For each analysis day, the number of detections per ID is calculated, excluding the mentioned IDs.
 To obtain a reliable dataset, I filtered invalid detections, by discarding all detections with an ID frequency below the 99th percentile of the negative IDs.
 
-\begin{figure}[tp]
+\begin{figure}[htbp]
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/filter}
-	\caption[Detection frequency of IDs]{\textbf{Detection frequency of IDs} \emph{Orange} corresponds to bees with a negative age and \emph{green} displays bees with a positive age.\protect\footnotemark The \emph{gray} line represents the 99th percentile of bees with a negative age.}
+	\caption[Detection frequency of IDs]{\textbf{Detection frequency of IDs} \emph{Orange} corresponds to bees with a negative age and \emph{green} displays bees with a positive age. The \emph{gray} line represents the 99th percentile of bees with a negative age. [Dataset: August 20, 2016; 24 hours, number of total frames:~302,400]}
 	\label{fig:filter}
 \end{figure}
-\footnotetext{Dataset: 20.08.2016, 24 hours, number of total frames: 302400}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -163,16 +150,16 @@ A bee time series, similar to a track, represents the absence and presence of a 
 For further processing I use the bee time series to extract \emph{pair time series} of bees that are spatially close (Figure~\ref{fig:structure}, right).
 A one indicates that a pair of bees is detected and both bees are spatially close in a certain frame.
 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=1.0\textwidth]{Figures/structure}
+	\caption[Structure of dataset]{\textbf{Structure of dataset} \emph{Left}: original dataset - containing a sequence of frames with bee detections; \emph{Middle:} binary bee time series - zero and one indicate absence and presence of a bee; \emph{Right:} binary pairs time series - zero and one indicate the absence and presence of two bees in the same frame.}
+	\label{fig:structure}
+\end{figure}
+
 By analyzing the resulting pair time series, I noticed that detection sequences were often interrupted by short intervals without valid detections.
 As stated before, the higher the level of confidence, the more data is discarded.
 This data reduction leads to more zeroes (gaps) in both time series.
 Gaps in the pair time series frequently correspond to gaps in one or both bee time series and are thus the result of missing detections of the required confidence and do not represent any meaningful behavior of the bees.
 Bees are not able to approach each other and move apart within a second because they simply do not move that fast.
 Therefore, I concluded, that those gaps originate from detection errors and consequently need to be treated in an appropriate way during further data processing.
-
-\begin{figure}[tp]
-	\centering
-	\includegraphics[width=1.0\textwidth]{Figures/structure}
-	\caption[Structure of dataset]{\textbf{Structure of dataset} \emph{Left}: original dataset - containing a sequence of frames with bee detections; \emph{Middle:} binary bee time series - zero and one indicate absence and presence of a bee; \emph{Right:} binary pairs time series - zero and one indicate the absence and presence of two bees in the same frame.}
-	\label{fig:structure}
-\end{figure}
