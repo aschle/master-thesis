@@ -34,17 +34,12 @@
 \usepackage{arydshln}
 \definecolor{usethiscolorhere}{rgb}{0.92,0.92,0.92}
 \usepackage[
-		style=numeric,
-		citestyle=numeric,
-		maxalphanames=1,
-		maxcitenames=2,
-		backend=bibtex,
-		doi=false,
-		isbn=false,
-		url=false
-	]
-	{biblatex}
-%\usepackage[numbers]{natbib}
+        style=ieee,
+        minbibnames=1,
+        maxbibnames=2
+    ]
+    {biblatex}
+
 \usepackage[
 		font=small,
 		format=plain,
@@ -112,7 +107,8 @@
 %---------------------------------------------------
 %
 %\bibliographystyle{IEEEtran}  % citation style
-\bibliography{references} % bib file
+%\bibliography{test} % bib file
+\addbibresource{references.bib} % bib file
 
 % the following is needed for syntax highlighting
   
@@ -301,7 +297,6 @@
 %----- Bibliography
 %---------------------------------------------------
 \printbibliography
-
 %---------------------------------------------------
 %----- Directories   
 %---------------------------------------------------
