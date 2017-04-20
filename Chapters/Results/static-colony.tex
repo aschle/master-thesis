@@ -17,6 +17,7 @@ Consequently, bees of certain age groups are simply not present.
 The detection frequency of an individual bee is negatively correlated with its age~(Figure~\ref{fig:n3detfVSage}).
 The link weight distribution is shown in Figure~\ref{fig:edgeWdist}.
 Most links have a low weight; only a few links have a high weight.
+The logarithmized frequency distribution of the link weights appears to be an exponential decay function with an exponent of 0.015. The fitted plot is shown in Figure~\ref{fig:123edgeslog}.
 
 \input{Tables/res-stats.tex}
 
@@ -27,20 +28,22 @@ Most links have a low weight; only a few links have a high weight.
 	\includegraphics[width=1.0\textwidth]{Figures/n3_detFvsAge}
 	\caption[Correlation]{Correlation of detection frequency and age}
 	\label{fig:n3detfVSage}
-	\vspace{6mm}
+	\vspace{10mm}
 	\end{subfigure} 
 	\begin{subfigure}[b]{1\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3_ages.pdf}
 	\caption[Age distribution]{Age distribution}
 	\label{fig:n3ageDist}
-	\vspace{6mm}
+	\vspace{10mm}
 	\end{subfigure}	\begin{subfigure}[b]{1\textwidth}
 	\centering
 	\includegraphics[width=1.0\textwidth]{Figures/n3-edgeWeightDist.pdf}
-	\caption[Link weight distribution]{Link weight distribution}
+	\caption[Link weight distribution]{Link weight distribution (log-log plot)}
 	\label{fig:edgeWdist}
 	\end{subfigure}
-	\caption[Age distribution, correlation with detection frequency and link weight distribution of snapshot~3]{\textbf{Age distribution, correlation with detection frequency and link weight distribution of snapshot~3} (a) Detection frequency and the age of a honeybee seem to be negatively correlated. (b) The age of bees ranges from $1$ to $60$ days, but some age groups are missing. (c) The link weight distribution decays exponentially.}
+	
+	
+	\caption[Age distribution, correlation with detection frequency and link weight distribution of snapshot~3]{\textbf{Age distribution, correlation with detection frequency and link weight distribution of snapshot~3} (a) Detection frequency and the age of a honeybee seem to be negatively correlated. (b) The age of bees ranges from $1$ to $60$ days, but some age groups are missing. (c) The link weight as a log-log plot.}
 	\label{fig:ageDetF}
 \end{figure}
